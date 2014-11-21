@@ -1,10 +1,9 @@
 package lscob2b.test
 
-import lscob2b.modules.Login
-import lscob2b.pages.HomePage
-import lscob2b.pages.LoginPage;
-import spock.lang.Stepwise;
 import geb.spock.GebReportingSpec
+import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
+import spock.lang.Stepwise
 
 @Stepwise
 class LoginTest extends GebReportingSpec { 
@@ -80,9 +79,21 @@ class LoginTest extends GebReportingSpec {
 
 	}
 
+	def "Login failure"() {
+		when: "Logging in with bad credentials"
+
+		login("useridthatcannotexist")
+
+		then: "We should not be logged in"
+
+		at LoginPage
+
+		globalMessages
+		errorMessage
+		errorMessageText == "Your username or password was incorrect."
+	}
+
 	def login(String username) {
-		login.usernameInput = username
-		login.passwordInput = defaultPassword
-		login.doLogin()
+		doLogin(username, defaultPassword)
 	}
 }

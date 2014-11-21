@@ -1,7 +1,6 @@
 package lscob2b.pages
 
 import geb.Page
-import lscob2b.modules.Login;
 
 class LoginPage extends Page {
 
@@ -12,10 +11,17 @@ class LoginPage extends Page {
 	}
 
 	static content = {
-		login (required:false) {module Login}
-	}	
+		usernameInput (wait: true) { $("#j_username") }
+		passwordInput { $("#j_password") }
+		loginButton { $("#loginForm button") }
+		globalMessages { $("#globalMessages") }
+		errorMessage { $("#globalMessages div.negative") }
+		errorMessageText { errorMessage.text().trim() }
+	}
 
-	def connect() {
-		connectLink.click()
+	def doLogin(String username, String password) {
+		usernameInput = username
+		passwordInput = password
+		loginButton.click()
 	}
 }
