@@ -79,20 +79,6 @@ class LoginTest extends GebReportingSpec {
 
 	}
 
-	def "Login failure"() {
-		when: "Logging in with bad credentials"
-
-		login("useridthatcannotexist")
-
-		then: "We should not be logged in"
-
-		at LoginPage
-
-		globalMessages
-		errorMessage
-		errorMessageText == "Your username or password was incorrect."
-	}
-
 	def login(String username) {
 		doLogin(username, defaultPassword)
 	}
