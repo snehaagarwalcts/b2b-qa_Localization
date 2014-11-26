@@ -1,4 +1,4 @@
-package lscob2b.test
+package lscob2b.test.login
 
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
