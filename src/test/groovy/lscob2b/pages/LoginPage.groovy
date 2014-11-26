@@ -4,7 +4,7 @@ import geb.Page
 
 class LoginPage extends Page {
 
-    static url = "https://lscob2b.local:9002/lscob2bstorefront/lscob2b/en/login"
+    static url = ""
 
     static at = {
         title == "LSCO B2B Site"

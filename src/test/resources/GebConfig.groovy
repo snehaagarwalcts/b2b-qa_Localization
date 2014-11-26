@@ -16,13 +16,22 @@ if (sauceBrowser) {
     driver = { new FirefoxDriver() }
 }
 
-dev = true
-
-devHost = "lscob2b.local:9001"
+localHost = "lscob2b.local:9001"
+intHost = "b2bint-000-web-000.lsco-b2b.com"
 qaHost = "b2bqa-000-web-000.lsco-b2b.com"
 
-baseUrl = "http://" + (dev ? devHost + "/lscob2bstorefront" : qaHost)
 
+baseUrl = "http://" + localHost + "/lscob2bstorefront"
+
+environments {
+    integration {
+        baseUrl = "http://" + intHost + "/lscob2bstorefront"
+    }
+
+    qa {
+        baseUrl = "http://" + qaHost
+    }
+}
 
 reportsDir = new File("target/geb-reports")
 reportOnTestFailureOnly = true
