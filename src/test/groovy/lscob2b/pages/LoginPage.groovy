@@ -4,24 +4,57 @@ import geb.Page
 
 class LoginPage extends Page {
 
-	static url = "https://lscob2b.local:9002/lscob2bstorefront/lscob2b/en/login"
-	
-	static at = {
-		title == "LSCO B2B Site"
-	}
+    static url = "https://lscob2b.local:9002/lscob2bstorefront/lscob2b/en/login"
 
-	static content = {
-		usernameInput (wait: true) { $("#j_username") }
-		passwordInput { $("#j_password") }
-		loginButton { $("#loginForm button") }
-		globalMessages { $("#globalMessages") }
-		errorMessage { $("#globalMessages div.negative") }
-		errorMessageText { errorMessage.text().trim() }
-	}
+    static at = {
+        title == "LSCO B2B Site"
+    }
 
-	def doLogin(String username, String password) {
-		usernameInput = username
-		passwordInput = password
-		loginButton.click()
-	}
+    static content = {
+        // login form
+        usernameInput(wait: true) { $("#j_username") }
+        passwordInput { $("#j_password") }
+        loginButton { $("#loginForm button") }
+
+        // some error messages
+        globalMessages { $("#globalMessages") }
+        errorMessage { $("#globalMessages div.negative") }
+        errorMessageText { errorMessage.text().trim() }
+
+        // forgotten password
+        forgottenPasswordDialog(required: false) { $("#cboxLoadedContent") }
+        forgottenPasswordDialogVisible(required: false) { forgottenPasswordDialog.present && forgottenPasswordDialog.displayed }
+        forgottenYourPasswordButton { $("#loginForm a") }
+        closeForgottenPasswordButton (required: false) { $('#cboxClose') }
+        sendEmailButton(required: false) { $("#forgottenPwdForm button") }
+        emailAddress { $("#forgottenPwdForm input") }
+    }
+
+    def doLogin(String username, String password) {
+        usernameInput = username
+        passwordInput = password
+        loginButton.click()
+    }
+
+    def openForgottenPasswordDialog() {
+        forgottenYourPasswordButton.click()
+
+        waitFor {
+            forgottenPasswordDialogVisible
+            emailAddress
+        }
+    }
+
+    def closeForgottenPasswordDialog() {
+        closeForgottenPasswordButton.click()
+
+        waitFor {
+            !forgottenPasswordDialogVisible
+        }
+    }
+
+    def sendForgottenPasswordEmail(String email) {
+        emailAddress = email
+        sendEmailButton.click()
+    }
 }

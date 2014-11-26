@@ -1,7 +1,7 @@
 package lscob2b.pages
 
 import geb.Page
-import lscob2b.modules.Logout
+import lscob2b.modules.MasterTemplate
 
 /**
  * Created by i303936 on 11/20/14.
@@ -15,8 +15,8 @@ class HomePage extends Page{
     }
 
     static content = {
-        logoAltTag {$('#header div.simple_disp-img img').attr('alt')}
-        logout (required:false) {module Logout}
+        logoAltTag {$('header.subnav div.simple_disp-img img').attr('alt')}
+        logout (required:false) {module MasterTemplate}
         themeForm (required: false) {$('#theme-form')}
     }
 

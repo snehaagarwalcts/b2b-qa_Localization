@@ -5,11 +5,11 @@ import geb.Module
 /**
  * Created by i303936 on 11/20/14.
  */
-class Logout extends Module {
+class MasterTemplate extends Module {
 
     static content = {
         logoutLink {
-            $('#header ul.nav').find("a", text: "Sign Out")
+            $('nav.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
         }
     }
 
