@@ -17,7 +17,7 @@ if (sauceBrowser) {
 }
 
 localHost = "lscob2b.local:9001"
-intHost = "b2bint-000-web-000.lsco-b2b.com"
+intHost = "b2bint-000-int-000.lsco-b2b.com:9001"
 qaHost = "b2bqa-000-web-000.lsco-b2b.com"
 
 
