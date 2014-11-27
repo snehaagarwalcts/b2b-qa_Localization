@@ -14,7 +14,7 @@ if (sauceBrowser) {
         def accessKey = sysProps.get  "geb.sauce.access.key"
         def platform = env.get "SELENIUM_PLATFORM"
         def version = env.get "SELENIUM_VERSION"
-        def browserName = env.get "SAUCE_ONDEMAND_BROWSERS"
+        def browserName = env.get "SELENIUM_BROWSER"
         def capabilities = [platform: platform, version: version, browserName: browserName]
         new SauceLabsDriverFactory().create("", username, accessKey, capabilities)
     }
