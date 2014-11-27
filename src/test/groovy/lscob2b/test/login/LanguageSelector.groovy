@@ -22,6 +22,10 @@ class LanguageSelectorTest extends GebReportingSpec
 		
 		}
 	
+	def cleanup() {
+		masterTemplate.doLogout()
+	}
+	
 	def "Log in with Swedish as your default language"(){
 		
 		when: "Selecting a different language dropdown selection list should appear"
