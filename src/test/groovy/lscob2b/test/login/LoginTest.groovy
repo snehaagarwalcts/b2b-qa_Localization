@@ -18,7 +18,7 @@ class LoginTest extends GebReportingSpec {
 	}
 
 	def cleanup() {
-		logout.doLogout()
+		masterTemplate.doLogout()
 	}
 
 	def "Login to home page"() { // tests the login itself without worrying about rights
