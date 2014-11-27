@@ -4,13 +4,18 @@ import geb.driver.SauceLabsDriverFactory
 import org.openqa.selenium.firefox.FirefoxDriver
 
 def sauceBrowser = System.getProperty("geb.sauce.browser")
+
 if (sauceBrowser) {
     driver = {
-        def username = System.getenv("GEB_SAUCE_LABS_USER")
+        def username = System.getProperty("geb.sauce.user")
+        def accessKey = System.getProperty("geb.sauce.access.key")
         assert username
-        def accessKey = System.getenv("GEB_SAUCE_LABS_ACCESS_PASSWORD")
         assert accessKey
-        new SauceLabsDriverFactory().create(sauceBrowser, username, accessKey)
+        def platform = System.getProperty("geb.sauce.platform")
+        def version = System.getProperty("geb.sauce.version")
+        def browserName = System.getProperty("geb.sauce.browserName")
+        def capabilities = [platform: platform, version: version, browserName: browserName]
+        new SauceLabsDriverFactory().create(sauceBrowser, username, accessKey, capabilities)
     }
 } else {
     driver = { new FirefoxDriver() }
@@ -19,7 +24,6 @@ if (sauceBrowser) {
 localHost = "lscob2b.local:9001"
 intHost = "b2bint-000-int-000.lsco-b2b.com:9001"
 qaHost = "b2bqa-000-web-000.lsco-b2b.com"
-
 
 baseUrl = "http://" + localHost + "/lscob2bstorefront"
 
