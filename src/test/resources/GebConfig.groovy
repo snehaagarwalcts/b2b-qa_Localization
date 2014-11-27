@@ -3,19 +3,20 @@ package test.resources
 import geb.driver.SauceLabsDriverFactory
 import org.openqa.selenium.firefox.FirefoxDriver
 
-def sauceBrowser = System.getProperty("geb.sauce.browser")
+def sysProps = System.getProperties()
+
+def sauceBrowser = sysProps.get "geb.sauce.browser"
 
 if (sauceBrowser) {
     driver = {
-        def username = System.getProperty("geb.sauce.user")
-        def accessKey = System.getProperty("geb.sauce.access.key")
-        assert username
-        assert accessKey
-        def platform = System.getProperty("geb.sauce.platform")
-        def version = System.getProperty("geb.sauce.version")
-        def browserName = System.getProperty("geb.sauce.browserName")
+        def env = System.getenv()
+        def username = sysProps.get "geb.sauce.user"
+        def accessKey = sysProps.get  "geb.sauce.access.key"
+        def platform = env.get "SELENIUM_PLATFORM"
+        def version = env.get "SELENIUM_VERSION"
+        def browserName = env.get "SELENIUM_BROWSER"
         def capabilities = [platform: platform, version: version, browserName: browserName]
-        new SauceLabsDriverFactory().create(sauceBrowser, username, accessKey, capabilities)
+        new SauceLabsDriverFactory().create("", username, accessKey, capabilities)
     }
 } else {
     driver = { new FirefoxDriver() }
