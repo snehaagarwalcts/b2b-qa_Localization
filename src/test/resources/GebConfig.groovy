@@ -23,7 +23,7 @@ if (sauceBrowser) {
 }
 
 localHost = "lscob2b.local:9001"
-intHost = "b2bint-000-store-000.lsco-b2b.com:9001"
+intHost = "b2bint-001-store-000.lsco-b2b.com:9001"
 qaHost = "b2bqa-000-web-000.lsco-b2b.com"
 
 baseUrl = "http://" + localHost + "/lscob2bstorefront"
