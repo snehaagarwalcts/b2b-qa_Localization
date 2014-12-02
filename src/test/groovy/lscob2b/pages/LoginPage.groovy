@@ -30,7 +30,7 @@ class LoginPage extends Page {
         closeForgottenPasswordButton (required: false) { $('#cboxClose') }
         sendEmailButton(required: false) { $("#forgottenPwdForm button") }
         emailAddress { $("#forgottenPwdForm input") }
-		  
+		   
 		  // language selector
 		  langSelector { $("#lang-selector") }
     }
