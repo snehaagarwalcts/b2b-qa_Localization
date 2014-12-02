@@ -8,11 +8,25 @@ import geb.Module
 class MasterTemplate extends Module {
 
     static content = {
+		
+		//added by I065970 on 12/2/14
+		myaccountLink
+		{
+			$('nav.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
+		}
+
         logoutLink {
             $('nav.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
         }
     }
 
+	//added by I065970 on 12/2/14
+	def doMyaccount()
+	{
+		myaccountLink.click()
+	}
+
+	
     def doLogout() {
         logoutLink.click()
     }
