@@ -1,6 +1,8 @@
 package lscob2b.pages
 
 import geb.Page
+import lscob2b.modules.MasterTemplate //added this cause of an error "Log in with Swedish as your default language(lscob2b.test.login.LanguageSelectorTest): Unable to resolve masterTemplate as content for LoginPage, or as a property on its Navigator context. Is masterTemplate a class you forgot to import?"
+
 
 class LoginPage extends Page {
 
