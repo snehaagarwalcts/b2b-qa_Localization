@@ -5,7 +5,7 @@ import lscob2b.modules.MasterTemplate
 
 class LoginPage extends Page {
 
-	static url = ""
+	static url = "login"
 
 	static at = { title == "LSCO B2B Site" }
 
