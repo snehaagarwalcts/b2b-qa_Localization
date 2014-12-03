@@ -8,11 +8,15 @@ import geb.spock.GebSpec
 
 import org.openqa.selenium.support.ui.Select
 
-
+@Stepwise
 class LanguageSelectorTest extends GebReportingSpec {
 
-	def setup() {
+	def setupSpec() {
 		to LoginPage
+
+		// force redirect to ensure URL is correct
+		langSelector = 'sv'
+		langSelector = 'en'
 	}
 
 	def "Check languages are present" () {
