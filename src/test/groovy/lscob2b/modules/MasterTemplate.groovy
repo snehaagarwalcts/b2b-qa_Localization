@@ -18,7 +18,19 @@ class MasterTemplate extends Module {
         logoutLink {
             $('nav.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
         }
+
+		breadcrumbs {
+			$('#breadcrumb.breadcrumb #breadcrumb').find("a")
+		}
     }
+
+	def breadcrumbExistsByUrl(String url) {
+		breadcrumbs.filter(href: endsWith(url))
+	}
+
+	def breadcrumbIsActiveByUrl(String url) {
+		breadcrumbExistsByUrl(url).parent("li.active")
+	}
 
 	//added by I065970 on 12/2/14
 	def doMyaccount()
