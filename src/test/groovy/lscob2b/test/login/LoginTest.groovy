@@ -50,7 +50,7 @@ class LoginTest extends GebReportingSpec {
 
 		user		| themeSpecificAltTag
 		levisUser	| "Levis Strauss & Company"
-		dockersUser	| "Levis Strauss & Company"
+		dockersUser	| "Levis Strauss & Company" // TODO this should be different for Dockers, not yet implemented
 
 	}
 
