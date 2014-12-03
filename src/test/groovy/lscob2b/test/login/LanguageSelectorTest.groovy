@@ -11,17 +11,46 @@ import org.openqa.selenium.support.ui.Select
 
 class LanguageSelectorTest extends GebReportingSpec {
 
-	def setup(){
-
+	def setup() {
 		to LoginPage
 	}
 
-	def "Change web page language from English to Swedish"(){
+	def "Check languages are present" () {
+		setup: "Define languages"
 
-		when: "Select Swedish as language"
-		langSelector = 'sv'
+		def languages = ["en", "sv"]
 
-		then: "Check that login page language is Swedish"
-		pageheading == "Återkommande Kund"
+		when: "At login page"
+
+		at LoginPage
+
+		then: "All available languages should be in language select box"
+
+		langSelector
+
+		langSelectorValues.size() == languages.size()
+
+		languages.each {
+			langSelectorValues.filter(value: it)
+		}
 	}
+
+	def "Change language on login page"() {
+		when: "Selecting a language"
+
+		langSelector = lang
+
+		then: "Page content changes language"
+		and: "URL changes"
+
+		pageheading == greetingValue
+		browser.currentUrl.contains(urlPart)
+
+		where:
+
+		lang 	| greetingValue			|	urlPart
+		"sv"	| "Returning Customer"	|	"/sv/"
+		"en"	| "Returning Customer"	|	"/en/"
+	}
+
 }
