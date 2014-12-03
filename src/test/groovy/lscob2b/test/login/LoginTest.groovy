@@ -8,10 +8,10 @@ import spock.lang.Stepwise
 @Stepwise
 class LoginTest extends GebReportingSpec { 
 
-	String defaultPassword = "12341234"
-	String levisUser = "robert.moris@monsoon.com"
-	String dockersUser = "deno.rota@fashion-world.com"
-	String multibrandUser = "joseph.hall@city-apparel.com"
+	static String defaultPassword = "12341234"
+	static String levisUser = "robert.moris@monsoon.com"
+	static String dockersUser = "deno.rota@fashion-world.com"
+	static String multibrandUser = "joseph.hall@city-apparel.com"
 
 	def setup() {
 		to LoginPage
@@ -33,37 +33,26 @@ class LoginTest extends GebReportingSpec {
 
 	}
 
-	def "Login as Levis"() {
-		when: "Logging in as a Levi's only customer"
+	def "Login as Levi's or Dockers customer"() {
+		when: "Logging in as a single brand customer"
 
-		login (levisUser)
+		login (user)
 
-		then: "We should see Levi's logo"
-
-		at HomePage
-
-		!themeForm
-
-		logoAltTag == "Levis Strauss & Company"
-
-	}
-
-	def "Login as Dockers"() {
-		when: "Logging in as a Dockers only customer"
-
-		login(dockersUser)
-
-		then: "We should see Dockers logo"
+		then: "We should see correct logo logo"
 
 		at HomePage
 
 		!themeForm
 
-		logoAltTag == "Levis Strauss & Company" // TODO This text should change depending on Levi's or Dockers.
-		// As of now it's always Levi's even for Dockers customer
+		logoAltTag == themeSpecificAltTag
+
+		where:
+
+		user		| themeSpecificAltTag
+		levisUser	| "Levis Strauss & Company"
+		dockersUser	| "Levis Strauss & Company"
 
 	}
-
 
 	def "Login as multi brand"() {
 		when: "Logging in as a multibrand customer"
@@ -76,7 +65,6 @@ class LoginTest extends GebReportingSpec {
 
 		// TODO currently logo is not there but when added, should check for it
 		themeForm
-
 	}
 
 	def login(String username) {
