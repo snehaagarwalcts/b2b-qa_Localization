@@ -6,6 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<selenium.version>2.43.1</selenium.version>
+		<spock.version>0.7-groovy-2.0</spock.version>
+		<geb.version>0.10.0</geb.version>
 	</properties>
 	<build>
 		<plugins>
@@ -43,7 +46,7 @@
 					<dependency>
 						<groupId>org.spockframework</groupId>
 						<artifactId>spock-core</artifactId>
-						<version>0.7-groovy-2.0</version>
+						<version>${spock.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
@@ -90,22 +93,22 @@
 		<dependency>
 			<groupId>org.gebish</groupId>
 			<artifactId>geb-spock</artifactId>
-			<version>0.10.0</version>
+			<version>${geb.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.spockframework</groupId>
 			<artifactId>spock-core</artifactId>
-			<version>0.7-groovy-2.0</version>
+			<version>${spock.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
-			<version>2.43.1</version>
+			<version>${selenium.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-support</artifactId>
-			<version>2.43.1</version>
+			<version>${selenium.version}</version>
 		</dependency>
 	</dependencies>
 	
