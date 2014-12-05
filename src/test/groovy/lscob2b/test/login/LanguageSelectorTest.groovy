@@ -53,7 +53,7 @@ class LanguageSelectorTest extends GebReportingSpec {
 		where:
 
 		lang 	| greetingValue			|	urlPart
-		"sv"	| "Returning Customer"	|	"/sv/"
+		"sv"	| "Returning Customer"	|	"/sv/"  //TODO change sv greetingValue once the language is implemented 
 		"en"	| "Returning Customer"	|	"/en/"
 	}
 
