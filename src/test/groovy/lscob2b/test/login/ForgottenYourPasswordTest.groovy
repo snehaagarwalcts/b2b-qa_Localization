@@ -4,11 +4,10 @@ import geb.spock.GebReportingSpec
 
 import lscob2b.pages.LoginPage
 import spock.lang.Stepwise
+import static lscob2b.TestConstants.*
 
 @Stepwise
 class ForgottenYourPasswordTest extends GebReportingSpec {
-
-    String levisUser = "robert.moris@monsoon.com"
 
     def setupSpec() {
         to LoginPage

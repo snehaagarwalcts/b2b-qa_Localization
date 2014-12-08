@@ -16,7 +16,7 @@ class HomePage extends Page{
 
     static content = {
         logoAltTag {$('header.subnav div.simple_disp-img img').attr('alt')}
-        masterTemplate (required:false) {module MasterTemplate}
+        masterTemplate {module MasterTemplate}
         themeForm (required: false) {$('#theme-form')}
     }
 

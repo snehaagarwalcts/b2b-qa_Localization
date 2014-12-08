@@ -1,6 +1,7 @@
 package lscob2b.modules
 
 import geb.Module
+import geb.navigator.Navigator
 
 /**
  * Created by i303936 on 11/20/14.
@@ -24,16 +25,16 @@ class MasterTemplate extends Module {
 		}
     }
 
-	def breadcrumbExistsByUrl(String url) {
+	def getBreadcrumbByUrl(String url) {
 		breadcrumbs.filter(href: endsWith(url))
 	}
 
-	def breadcrumbIsActiveByUrl(String url) {
-		breadcrumbExistsByUrl(url).parent("li.active")
+	def isBreadcrumbActive(Navigator breadcrumb) {
+		breadcrumb.parent("li.active")
 	}
 
 	//added by I065970 on 12/2/14
-	def doMyaccount()
+	def clickMyAccount()
 	{
 		myaccountLink.click()
 	}

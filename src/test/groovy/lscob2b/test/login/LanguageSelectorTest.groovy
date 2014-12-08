@@ -35,7 +35,7 @@ class LanguageSelectorTest extends GebReportingSpec {
 		langSelectorValues.size() == languages.size()
 
 		languages.each {
-			langSelectorValues.filter(value: it)
+			assert langSelectorValues.filter(value: it)
 		}
 	}
 

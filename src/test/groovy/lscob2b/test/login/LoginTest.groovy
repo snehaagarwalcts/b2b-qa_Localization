@@ -1,17 +1,14 @@
 package lscob2b.test.login
 
 import geb.spock.GebReportingSpec
+import lscob2b.TestConstants
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import spock.lang.Stepwise
+import static lscob2b.TestConstants.*
 
 @Stepwise
 class LoginTest extends GebReportingSpec { 
-
-	static String defaultPassword = "12341234"
-	static String levisUser = "robert.moris@monsoon.com"
-	static String dockersUser = "deno.rota@fashion-world.com"
-	static String multibrandUser = "joseph.hall@city-apparel.com"
 
 	def setup() {
 		to LoginPage
