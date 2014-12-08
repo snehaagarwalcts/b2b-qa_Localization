@@ -79,18 +79,19 @@ class MyAccountPageCommonContentTest extends GebReportingSpec {
 		when: "looking at my profile"
 		
 		section == sectionValues
-		profile == 'PROFILE'
+
 
 		then: "you should see Update prsonal details and Change your password "
-		
-		updatePersonalDetails == 'Update personal details'
-		changeYourPassword == 'Change your password'
-		
-		
+
+		for (Map.Entry entry : sublinks.entrySet()) {
+			entry.key == entry.value
+		}
+
 		where:		
-		user		| sectionValues
-		administrator	| "Your Account"
-		//customer	| "Your Account"
-		
+
+		user		|	section		|	headerValue		| sublinks
+		admin		|	profile		|	'PROFILE'		| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
+		notadmin	|	profile		|	'PROFILE'		| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
+
 	}
 }
