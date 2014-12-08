@@ -23,6 +23,13 @@ class MyAccountPage extends Page {
 		addressBook { $("div.addressBook div.headline a").text() }
 		manageUsers { $("div.headline").find('a', href: endsWith('/manage-users')).text() }
 		orderHistory { $("div.orderHistory div.headline a").text() }
+		
+		//account page profile block
+		updatePersonalDetails { $("div.profile ul").find('a', href: endsWith('/profile')).text()}
+		changeYourPassword { $("div.profile ul").find('a', href: endsWith('/update-password')).text()}
+		
+		//account page address book block
+		viewYourDeliveryAddress { $("div.addressBook ul a").text()}
 
 	}
 

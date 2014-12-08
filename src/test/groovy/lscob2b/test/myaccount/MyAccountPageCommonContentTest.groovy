@@ -8,6 +8,7 @@ import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.MyAccountPage
+import lscob2b.modules.MasterTemplate
 import spock.lang.Stepwise
 
 class MyAccountPageCommonContentTest extends GebReportingSpec {
@@ -37,6 +38,7 @@ class MyAccountPageCommonContentTest extends GebReportingSpec {
 
 
 		when: "at my account page"
+		
 		at MyAccountPage
 
 		then: "you should see Profile, Address Book, Manage Users, and Order History "
@@ -56,6 +58,7 @@ class MyAccountPageCommonContentTest extends GebReportingSpec {
 	 masterTemplate.doMyaccount()
 	 
 	 when: "at my account page"
+	 
 	 at MyAccountPage
 	 
 	 then: "you should see Profile, Address Book, Manage Users, and Order History "
@@ -64,4 +67,30 @@ class MyAccountPageCommonContentTest extends GebReportingSpec {
 	 addressBook == 'ADDRESS BOOK'
 	 orderHistory == 'ORDER HISTORY'
 	 }*/
+	
+	def "Check the My Account page profile content using administrator user"(){
+		setup: "Login as an administrator"
+
+		login (user)
+		at HomePage
+		masterTemplate.doMyaccount()
+		at MyAccountPage
+
+		when: "looking at my profile"
+		
+		section == sectionValues
+		profile == 'PROFILE'
+
+		then: "you should see Update prsonal details and Change your password "
+		
+		updatePersonalDetails == 'Update personal details'
+		changeYourPassword == 'Change your password'
+		
+		
+		where:		
+		user		| sectionValues
+		administrator	| "Your Account"
+		//customer	| "Your Account"
+		
+	}
 }
