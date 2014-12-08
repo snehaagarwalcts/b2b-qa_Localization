@@ -2,18 +2,18 @@ package lscob2b.test.myaccount
 
 /**
  * Created by i844489 on 12/4/2014.
+ * Updated by i844489 on 12/8/2014.
  */
 
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.MyAccountPage
-import lscob2b.modules.MasterTemplate
 import spock.lang.Stepwise
 
 class MyAccountPageCommonContentTest extends GebReportingSpec {
-	String defaultPassword = "12341234"
-	String administrator = "robert.moris@monsoon.com"
+	static String defaultPassword = "12341234"
+	static String administrator = "robert.moris@monsoon.com"
 	//String customer = ""  //TODO add customer ID
 
 	def setup() {
@@ -71,6 +71,79 @@ class MyAccountPageCommonContentTest extends GebReportingSpec {
 	def "Check the My Account page profile content using administrator user"(){
 		setup: "Login as an administrator"
 
+		login(administrator)
+		at HomePage
+		masterTemplate.doMyaccount()
+		at MyAccountPage
+
+		when: "looking at my profile block"
+		
+		profile == 'PROFILE'
+
+		then: "you should see Update prsonal details and Change your password "
+		
+		updatePersonalDetails == 'Update personal details'
+		changeYourPassword == 'Change your password'
+		
+	}
+	
+	def "Check the My Account page address book content using administrator user"(){
+		setup: "Login as an administrator"
+
+		login(administrator)
+		at HomePage
+		masterTemplate.doMyaccount()
+		at MyAccountPage
+
+		when: "looking at address book block"
+		
+		addressBook == 'ADDRESS BOOK'
+
+		then: "you should see view your delivery addresses"
+		
+		viewYourDeliveryAddress == 'View your delivery addresses'
+		
+	}
+	
+	def "Check the My Account page manage users content using administrator user"(){
+		setup: "Login as an administrator"
+
+		login(administrator)
+		at HomePage
+		masterTemplate.doMyaccount()
+		at MyAccountPage
+
+		when: "looking at manage users block"
+		
+		manageUsers == 'MANAGE USERS'
+
+		then: "you should see add new users and edit or disable users"
+		
+		addNewUsers == 'Add new users'
+		editUsers == 'Edit or disable users'
+		
+	}
+	
+	def "Check the My Account page order history content using administrator user"(){
+		setup: "Login as an administrator"
+
+		login(administrator)
+		at HomePage
+		masterTemplate.doMyaccount()
+		at MyAccountPage
+
+		when: "looking at order history block"
+		
+		orderHistory == 'ORDER HISTORY'
+
+		then: "you should see view order history"
+		
+		viewOrderHistory == 'View order history'
+				
+	}
+	/*def "Check the My Account page profile content using administrator user"(){
+		setup: "Login as an administrator"
+
 		login (user)
 		at HomePage
 		masterTemplate.doMyaccount()
@@ -78,20 +151,19 @@ class MyAccountPageCommonContentTest extends GebReportingSpec {
 
 		when: "looking at my profile"
 		
-		section == sectionValues
+		section == sectionValue
 
 
 		then: "you should see Update prsonal details and Change your password "
 
-		for (Map.Entry entry : sublinks.entrySet()) {
-			entry.key == entry.value
-		}
+		for (Map.Entry entry : sublinks.entrySet()) {entry.key == entry.value}
+		//stringMap.each() { key, value -> println "${key} == ${value}" };
+		//sublinks.each {key == value}
 
-		where:		
+		where:
+		user				|	section		|	headerValue		| sublinks
+		administrator	|	profile		|	'PROFILE'		| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
+		//notadmin	|	profile		|	'PROFILE'		| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
 
-		user		|	section		|	headerValue		| sublinks
-		admin		|	profile		|	'PROFILE'		| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
-		notadmin	|	profile		|	'PROFILE'		| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
-
-	}
+	}*/
 }
