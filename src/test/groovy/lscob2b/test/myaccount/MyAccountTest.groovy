@@ -26,11 +26,10 @@ class MyAccountTest extends GebReportingSpec {
     def "My account is accessible"() {
         when: "logged in as any user"
 
-        doLogin(user)
+        login(user)
 
         then: "My account link is available"
-
-        myaccountLink
+		  at HomePage
 
         masterTemplate.clickMyAccount()
 
@@ -38,9 +37,7 @@ class MyAccountTest extends GebReportingSpec {
 
         where:
 
-        user    // TODO change for user roles
-        levisUser
-        dockersUser
+        user<<[levisUser, dockersUser]    // TODO change for user roles
     }
 
     def "Check breadcrumbs on My account page"() { // tests the login itself without worrying about rights
@@ -80,7 +77,7 @@ class MyAccountTest extends GebReportingSpec {
         sublinks.each { k,v ->
             assert page.getContent(k).toUpperCase() == v.toUpperCase()
         }
-
+		 
         where:
         user			| section			| headerValue		| sublinks
         administrator	| 'profile'			| 'PROFILE'			| [updatePersonalDetails	: 'Update personal details'		, changeYourPassword: 'Change your password'	]

@@ -8,4 +8,5 @@ class TestConstants {
     static String levisUser = "robert.moris@monsoon.com"
     static String dockersUser = "deno.rota@fashion-world.com"
     static String multibrandUser = "joseph.hall@city-apparel.com"
+	 static String administrator = "robert.moris@monsoon.com"
 }
