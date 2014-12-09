@@ -21,24 +21,22 @@ class MasterTemplate extends Module {
         }
 
 		breadcrumbs {
-			$('#breadcrumb.breadcrumb #breadcrumb').find("a")
+			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
 		}
     }
 
 	def getBreadcrumbByUrl(String url) {
-		breadcrumbs.filter(href: endsWith(url))
+		breadcrumbs.find('a', href: endsWith(url))
 	}
 
-	def isBreadcrumbActive(Navigator breadcrumb) {
-		breadcrumb.parent("li.active")
+	def isBreadcrumbActive(String text) {
+		breadcrumbs.filter('li.active').text().toUpperCase() == text.toUpperCase()
 	}
 
-	//added by I065970 on 12/2/14
 	def clickMyAccount()
 	{
 		myaccountLink.click()
 	}
-
 	
     def doLogout() {
         logoutLink.click()
