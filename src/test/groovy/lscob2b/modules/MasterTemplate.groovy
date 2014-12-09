@@ -10,7 +10,7 @@ class MasterTemplate extends Module {
 
     static content = {
 
-		myaccountLink
+		myAccountLink
 		{
 			$('nav.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
 		}
@@ -19,22 +19,22 @@ class MasterTemplate extends Module {
             $('nav.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
         }
 
-		breadcrumbs {
+		breadCrumbs {
 			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
 		}
     }
 
-	def getBreadcrumbByUrl(String url) {
-		breadcrumbs.find('a', href: endsWith(url))
+	def getBreadCrumbByUrl(String url) {
+		breadCrumbs.find('a', href: endsWith(url))
 	}
 
-	def isBreadcrumbActive(String text) {
-		breadcrumbs.filter('li.active').text().toUpperCase() == text.toUpperCase()
+	def isBreadCrumbActive(String text) {
+		breadCrumbs.filter('li.active').text().toUpperCase() == text.toUpperCase()
 	}
 
 	def clickMyAccount()
 	{
-		myaccountLink.click()
+		myAccountLink.click()
 	}
 	
     def doLogout() {
