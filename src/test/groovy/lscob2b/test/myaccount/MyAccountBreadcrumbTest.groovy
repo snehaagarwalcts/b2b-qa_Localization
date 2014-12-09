@@ -1,11 +1,13 @@
 package lscob2b.test.myaccount
 
 import geb.spock.GebReportingSpec
-import lscob2b.pages.LoginPage
 import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
 import lscob2b.pages.MyAccountPage
 import spock.lang.Stepwise
-import static lscob2b.TestConstants.*
+
+import static lscob2b.TestConstants.getDefaultPassword
+import static lscob2b.TestConstants.getLevisUser
 
 @Stepwise
 /**
@@ -30,16 +32,11 @@ class MyAccountBreadcrumbTest extends GebReportingSpec {
         masterTemplate.breadcrumbs.size() == 2
 
         def homeBC = masterTemplate.getBreadcrumbByUrl("/")
-        def myAccBC = masterTemplate.getBreadcrumbByUrl("/my-account")
 
         homeBC
-        myAccBC
+        homeBC.text().toUpperCase() == 'HOME'
 
-        homeBC.text() == 'HOME'
-        myAccBC.text() == 'MY ACCOUNT'
-
-        masterTemplate.isBreadcrumbActive(myAccBC)
-        !masterTemplate.isBreadcrumbActive(homeBC)
+        masterTemplate.isBreadcrumbActive("My Account")
 
     }
 
