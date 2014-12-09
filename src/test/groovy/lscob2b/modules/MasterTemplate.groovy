@@ -9,8 +9,7 @@ import geb.navigator.Navigator
 class MasterTemplate extends Module {
 
     static content = {
-		
-		//added by I065970 on 12/2/14
+
 		myaccountLink
 		{
 			$('nav.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
