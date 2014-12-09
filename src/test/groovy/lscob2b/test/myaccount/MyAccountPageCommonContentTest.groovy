@@ -43,7 +43,7 @@ class MyAccountPageCommonContentTest extends GebReportingSpec {
 
 		// check links for each section
 		sublinks.each { k,v ->
-			assert page.getContent(k) == v
+			assert page.getContent(k).toUpperCase() == v.toUpperCase()
 		}
 
 		where:
