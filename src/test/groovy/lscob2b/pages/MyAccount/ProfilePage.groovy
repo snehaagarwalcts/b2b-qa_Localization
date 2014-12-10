@@ -18,7 +18,9 @@ class ProfilePage extends Page{
 
 		//Profile page content
 		profileData { $("div tbody tr td")*.text() }
-		updatePersonalDetails { $("div.clearfix").find('a', href: endsWith('/update-profile')).text()}
-		changeYourPassword { $("div.clearfix").find('a', href: endsWith('/update-password')).text()}
+		updatePersonalDetails { $("div.clearfix").find('a', href: endsWith('/update-profile')).text() }
+		changeYourPassword { $("div.clearfix").find('a', href: endsWith('/update-password')).text() }
+		updatePersonalDetailsLink { $("div.clearfix").find('a', href: endsWith('/update-profile')) }
+		changeYourPasswordLink { $("div.clearfix").find('a', href: endsWith('/update-password')) }
 	}
 }

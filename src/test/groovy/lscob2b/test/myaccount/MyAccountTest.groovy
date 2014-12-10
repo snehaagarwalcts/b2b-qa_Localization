@@ -5,6 +5,9 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.MyAccount.MyAccountPage;
 import lscob2b.pages.MyAccount.ProfilePage;
+import lscob2b.pages.MyAccount.ManageUsersPage;
+import lscob2b.pages.MyAccount.OrderHistoryPage;
+import lscob2b.pages.MyAccount.AddressBookPage;
 import static lscob2b.TestConstants.*
 
 class MyAccountTest extends GebReportingSpec {
@@ -118,58 +121,59 @@ class MyAccountTest extends GebReportingSpec {
         user << [levisUser, dockersUser, multibrandUser]
     }
 
-    //Address book page content  //TODO Create address book page after talking to Matt
-	/* def "Check the Address book page content"(){
+    //Address book page content  //TODO add more content as page gets developed
+	 def "Check the Address book page content"(){
 		 setup:
 		 loginAsUserAndGoToMyAccount(user)
 		 addressBookLink.click()
 
 		 when: "At address book page"
-		 at addressBookPage
+		 at AddressBookPage
 
 		 then: "Correct sections/links should be visible"
-		 addressBookData.contains("View your delivery address")
-		 addressBookData.contains("View your billing address")
+		 addressBookData.contains("View your delivery addresses")
+		 addressBookData.contains("View your billing addresses")
 
 		 where:
 		 user<<[levisUser, dockersUser, multibrandUser]
-	 }*/
+	 }
 
-    //Manage Users page content  //TODO Create manage Users page after talking to Matt
-	 /* def "Check the Manage Users page content"(){
+    //Manage Users page content  
+	 def "Check the Manage Users page content"(){
 		  setup:
 		  loginAsUserAndGoToMyAccount(user)
 		  manageUsersLink.click()
 
 		  when: "At manage users page"
-		  at manageUsersPage
+		  at ManageUsersPage
 
 		  then: "Correct sections/links should be visible"
-		  manageUsersData.contains("")
-		  manageUsersData.contains("")
+		  manageUsersData.contains("Name")
+		  manageUsersData.contains("Roles")
+		  manageUsersData.contains("Status")
+		  createNewUser == ("CREATE NEW USER")
 
 		  where:
 		  user<<[levisUser, dockersUser, multibrandUser]
-	  }*/
+	  }
 
-    //Order History page content  //TODO Create order history page after talking to Matt
-	 /* def "Check the Address book page content"(){
+    //Order History page content  //TODO add more content as page gets developed
+	 def "Check the Order History page content"(){
 		  setup:
 		  loginAsUserAndGoToMyAccount(user)
 		  orderHistoryLink.click()
 
 		  when: "At order history page"
-		  at orderHistory
+		  at OrderHistoryPage
 
 		  then: "Correct sections/links should be visible"
-		  orderHistoryData.contains("")
-		  orderHistoryData.contains("")
+		  orderHistoryData == "ORDER HISTORY"
 
 		  where:
 		  user<<[levisUser, dockersUser, multibrandUser]
-	  }*/
+	  }
 	 
-	 def "Check Breadcrumb on Profile Page"(){
+	/* def "Check Breadcrumb on Profile Page"(){
 		 setup:
 		 loginAsUserAndGoToMyAccount(user)
 		 profileLink.click()
@@ -180,7 +184,7 @@ class MyAccountTest extends GebReportingSpec {
 		 then: "There should be 2 breadcrumbs"
        and: "1 should be home, the other should be 'my account'"
        and: "The text should be correct"
-	 }
+	 }*/
 }
 
 //in setup login with levis user and create the test user.
