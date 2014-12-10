@@ -3,9 +3,8 @@ package lscob2b.test.myaccount
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.MyAccountPage
-import lscob2b.pages.ProfilePage
-
+import lscob2b.pages.MyAccount.MyAccountPage;
+import lscob2b.pages.MyAccount.ProfilePage;
 import static lscob2b.TestConstants.*
 
 class MyAccountTest extends GebReportingSpec {
@@ -125,7 +124,7 @@ class MyAccountTest extends GebReportingSpec {
 		 loginAsUserAndGoToMyAccount(user)
 		 addressBookLink.click()
 
-		 when: "At profile page"
+		 when: "At address book page"
 		 at addressBookPage
 
 		 then: "Correct sections/links should be visible"
@@ -142,7 +141,7 @@ class MyAccountTest extends GebReportingSpec {
 		  loginAsUserAndGoToMyAccount(user)
 		  manageUsersLink.click()
 
-		  when: "At profile page"
+		  when: "At manage users page"
 		  at manageUsersPage
 
 		  then: "Correct sections/links should be visible"
@@ -159,7 +158,7 @@ class MyAccountTest extends GebReportingSpec {
 		  loginAsUserAndGoToMyAccount(user)
 		  orderHistoryLink.click()
 
-		  when: "At profile page"
+		  when: "At order history page"
 		  at orderHistory
 
 		  then: "Correct sections/links should be visible"
@@ -169,4 +168,19 @@ class MyAccountTest extends GebReportingSpec {
 		  where:
 		  user<<[levisUser, dockersUser, multibrandUser]
 	  }*/
+	 
+	 def "Check Breadcrumb on Profile Page"(){
+		 setup:
+		 loginAsUserAndGoToMyAccount(user)
+		 profileLink.click()
+		 
+		 when: "At profile page"
+		 at ProfilePage
+		 
+		 then: "There should be 2 breadcrumbs"
+       and: "1 should be home, the other should be 'my account'"
+       and: "The text should be correct"
+	 }
 }
+
+//in setup login with levis user and create the test user.
