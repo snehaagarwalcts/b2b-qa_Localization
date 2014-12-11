@@ -15,9 +15,10 @@ class MasterTemplate extends Module {
 			$('nav.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
 		}
 
-        logoutLink {
-            $('nav.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
+      logoutLink {
+         $('nav.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
         }
+		
 
 		breadCrumbs {
 			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
