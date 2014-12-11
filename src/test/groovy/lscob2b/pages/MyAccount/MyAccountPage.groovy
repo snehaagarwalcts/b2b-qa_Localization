@@ -11,10 +11,8 @@ class MyAccountPage extends Page {
 	static at = { title == "Your Account | LSCO B2B Site" }
 
 	static content = {
-		logoAltTag { $('header.subnav div.simple_disp-img img').attr('alt') }
-		masterTemplate(required: false) { module MasterTemplate }
-		themeForm(required: false) { $('#theme-form') }
-		
+		masterTemplate { module MasterTemplate }
+
 		/**
 		 * Added by i844489 on 12/4/14.
 		 * Updated by i844489 on 12/9/2014

@@ -11,7 +11,7 @@ class LoginPage extends Page {
 
 	static content = {
 		// login form
-		usernameInput(wait: true) { $("#j_username") }
+		usernameInput { $("#j_username") }
 		passwordInput { $("#j_password") }
 		loginButton { $("#loginForm button") }
 

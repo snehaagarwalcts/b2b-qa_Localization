@@ -22,6 +22,10 @@ class MasterTemplate extends Module {
 		breadCrumbs {
 			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
 		}
+
+		logoAltTag {$('header.subnav h1 a img').attr('alt')}
+
+		themeForm(required: false) { $('#theme-form') }
     }
 
 	def getBreadCrumbByUrl(String url) {

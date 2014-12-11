@@ -12,9 +12,7 @@ class OrderHistoryPage extends Page{
 	static at = { title == "Order History | LSCO B2B Site" }
 
 	static content = {
-		logoAltTag { $('header.subnav div.simple_disp-img img').attr('alt') }
-		masterTemplate(required: false) { module MasterTemplate }
-		themeForm(required: false) { $('#theme-form') }
+		masterTemplate { module MasterTemplate }
 
 		//Order history page content //TODO add more content as page gets developed
 		orderHistoryData { $("div.headline").text() }	}

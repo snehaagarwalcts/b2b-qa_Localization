@@ -12,9 +12,7 @@ class ManageUsersPage extends Page{
 	static at = { title == "LSCO B2B Site" }
 
 	static content = {
-		logoAltTag { $('header.subnav div.simple_disp-img img').attr('alt') }
-		masterTemplate(required: false) { module MasterTemplate }
-		themeForm(required: false) { $('#theme-form') }
+		masterTemplate { module MasterTemplate }
 
 		//Manage users page content
 		manageUsersData { $("form table tr th")*.text() }

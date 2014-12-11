@@ -12,9 +12,7 @@ class ProfilePage extends Page{
 	static at = { title == "Profile | LSCO B2B Site" }
 
 	static content = {
-		logoAltTag { $('header.subnav div.simple_disp-img img').attr('alt') }
-		masterTemplate(required: false) { module MasterTemplate }
-		themeForm(required: false) { $('#theme-form') }
+		masterTemplate { module MasterTemplate }
 
 		//Profile page content
 		profileData { $("div tbody tr td")*.text() }

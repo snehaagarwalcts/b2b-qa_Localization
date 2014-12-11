@@ -39,9 +39,9 @@ class LoginTest extends GebReportingSpec {
 
 		at HomePage
 
-		!themeForm
+		!masterTemplate.themeForm
 
-		logoAltTag == themeSpecificAltTag
+		masterTemplate.logoAltTag == themeSpecificAltTag
 
 		where:
 
@@ -61,7 +61,7 @@ class LoginTest extends GebReportingSpec {
 		at HomePage
 
 		// TODO currently logo is not there but when added, should check for it
-		themeForm
+		masterTemplate.themeForm
 	}
 
 	def login(String username) {
