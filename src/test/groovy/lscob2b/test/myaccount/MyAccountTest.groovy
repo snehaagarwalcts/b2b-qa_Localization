@@ -250,7 +250,7 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser, dockersUser, multibrandUser]
 	}*/
 
-	//Order History page content  //TODO add more content as page gets developed
+	//Order History page content  //TODO update as more content developed
 	def "Check the Order History page content"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
@@ -272,7 +272,7 @@ class MyAccountTest extends GebReportingSpec {
 		orderHistoryListTable.contains("ACTIONS")
 		
 		where:
-		user<<[levisUser]  //TODO test with more user group once orders have been placed
+		user<<[levisUser, dockersUser]  //TODO test with more user group once orders have been placed
 	}
 
 	def "Check Breadcrumb on Order History Page"(){
