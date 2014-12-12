@@ -70,6 +70,9 @@ class MyAccountTest extends GebReportingSpec {
 		homeBC.text().toUpperCase() == 'HOME'
 
 		masterTemplate.isBreadCrumbActive("My Account")
+		
+		where:
+		user << [levisUser, dockersUser, multibrandUser]
 
 	}
 
@@ -247,8 +250,9 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser, dockersUser, multibrandUser]
 	}*/
 
-	//Order History page content  //TODO add more content as page gets developed
-	def "Check the Order History page content"(){
+	//Order History page content  //TODO update as more content developed
+	//theres no order history on page anymore
+	/*def "Check the Order History page content"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
 		orderHistoryLink.click()
@@ -258,10 +262,19 @@ class MyAccountTest extends GebReportingSpec {
 
 		then: "Correct sections/links should be visible"
 		orderHistoryData == "ORDER HISTORY"
-
+		//orderHistoryDescription.contains("")
+		orderHistoryBar.contains("ORDERS FOUND")
+		orderHistoryBar.contains("SORT BY:")
+		orderHistoryListTable.contains("DATE PLACED")
+		orderHistoryListTable.contains("ORDER NUMBER")
+		orderHistoryListTable.contains("ORDER STATUS")
+		orderHistoryListTable.contains("TOTAL")
+		orderHistoryListTable.contains("ORDER SOURCE")
+		orderHistoryListTable.contains("ACTIONS")
+		
 		where:
-		user<<[levisUser, dockersUser, multibrandUser]
-	}
+		user<<[levisUser, dockersUser]  //TODO test with more user group once orders have been placed
+	}*/
 
 	def "Check Breadcrumb on Order History Page"(){
 		setup:
