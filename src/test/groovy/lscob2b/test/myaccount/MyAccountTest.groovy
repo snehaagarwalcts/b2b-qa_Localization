@@ -251,7 +251,8 @@ class MyAccountTest extends GebReportingSpec {
 	}*/
 
 	//Order History page content  //TODO update as more content developed
-	def "Check the Order History page content"(){
+	//theres no order history on page anymore
+	/*def "Check the Order History page content"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
 		orderHistoryLink.click()
@@ -273,7 +274,7 @@ class MyAccountTest extends GebReportingSpec {
 		
 		where:
 		user<<[levisUser, dockersUser]  //TODO test with more user group once orders have been placed
-	}
+	}*/
 
 	def "Check Breadcrumb on Order History Page"(){
 		setup:
