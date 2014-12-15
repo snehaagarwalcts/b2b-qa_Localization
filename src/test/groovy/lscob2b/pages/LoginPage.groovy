@@ -31,7 +31,7 @@ class LoginPage extends Page {
 		// language selector
 		langSelector { $("#lang-selector") }
 		langSelectorValues { $("#lang-selector option") }
-		pageheading { $("div.title_holder h2").text() }
+		pageheading { $("#main-container h1").text() }
 	}
 
 	def doLogin(String username, String password) {
