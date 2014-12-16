@@ -16,8 +16,8 @@ class LoginPage extends Page {
 		loginButton { $("#loginForm button") }
 
 		// some error messages
-		globalMessages { $("#globalMessages") }
-		errorMessage { $("#globalMessages div.negative") }
+		//globalMessages { $("#globalMessages") }
+		errorMessage { $("div.alert-message") }
 		errorMessageText { errorMessage.text().trim() }
 
 		// forgotten password
