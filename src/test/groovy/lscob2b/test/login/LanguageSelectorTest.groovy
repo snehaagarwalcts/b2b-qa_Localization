@@ -31,11 +31,10 @@ class LanguageSelectorTest extends GebReportingSpec {
 		then: "All available languages should be in language select box"
 
 		langSelector
-
-		langSelectorValues.size() == languages.size()
+		langSelectorValueCount == languages.size()
 
 		languages.each {
-			assert langSelectorValues.filter(value: it)
+			assert langSelectorFor(it)
 		}
 	}
 

@@ -30,7 +30,8 @@ class LoginPage extends Page {
 
 		// language selector
 		langSelector { $("#lang-selector") }
-		langSelectorValues { $("#lang-selector option") }
+		langSelectorFor { value -> $("#lang-selector option[value='${value}']") }
+		langSelectorValueCount { $("#lang-selector option").size() }
 		pageheading { $("#main-container h1").text() }
 	}
 
