@@ -18,8 +18,10 @@ class LoginFailureTest extends GebReportingSpec {
 
         at LoginPage
 
-        globalMessages
+        
         errorMessage
-        errorMessageText == "Your username or password was incorrect."
+        errorMessageText.contains("PLEASE NOTE")
+		  //TODO add the final error message
+		  //errorMessageText.contains("Your username or password was incorrect.")
     }
 }

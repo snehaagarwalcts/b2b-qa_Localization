@@ -12,11 +12,11 @@ class MasterTemplate extends Module {
 
 		myAccountLink
 		{
-			$('nav.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
+			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
 		}
 
       logoutLink {
-         $('nav.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
+         $('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
         }
 		
 
@@ -24,7 +24,7 @@ class MasterTemplate extends Module {
 			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
 		}
 
-		logoAltTag {$('header.subnav h1 a img').attr('alt')}
+		logoAltTag {$('header h1 a img').attr('alt')}
 
 		themeForm(required: false) { $('#theme-form') }
     }
