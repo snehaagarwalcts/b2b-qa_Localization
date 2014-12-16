@@ -17,7 +17,7 @@ class MasterTemplate extends Module {
 
       logoutLink {
          $('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
-        }
+      }
 		
 
 		breadCrumbs {
@@ -27,6 +27,9 @@ class MasterTemplate extends Module {
 		logoAltTag {$('header h1 a img').attr('alt')}
 
 		themeForm(required: false) { $('#theme-form') }
+		
+		quickOrderLink { $('header h2').find("a", href: contains("/advanced")) }
+		
     }
 
 	def getBreadCrumbByUrl(String url) {
@@ -40,6 +43,10 @@ class MasterTemplate extends Module {
 	def clickMyAccount()
 	{
 		myAccountLink.click()
+	}
+	
+	def clickQuickOrder(){
+		quickOrderLink.click()
 	}
 	
     def doLogout() {

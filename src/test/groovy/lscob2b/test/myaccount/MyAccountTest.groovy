@@ -53,7 +53,7 @@ class MyAccountTest extends GebReportingSpec {
 		// tests the login itself without worrying about rights
 		when: "At My Account page"
 
-		doLogin(levisUser, defaultPassword)
+		login(user)
 		at HomePage
 		to MyAccountPage
 		at MyAccountPage
