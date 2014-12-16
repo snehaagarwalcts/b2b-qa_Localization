@@ -12,5 +12,16 @@ class QuickOrderPage extends Page{
 		
 		masterTemplate { module MasterTemplate } 
 		
+		
+		//Quick order page content
+		keywordSearch { $("div label.control-label").text() }
+		//add { $("").text() }
+		searchButton { $("div.searchButton button").text() }
+		prdouctIdsOnly { $("div.idCheckbox div label").text() }
+		quantity { $("div.cartTotals div.quantity span.label").text() }
+		total { $("div.cartTotals div.total span.label").text() }
+		cartButtons { $("div.cartButtons").find('a', href: endsWith('/')).text() }
+		checkOut { $("div.cartButtons").find('a', href: endsWith('/cart')).text() }
+		
 	}
 }

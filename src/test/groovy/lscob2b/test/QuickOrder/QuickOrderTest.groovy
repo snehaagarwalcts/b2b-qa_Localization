@@ -23,6 +23,13 @@ class QuickOrderTest extends GebReportingSpec {
 		doLogin(username, defaultPassword)
 	}
 
+	def loginAsUserAndGoToQuickOrder(String user) {
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
+	}
+	
 	def "Quick Order link is accessible"() {
 
 		when: "logged in as any user"
@@ -31,14 +38,29 @@ class QuickOrderTest extends GebReportingSpec {
 
 		then: "Quick Order link is available"
 		at HomePage
-
 		masterTemplate.clickQuickOrder()
-
 		at QuickOrderPage
 
 		where:
 
-		user << [levisUser, dockersUser]    // TODO change for user roles
+		user << [levisUser]    // TODO change for user roles
 	}
 	
+	def "Check the Quick Order page content"(){
+		
+		when: "Logging in and going to Quick Order page"
+		loginAsUserAndGoToQuickOrder(user)
+		
+		then: "Correct sections/links should be visible"
+		keywordSearch == "KEYWORD SEARCH"
+		searchButton == "SEARCH"
+		prdouctIdsOnly == "PRODUCT IDS ONLY"
+		quantity == "Quantity"
+		total == "Total "
+		cartButtons == "CONTINUE SHOPPING&"
+		checkOut == "CHECKOUT&"
+		
+		where:
+		user << [levisUser]
+	}
 }
