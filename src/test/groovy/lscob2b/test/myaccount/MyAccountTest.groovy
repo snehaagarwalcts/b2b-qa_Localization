@@ -221,7 +221,7 @@ class MyAccountTest extends GebReportingSpec {
 
 	//ERROR cannot invoke method toUpperCase() on null object
 	
-	/*def "Check Breadcrumb on Manage Users Page"(){
+	def "Check Breadcrumb on Manage Users Page"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
 		manageUsersLink.click()
@@ -244,15 +244,15 @@ class MyAccountTest extends GebReportingSpec {
 		myAccountBC
 		myAccountBC.text().toUpperCase()  == 'MY ACCOUNT'
 
-		masterTemplate.isBreadCrumbActive("Manage Users")
-
+		manageUsers.contains("MANAGE USERS")
+		
 		where:
-		user<<[levisUser, dockersUser, multibrandUser]
-	}*/
+		user<<[levisUser]
+	}
 
 	//Order History page content  //TODO update as more content developed
 	//theres no order history on page anymore
-	/*def "Check the Order History page content"(){
+	def "Check the Order History page content"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
 		orderHistoryLink.click()
@@ -268,13 +268,14 @@ class MyAccountTest extends GebReportingSpec {
 		orderHistoryListTable.contains("DATE PLACED")
 		orderHistoryListTable.contains("ORDER NUMBER")
 		orderHistoryListTable.contains("ORDER STATUS")
+		orderHistoryListTable.contains("ORDER TYPE")
 		orderHistoryListTable.contains("TOTAL")
 		orderHistoryListTable.contains("ORDER SOURCE")
 		orderHistoryListTable.contains("ACTIONS")
 		
 		where:
-		user<<[levisUser, dockersUser]  //TODO test with more user group once orders have been placed
-	}*/
+		user<<[levisUser]  //TODO test with more user group once orders have been placed
+	}
 
 	def "Check Breadcrumb on Order History Page"(){
 		setup:
@@ -302,7 +303,7 @@ class MyAccountTest extends GebReportingSpec {
 		masterTemplate.isBreadCrumbActive("Order History")
 
 		where:
-		user<<[levisUser, dockersUser, multibrandUser]
+		user<<[levisUser]
 	}
 }
 
