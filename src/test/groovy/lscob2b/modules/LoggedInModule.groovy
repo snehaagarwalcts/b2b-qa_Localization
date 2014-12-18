@@ -3,23 +3,17 @@ package lscob2b.modules
 import geb.Module
 import geb.navigator.Navigator
 
-/**
- * Created by i303936 on 11/20/14.
- */
-class MasterTemplate extends Module {
+class LoggedInModule extends Module {
 
 	static content = {
-
-		categoryNavigation {module CategoryNavigationModule}
-
-		myAccountLink {
-			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
-		}
-
+		
 		logoutLink {
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
 		}
 
+		myAccountLink {
+			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
+		}
 
 		breadCrumbs {
 			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
