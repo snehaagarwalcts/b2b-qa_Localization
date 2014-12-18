@@ -1,5 +1,6 @@
 package lscob2b.pages.productdetails
 
+import lscob2b.modules.MasterTemplate;
 import geb.Page;
 import geb.navigator.Navigator;
 import groovy.lang.MetaClass;

@@ -1,5 +1,7 @@
 package lscob2b.test.productdetails;
 
+import org.spockframework.compiler.model.ExpectBlock;
+
 import lscob2b.pages.HomePage;
 import lscob2b.pages.LoginPage;
 import lscob2b.pages.productcategory.ProductCategoryPage;
@@ -14,10 +16,14 @@ public class ProductDetailsPageTest extends GebReportingSpec {
 		to LoginPage
 	}
 
-	def "recommended retail price should be displayed"(){
+	def cleanup() {
+		masterTemplate.doLogout()
+	}
+
+	def "wholesale and recommended retail prices should be displayed"(){
 
 		when: "Log in"
-		login (multibrandUser) //goes to HomePage
+		login (multibrandUser)
 		then: "We should be at home page"
 		at HomePage
 		when: "Go to first product category in the navigation menu"
