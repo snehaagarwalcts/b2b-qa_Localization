@@ -30,7 +30,7 @@ class QuickOrderPage extends Page{
 		prodcutIDs { $("div.idCheckbox div label") }
 		checkOutLink { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')) }
 		orderQuantity { $("tr > td > .sku-quantity", 0) }
-		addToCartLink { $("div > .ordergrid-buttons", 0) }
+		addToCartLink { $("div .add_to_cart_button") }
 	}
 	
 	def doSearch(String productID){
@@ -39,15 +39,16 @@ class QuickOrderPage extends Page{
 		searchLink.click()
 	}
 	
+	def doAddToCart(){
+		addToCartLink.click()
+	}
+	
+	def addOrderQuantity(String quantityID){
+		orderQuantity.value(quantityID)
+	}
+	
 	def doCheckOut(){
 		checkOutLink.click()
 	}
 	
-	def addOrderQuantity(String quantityID){
-		orderQuanity = quantityID
-	}
-	
-	def doAddToCart(){
-		addToCartLink.click()
-	}
 }

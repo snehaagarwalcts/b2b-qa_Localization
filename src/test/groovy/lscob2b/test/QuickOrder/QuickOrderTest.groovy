@@ -74,9 +74,9 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		addOrderQuantity('10')
 		
-		doAddToCart
+		doAddToCart()
 		
-		doCheckOut()
+		//doCheckOut()
 		
 		where:
 		user << [levisUser]
