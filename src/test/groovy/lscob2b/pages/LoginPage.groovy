@@ -25,7 +25,7 @@ class LoginPage extends Page {
 		forgottenPasswordDialog(required: false) { $("#cboxLoadedContent") }
 		forgottenPasswordDialogVisible(required: false) { forgottenPasswordDialog.present && forgottenPasswordDialog.displayed }
 		forgottenYourPasswordButton { $("#loginForm a") }
-		closeForgottenPasswordButton (required: false) { $('#cboxClose') }
+		closeForgottenPasswordButton (required: false) { $('#popupBoxClose') }
 		sendEmailButton(required: false) { $("#forgottenPwdForm button") }
 		emailAddress { $("#forgottenPwdForm input") }
 
