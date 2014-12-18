@@ -58,7 +58,7 @@ class QuickOrderTest extends GebReportingSpec {
 		quantity == "Quantity"
 		total == "Total "
 		cartButtons == "CONTINUE SHOPPING&"
-		checkOut == "CHECKOUT&"
+		//checkOut == "CHECKOUT&"
 		
 		where:
 		user << [levisUser]

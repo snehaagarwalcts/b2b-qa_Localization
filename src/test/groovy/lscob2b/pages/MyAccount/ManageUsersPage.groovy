@@ -18,5 +18,6 @@ class ManageUsersPage extends Page{
 		manageUsersData { $("form table tr th")*.text() }
 		createNewUser { $("div.right a").text() }
 		createNewUserLink { $("div.right a") }
+		manageUsers { $("#breadcrumb.breadcrumb #breadcrumb li").not('separator')*.text()}
 	}
 }

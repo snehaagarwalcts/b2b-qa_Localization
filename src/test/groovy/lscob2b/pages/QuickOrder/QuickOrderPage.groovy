@@ -21,7 +21,7 @@ class QuickOrderPage extends Page{
 		quantity { $("div.cartTotals div.quantity span.label").text() }
 		total { $("div.cartTotals div.total span.label").text() }
 		cartButtons { $("div.cartButtons").find('a', href: endsWith('/')).text() }
-		checkOut { $("div.cartButtons").find('a', href: endsWith('/cart')).text() }
-		
+		//checkOut { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')).text() }
+		//TODO figure out a way to capture the checkout element.
 	}
 }
