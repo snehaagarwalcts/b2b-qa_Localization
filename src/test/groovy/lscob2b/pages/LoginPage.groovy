@@ -2,6 +2,7 @@ package lscob2b.pages
 
 import geb.Page
 import lscob2b.modules.MasterTemplate
+import static lscob2b.TestConstants.*
 
 class LoginPage extends Page {
 
@@ -33,6 +34,10 @@ class LoginPage extends Page {
 		langSelectorFor { value -> $("#lang-selector option[value='${value}']") }
 		langSelectorValueCount { $("#lang-selector option").size() }
 		pageheading { $("#main-container h1").text() }
+	}
+
+	def login(String username) {
+		doLogin(username, defaultPassword)
 	}
 
 	def doLogin(String username, String password) {
