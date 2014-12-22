@@ -30,7 +30,7 @@ class MyAccountPage extends Page {
 
 		//account page manage section
 		manageUsersLink { $("div.headline").find('a', href: endsWith('/manage-users')) }
-		manageUsers { $("div.headline").find('a', href: endsWith('/manage-users')).text() }
+		manageUsers(required:false) { $("div.headline").find('a', href: endsWith('/manage-users')).text() }
 		addNewUsers { $("div ul").find('a', href: endsWith('/manage-users/create')).text() }
 		editUsers { $("div ul").find('a', href: endsWith('/manage-users')).text() }
 		

@@ -16,25 +16,29 @@ public class ProductDetailsPageTest extends GebReportingSpec {
 		to LoginPage
 	}
 
-	def cleanup() {
-		masterTemplate.doLogout()
-	}
-
 	def "wholesale and recommended retail prices should be displayed"(){
 
-		when: "Log in"
-		login (multibrandUser)
-		then: "We should be at home page"
+		setup: "Log in"
+
+		login (levisUser)
 		at HomePage
-		when: "Go to first product category in the navigation menu"
-		masterTemplate.categoryNavigation.clickFirstCategoryLink()
-		then: "We should be at category page"
-		at ProductCategoryPage
-		when: "Click first product on the page"
-		clickFirstProductLink()
-		then: "We should be at product details page"
+
+		when: "At product details page"
+
+		browser.go(baseUrl + "p/" + productCode)
 		at ProductDetailsPage
+
+		then: "We should be at product details page"
+
 		recommendedRetailPriceExist()
 		wholesalePriceExist()
+
+		recommendedRetailPriceValue == retailPrice
+		wholesalePriceValue == wholesalePrice
+
+		where:
+
+		productCode		|	retailPrice		| wholesalePrice
+		'005010089'		|	100.75			| 90.75
 	}
 }
