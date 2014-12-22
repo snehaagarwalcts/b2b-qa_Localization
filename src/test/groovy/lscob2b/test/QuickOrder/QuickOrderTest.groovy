@@ -30,7 +30,7 @@ class QuickOrderTest extends GebReportingSpec {
 		at QuickOrderPage
 	}
 	
-	def "Quick Order link is accessible"() {
+	/*def "Quick Order link is accessible"() {
 
 		when: "logged in as any user"
 
@@ -80,9 +80,9 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		where:
 		user << [levisUser]
-	}
+	}*/
 	
-	/*def "Place an order from Quick Order Page"(){
+	def "Place an order from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
 		loginAsUserAndGoToQuickOrder(user)
 		
@@ -90,13 +90,13 @@ class QuickOrderTest extends GebReportingSpec {
 		doSearch('005011615')
 		//Need to add more here
 		
-		orderQuantity('10')
+		addOrderQuantity('10')
 		
-		doAddToCart
+		doAddToCart()
 		
 		doCheckOut()
 		
 		where:
 		user << [levisUser]
-	}*/
+	}
 }
