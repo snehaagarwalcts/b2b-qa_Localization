@@ -169,9 +169,14 @@ class MyAccountTest extends GebReportingSpec {
 		then: "Correct sections/links should be visible"
 		addressBookData.contains("View your delivery addresses")
 		addressBookData.contains("View your billing addresses")
+		addressItem.contains("Cassilis Road")
+		addressItem.contains("12, Turner House, Canary Central")
+		addressItem.contains("Dublin")
+		addressItem.contains("E149LJ")
+		addressItem.contains("Ireland")
 
 		where:
-		user<<[levisUser, dockersUser, multibrandUser]
+		user<<[levisUser]
 	}
 
 	def "Check Breadcrumb on Address Book Page"(){
