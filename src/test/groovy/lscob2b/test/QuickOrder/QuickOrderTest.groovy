@@ -32,6 +32,10 @@ class QuickOrderTest extends GebReportingSpec {
 		at QuickOrderPage
 	}
 	
+	def doRemoveProduct(){
+		doRemove()
+	}
+	
 	def "Quick Order link is accessible"() {
 
 		when: "logged in as any user"
@@ -72,13 +76,32 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		then: "Add to Cart"
 		doSearch('005011615')
-		//Need to add more here
 		
 		addOrderQuantity('10')
 		
 		doAddToCart()
 		
-		//doCheckOut()
+		where:
+		user << [levisUser]
+	}
+	
+	//Need to fix the test
+	def "Remove product from checkout Page"(){
+		setup:
+		loginAsUserAndGoToQuickOrder(user)
+		doSearch('005011615')
+		addOrderQuantity('10')
+		doAddToCart()
+		doCheckOut()
+		
+		Thread.sleep(1000);
+		
+		when: "At Check out page"
+		at CheckOutPage
+		Thread.sleep(1000);
+		
+		then: "Remove the product from the page"
+		doRemoveProduct()
 		
 		where:
 		user << [levisUser]
