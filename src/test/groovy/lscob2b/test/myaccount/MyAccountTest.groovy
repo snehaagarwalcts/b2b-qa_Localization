@@ -23,8 +23,7 @@ class MyAccountTest extends GebReportingSpec {
 	def login(String username) {
 		doLogin(username, defaultPassword)
 	}
-
-
+	
 	def loginAsUserAndGoToMyAccount(String user) {
 		login(user)
 		at HomePage
@@ -84,25 +83,29 @@ class MyAccountTest extends GebReportingSpec {
 		then: "Correct sections/links should be visible depending on user"
 
 		// check main section
-		page.getContent(section) == headerValue
+		if (isVisible) {
+			assert page.getContent(section) == headerValue
 
-		// check links for each section
-		sublinks.each { k,v ->
-			assert page.getContent(k).toUpperCase() == v.toUpperCase()
-		}
+			// check links for each section
+			sublinks.each { k,v ->
+				assert page.getContent(k).toUpperCase() == v.toUpperCase()
+			}
+		} else {
+			page.getContent(section) == null
+ 		}
+
+
 
 		where:
-		user			| section			| headerValue		| sublinks
-		administrator	| 'profile'			| 'PROFILE'			| [updatePersonalDetails	: 'Update personal details'		, changeYourPassword: 'Change your password'	]
-		administrator	| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress	: 'View your delivery addresses'												]
-		administrator	| 'orderHistory'	| 'ORDER HISTORY'	| [viewOrderHistory			: 'View order history'															]
-		administrator	| 'manageUsers'		| 'MANAGE USERS'	| [addNewUsers				: 'Add new users'				, editUsers			: 'Edit or disable users'	]
-		/*		nonAdmin		| 'profile'			| 'PROFILE'			| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
-		 nonAdmin		| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress: 'View your delivery addresses']
-		 nonAdmin		| 'orderHistory'	| 'ORDER HISTORY'	| [viewOrderHistory: 'View order history']
-		 nonAdmin		| 'manageUsers'		| 'MANAGE USERS'	| [addNewUsers: 'Add new users', editUsers: 'Edit or disable users']
-		 */
-
+		isVisible	| user			| section			| headerValue		| sublinks
+		true 		| administrator	| 'profile'			| 'PROFILE'			| [updatePersonalDetails	: 'Update personal details'		, changeYourPassword: 'Change your password'	]
+		true 		| administrator	| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress	: 'View your delivery addresses'												]
+		true 		| administrator	| 'orderHistory'	| 'ORDER HISTORY'	| [viewOrderHistory			: 'View order history'															]
+		true 		| administrator	| 'manageUsers'		| 'MANAGE USERS'	| [addNewUsers				: 'Add new users'				, editUsers			: 'Edit or disable users'	]
+		true 		| nonAdmin		| 'profile'			| 'PROFILE'			| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
+		true 		| nonAdmin		| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress: 'View your delivery addresses']
+		true 		| nonAdmin		| 'orderHistory'	| 'ORDER HISTORY'	| [viewOrderHistory: 'View order history']
+		false 		| nonAdmin		| 'manageUsers'		| 'MANAGE USERS'	| [addNewUsers: 'Add new users', editUsers: 'Edit or disable users']
 	}
 
 	def "Check the Profile page content"() {
@@ -262,19 +265,24 @@ class MyAccountTest extends GebReportingSpec {
 
 		then: "Correct sections/links should be visible"
 		orderHistoryData == "ORDER HISTORY"
-		//orderHistoryDescription.contains("")
-		orderHistoryBar.contains("ORDERS FOUND")
-		orderHistoryBar.contains("SORT BY:")
-		orderHistoryListTable.contains("DATE PLACED")
-		orderHistoryListTable.contains("ORDER NUMBER")
-		orderHistoryListTable.contains("ORDER STATUS")
-		orderHistoryListTable.contains("ORDER TYPE")
-		orderHistoryListTable.contains("TOTAL")
-		orderHistoryListTable.contains("ORDER SOURCE")
-		orderHistoryListTable.contains("ACTIONS")
-		
+
+		["ORDERS FOUND","SORT BY:"].each {
+			orderHistoryBar.contains(it)
+		}
+
+		["DATE PLACED",
+		 "ORDER NUMBER",
+		 "ORDER STATUS",
+		 "ORDER TYPE",
+		 "TOTAL",
+		 "ORDER SOURCE",
+		 "ACTIONS"].each {
+			orderHistoryListTable.contains(it)
+		}
+
 		where:
-		user<<[levisUser]  //TODO test with more user group once orders have been placed
+
+		user << [levisUser]  //TODO test with more user group once orders have been placed
 	}
 
 	def "Check Breadcrumb on Order History Page"(){
