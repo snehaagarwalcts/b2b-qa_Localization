@@ -4,6 +4,8 @@ import geb.spock.GebReportingSpec
 import lscob2b.TestConstants
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
+import lscob2b.pages.CheckOut.CheckOutPage;
+import lscob2b.pages.OrderConfirmation.OrderConfirmationPage;
 import lscob2b.pages.QuickOrder.QuickOrderPage
 import spock.lang.Stepwise
 import static lscob2b.TestConstants.*
@@ -82,21 +84,22 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	/*def "Place an order from Quick Order Page"(){
-		when: "Logging in and going to Quick Order page"
+	def "Place an order from Quick Order Page"(){
+		setup: 
 		loginAsUserAndGoToQuickOrder(user)
+		doSearch('005011615')
+		addOrderQuantity('10')
+		doAddToCart()
+		
+		when: "Checking out from quick order page"
+		doCheckOut()
 		
 		then: "Place an order"
-		doSearch('005011615')
-		//Need to add more here
-		
-		orderQuantity('10')
-		
-		doAddToCart
-		
-		doCheckOut()
+		at CheckOutPage
+		doPlaceOrder()
+		at OrderConfirmationPage
 		
 		where:
 		user << [levisUser]
-	}*/
+	}
 }
