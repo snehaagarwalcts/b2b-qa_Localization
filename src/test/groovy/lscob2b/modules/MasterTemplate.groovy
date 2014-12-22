@@ -8,17 +8,18 @@ import geb.navigator.Navigator
  */
 class MasterTemplate extends Module {
 
-    static content = {
+	static content = {
 
-		myAccountLink
-		{
+		categoryNavigation {module CategoryNavigationModule}
+
+		myAccountLink {
 			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
 		}
 
-      logoutLink {
-         $('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
-        }
-		
+		logoutLink {
+			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
+		}
+
 
 		breadCrumbs {
 			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
@@ -27,7 +28,9 @@ class MasterTemplate extends Module {
 		logoAltTag {$('header h1 a img').attr('alt')}
 
 		themeForm(required: false) { $('#theme-form') }
-    }
+
+		quickOrderLink { $('header h2').find("a", href: contains("/advanced")) }
+	}
 
 	def getBreadCrumbByUrl(String url) {
 		breadCrumbs.find('a', href: endsWith(url))
@@ -37,12 +40,15 @@ class MasterTemplate extends Module {
 		breadCrumbs.filter('li.active').text().toUpperCase() == text.toUpperCase()
 	}
 
-	def clickMyAccount()
-	{
+	def clickMyAccount() {
 		myAccountLink.click()
 	}
-	
-    def doLogout() {
-        logoutLink.click()
-    }
+
+	def clickQuickOrder(){
+		quickOrderLink.click()
+	}
+
+	def doLogout() {
+		logoutLink.click()
+	}
 }

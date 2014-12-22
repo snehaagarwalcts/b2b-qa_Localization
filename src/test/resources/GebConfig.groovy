@@ -2,6 +2,7 @@ package test.resources
 
 import geb.driver.SauceLabsDriverFactory
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.chrome.ChromeDriver
 
 def sysProps = System.getProperties()
 
@@ -18,7 +19,15 @@ if (sauceBrowser) {
 		def capabilities = [platform: platform, version: version, browserName: browserName]
 		new SauceLabsDriverFactory().create("", username, accessKey, capabilities)
 	}
-} else {
+} else if (sysProps.get("geb.chrome.browser")){
+/*
+ * for being able to use Chrome:
+ * 1. Chrome browser should be properly installed 
+ * 2. Chromedriver should have been downloaded and "webdriver.chrome.driver" system property should be set pointing that driver. (e.g.-Dwebdriver.chrome.driver="/Users/i310850/dev/apps/ChromeDriver/chromedriver")
+ * see: https://code.google.com/p/selenium/wiki/ChromeDriver for details
+ */
+	driver = { new ChromeDriver() }
+}else {
 	driver = { new FirefoxDriver() }
 }
 
