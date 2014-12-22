@@ -18,6 +18,6 @@ class OrderHistoryPage extends Page{
 		orderHistoryData { $("div.headline").text() }
 		orderHistoryDescription { $("div.description").text() }
 		orderHistoryBar { $("div.paginationBar").text() }
-		orderHistoryListTable { $("table.orderListTable thead tr") }
+		orderHistoryListTable { $("table.orderListTable thead tr").text() }
 	}
 }
