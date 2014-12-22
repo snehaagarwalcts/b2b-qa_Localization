@@ -8,6 +8,7 @@ import lscob2b.pages.MyAccount.ProfilePage;
 import lscob2b.pages.MyAccount.ManageUsersPage;
 import lscob2b.pages.MyAccount.OrderHistoryPage;
 import lscob2b.pages.MyAccount.AddressBookPage;
+import lscob2b.modules.MasterTemplate
 import static lscob2b.TestConstants.*
 
 class MyAccountTest extends GebReportingSpec {
