@@ -16,5 +16,6 @@ class AddressBookPage extends Page{
 
 		//Address book page content //TODO add more content as page gets developed
 		addressBookData { $("div strong")*.text() }
+		addressItem { $("div.addressItem ul").text() }
 	}
 }
