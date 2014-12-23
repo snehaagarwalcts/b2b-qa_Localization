@@ -8,6 +8,9 @@ import lscob2b.pages.MyAccount.ProfilePage;
 import lscob2b.pages.MyAccount.ManageUsersPage;
 import lscob2b.pages.MyAccount.OrderHistoryPage;
 import lscob2b.pages.MyAccount.AddressBookPage;
+import lscob2b.pages.QuickOrder.QuickOrderPage
+import lscob2b.pages.CheckOut.CheckOutPage
+import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
 import lscob2b.modules.MasterTemplate
 import static lscob2b.TestConstants.*
 
@@ -171,7 +174,7 @@ class MyAccountTest extends GebReportingSpec {
 		addressBookData.contains("View your delivery addresses")
 		addressBookData.contains("View your billing addresses")
 		addressItem.contains("Cassilis Road")
-		addressItem.contains("12, Turner House, Canary Central")
+		addressItem.contains("23, James House, Canary Central")
 		addressItem.contains("Dublin")
 		addressItem.contains("E149LJ")
 		addressItem.contains("Ireland")
@@ -228,8 +231,6 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser, dockersUser, multibrandUser]
 	}
 
-	//ERROR cannot invoke method toUpperCase() on null object
-	
 	def "Check Breadcrumb on Manage Users Page"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
@@ -259,13 +260,23 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser]
 	}
 
-	//Order History page content  //TODO update as more content developed
-	//theres no order history on page anymore
 	def "Check the Order History page content"(){
 		setup:
-		loginAsUserAndGoToMyAccount(user)
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
+		doSearch('005011615')
+		addOrderQuantity('10')
+		doAddToCart()
+		doCheckOut()
+		at CheckOutPage
+		doPlaceOrder()
+		at OrderConfirmationPage
+		masterTemplate.clickMyAccount()
+		at MyAccountPage
 		orderHistoryLink.click()
-
+		
 		when: "At order history page"
 		at OrderHistoryPage
 
@@ -288,7 +299,7 @@ class MyAccountTest extends GebReportingSpec {
 
 		where:
 
-		user << [levisUser]  //TODO test with more user group once orders have been placed
+		user << [levisUser]
 	}
 
 	def "Check Breadcrumb on Order History Page"(){
