@@ -103,6 +103,10 @@ class QuickOrderTest extends GebReportingSpec {
 		then: "Remove the product from the page"
 		doRemoveProduct()
 		
+		waitFor(5){
+			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
+		}
+		
 		where:
 		user << [levisUser]
 	}
