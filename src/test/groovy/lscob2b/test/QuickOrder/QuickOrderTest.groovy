@@ -7,6 +7,7 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.CheckOut.CheckOutPage;
 import lscob2b.pages.OrderConfirmation.OrderConfirmationPage;
 import lscob2b.pages.QuickOrder.QuickOrderPage
+import lscob2b.pages.cart.CartPage
 import spock.lang.Stepwise
 import static lscob2b.TestConstants.*
 
@@ -76,16 +77,26 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		then: "Add to Cart"
 		doSearch('005011615')
-		
 		addOrderQuantity('10')
-		
 		doAddToCart()
+		
+		and: "go to shopping cart page"
+		masterTemplate.doGoToCart()
+		at CartPage
+		
+		then: "Look at cart content"
+		
+		cartTemplate.itemName == "501 LEVIS ORIGINAL FIT MOODY MONDAY"
+		cartTemplate.itemStyle == "STYLE"
+		cartTemplate.itemColor == "COLOR"
+		cartTemplate.itemPrice == "WHOLESALE PRICE"
+		cartTemplate.itemQuantity == "QUANTITY"
+		cartTemplate.itemTotal == "TOTAL"
 		
 		where:
 		user << [levisUser]
 	}
 	
-	//Need to fix the test
 	def "Remove product from checkout Page"(){
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
@@ -102,10 +113,10 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		then: "Remove the product from the page"
 		doRemoveProduct()
-		
 		waitFor(5){
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
 		}
+		
 		
 		where:
 		user << [levisUser]

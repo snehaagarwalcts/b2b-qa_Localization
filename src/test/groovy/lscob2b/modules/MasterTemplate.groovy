@@ -11,6 +11,7 @@ class MasterTemplate extends Module {
 	static content = {
 
 		categoryNavigation {module CategoryNavigationModule}
+		
 
 		myAccountLink {
 			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
@@ -30,6 +31,8 @@ class MasterTemplate extends Module {
 		themeForm(required: false) { $('#theme-form') }
 
 		quickOrderLink { $('header h2').find("a", href: contains("/advanced")) }
+		
+		goToCartLink { $("div.mini-cart h3") }
 	}
 
 	def getBreadCrumbByUrl(String url) {
@@ -50,5 +53,9 @@ class MasterTemplate extends Module {
 
 	def doLogout() {
 		logoutLink.click()
+	}
+	
+	def doGoToCart(){
+		goToCartLink.click()
 	}
 }
