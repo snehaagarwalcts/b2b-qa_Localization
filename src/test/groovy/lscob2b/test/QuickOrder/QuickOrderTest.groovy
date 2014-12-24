@@ -61,7 +61,7 @@ class QuickOrderTest extends GebReportingSpec {
 		then: "Correct sections/links should be visible"
 		keywordSearch == "KEYWORD SEARCH"
 		searchButton == "SEARCH"
-		prdouctIdsOnly == "PRODUCT IDS ONLY"
+		prdouctIdsOnly == "Product IDs Only"
 		quantity == "Quantity"
 		total == "Total "
 		cartButtons == "CONTINUE SHOPPING&"
@@ -76,7 +76,7 @@ class QuickOrderTest extends GebReportingSpec {
 		loginAsUserAndGoToQuickOrder(user)
 		
 		then: "Add to Cart"
-		doSearch('005011615')
+		doSearch('00501-1615')
 		addOrderQuantity('10')
 		doAddToCart()
 		
@@ -100,19 +100,19 @@ class QuickOrderTest extends GebReportingSpec {
 	def "Remove product from checkout Page"(){
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
-		doSearch('005011615')
+		doSearch('00501-1615')
 		addOrderQuantity('10')
 		doAddToCart()
-		doCheckOut()
+		masterTemplate.doGoToCart()
 		
 		Thread.sleep(1000);
 		
 		when: "At Check out page"
-		at CheckOutPage
+		at CartPage
 		Thread.sleep(1000);
 		
-		then: "Remove the product from the page"
-		doRemoveProduct()
+		then: "Remove the product from the page and you should get a message cart is empty"
+		cartTemplate.doRemove()
 		waitFor(5){
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
 		}
@@ -125,7 +125,7 @@ class QuickOrderTest extends GebReportingSpec {
 	def "Place an order from Quick Order Page"(){
 		setup: 
 		loginAsUserAndGoToQuickOrder(user)
-		doSearch('005011615')
+		doSearch('00501-1615')
 		addOrderQuantity('10')
 		doAddToCart()
 		

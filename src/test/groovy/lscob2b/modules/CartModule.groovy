@@ -14,5 +14,13 @@ class CartModule extends Module{
 		itemPrice { $("div.itemAttributes .itemPrice span").text() }
 		itemQuantity { $("div.itemSummary .quantity span.label").text() }
 		itemTotal { $("div.itemSummary .total span.label").text() }
+		
+		//Remove product from cart
+		removeProductLink { $("div.itemButtons #RemoveProduct_0") }
+		removeProduct { $("div.dialogueButtons #RemoveProduct_0") }
+	}
+	def doRemove(){
+		removeProductLink.click()
+		removeProduct.click()
 	}
 }
