@@ -14,5 +14,6 @@ class CartModule extends Module{
 		itemPrice { $("div.itemAttributes .itemPrice span").text() }
 		itemQuantity { $("div.itemSummary .quantity span.label").text() }
 		itemTotal { $("div.itemSummary .total span.label").text() }
+		cartIsEmpty { $(".content h2").text() }
 	}
 }
