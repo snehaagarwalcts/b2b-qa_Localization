@@ -1,6 +1,8 @@
 package test.resources
 
+import lscob2b.util.geb.DummyReporter;
 import geb.driver.SauceLabsDriverFactory
+
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.chrome.ChromeDriver
 
@@ -54,6 +56,7 @@ environments {
 	}
 }
 
+reporter = new DummyReporter() // Fastest Reporter :)
 reportsDir = new File("target/geb-reports")
 reportOnTestFailureOnly = true
 
