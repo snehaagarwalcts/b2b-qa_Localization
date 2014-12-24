@@ -11,7 +11,7 @@ class MasterTemplate extends Module {
 	static content = {
 
 		categoryNavigation {module CategoryNavigationModule}
-		
+		cartTemplate {module CartModule}
 
 		myAccountLink {
 			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))

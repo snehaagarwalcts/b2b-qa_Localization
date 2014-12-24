@@ -103,20 +103,19 @@ class QuickOrderTest extends GebReportingSpec {
 		doSearch('00501-1615')
 		addOrderQuantity('10')
 		doAddToCart()
-		doCheckOut()
+		masterTemplate.doGoToCart()
 		
 		Thread.sleep(1000);
 		
 		when: "At Check out page"
-		at CheckOutPage
+		at CartPage
 		Thread.sleep(1000);
 		
 		then: "Remove the product from the page and you should get a message cart is empty"
-		doRemoveProduct()
-		cartIsEmpty == "Your shopping cart is empty"
-		/*waitFor(5){
+		cartTemplate.doRemove()
+		waitFor(5){
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
-		}*/
+		}
 		
 		
 		where:

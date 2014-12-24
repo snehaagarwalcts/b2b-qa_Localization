@@ -11,17 +11,11 @@ class CheckOutPage extends Page{
 
 	static content = {
 		masterTemplate {module MasterTemplate}
+		
 		placeOrderLink { $("div.cartButtons a.placeOrderButton") }
-		removeProductLink { $("div.itemButtons #RemoveProduct_0") }
-		removeProduct { $("div.dialogueButtons #RemoveProduct_0") }
 	}
 
 	def doPlaceOrder(){
 		placeOrderLink.click()
-	}
-	
-	def doRemove(){
-		removeProductLink.click()
-		removeProduct.click()
 	}
 }
