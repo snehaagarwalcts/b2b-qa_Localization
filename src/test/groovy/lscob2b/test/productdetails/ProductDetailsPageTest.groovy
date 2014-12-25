@@ -37,7 +37,7 @@ public class ProductDetailsPageTest extends GebReportingSpec {
 		where:
 
 		productCode		|	retailPrice		| wholesalePrice
-		'005010089'		|	100.75			| 90.75
+		'05527-0458'		|	80.5			| 70.75
 	}
 	
 	def "Wait list should be working"(){
