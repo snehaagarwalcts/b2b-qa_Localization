@@ -28,26 +28,25 @@ public class CmsCategoriesTest extends GebReportingSpec {
 	def "All cms categories should be displayed in the navigation menu"(){
 
 		when: "Switch to correct brand if not already there"
+
 		masterTemplate.switchBrandIfNecessary(brand)
 
 		then: "we should be at correct brand" //could not find a good way to confirm this
 
 		when: "Open category menu"
+
 		if (currentOpenMenu != parentCategory) {
 			masterTemplate.mouseOverParentCategory(parentCategory)
 			currentOpenMenu = parentCategory
 		}
 
 		then: "Check category exists in menu"
+
 		masterTemplate.subCategoryLinkExists(subCategory)
 
 		where:
-		brand		|	parentCategory					|	subCategory
-		"levis"		|	"Levis_151_Male"				|	"Levis_151_Male_Bottoms_Long%20Bottoms"
-		"levis"		|	"Levis_151_Male"				|	"Levis_151_Male_Bottoms_Short%20Bottoms"
-		"levis"		|	"Levis_151_Female"				|	"Levis_151_Female_Bottoms_Long%20Bottoms"
-		"levis"		|	"Levis_151_Female"				|	"Levis_151_Female_Bottoms_Skirts"
-		"dockers"	|	"Dockers_151_Male_Accessories"	|	"Dockers_151_Male_Accessories_Belts"
-		"dockers"	|	"Dockers_151_Male_Accessories"	|	"Dockers_151_Male_Accessories_Muffler_Scarf"
+
+		[brand, parentCategory, subCategory] << new File("src/test/resources/testinput/CmsCategories.txt").readLines()*.tokenize()
+
 	}
 }
