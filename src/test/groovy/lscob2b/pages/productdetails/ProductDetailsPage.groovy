@@ -11,7 +11,7 @@ class ProductDetailsPage extends Page {
 
 	static at = {
 		!$("body.pageType-ProductPage").empty
-		browser.currentUrl ==~ /^.*\/p\/\w+$/
+		browser.currentUrl ==~ /^.*\/p\/[\-\w]+$/
 	}
 
 	static content = {
