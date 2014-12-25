@@ -2,6 +2,7 @@ package lscob2b.test.category;
 
 import org.spockframework.compiler.model.ExpectBlock;
 
+import spock.lang.Shared;
 import spock.lang.Stepwise;
 import lscob2b.pages.HomePage;
 import lscob2b.pages.LoginPage;
@@ -15,6 +16,9 @@ import static lscob2b.TestConstants.*
 @Stepwise
 public class CmsCategoriesTest extends GebReportingSpec {
 
+	@Shared
+	def currentOpenMenu
+
 	def setupSpec() {
 		to LoginPage
 		login (multibrandUser)
@@ -22,18 +26,20 @@ public class CmsCategoriesTest extends GebReportingSpec {
 	}
 
 	def "All cms categories should be displayed in the navigation menu"(){
-		
-		when: "Switch correct brand"
-		if (masterTemplate.brandSelectionInput.value() == brand){
-			masterTemplate.switchBrand()
-		}
+
+		when: "Switch to correct brand if not already there"
+		masterTemplate.switchBrandIfNecessary(brand)
+
 		then: "we should be at correct brand" //could not find a good way to confirm this
 
 		when: "Open category menu"
-		masterTemplate.util.mouseOverHrefEndsWith(parentCategory)
+		if (currentOpenMenu != parentCategory) {
+			masterTemplate.mouseOverParentCategory(parentCategory)
+			currentOpenMenu = parentCategory
+		}
 
 		then: "Check category exists in menu"
-		!$("a", href: endsWith(subCategory)).empty
+		masterTemplate.subCategoryLinkExists(subCategory)
 
 		where:
 		brand		|	parentCategory					|	subCategory

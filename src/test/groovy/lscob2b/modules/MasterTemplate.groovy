@@ -10,7 +10,6 @@ class MasterTemplate extends Module {
 
 	static content = {
 
-		util {module UtilModule}
 		cartTemplate {module CartModule}
 
 		myAccountLink {
@@ -20,7 +19,6 @@ class MasterTemplate extends Module {
 		logoutLink {
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
 		}
-
 
 		breadCrumbs {
 			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
@@ -64,5 +62,27 @@ class MasterTemplate extends Module {
 
 	def switchBrand(){
 		switchBrandLink.click()
+	}
+
+	def switchBrandIfNecessary(brand){
+		if (brandSelectionInput.value() == brand){
+			switchBrand()
+		}
+	}
+
+	def Navigator getSubCategoryLink(subCategory){
+		$("div.menu a", href: endsWith(subCategory))
+	}
+
+	def subCategoryLinkExists(subCategory){
+		!getSubCategoryLink(subCategory).empty
+	}
+
+	def Navigator getParentCategory(parentCategory){
+		$("div.subnav ul.subnav-list li>h2>a", href: endsWith(parentCategory))
+	}
+
+	def mouseOverParentCategory(parentCategory){
+		getParentCategory(parentCategory).jquery.mouseover()
 	}
 }

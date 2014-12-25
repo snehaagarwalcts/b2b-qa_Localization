@@ -16,7 +16,6 @@ class HomePage extends Page{
 
     static content = {
         masterTemplate {module MasterTemplate}
-		util {module UtilModule}
     }
 
 }
