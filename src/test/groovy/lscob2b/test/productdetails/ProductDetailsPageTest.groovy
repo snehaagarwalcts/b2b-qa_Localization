@@ -50,7 +50,8 @@ public class ProductDetailsPageTest extends GebReportingSpec {
 
 		when:"input order count and add to wait list"
 		//Navigator navigator = $("body")
-		$("#\\0050100892832\\.quantity",1).value("5")  //TODO not working!! waiting for BB-480
+		//TODO cannot select using an id so as a workaround solution we are selecting using the name !! waiting for BB-480
+		$("table.grid_three_dimensions input", 1, name: "05527045803430.quantity").value("5")  
 		clickAddToWaitList()
 		
 		then:
