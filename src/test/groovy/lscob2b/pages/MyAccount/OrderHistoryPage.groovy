@@ -15,7 +15,7 @@ class OrderHistoryPage extends Page{
 		masterTemplate { module MasterTemplate }
 
 		//Order history page content //TODO update this as page gets developed
-		orderHistoryData { $("div.headline").text() }
+		orderHistoryData { $("div#main-container>h1").text() }
 		orderHistoryDescription { $("div.description").text() }
 		orderHistoryBar { $("div.paginationBar").text() }
 		orderHistoryListTable { $("table.orderListTable thead tr").text() }

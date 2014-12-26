@@ -9,5 +9,5 @@ class TestConstants {
 	static String dockersUser = "deno.rota@fashion-world.com"
 	static String multibrandUser = "joseph.hall@city-apparel.com"
 	static String administrator = "robert.moris@monsoon.com"
-	static String nonAdmin = "bob@jones.com"
+	static String nonAdmin = "plaincustomer@test.com"
 }

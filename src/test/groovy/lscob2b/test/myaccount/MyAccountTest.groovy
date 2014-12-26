@@ -171,10 +171,10 @@ class MyAccountTest extends GebReportingSpec {
 		at AddressBookPage
 
 		then: "Correct sections/links should be visible"
-		addressBookData.contains("View your delivery addresses")
-		addressBookData.contains("View your billing addresses")
+		addressBookData.contains("VIEW YOUR DELIVERY ADDRESSES")
+		addressBookData.contains("VIEW YOUR BILLING ADDRESSES")
 		addressItem.contains("Cassilis Road")
-		addressItem.contains("23, James House, Canary Central")
+		addressItem.contains("12, Turner House, Canary Central")
 		addressItem.contains("Dublin")
 		addressItem.contains("E149LJ")
 		addressItem.contains("Ireland")
@@ -266,7 +266,7 @@ class MyAccountTest extends GebReportingSpec {
 		at HomePage
 		masterTemplate.clickQuickOrder()
 		at QuickOrderPage
-		doSearch('005011615')
+		doSearch('05527-0458')
 		addOrderQuantity('10')
 		doAddToCart()
 		doCheckOut()
