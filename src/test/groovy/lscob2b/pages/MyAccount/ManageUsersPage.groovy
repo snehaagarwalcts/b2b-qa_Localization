@@ -20,4 +20,8 @@ class ManageUsersPage extends Page{
 		createNewUserLink { $("div.right a") }
 		manageUsers { $("#breadcrumb.breadcrumb #breadcrumb li").not('separator')*.text()}
 	}
+	
+	def clickCreateNewUsersLink(){
+		createNewUserLink.click()
+	}
 }

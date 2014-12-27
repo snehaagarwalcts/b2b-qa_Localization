@@ -15,6 +15,10 @@ class MasterTemplate extends Module {
 		myAccountLink {
 			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
 		}
+		
+		manageUsersLink {
+			$('div.global-nav a', href: endsWith('manage-users/'))
+		}
 
 		logoutLink {
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
@@ -84,5 +88,14 @@ class MasterTemplate extends Module {
 
 	def mouseOverParentCategory(parentCategory){
 		getParentCategory(parentCategory).jquery.mouseover()
+	}
+
+	def mouseOverMyAccountMenuItem(){
+		myAccountLink.jquery.mouseover()
+	}
+	
+	def selectManageUsers(){
+		mouseOverMyAccountMenuItem()
+		manageUsersLink.click()
 	}
 }
