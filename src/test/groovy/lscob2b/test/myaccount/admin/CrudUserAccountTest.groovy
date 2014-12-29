@@ -64,7 +64,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		userDetails.lastNameText == lastName
 		userDetails.emailText == email
 		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
-		userDetails.resetPasswordLinkUrl.endsWith("?user=${email}")		
+		userDetails.resetPasswordLinkUrl.endsWith("?user=${email}")
 	}
 
 	//continue from CreateUserConfirmationPage
@@ -72,10 +72,10 @@ public class CrudUserAccountTest extends GebReportingSpec {
 
 		when:
 		userDetails.clickEditUser()
-		
+
 		then:
 		at EditUserDetailsPage
-		
+
 		when:
 		def firstName = "firstName_updt"
 		def lastName = "lastName_updt"
@@ -93,7 +93,5 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		userDetails.emailText == email
 		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
 		userDetails.resetPasswordLinkUrl.endsWith("?user=${email}")
-		
-		
 	}
 }
