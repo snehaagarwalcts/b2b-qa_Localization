@@ -4,6 +4,9 @@ import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
+import lscob2b.pages.MyAccount.admin.CreateUserPage;
+import lscob2b.pages.MyAccount.admin.CustomerCreationConfirmationPage;
+import lscob2b.pages.MyAccount.admin.ManageUsersPage;
 
 public class CreateCustomerAccountTest extends GebReportingSpec {
 
@@ -32,10 +35,11 @@ public class CreateCustomerAccountTest extends GebReportingSpec {
 		at CreateUserPage
 
 		when: "Fill in the form and submit it"
+
 		def firstName = "serkan"
 		def lastName = "erdur"
-		def email = "serkan@test.tst"
-		def firstTitle = selectFirstTitleOption()
+		def email = UUID.randomUUID().toString() + "@test.tst"
+		def title = selectFirstTitleOption()
 		def defaultDeliveryAddr = selectDefaultDeliveryAddrOption()
 		setFirstName(firstName)
 		setLastName(lastName)
@@ -44,8 +48,13 @@ public class CreateCustomerAccountTest extends GebReportingSpec {
 		submit()
 
 		then: "Should be at customer created page"
-		at CustomerCreatedPage
-		//TODO check if everything created as entered
 
+		at CustomerCreationConfirmationPage
+		titleText == title
+		firstNameText == firstName
+		lastNameText == lastName
+		emailText == email
+		defaultDeliveryAddrText == defaultDeliveryAddr
+		resetPasswordLinkUrl.endsWith("?user=${email}")
 	}
 }
