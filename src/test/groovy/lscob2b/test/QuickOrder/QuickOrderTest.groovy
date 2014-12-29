@@ -26,7 +26,7 @@ class QuickOrderTest extends GebReportingSpec {
 		doLogin(username, defaultPassword)
 	}
 
-	def loginAsUserAndGoToQuickOrder(String user) {
+	def loginAsUserAndGoToQuickOrder(String user){
 		login(user)
 		at HomePage
 		masterTemplate.clickQuickOrder()
@@ -60,8 +60,9 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		then: "Correct sections/links should be visible"
 		keywordSearch == "KEYWORD SEARCH"
+		add == "ADD"
 		searchButton == "SEARCH"
-		prdouctIdsOnly == "Product IDs Only"
+		prdouctIdsOnly == "PRODUCT IDS ONLY"
 		quantity == "Quantity"
 		total == "Total "
 		cartButtons == "CONTINUE SHOPPING&"
@@ -140,4 +141,24 @@ class QuickOrderTest extends GebReportingSpec {
 		where:
 		user << [levisUser]
 	}
+		
+	/*def "Place an order with multiple product ID's"(){
+		setup:
+		loginAsUserAndGoToQuickOrder(user)
+		
+		when: "Placing orders with mulitple ID's"
+		doAdd('00501-1615')
+		
+		then: "Do search"
+		doAddButton('00501-0039')
+		searchLink.click()
+		
+		addOrderQuantity('10')
+		doAddToCart()
+		addQuantity('10')
+		doAddToCart()
+		
+		where:
+		user << [levisUser]
+	}*/
 }
