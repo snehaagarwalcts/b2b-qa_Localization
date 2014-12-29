@@ -1,6 +1,6 @@
 //created by I844489 on 12/10/2014
 
-package lscob2b.pages.MyAccount
+package lscob2b.pages.MyAccount.admin
 
 import geb.Page
 import geb.navigator.Navigator;

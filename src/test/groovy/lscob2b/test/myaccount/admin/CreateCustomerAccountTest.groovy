@@ -1,19 +1,9 @@
-package lscob2b.test.myaccount;
+package lscob2b.test.myaccount.admin;
 
-import org.spockframework.compiler.model.ExpectBlock;
-
-import spock.lang.Shared;
-import spock.lang.Stepwise;
-import lscob2b.pages.HomePage;
-import lscob2b.pages.LoginPage;
-import lscob2b.pages.MyAccount.CreateUserPage;
-import lscob2b.pages.MyAccount.ManageUsersPage;
-import lscob2b.pages.productcategory.ProductCategoryPage;
-import lscob2b.pages.productdetails.ProductDetailsPage;
-import lscob2b.test.login.LoginFailureTest;
-import geb.navigator.Navigator;
-import geb.spock.GebReportingSpec;
 import static lscob2b.TestConstants.*
+import geb.spock.GebReportingSpec
+import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
 
 public class CreateCustomerAccountTest extends GebReportingSpec {
 
