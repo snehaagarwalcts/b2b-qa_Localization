@@ -3,6 +3,7 @@
 package lscob2b.pages.MyAccount.admin
 
 import geb.Page
+import geb.navigator.Navigator;
 import lscob2b.modules.MasterTemplate
 
 class ManageUsersPage extends Page{
@@ -20,8 +21,12 @@ class ManageUsersPage extends Page{
 		createNewUserLink { $("div.right a") }
 		manageUsers { $("#breadcrumb.breadcrumb #breadcrumb li").not('separator')*.text()}
 	}
-	
+
 	def clickCreateNewUsersLink(){
 		createNewUserLink.click()
+	}
+
+	def clickUserLink(String email){
+		$("#manage_user a", href : endsWith(email)).click()
 	}
 }

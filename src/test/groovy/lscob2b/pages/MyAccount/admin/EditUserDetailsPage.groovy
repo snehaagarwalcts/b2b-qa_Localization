@@ -7,9 +7,7 @@ import geb.navigator.Navigator;
 import lscob2b.modules.EditUserDetailsModule;
 import lscob2b.modules.MasterTemplate
 
-class CreateUserPage extends Page{
-
-	static url = "my-account/manage-users/create"
+class EditUserDetailsPage extends Page{
 
 	static at = { title == "LSCO B2B Site" }
 
@@ -17,4 +15,5 @@ class CreateUserPage extends Page{
 		masterTemplate { module MasterTemplate }
 		userDetails { module EditUserDetailsModule}
 	}
+
 }
