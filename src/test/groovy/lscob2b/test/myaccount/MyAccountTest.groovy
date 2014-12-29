@@ -5,9 +5,9 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.MyAccount.MyAccountPage;
 import lscob2b.pages.MyAccount.ProfilePage;
-import lscob2b.pages.MyAccount.ManageUsersPage;
 import lscob2b.pages.MyAccount.OrderHistoryPage;
 import lscob2b.pages.MyAccount.AddressBookPage;
+import lscob2b.pages.MyAccount.admin.ManageUsersPage;
 import lscob2b.pages.QuickOrder.QuickOrderPage
 import lscob2b.pages.CheckOut.CheckOutPage
 import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
