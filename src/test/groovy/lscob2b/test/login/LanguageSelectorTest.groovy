@@ -22,7 +22,7 @@ class LanguageSelectorTest extends GebReportingSpec {
 	def "Check languages are present" () {
 		setup: "Define languages"
 
-		def languages = ["en", "sv"]
+		def languages = ["en", "sv", "ru", "cs", "hu", "pt", "de", "fr", "fi", "no", "da", "pl", "el", "tr", "nl", "it", "es" ]
 
 		when: "At login page"
 
@@ -54,6 +54,21 @@ class LanguageSelectorTest extends GebReportingSpec {
 		lang 	| greetingValue			|	urlPart
 		"sv"	| "WELCOME"	|	"/sv/"  //TODO change sv greetingValue once the language is implemented 
 		"en"	| "WELCOME"	|	"/en/"
+		"ru"	| "WELCOME"	|	"/ru/"
+		"cs"	| "WELCOME"	|	"/cs/"
+		"hu"	| "WELCOME"	|	"/hu/"
+		"pt"	| "WELCOME"	|	"/pt/"
+		"de"	| "WELCOME"	|	"/de/"
+		"es"	| "WELCOME"	|	"/es/"
+		"it"	| "WELCOME"	|	"/it/"
+		"nl"	| "WELCOME"	|	"/nl/"
+		"tr"	| "WELCOME"	|	"/tr/"
+		"el"	| "WELCOME"	|	"/el/"
+		"pl"	| "WELCOME"	|	"/pl/"
+		"da"	| "WELCOME"	|	"/da/"
+		"no"	| "WELCOME"	|	"/no/"
+		"fi"	| "WELCOME"	|	"/fi/"
+		"fr"	| "WELCOME"	|	"/fr/"
 	}
 
 }
