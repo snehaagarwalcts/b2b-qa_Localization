@@ -11,7 +11,6 @@ class ViewUserDetailsModule extends Module{
 		lastNameText { $("div.control-group:nth-child(3) > div:nth-child(2)").text() }
 		emailText { $("div.control-group:nth-child(4) > div:nth-child(2)").text() }
 		defaultDeliveryAddrText { $("div.control-group:nth-child(5) > div:nth-child(2)").text() }
-		resetPasswordLinkUrl { $("div.control-group:nth-child(6) > div:nth-child(2) > a:nth-child(1)").@href }
 		editUserButton { $("a.button.edituser")}
 	}
 

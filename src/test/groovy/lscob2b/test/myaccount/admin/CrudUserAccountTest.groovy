@@ -64,7 +64,6 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		userDetails.lastNameText == lastName
 		userDetails.emailText == email
 		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
-		userDetails.resetPasswordLinkUrl.endsWith("?user=${email}")
 	}
 
 	//continue from CreateUserConfirmationPage
@@ -92,6 +91,5 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		userDetails.lastNameText == lastName
 		userDetails.emailText == email
 		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
-		userDetails.resetPasswordLinkUrl.endsWith("?user=${email}")
 	}
 }
