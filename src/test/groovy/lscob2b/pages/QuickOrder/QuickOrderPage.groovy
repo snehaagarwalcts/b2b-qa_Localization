@@ -1,6 +1,7 @@
 package lscob2b.pages.QuickOrder
 
 import geb.Page
+import geb.navigator.Navigator;
 import lscob2b.modules.MasterTemplate
 
 class QuickOrderPage extends Page{
@@ -28,8 +29,8 @@ class QuickOrderPage extends Page{
 		searchLink { $("div.searchButton button") }
 		prodcutIDs { $("div.idCheckbox div label") }
 		checkOutLink { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')) }
-		orderQuantity { $("tr > td > .sku-quantity", 0) }
-		addToCartLink { $("div .add_to_cart_button") }
+		orderQuantity { $(".cartItem").not(".waitlist_grid_group").find("tr > td > .sku-quantity",0) }
+		addToCartLink { $("a.add_to_cart_button") }
 		
 		/*//To place an order with multiple product ids
 		addQuantity { $("#AddToCartOrderForm  tr > td > .sku-quantity", 0) }
@@ -55,11 +56,11 @@ class QuickOrderPage extends Page{
 	}*/
 	
 	def doAddToCart(){
-		addToCartLink.click()
+		waitFor(1){ addToCartLink.click() }
 	}
 	
-	def addOrderQuantity(String quantityID){
-		orderQuantity.value(quantityID)
+	def addOrderQuantity(String quantity){
+		waitFor(1){ orderQuantity.value(quantity) }
 	}
 	
 	def doCheckOut(){
