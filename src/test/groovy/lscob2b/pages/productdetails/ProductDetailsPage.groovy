@@ -1,6 +1,7 @@
 package lscob2b.pages.productdetails
 
 import lscob2b.modules.MasterTemplate;
+import lscob2b.modules.SizingGridModule;
 import geb.Page;
 import geb.navigator.Navigator;
 import groovy.lang.MetaClass;
@@ -16,6 +17,7 @@ class ProductDetailsPage extends Page {
 
 	static content = {
 		masterTemplate { module MasterTemplate }
+		sizingGrid { module SizingGridModule}
 		wholesalePriceText { $("div.wholesale-price > span").text()}
 		recommendedRetailPriceText { $("div.recommended-retail-price > span").text()}
 		recommendedRetailPriceValue {
@@ -24,8 +26,6 @@ class ProductDetailsPage extends Page {
 		wholesalePriceValue {
 			parsePrice(wholesalePriceText)
 		}
-		notifyMeWhenItemsBecomeAvailableLink {$("a.addtowaitlist")}
-		addToWaitListButton {$("a.add_to_waitlist_button",1)}
 	}
 
 	def recommendedRetailPriceExist(){
@@ -43,14 +43,6 @@ class ProductDetailsPage extends Page {
 	def parsePrice(String priceText) {
 		String s = priceText.find(numberRegex).replace(",","").replace(".","")
 		Double.parseDouble(s.substring(0, s.length()-2) + "." + s.substring(s.length()-2))
-	}
-	
-	def clickNotifyMeWhenItemsBecomeAvailable(){
-		notifyMeWhenItemsBecomeAvailableLink.click()
-	}
-	
-	def clickAddToWaitList(){
-		addToWaitListButton.click()
 	}
 	
 }

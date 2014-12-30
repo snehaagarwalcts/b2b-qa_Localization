@@ -3,6 +3,7 @@ package lscob2b.pages.QuickOrder
 import geb.Page
 import geb.navigator.Navigator;
 import lscob2b.modules.MasterTemplate
+import lscob2b.modules.SizingGridModule;
 
 class QuickOrderPage extends Page{
 	static url = "/advanced"
@@ -12,7 +13,7 @@ class QuickOrderPage extends Page{
 	static content = { 
 		
 		masterTemplate { module MasterTemplate } 
-		
+		sizingGrid { module SizingGridModule}
 		
 		//Quick order page content
 		keywordSearch { $("div label.control-label").text() }
@@ -54,14 +55,7 @@ class QuickOrderPage extends Page{
 		searchInput = productID
 		addButton.click()
 	}*/
-	
-	def doAddToCart(){
-		waitFor(1){ addToCartLink.click() }
-	}
-	
-	def addOrderQuantity(String quantity){
-		waitFor(1){ orderQuantity.value(quantity) }
-	}
+
 	
 	def doCheckOut(){
 		checkOutLink.click()

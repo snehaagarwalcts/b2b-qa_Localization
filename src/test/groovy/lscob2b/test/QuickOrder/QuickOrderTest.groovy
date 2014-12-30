@@ -78,8 +78,8 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		then: "Add to Cart"
 		doSearch('00501-1615')
-		addOrderQuantity('10')
-		doAddToCart()
+		sizingGrid.addOrderQuantity('10')
+		sizingGrid.addToCart()
 		
 		and: "go to shopping cart page"
 		masterTemplate.doGoToCart()
@@ -102,8 +102,8 @@ class QuickOrderTest extends GebReportingSpec {
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
-		addOrderQuantity('10')
-		doAddToCart()
+		sizingGrid.addOrderQuantity('10')
+		sizingGrid.addToCart()
 		masterTemplate.doGoToCart()
 		
 		Thread.sleep(1000);
@@ -127,8 +127,8 @@ class QuickOrderTest extends GebReportingSpec {
 		setup: 
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
-		addOrderQuantity('10')
-		doAddToCart()
+		sizingGrid.addOrderQuantity('10')
+		sizingGrid.addToCart()
 		
 		when: "Checking out from quick order page"
 		doCheckOut()
@@ -153,10 +153,10 @@ class QuickOrderTest extends GebReportingSpec {
 		doAddButton('00501-0039')
 		searchLink.click()
 		
-		addOrderQuantity('10')
-		doAddToCart()
+		sizingGrid.addOrderQuantity('10')
+		sizingGrid.addToCart()
 		addQuantity('10')
-		doAddToCart()
+		sizingGrid.addToCart()
 		
 		where:
 		user << [levisUser]

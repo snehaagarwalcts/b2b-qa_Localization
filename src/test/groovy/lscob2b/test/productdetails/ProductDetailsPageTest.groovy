@@ -43,7 +43,7 @@ public class ProductDetailsPageTest extends GebReportingSpec {
 	def "Wait list should be working"(){
 		when: "test 'size grid'"
 		
-		clickNotifyMeWhenItemsBecomeAvailable()
+		sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
 		
 		then:
 		$("div.popup_box div.product-grid-container>div.product-grid-header>h2").text() == "NOTIFY ME"
@@ -52,7 +52,7 @@ public class ProductDetailsPageTest extends GebReportingSpec {
 		//Navigator navigator = $("body")
 		//TODO cannot select using an id so as a workaround solution we are selecting using the name !! waiting for BB-480
 		$("table.grid_three_dimensions input", 1, name: "05527045803430.quantity").value("5")  
-		clickAddToWaitList()
+		sizingGrid.clickAddToWaitList()
 		
 		then:
 		$("div.popup_box div.product-grid-container>div.product-grid-header>h2").text() == "NOTIFY ME"

@@ -267,8 +267,8 @@ class MyAccountTest extends GebReportingSpec {
 		masterTemplate.clickQuickOrder()
 		at QuickOrderPage
 		doSearch('05527-0458')
-		addOrderQuantity('10')
-		doAddToCart()
+		sizingGrid.addOrderQuantity('10')
+		sizingGrid.addToCart()
 		doCheckOut()
 		at CheckOutPage
 		doPlaceOrder()
