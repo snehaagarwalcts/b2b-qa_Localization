@@ -1,4 +1,4 @@
-package lscob2b.test
+package lscob2b.test.waitlist
 
 import org.spockframework.compiler.model.ExpectBlock;
 
