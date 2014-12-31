@@ -30,8 +30,6 @@ class QuickOrderPage extends Page{
 		searchLink { $("div.searchButton button") }
 		prodcutIDs { $("div.idCheckbox div label") }
 		checkOutLink { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')) }
-		orderQuantity { $(".cartItem").not(".waitlist_grid_group").find("tr > td > .sku-quantity",0) }
-		addToCartLink { $("a.add_to_cart_button") }
 		
 		/*//To place an order with multiple product ids
 		addQuantity { $("#AddToCartOrderForm  tr > td > .sku-quantity", 0) }
