@@ -14,7 +14,7 @@ import geb.spock.GebReportingSpec;
 import static lscob2b.TestConstants.*
 
 /**
- * Test wat lst functionality in both PDP and quick order page.
+ * Test waitlist functionality in both PDP and quick order page.
  * 
  * @author i310850
  *
@@ -38,7 +38,7 @@ public class WaitListTest extends GebReportingSpec {
 		then:
 		$("div.popup_box div.product-grid-container>div.product-grid-header>h2").text() == "NOTIFY ME"
 
-		when:"input count and add to wait list"
+		when:"input count and add to waitlist"
 
 		$("div.overlay form#AddToWaitListForm input.sku-quantity", 0).value("5")
 		sizingGrid.clickAddToWaitList()
