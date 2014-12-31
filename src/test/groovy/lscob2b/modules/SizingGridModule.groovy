@@ -12,8 +12,22 @@ class SizingGridModule extends Module{
 		addToCartLink { $("a.add_to_cart_button") }
 	}
 
+	def waitForSizingGridLoadedCompletely(){
+		Thread.sleep(1000)  //TODO this is a workaround solution until we find how to make sure that sizing grid is completely loaded/prepared before we click on notify_me
+//		waitFor(1){
+//			! $("a#add_to_waitlist_button").empty
+//		}
+	}
+
 	def clickNotifyMeWhenItemsBecomeAvailable(){
-		notifyMeWhenItemsBecomeAvailableLink.click()
+		waitForSizingGridLoadedCompletely() //if we click notifyMeWhenItemsBecomeAvailableLink quickly waitlist is not opened properly. 
+		waitFor(1){ notifyMeWhenItemsBecomeAvailableLink.click() }
+	}
+
+	def void checkIfWaitListGridPoppedUp(){
+		waitFor(1){
+			$("div#overlay form#AddToWaitListForm input.sku-quantity", 0).displayed
+		}
 	}
 
 	def clickAddToWaitList(){
@@ -21,10 +35,15 @@ class SizingGridModule extends Module{
 	}
 
 	def addToCart(){
-		waitFor(1){ addToCartLink.click() }
+		addToCartLink.click()
 	}
 
 	def addOrderQuantity(String quantity){
-		waitFor(1){ orderQuantity.value(quantity) }
+		orderQuantity.value(quantity)
 	}
+
+	def addQuantityToFirstPossibleItemInWaitListGrid(Integer value){
+		$("div#overlay form#AddToWaitListForm input.sku-quantity", 0).value(value)
+	}
+
 }

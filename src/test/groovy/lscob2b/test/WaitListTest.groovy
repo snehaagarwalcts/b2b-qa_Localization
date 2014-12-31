@@ -8,6 +8,7 @@ import lscob2b.pages.LoginPage;
 import lscob2b.pages.QuickOrder.QuickOrderPage;
 import lscob2b.pages.productcategory.ProductCategoryPage;
 import lscob2b.pages.productdetails.ProductDetailsPage;
+import lscob2b.pages.waitlist.WaitListPage;
 import lscob2b.test.login.LoginFailureTest;
 import geb.navigator.Navigator;
 import geb.spock.GebReportingSpec;
@@ -28,29 +29,39 @@ public class WaitListTest extends GebReportingSpec {
 		at HomePage
 	}
 
-
 	def "Test adding to waitlist"(){
+
+		when: "Goto page under test which contains sizing grid"
+
+		"${openPageMethod}"(productCode)
+
+		then: "should be at the page containing sizing grid"
 
 		when: "Open waitlist grid"
 
 		sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
 
-		then:
-		$("div.popup_box div.product-grid-container>div.product-grid-header>h2").text() == "NOTIFY ME"
+		then: " waitlist grid should be popped up"
+		sizingGrid.checkIfWaitListGridPoppedUp()
 
 		when:"input count and add to waitlist"
 
-		$("div.overlay form#AddToWaitListForm input.sku-quantity", 0).value("5")
+		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(5)
 		sizingGrid.clickAddToWaitList()
 
-		then:
-		$("div.popup_box div.product-grid-container>div.product-grid-header>h2").text() == "NOTIFY ME"
+		then: "items should be added to waitlist. lets go check them"
+
+		when: "Check waitlist"
+		to WaitListPage
+
+		then: "Our product should be there"
+		!getWaitingProductLink("05527-0458").empty
+		getQuantityRequested("05527-0458").toInteger() > 0
 
 		where:
-		theseMethodsWillBeRunningAutomaticallyBeforeEachIterationToOpenTheSizingGrid << [
-			openSizingGridAtQuickOrderPage('05527-0458'),
-			openSizingGridAtProductDetailsPage('05527-0458')
-		]
+		openPageMethod | productCode
+		"openSizingGridAtQuickOrderPage" | "05527-0458"
+		"openSizingGridAtProductDetailsPage" | "05527-0458"
 	}
 
 	def openSizingGridAtQuickOrderPage(String productCode){
