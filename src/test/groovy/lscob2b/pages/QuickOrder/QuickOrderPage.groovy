@@ -6,7 +6,7 @@ import lscob2b.modules.MasterTemplate
 import lscob2b.modules.SizingGridModule;
 
 class QuickOrderPage extends Page{
-	static url = "/advanced"
+	static url = "/search/advanced"
 
 	static at = { title == "Advanced Search | LSCO B2B Site" }
 
