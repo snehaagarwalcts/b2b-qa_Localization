@@ -103,11 +103,11 @@ class MyAccountTest extends GebReportingSpec {
 		where:
 		isVisible	| user			| section			| headerValue		| sublinks
 		true 		| administrator	| 'profile'			| 'PROFILE'			| [updatePersonalDetails	: 'Update personal details'		, changeYourPassword: 'Change your password'	]
-		true 		| administrator	| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress	: 'View your delivery addresses'												]
+		true 		| administrator	| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress	: 'View My Address Book'												]
 		true 		| administrator	| 'orderHistory'	| 'ORDER HISTORY'	| [viewOrderHistory			: 'View order history'															]
 		true 		| administrator	| 'manageUsers'		| 'MANAGE USERS'	| [addNewUsers				: 'Add new users'				, editUsers			: 'Edit or disable users'	]
 		true 		| nonAdmin		| 'profile'			| 'PROFILE'			| [updatePersonalDetails: 'Update personal details', changeYourPassword: 'Change your password']
-		true 		| nonAdmin		| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress: 'View your delivery addresses']
+		true 		| nonAdmin		| 'addressBook'		| 'ADDRESS BOOK'	| [viewYourDeliveryAddress: 'View My Address Book']
 		true 		| nonAdmin		| 'orderHistory'	| 'ORDER HISTORY'	| [viewOrderHistory: 'View order history']
 		false 		| nonAdmin		| 'manageUsers'		| 'MANAGE USERS'	| [addNewUsers: 'Add new users', editUsers: 'Edit or disable users']
 	}
@@ -121,12 +121,12 @@ class MyAccountTest extends GebReportingSpec {
 		at ProfilePage
 
 		then: "Correct sections/links should be visible"
-		profileData.contains("Title:")
-		profileData.contains("First Name:")
-		profileData.contains("Surname:")
-		profileData.contains("Email Address:")
-		updatePersonalDetails == 'UPDATE PERSONAL DETAILS'
-		changeYourPassword == 'CHANGE YOUR PASSWORD'
+		profileData.contains("TITLE:")
+		profileData.contains("FIRST NAME:")
+		profileData.contains("LAST NAME:")
+		profileData.contains("EMAIL:")
+		! updatePersonalDetailsLink.empty
+		! changeYourPasswordLink.empty
 
 		where:
 		user << [levisUser, dockersUser, multibrandUser]
@@ -171,7 +171,7 @@ class MyAccountTest extends GebReportingSpec {
 		at AddressBookPage
 
 		then: "Correct sections/links should be visible"
-		addressBookData.contains("VIEW YOUR DELIVERY ADDRESSES")
+		addressBookData.contains("VIEW MY ADDRESS BOOK")
 		addressBookData.contains("VIEW YOUR BILLING ADDRESSES")
 		addressItem.contains("Cassilis Road")
 		addressItem.contains("12, Turner House, Canary Central")
