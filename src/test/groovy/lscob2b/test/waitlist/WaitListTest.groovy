@@ -59,9 +59,9 @@ public class WaitListTest extends GebReportingSpec {
 		getQuantityRequested("05527-0458").toInteger() > 0
 
 		where:
-		openPageMethod | productCode
-		"openSizingGridAtQuickOrderPage" | "05527-0458"
-		"openSizingGridAtProductDetailsPage" | "05527-0458"
+		openPageMethod 							| productCode
+		"openSizingGridAtQuickOrderPage" 		| "05527-0458"
+		"openSizingGridAtProductDetailsPage"	| "05527-0458"
 	}
 
 	def openSizingGridAtQuickOrderPage(String productCode){

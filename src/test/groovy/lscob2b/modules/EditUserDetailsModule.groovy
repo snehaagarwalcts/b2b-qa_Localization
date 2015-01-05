@@ -16,10 +16,18 @@ class EditUserDetailsModule extends Module{
 		saveButton { $("button", type: "submit") }
 	}
 
+	/**
+	 * @param index starts from 1
+	 * @return
+	 */
 	def String selectTitleOption(int index){
 		customerForm.titleCode = titleOption(index).text()
 	}
 
+	/**
+	 * @param index starts from 1
+	 * @return
+	 */
 	def String selectDefaultDeliveryAddrOption(int index){
 		customerForm."defaultShippingAddress.publicKey" = defaultDeliveryAddrFirstOption(index).text()
 	}

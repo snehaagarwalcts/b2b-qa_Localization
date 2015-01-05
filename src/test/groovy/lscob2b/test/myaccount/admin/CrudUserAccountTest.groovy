@@ -59,7 +59,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		then: "Should be at customer created page"
 
 		at CreateUserConfirmationPage
-		//userDetails.titleText == title //TODO bug: N/A is displayed as the title. but working on qa and int systems so assumeing a new bug. need to report it after reproducing on int or qa
+		//userDetails.titleText == title //TODO bug: N/A is displayed as the title. but working on qa and int systems so assuming a new bug. need to report it after reproducing on int or qa
 		userDetails.firstNameText == firstName
 		userDetails.lastNameText == lastName
 		userDetails.emailText == email
