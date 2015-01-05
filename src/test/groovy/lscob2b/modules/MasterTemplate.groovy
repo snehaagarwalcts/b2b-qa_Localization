@@ -25,7 +25,7 @@ class MasterTemplate extends Module {
 		}
 
 		breadCrumbs {
-			$('#breadcrumb.breadcrumb #breadcrumb').find('li').not('.separator')
+			$('#breadcrumb li').not('.separator')
 		}
 
 		logoAltTag {$('header h1 a img').attr('alt')}
