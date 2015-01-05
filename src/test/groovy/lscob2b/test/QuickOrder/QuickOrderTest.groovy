@@ -78,6 +78,7 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		then: "Add to Cart"
 		doSearch('00501-1615')
+		sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('10')
 		sizingGrid.addToCart()
 		
@@ -102,6 +103,7 @@ class QuickOrderTest extends GebReportingSpec {
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
+		sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('10')
 		sizingGrid.addToCart()
 		masterTemplate.doGoToCart()
@@ -127,6 +129,7 @@ class QuickOrderTest extends GebReportingSpec {
 		setup: 
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
+		sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('10')
 		sizingGrid.addToCart()
 		

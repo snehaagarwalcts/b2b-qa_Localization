@@ -14,6 +14,7 @@ class SizingGridModule extends Module{
 
 	def waitForSizingGridLoadedCompletely(){
 		Thread.sleep(1000)  //TODO this is a workaround solution until we find how to make sure that sizing grid is completely loaded/prepared before we click on notify_me
+		return true
 //		waitFor(1){
 //			! $("a#add_to_waitlist_button").empty
 //		}
