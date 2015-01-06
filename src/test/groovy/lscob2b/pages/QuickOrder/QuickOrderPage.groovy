@@ -16,14 +16,14 @@ class QuickOrderPage extends Page{
 		sizingGrid { module SizingGridModule}
 		
 		//Quick order page content
-		keywordSearch { $("div label.control-label").text() }
-		add { $(".add-product-ids button").text() }
-		searchButton { $("div.searchButton button").text() }
-		prdouctIdsOnly { $("div.idCheckbox div label").text() }
-		quantity { $("div.cartTotals div.quantity span.label").text() }
-		total { $("div.cartTotals div.total span.label").text() }
-		cartButtons { $("div.cartButtons").find('a', href: endsWith('/')).text() }
-		checkOut { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')).text() }
+		keywordSearch { $("div label.control-label") }
+		add { $(".add-product-ids button") }
+		searchButton { $("div.searchButton button") }
+		prdouctIdsOnly { $("div.idCheckbox div label") }
+		quantity { $("div.cartTotals div.quantity span.label")}
+		total { $("div.cartTotals div.total span.label") }
+		cartButtons { $("div.cartButtons").find('a', href: endsWith('/')) }
+		//checkOut { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')).text() }
 		
 		//To place an order
 		searchInput { $("#js-product-ids") }
@@ -59,4 +59,35 @@ class QuickOrderPage extends Page{
 		checkOutLink.click()
 	}
 	
+	def checkKeywordSearchLinkExists(){
+		!keywordSearch.empty
+	}
+	
+	def checkAddLinkExists(){
+		!add.empty
+	}
+	
+	def checkSearchButtonLinkExists(){
+		!searchButton.empty
+	}
+	
+	def checkPrdouctIdsOnlyLinkExists(){
+		!prdouctIdsOnly.empty
+	}
+
+	def checkQuantityLinkExists(){
+		!quantity.empty
+	}
+	
+	def checkTotalLinkExists(){
+		!total.empty
+	}
+
+	def checkCartButtonsLinkExists(){
+		!cartButtons.empty
+	}
+	
+	def checkCheckOuLinkExists(){
+		!checkOutLink.empty
+	}
 }

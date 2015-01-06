@@ -59,14 +59,14 @@ class QuickOrderTest extends GebReportingSpec {
 		loginAsUserAndGoToQuickOrder(user)
 		
 		then: "Correct sections/links should be visible"
-		keywordSearch == "KEYWORD SEARCH"
-		add == "ADD"
-		searchButton == "SEARCH"
-		prdouctIdsOnly == "PRODUCT IDS ONLY"
-		quantity == "Quantity"
-		total == "Total "
-		cartButtons == "CONTINUE SHOPPING&"
-		checkOut == "CHECKOUT&"
+		checkKeywordSearchLinkExists()
+		checkAddLinkExists()
+		checkSearchButtonLinkExists()
+		checkPrdouctIdsOnlyLinkExists()
+		checkQuantityLinkExists()
+		checkTotalLinkExists()
+		checkCartButtonsLinkExists()
+		checkCheckOuLinkExists()
 		
 		where:
 		user << [levisUser]
@@ -88,12 +88,12 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		then: "Look at cart content"
 		
-		cartTemplate.itemName == "501 LEVIS ORIGINAL FIT MOODY MONDAY"
-		cartTemplate.itemStyle == "STYLE"
-		cartTemplate.itemColor == "COLOR"
-		cartTemplate.itemPrice == "WHOLESALE PRICE"
-		cartTemplate.itemQuantity == "QUANTITY"
-		cartTemplate.itemTotal == "TOTAL"
+		cartTemplate.checkItemNameExists()
+		cartTemplate.checkItemStyleExists()
+		cartTemplate.checkItemColorExists()
+		cartTemplate.checkItemPriceExists()
+		cartTemplate.checkItemQuantityExists()
+		cartTemplate.checkItemTotalExists()
 		
 		where:
 		user << [levisUser]
