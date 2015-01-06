@@ -8,6 +8,8 @@ import lscob2b.pages.HomePage;
 import lscob2b.pages.LoginPage;
 import lscob2b.pages.productcategory.ProductCategoryPage;
 import lscob2b.pages.productdetails.ProductDetailsPage;
+import lscob2b.test.helper.TestDataCatalog;
+import lscob2b.test.helper.User;
 import lscob2b.test.login.LoginFailureTest;
 import geb.navigator.Navigator;
 import geb.spock.GebReportingSpec;
@@ -21,7 +23,7 @@ public class CmsCategoriesTest extends GebReportingSpec {
 
 	def setupSpec() {
 		to LoginPage
-		login (multibrandUser)
+		login (TestDataCatalog.getAMultibrandUser())
 		at HomePage
 	}
 

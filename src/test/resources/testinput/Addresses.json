@@ -1,0 +1,84 @@
+{
+	"automated-unit-1":{
+		"shipping":[
+			{
+				"country":"GB",
+				"region":"GB-CO",
+				"town":"Colchester.",
+				"postalcode":"CO1 1LS",
+				"streetname":"1a & 1b, Eld Lane,",
+				"firstname":"Denim City Jean Co.Ltd",
+				"lastname":""
+			},
+			{
+				"country":"GB",
+				"region":"GB-CO",
+				"town":"Colchester2.",
+				"postalcode":"CO2 2LS",
+				"streetname":"2a & 2b, Eld Lane,",
+				"firstname":"Denim City Jean Co.Ltd",
+				"lastname":""
+			}
+		]
+		"billing":[
+			{
+				"country":"GB",
+				"region":"GB-CO",
+				"town":"Colchester.",
+				"postalcode":"CO1 1LS",
+				"streetname":"1a & 1b, Eld Lane,",
+				"firstname":"Denim City Jean Co.Ltd",
+				"lastname":""
+			}
+		]
+	},
+	"automated-unit-2":{
+		"shipping":[
+			{
+				"country":"GB",
+				"region":"GB-NR",
+				"town":"Norwich",
+				"postalcode":"NR3 4LB",
+				"streetname":"103 Magdalen Road",
+				"firstname":"J & B Menswear Ltd",
+				"lastname":""
+			}
+		]
+		"billing":[
+			{
+				"country":"GB",
+				"region":"GB-NR",
+				"town":"Norwich",
+				"postalcode":"NR3 4LB",
+				"streetname":"103 Magdalen Road",
+				"firstname":"J & B Menswear Ltd",
+				"lastname":""
+			}
+		]
+	},
+	"automated-unit-3":{
+		"shipping":[
+			{
+				"country":"IE",
+				"region":"",
+				"town":"Cork",
+				"postalcode":"IRELAN",
+				"streetname":"35 Cook Street",
+				"firstname":"Denim Store Ltd ***",
+				"lastname":""
+			}
+		]
+		"billing":[
+			{
+				"country":"IE",
+				"region":"",
+				"town":"Cork",
+				"postalcode":"IRELAN",
+				"streetname":"35 Cook Street",
+				"firstname":"Denim Store Ltd ***",
+				"lastname":""
+			}
+		]
+	}
+}
+
