@@ -19,25 +19,65 @@ class MyAccountPage extends Page {
 		 */
 		//account page profile section
 		profileLink { $("div.profile div.headline a") }
-		profile { $("div.profile div.headline a").text() }
-		updatePersonalDetails { $("div.profile ul").find('a', href: endsWith('/profile')).text()}
-		changeYourPassword { $("div.profile ul").find('a', href: endsWith('/update-password')).text()}
+		//profile { $("div.profile div.headline a") }
+		updatePersonalDetails { $("div.profile ul").find('a', href: endsWith('/profile'))}
+		changeYourPassword { $("div.profile ul").find('a', href: endsWith('/update-password'))}
 		
 		//account page address book section
 		addressBookLink { $("div.addressBook div.headline a") }
-		addressBook { $("div.addressBook div.headline a").text() }
-		viewYourDeliveryAddress { $("div.addressBook ul a").text()}
+		//addressBook { $("div.addressBook div.headline a") }
+		viewYourDeliveryAddress { $("div.addressBook ul a")}
 
 		//account page manage section
 		manageUsersLink { $("div.headline").find('a', href: endsWith('/manage-users')) }
-		manageUsers(required:false) { $("div.headline").find('a', href: endsWith('/manage-users')).text() }
-		addNewUsers { $("div ul").find('a', href: endsWith('/manage-users/create')).text() }
-		editUsers { $("div ul").find('a', href: endsWith('/manage-users')).text() }
+		manageUsers(required:false) { $("div.headline").find('a', href: endsWith('/manage-users')) }
+		addNewUsers { $("div ul").find('a', href: endsWith('/manage-users/create')) }
+		editUsers { $("div ul").find('a', href: endsWith('/manage-users')) }
 		
 		//account page order section
 		orderHistoryLink { $("div.orderHistory div.headline a") }
-		orderHistory { $("div.orderHistory div.headline a").text() }
-		viewOrderHistory { $("div.orderHistory ul  a").text() }
+		//orderHistory { $("div.orderHistory div.headline a") }
+		viewOrderHistory { $("div.orderHistory ul  a")}
+		
+	}
+	
+	def checkProfileLinkExists(){
+		!profileLink.empty
+	}
+	
+	def checkUpdatePersonalDetailsLinkExists(){
+		!updatePersonalDetails.empty
+	}
+	
+	def checkChangeYourPasswordLinkExists(){
+		!changeYourPassword.empty
 	}
 
+	def checkAddressBookLinkExists(){
+		!addressBookLink.empty
+	}
+	
+	def checkViewYourDeliveryAddressLinkExists(){
+		!viewYourDeliveryAddress.empty
+	}
+
+	def checkManageUsersLinkExists(){
+		!manageUsers.empty
+	}
+	
+	def checkAddNewUserLinkExists(){
+		!addNewUsers.empty
+	}
+	
+	def checkEditUsersLinkExists(){
+		!editUsers.empty
+	}
+	
+	def checkOrderHistoryLinkExists(){
+		!orderHistoryLink.empty
+	}
+	
+	def checkViewOrderHistoryLinkExists(){
+		!viewOrderHistory.empty
+	}
 }

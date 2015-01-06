@@ -111,6 +111,34 @@ class MyAccountTest extends GebReportingSpec {
 		true 		| nonAdmin		| 'orderHistory'	| 'ORDER HISTORY'	| [viewOrderHistory: 'View order history']
 		false 		| nonAdmin		| 'manageUsers'		| 'MANAGE USERS'	| [addNewUsers: 'Add new users', editUsers: 'Edit or disable users']
 	}
+	
+	//Partially refractored test
+	/*def "Check the My Account page"(){
+		when: "Going to My Account page"
+
+		loginAsUserAndGoToMyAccount(user)
+
+		then: "Correct sections/links should be visible depending on user"
+		checkProfileLinkExists()
+		checkUpdatePersonalDetailsLinkExists()
+		checkChangeYourPasswordLinkExists()
+		
+		checkAddressBookLinkExists()
+		checkViewYourDeliveryAddressLinkExists()
+		
+		checkManageUsersLinkExists()
+		checkAddNewUserLinkExists()
+		checkEditUsersLinkExists()
+		
+		checkOrderHistoryLinkExists()
+		checkViewOrderHistoryLinkExists()
+		
+		where:
+		isVisible | user // | sublinks
+		true 		| administrator	//| [updatePersonalDetails	: 'Update personal details'		, changeYourPassword: 'Change your password'	]
+		//true 		| nonAdmin		//| [viewOrderHistory: 'View order history']
+		//false 		| nonAdmin		//| [addNewUsers: 'Add new users', editUsers: 'Edit or disable users']
+	}*/
 
 	def "Check the Profile page content"() {
 		setup:
