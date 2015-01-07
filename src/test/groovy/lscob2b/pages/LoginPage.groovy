@@ -2,7 +2,7 @@ package lscob2b.pages
 
 import geb.Page
 import lscob2b.modules.MasterTemplate
-import lscob2b.test.helper.User;
+import lscob2b.test.data.User;
 import static lscob2b.TestConstants.*
 
 class LoginPage extends Page {
