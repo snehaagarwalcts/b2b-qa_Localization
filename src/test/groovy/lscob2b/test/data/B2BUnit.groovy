@@ -1,4 +1,4 @@
-package lscob2b.test.helper
+package lscob2b.test.data
 
 class B2BUnit{
 	static final String LEVIS_GROUP_CODE = "010"

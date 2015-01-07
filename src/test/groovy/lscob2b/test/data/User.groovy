@@ -1,4 +1,4 @@
-package lscob2b.test.helper
+package lscob2b.test.data
 
 class User {
 	String email;
