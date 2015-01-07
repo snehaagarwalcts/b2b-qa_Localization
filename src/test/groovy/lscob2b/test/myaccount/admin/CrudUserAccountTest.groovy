@@ -1,6 +1,5 @@
 package lscob2b.test.myaccount.admin;
 
-import static lscob2b.TestConstants.*
 import spock.lang.Shared;
 import spock.lang.Stepwise;
 import geb.spock.GebReportingSpec
@@ -12,13 +11,14 @@ import lscob2b.pages.MyAccount.admin.EditUserDetailsPage;
 import lscob2b.pages.MyAccount.admin.ManageUsersPage;
 import lscob2b.pages.MyAccount.admin.CreateUserConfirmationPage;
 import lscob2b.pages.MyAccount.admin.ViewUserDetailsPage;
+import lscob2b.test.data.TestDataCatalog;
 
 @Stepwise
 public class CrudUserAccountTest extends GebReportingSpec {
 
 	def setupSpec() {
 		to LoginPage
-		login (administrator)
+		login (TestDataCatalog.getAnAdminUser())
 		at HomePage
 	}
 

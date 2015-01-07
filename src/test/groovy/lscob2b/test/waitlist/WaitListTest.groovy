@@ -9,10 +9,10 @@ import lscob2b.pages.QuickOrder.QuickOrderPage;
 import lscob2b.pages.productcategory.ProductCategoryPage;
 import lscob2b.pages.productdetails.ProductDetailsPage;
 import lscob2b.pages.waitlist.WaitListPage;
+import lscob2b.test.data.TestDataCatalog;
 import lscob2b.test.login.LoginFailureTest;
 import geb.navigator.Navigator;
 import geb.spock.GebReportingSpec;
-import static lscob2b.TestConstants.*
 
 /**
  * Test waitlist functionality in both PDP and quick order page.
@@ -25,7 +25,7 @@ public class WaitListTest extends GebReportingSpec {
 
 	def setupSpec() {
 		to LoginPage
-		login(levisUser)
+		login(TestDataCatalog.getALevisUser())
 		at HomePage
 	}
 
