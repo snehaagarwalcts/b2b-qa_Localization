@@ -293,7 +293,8 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser]
 	}
 
-	def "Check the Order History page content"(){
+	//Uncomment once we are able to place orders
+	/*def "Check the Order History page content"(){
 		setup:
 		login(user)
 		at HomePage
@@ -313,8 +314,9 @@ class MyAccountTest extends GebReportingSpec {
 		when: "At order history page"
 		at OrderHistoryPage
 
+		//TODO remove below text and look for HTML Elements instead
 		then: "Correct sections/links should be visible"
-		orderHistoryData == "ORDER HISTORY"
+		checkOrderHistoryData()
 
 		["ORDERS FOUND","SORT BY:"].each {
 			orderHistoryBar.contains(it)
@@ -329,11 +331,15 @@ class MyAccountTest extends GebReportingSpec {
 		 "ACTIONS"].each {
 			orderHistoryListTable.contains(it)
 		}
+		 
+		 checkOrderHistoryDescription()
+		   checkOrderHistoryBar()
+		   checkOrderHistoryListTable()
 
 		where:
 
 		user << [levisUser]
-	}
+	}*/
 
 	def "Check Breadcrumb on Order History Page"(){
 		setup:
