@@ -15,10 +15,23 @@ class ProfilePage extends Page{
 		masterTemplate { module MasterTemplate }
 
 		//Profile page content
-		profileData { $("div.b2BCustomerFormList div.label")*.text()*.toUpperCase() }
-		updatePersonalDetails { $("a.button.editUser", href: endsWith('update-profile')).text() }
-		changeYourPassword { $("a.button.editUser", href: endsWith('update-password')).text() }
+		//profileData { $("div.b2BCustomerFormList div.label")*.text()*.toUpperCase() }
+		profileData { $("div.b2BCustomerFormList div.label") }
+		//updatePersonalDetails { $("a.button.editUser", href: endsWith('update-profile')).text() }
+		//changeYourPassword { $("a.button.editUser", href: endsWith('update-password')).text() }
 		updatePersonalDetailsLink { $("a.button.editUser", href: endsWith('update-profile')) }
 		changeYourPasswordLink { $("a.button.editUser", href: endsWith('update-password')) }
+	}
+	
+	def checkProfileDataExists(){
+		!profileData.empty
+	}
+	
+	def checkUpdatePersonalDetailsLinkExists(){
+		!updatePersonalDetailsLink.empty
+	}
+	
+	def checkChangeYourPasswordLinkExists(){
+		!changeYourPasswordLink.empty
 	}
 }

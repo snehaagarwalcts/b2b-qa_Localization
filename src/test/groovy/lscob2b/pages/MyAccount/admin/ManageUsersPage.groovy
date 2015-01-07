@@ -16,10 +16,12 @@ class ManageUsersPage extends Page{
 		masterTemplate { module MasterTemplate }
 
 		//Manage users page content
-		manageUsersData { $("form table tr th")*.text() }
-		createNewUser { $("div.right a").text() }
+		//manageUsersData { $("form table tr th")*.text() }
+		manageUsersData { $("form table tr th") }
+		//createNewUser { $("div.paginationBar a") }
 		createNewUserLink { $("a.addnewuser") }
-		manageUsers { $("#breadcrumb.breadcrumb #breadcrumb li").not('separator')*.text()}
+		manageUsers { $("#breadcrumb li").not('separator')*.text()}
+		//manageUsers { $("#breadcrumb li").not('separator')
 	}
 
 	def clickCreateNewUsersLink(){
@@ -29,4 +31,16 @@ class ManageUsersPage extends Page{
 	def clickUserLink(String email){
 		$("#manage_user a", href : endsWith(email)).click()
 	}
+	
+	def checkManageUsersDataExists(){
+		!manageUsersData.empty
+	}
+	
+	def checkCreateNewUsersLinkExists(){
+		!createNewUserLink.empty
+	}
+	
+	/*def checkManageUsersBreadCrumbExists(){
+		!manageUsers.empty
+	}*/
 }
