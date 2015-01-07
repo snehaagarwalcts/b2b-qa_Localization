@@ -13,7 +13,6 @@ import lscob2b.test.data.User;
 import lscob2b.test.login.LoginFailureTest;
 import geb.navigator.Navigator;
 import geb.spock.GebReportingSpec;
-import static lscob2b.TestConstants.*
 
 @Stepwise
 public class CmsCategoriesTest extends GebReportingSpec {
