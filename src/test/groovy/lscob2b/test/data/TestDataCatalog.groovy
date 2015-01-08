@@ -1,13 +1,13 @@
 package lscob2b.test.data
 
-import java.util.Map;
-
-import lscob2b.test.data.Product.ProductPrice;
-import lscob2b.test.data.Product.ProductSizeVariant;
 import groovy.json.JsonSlurper
+import lscob2b.test.data.Product.ProductPrice
+import lscob2b.test.data.Product.ProductSizeVariant
 
 class TestDataCatalog {
 
+	static final String DATA_ADDRESS = "src/test/resources/testinput/Addresses.json"
+	
 	static final String ADMIN_GROUP = "b2badmingroup"
 	static List<User> users;
 	static Map<String,B2BUnit> b2bUnits;
@@ -115,4 +115,47 @@ class TestDataCatalog {
 				return product
 		}
 	}
+	
+	static List<Address> getShippingAddress(User user) {
+		List<Address> addressList = new ArrayList<Address>()
+		
+		def jsonData = new JsonSlurper().parseText(new File(DATA_ADDRESS).text)
+
+		jsonData.get(user.getDefaultB2BUnit().uid).shipping.each {
+			Address address = new Address()
+			address.country = it.country
+			address.region = it.region
+			address.town = it.town
+			address.postalcode = it.postalcode
+			address.streetname = it.streetname
+			address.firstname = it.firstname
+			address.lastname = it.lastname
+			
+			addressList.add(address)
+		}
+		
+		addressList
+	}
+	
+	static List<Address> getBillingAddress(User user) {
+		List<Address> addressList = new ArrayList<Address>()
+		
+		def jsonData = new JsonSlurper().parseText(new File(DATA_ADDRESS).text)
+
+		jsonData.get(user.getDefaultB2BUnit().uid).billing.each {
+			Address address = new Address()
+			address.country = it.country
+			address.region = it.region
+			address.town = it.town
+			address.postalcode = it.postalcode
+			address.streetname = it.streetname
+			address.firstname = it.firstname
+			address.lastname = it.lastname
+			
+			addressList.add(address)
+		}
+		
+		addressList
+	}
+	
 }

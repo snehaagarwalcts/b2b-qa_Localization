@@ -2,8 +2,8 @@
 	"automated-unit-1":{
 		"shipping":[
 			{
-				"country":"GB",
-				"region":"GB-CO",
+				"country":"United Kingdom",
+				"region":"Cornwall",
 				"town":"Colchester.",
 				"postalcode":"CO1 1LS",
 				"streetname":"1a & 1b, Eld Lane,",
@@ -11,8 +11,8 @@
 				"lastname":""
 			},
 			{
-				"country":"GB",
-				"region":"GB-CO",
+				"country":"United Kingdom",
+				"region":"Cornwall",
 				"town":"Colchester2.",
 				"postalcode":"CO2 2LS",
 				"streetname":"2a & 2b, Eld Lane,",
@@ -22,8 +22,8 @@
 		],
 		"billing":[
 			{
-				"country":"GB",
-				"region":"GB-CO",
+				"country":"United Kingdom",
+				"region":"Cornwall",
 				"town":"Colchester.",
 				"postalcode":"CO1 1LS",
 				"streetname":"1a & 1b, Eld Lane,",
@@ -35,8 +35,8 @@
 	"automated-unit-2":{
 		"shipping":[
 			{
-				"country":"GB",
-				"region":"GB-NR",
+				"country":"United Kingdom",
+				"region":"Nairnshire",
 				"town":"Norwich",
 				"postalcode":"NR3 4LB",
 				"streetname":"103 Magdalen Road",
@@ -44,8 +44,8 @@
 				"lastname":""
 			},
 			{
-				"country":"GB",
-				"region":"GB-NR",
+				"country":"United Kingdom",
+				"region":"Nairnshire",
 				"town":"B.Isle",
 				"postalcode":"NR4 5LB",
 				"streetname":"104 Tobleron Road",
@@ -55,8 +55,8 @@
 		],
 		"billing":[
 			{
-				"country":"GB",
-				"region":"GB-NR",
+				"country":"United Kingdom",
+				"region":"Nairnshire",
 				"town":"Norwich",
 				"postalcode":"NR3 4LB",
 				"streetname":"103 Magdalen Road",
@@ -68,7 +68,7 @@
 	"automated-unit-3":{
 		"shipping":[
 			{
-				"country":"IE",
+				"country":"Ireland",
 				"region":"",
 				"town":"Cork",
 				"postalcode":"IRELAN",
@@ -77,7 +77,7 @@
 				"lastname":""
 			},
 			{
-				"country":"IE",
+				"country":"Ireland",
 				"region":"",
 				"town":"Burg",
 				"postalcode":"IRELAN",
@@ -88,7 +88,7 @@
 		],
 		"billing":[
 			{
-				"country":"IE",
+				"country":"Ireland",
 				"region":"",
 				"town":"Cork",
 				"postalcode":"IRELAN",

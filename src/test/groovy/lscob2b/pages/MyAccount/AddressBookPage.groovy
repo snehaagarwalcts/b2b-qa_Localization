@@ -17,7 +17,7 @@ class AddressBookPage extends Page{
 		
 		mainContainer { $("#main-container > h1") }
 		
-		addressBook { $("div.addressItems",0).find("div.addressItem") }
+		addressShipping { $("div.addressItems",0).find("div.addressItem") }
 		
 		addressBilling { $("div.addressItems",1).find("div.addressItem") }
 		
@@ -28,46 +28,63 @@ class AddressBookPage extends Page{
 
 	}
 	
-	//Getting Address Book Information
+	//Getting Address Shipping Information
 	
-	def getBookRoad(index) {
-		addressBook[index].find("ul li",1).text()
+	def getShippingFirstname(index) {
+		addressShipping[index].find("ul li",0).text().trim()	//FIXME Remove space?
 	}
 	
-	def getBookAddress(index) {
-		addressBook[index].find("ul li",2).text()
+	def getShippingStreetname(index) {
+		addressShipping[index].find("ul li",1).text()
 	}
 	
-	def getBookCity(index) {
-		addressBook[index].find("ul li",3).text()
+	def getShippingLastname(index) {
+		addressShipping[index].find("ul li",2).text()	
 	}
 	
-	def getBookCode(index) {
-		addressBook[index].find("ul li",5).text()
+	def getShippingTown(index) {
+		addressShipping[index].find("ul li",3).text()
 	}
 	
-	def getBookCountry(index) {
-		addressBook[index].find("ul li",6).text()
+	def getShippingRegion(index) {
+		addressShipping[index].find("ul li",4).text()
 	}
+	
+	def getShippingPostalcode(index) {
+		addressShipping[index].find("ul li",5).text()
+	}
+	
+	def getShippingCountry(index) {
+		addressShipping[index].find("ul li",6).text()
+	}
+	
 	
 	//Getting Address Billing Information
 	
-	def getBillingRoad(index) {
+	def getBillingFirstname(index) {
+		addressBilling[index].find("ul li",0).text().trim()	//FIXME Remove space?
+	}
+
+	def getBillingStreetname(index) {
 		addressBilling[index].find("ul li",1).text()
 	}
-	
-	def getBillingAddress(index) {
-		addressBilling[index].find("ul li",2).text()
+
+	def getBillingLastname(index) {
+		addressBilling[index].find("ul li",2).text()	
 	}
-	
-	def getBillingCity(index) {
+
+	def getBillingTown(index) {
 		addressBilling[index].find("ul li",3).text()
 	}
-	
-	def getBillingCode(index) {
+
+	def getBillingRegion(index) {
+		addressBilling[index].find("ul li",4).text()
+	}
+
+	def getBillingPostalcode(index) {
 		addressBilling[index].find("ul li",5).text()
 	}
-	
+
 	def getBillingCountry(index) {
 		addressBilling[index].find("ul li",6).text()
 	}
