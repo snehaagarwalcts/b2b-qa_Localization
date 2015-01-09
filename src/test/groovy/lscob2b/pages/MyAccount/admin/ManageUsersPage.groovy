@@ -22,6 +22,15 @@ class ManageUsersPage extends Page{
 		createNewUserLink { $("a.addnewuser") }
 		manageUsers { $("#breadcrumb li").not('separator')*.text()}
 		//manageUsers { $("#breadcrumb li").not('separator')
+		
+		userTable { $("table#manage_user") }
+		
+		userRows(required: false) { userTable.find("tbody>tr") }
+		
+		pagination(required: false) { $("div.pagination") }
+		
+		nextPage(required: false, to: ManageUsersPage) { pagination.find("a.nextPage") }
+
 	}
 
 	def clickCreateNewUsersLink(){
@@ -43,4 +52,25 @@ class ManageUsersPage extends Page{
 	/*def checkManageUsersBreadCrumbExists(){
 		!manageUsers.empty
 	}*/
+
+	//Getter
+		
+	def getUsername(index) {
+		userRows[index].find("td",0).find("a").text()
+	}
+
+	def searchUserDetailLink(userEmail) {
+		userRows.find("a", href: endsWith(userEmail))
+	}
+	
+	def searchUserDetailLinkInAllPages(userEmail) {
+		def userLink = searchUserDetailLink(userEmail)
+		while(userLink.empty && !nextPage.empty) {
+			nextPage.click()
+			userLink = searchUserDetailLink(userEmail)
+		}
+		userLink
+	}
+		
+	
 }

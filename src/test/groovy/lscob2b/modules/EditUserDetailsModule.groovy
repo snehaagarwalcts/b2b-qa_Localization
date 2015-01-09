@@ -14,6 +14,7 @@ class EditUserDetailsModule extends Module{
 		defaultDeliveryAddrFirstOption { customerForm.find("select#text\\.company\\.user\\.default\\.shipping\\.address option",it) }
 
 		saveButton { $("button", type: "submit") }
+		
 	}
 
 	/**
@@ -60,4 +61,6 @@ class EditUserDetailsModule extends Module{
 	def submit(){
 		saveButton.click()
 	}
+	
+	
 }

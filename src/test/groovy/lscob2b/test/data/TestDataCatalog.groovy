@@ -9,6 +9,9 @@ class TestDataCatalog {
 	static final String DATA_ADDRESS = "src/test/resources/testinput/Addresses.json"
 	
 	static final String ADMIN_GROUP = "b2badmingroup"
+	static final String CUSTOMER_GROUP = "b2bcustomergroup"
+	static final String FINANCE_GROUP = "b2bfinancegroup"
+	
 	static List<User> users;
 	static Map<String,B2BUnit> b2bUnits;
 	static List<Product> products;
@@ -81,7 +84,15 @@ class TestDataCatalog {
 		return productList
 	}
 
-	static User getAnAdminUser(){
+	static User getAnAdminUser() {
+		getAUserWithGroup(ADMIN_GROUP)
+	}
+	
+	static User getACustomerUser() {
+		getAUserWithGroup(CUSTOMER_GROUP)
+	}
+	
+	static User getAFinanceUser() {
 		getAUserWithGroup(ADMIN_GROUP)
 	}
 
@@ -90,13 +101,19 @@ class TestDataCatalog {
 			if (user.groups.contains(group)) return user
 		}
 	}
-
+	
+	static User getAnotherUserOfSameBU(User parentUser, String group) {
+		for (user in users) {
+			if (user.groups.contains(group) && user.defaultB2BUnit.uid == parentUser.defaultB2BUnit.uid && user.email != parentUser.email) return user
+		} 
+	}
+	
 	static User getALevisUser(){
 		for (user in users) {
 			if (user.defaultB2BUnit.isLevisUnit()) return user
 		}
 	}
-
+	
 	static User getAMultibrandUser(){
 		for (user in users) {
 			if (user.defaultB2BUnit.isMultibrandUnit()) return user
