@@ -8,7 +8,7 @@ import lscob2b.modules.SizingGridModule;
 class QuickOrderPage extends Page{
 	static url = "/search/advanced"
 
-	static at = { title == "Advanced Search | LSCO B2B Site" }
+	static at = { title == "Quick Order | LSCO B2B Site" }
 
 	static content = { 
 		
