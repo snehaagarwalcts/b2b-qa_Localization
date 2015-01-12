@@ -9,6 +9,7 @@
 		<selenium.version>2.43.1</selenium.version>
 		<spock.version>0.7-groovy-2.0</spock.version>
 		<geb.version>0.10.0</geb.version>
+		<skip.damage.control.report>false</skip.damage.control.report>
 	</properties>
 	<build>
 		<plugins>
@@ -54,6 +55,25 @@
 						<version>2.3.9</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>com.github.damage-control.report</groupId>
+				<artifactId>damage-control-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<skip>${skip.damage.control.report}</skip>
+					<testResultsFolders>
+						<testResultsFolder>target/surefire-reports</testResultsFolder>
+					</testResultsFolders>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>site</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>
