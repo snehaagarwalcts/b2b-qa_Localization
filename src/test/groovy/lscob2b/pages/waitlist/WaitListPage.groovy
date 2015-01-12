@@ -9,7 +9,7 @@ class WaitListPage extends Page {
 
 	static url = "waitlist"
 
-	static at = { title == "LSCO B2B Site" }
+	static at = { title == "Your Shopping Waitlist | LSCO B2B Site" }
 
 	static content = {
 		itemLink { $(".details>.itemName>a", href: endsWith(it)) }
