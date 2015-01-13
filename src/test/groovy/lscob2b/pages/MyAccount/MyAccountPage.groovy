@@ -29,10 +29,10 @@ class MyAccountPage extends Page {
 		viewYourDeliveryAddress { $("div.addressBook ul a")}
 
 		//account page manage section
-		manageUsersLink { $("div.headline").find('a', href: endsWith('/manage-users')) }
+		//manageUsersLink { $("div.headline").find('a', href: endsWith('/manage-users')) }
 		manageUsers(required:false) { $("div.headline").find('a', href: endsWith('/manage-users')) }
-		addNewUsers { $("div ul").find('a', href: endsWith('/manage-users/create')) }
-		editUsers { $("div ul").find('a', href: endsWith('/manage-users')) }
+		addNewUsers(required:false) { $("div ul").find('a', href: endsWith('/manage-users/create')) }
+		editUsers(required:false) { $("div ul").find('a', href: endsWith('/manage-users')) }
 		
 		//account page order section
 		orderHistoryLink { $("div.orderHistory div.headline a") }
