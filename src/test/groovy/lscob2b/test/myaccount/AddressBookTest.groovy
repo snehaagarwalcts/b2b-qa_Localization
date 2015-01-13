@@ -1,7 +1,6 @@
 package lscob2b.test.myaccount
 
 import static lscob2b.TestConstants.*
-import spock.lang.Ignore;
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
@@ -32,28 +31,45 @@ class AddressBookTest extends GebReportingSpec {
 	
 	def "Check Users Shipping Address"() {
 		setup:
-		loginAndGoToPage(user)
-		def shippingData = TestDataCatalog.getShippingAddress(user)
+			loginAndGoToPage(user)
+			def shippingData = TestDataCatalog.getShippingAddress(user)
 		
 		when: "At Address Book page"
-		at AddressBookPage
+			at AddressBookPage
 	
 		then: "Test Shipping Data Size"
-		assert addressShipping.size() == shippingData.size();
+			assert addressShipping.size() == shippingData.size();
 		
 		and: "Test Shipping Data Content"
-		for(int i = 0; i < shippingData.size(); i++) {
-			assert getShippingFirstname(i) == shippingData[i].firstname
-			assert getShippingStreetname(i) == shippingData[i].streetname
-			assert getShippingLastname(i) == shippingData[i].lastname
-			assert getShippingTown(i) == shippingData[i].town
-			assert getShippingRegion(i) == shippingData[i].region
-			assert getShippingPostalcode(i) == shippingData[i].postalcode
-			assert getShippingCountry(i) == shippingData[i].country
-		}			
+		for(int i = 0; i < addressShipping.size(); i++) {
+			
+			boolean findAddress = false
+			for(int j = 0; j < shippingData.size() && !findAddress; j++) {
+				findAddress = getShippingFirstname(i) == shippingData[j].firstname &&
+						getShippingStreetname(i) == shippingData[j].streetname &&
+						getShippingLastname(i) == shippingData[j].lastname &&
+						getShippingTown(i) == shippingData[j].town &&
+						getShippingRegion(i) == shippingData[j].region &&
+						getShippingPostalcode(i) == shippingData[j].postalcode &&
+						getShippingCountry(i) == shippingData[j].country
+			} 
+			println "shipping address [${i}] for user ${user.email} has status ${findAddress}"
+			assert findAddress
+		}
+		
+		//TODO address is printed in "random" order!!!
+//		for(int i = 0; i < shippingData.size(); i++) {
+//			assert getShippingFirstname(i) == shippingData[shippingData.size()-(i+1)].firstname
+//			assert getShippingStreetname(i) == shippingData[shippingData.size()-(i+1)].streetname
+//			assert getShippingLastname(i) == shippingData[shippingData.size()-(i+1)].lastname
+//			assert getShippingTown(i) == shippingData[shippingData.size()-(i+1)].town
+//			assert getShippingRegion(i) == shippingData[shippingData.size()-(i+1)].region
+//			assert getShippingPostalcode(i) == shippingData[shippingData.size()-(i+1)].postalcode
+//			assert getShippingCountry(i) == shippingData[shippingData.size()-(i+1)].country
+//		}			
 		
 		where:
-		user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getAMultibrandUser(), TestDataCatalog.getADockersUser()]
+			user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getAMultibrandUser(), TestDataCatalog.getADockersUser()]
 	}
 	
 	def "Check Users Billing Address"() {
@@ -68,14 +84,32 @@ class AddressBookTest extends GebReportingSpec {
 		assert addressBilling.size() == billingData.size();
 		
 		and: "Test Billing Data Content"
-		for(int i = 0; i < billingData.size(); i++) {
-			assert getBillingFirstname(i) == billingData[i].firstname
-			assert getBillingStreetname(i) == billingData[i].streetname
-			assert getBillingLastname(i) == billingData[i].lastname
-			assert getBillingTown(i) == billingData[i].town
-			assert getBillingRegion(i) == billingData[i].region
-			assert getBillingPostalcode(i) == billingData[i].postalcode
-			assert getBillingCountry(i) == billingData[i].country
+		for(int i = 0; i < addressBilling.size(); i++) {
+			
+			boolean findAddress = false
+			for(int j = 0; j < billingData.size() && !findAddress; j++) {
+				
+				findAddress = getBillingFirstname(i) == billingData[j].firstname &&
+				getBillingStreetname(i) == billingData[j].streetname &&
+				getBillingLastname(i) == billingData[j].lastname &&
+				getBillingTown(i) == billingData[j].town &&
+				getBillingRegion(i) == billingData[j].region &&
+				getBillingPostalcode(i) == billingData[j].postalcode &&
+				getBillingCountry(i) == billingData[j].country
+				
+			}
+			
+			println "billing address [${i}] for user ${user.email} has status ${findAddress}"
+			assert findAddress
+			
+			//TODO address is printed in "random" order!!!
+//			assert getBillingFirstname(i) == billingData[i].firstname
+//			assert getBillingStreetname(i) == billingData[i].streetname
+//			assert getBillingLastname(i) == billingData[i].lastname
+//			assert getBillingTown(i) == billingData[i].town
+//			assert getBillingRegion(i) == billingData[i].region
+//			assert getBillingPostalcode(i) == billingData[i].postalcode
+//			assert getBillingCountry(i) == billingData[i].country
 		}
 		
 		where:
