@@ -53,7 +53,7 @@ class AddressBookTest extends GebReportingSpec {
 						getShippingPostalcode(i) == shippingData[j].postalcode &&
 						getShippingCountry(i) == shippingData[j].country
 			} 
-			println "shipping address [${i}] for user ${user.email} has status ${findAddress}"
+//			println "shipping address [${i}] for user ${user.email} has status ${findAddress}"
 			assert findAddress
 		}
 		
@@ -99,7 +99,7 @@ class AddressBookTest extends GebReportingSpec {
 				
 			}
 			
-			println "billing address [${i}] for user ${user.email} has status ${findAddress}"
+//			println "billing address [${i}] for user ${user.email} has status ${findAddress}"
 			assert findAddress
 			
 			//TODO address is printed in "random" order!!!

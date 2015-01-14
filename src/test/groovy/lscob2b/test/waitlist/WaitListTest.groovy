@@ -1,75 +1,130 @@
 package lscob2b.test.waitlist
 
-import org.spockframework.compiler.model.ExpectBlock;
+import geb.spock.GebReportingSpec
+import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
+import lscob2b.pages.QuickOrder.QuickOrderPage
+import lscob2b.pages.productdetails.ProductDetailsPage
+import lscob2b.pages.waitlist.WaitListPage
+import lscob2b.test.data.TestDataCatalog
+import spock.lang.Ignore
+import spock.lang.IgnoreRest;
+import spock.lang.Stepwise
 
-import spock.lang.Stepwise;
-import lscob2b.pages.HomePage;
-import lscob2b.pages.LoginPage;
-import lscob2b.pages.QuickOrder.QuickOrderPage;
-import lscob2b.pages.productcategory.ProductCategoryPage;
-import lscob2b.pages.productdetails.ProductDetailsPage;
-import lscob2b.pages.waitlist.WaitListPage;
-import lscob2b.test.data.TestDataCatalog;
-import lscob2b.test.login.LoginFailureTest;
-import geb.navigator.Navigator;
-import geb.spock.GebReportingSpec;
 
-/**
- * Test waitlist functionality in both PDP and quick order page.
- * 
- * @author i310850
- *
- */
-@Stepwise
 public class WaitListTest extends GebReportingSpec {
-
-	def setupSpec() {
+	
+	def setup() {
 		to LoginPage
-		login(TestDataCatalog.getALevisUser())
+	}
+
+	def cleanup() {
+		masterTemplate.doLogout()
+	}
+	
+	def loginAndGoToPage(user) {
+		login(user)
+		
 		at HomePage
+		masterTemplate.waitListLink.click()
 	}
 
-	def "Test adding to waitlist"(){
-
-		when: "Goto page under test which contains sizing grid"
-
-		"${openPageMethod}"(productCode)
-
-		then: "should be at the page containing sizing grid"
-
-		when: "Open waitlist grid"
-
-		sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
-
-		then: " waitlist grid should be popped up"
-		sizingGrid.checkIfWaitListGridPoppedUp()
-
-		when:"input count and add to waitlist"
-
-		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(5)
-		sizingGrid.clickAddToWaitList()
-
-		then: "items should be added to waitlist. lets go check them"
-
-		when: "Check waitlist"
-		to WaitListPage
-
-		then: "Our product should be there"
-		!getWaitingProductLink("05527-0458").empty
-		getQuantityRequested("05527-0458").toInteger() > 0
-
+	def "Test WaitList link"() {
+		setup:
+			login(user)
+		
+		when: "At homepage"
+			at HomePage
+			
+		then: "Check waitlist link"
+			!masterTemplate.waitListLink.empty
+				
+		and: "Click on link"
+			masterTemplate.waitListLink.click()
+			at WaitListPage
+			
 		where:
-		openPageMethod 							| productCode
-		"openSizingGridAtQuickOrderPage" 		| "05527-0458"
-		"openSizingGridAtProductDetailsPage"	| "05527-0458"
+		user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getADockersUser()]
+		
 	}
-
+	
+	def "Adding to waitlist from QuickOrder page"() {
+		setup:
+			loginAndGoToPage(user)
+			
+		when: "At WaitList page"
+			at WaitListPage	
+		
+		then: "Check current quantity of product"
+			int currentQuantity = getProductQuantityRequested(productCode)
+		
+		and: "Open waitlist grid at QuickOrderPage"
+			openSizingGridAtQuickOrderPage(productCode)	
+			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
+			
+		and: "Add item to waitlist"
+			sizingGrid.checkIfWaitListGridPoppedUp()
+			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+			sizingGrid.clickAddToWaitList()
+		
+		and: "Go to waitlist page"
+			masterTemplate.waitListLink.click()
+			
+		when: "At WaitList page"
+			at WaitListPage
+			
+		then: "Check updated quantity of product"
+			getProductQuantityRequested(productCode) == (currentQuantity+1)
+		
+		where:
+			productCode 	| user
+			"05527-0458"	| TestDataCatalog.getALevisUser()
+//			"05527-0458"	| TestDataCatalog.getADockersUser()
+	}
+	
+	def "Adding to waitlist from ProductDetail page"() {
+		setup:
+			loginAndGoToPage(user)
+			
+		when: "At WaitList page"
+			at WaitListPage
+		
+		then: "Check current quantity of product"
+			int currentQuantity = getProductQuantityRequested(productCode)
+		
+		and: "Open waitlist grid at ProductDetail"
+			openSizingGridAtProductDetailsPage(productCode)
+			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
+			
+		and: "Add item to waitlist"
+			sizingGrid.checkIfWaitListGridPoppedUp()
+			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+			sizingGrid.clickAddToWaitList()
+		
+		and: "Go to waitlist page"
+			masterTemplate.waitListLink.click()
+			
+		when: "At WaitList page"
+			at WaitListPage
+			
+		then: "Check updated quantity of product"
+			getProductQuantityRequested(productCode) == (currentQuantity+1)
+		
+		where:
+			productCode 	| user
+			"05527-0458"	| TestDataCatalog.getALevisUser()
+//			"05527-0458"	| TestDataCatalog.getADockersUser()
+	}
+	
+	
+	//FIXME create a page helper
 	def openSizingGridAtQuickOrderPage(String productCode){
-		masterTemplate.clickQuickOrder()
+		browser.go(baseUrl + "search/advanced")
 		at QuickOrderPage
 		doSearch(productCode)
 	}
-
+	
+	//FIXME create a page helper
 	def openSizingGridAtProductDetailsPage(String productCode){
 		browser.go(baseUrl + "p/" + productCode)
 		at ProductDetailsPage

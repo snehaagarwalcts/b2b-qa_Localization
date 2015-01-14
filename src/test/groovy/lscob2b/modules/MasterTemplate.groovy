@@ -37,7 +37,10 @@ class MasterTemplate extends Module {
 		goToCartLink { $("div.mini-cart h3") }
 
 		brandSelectionInput {$("form#theme-form > input")}
+		
 		switchBrandLink {$("a#switchTheme")}
+		
+		waitListLink { $("a.miniWaitlistLink") }
 	}
 
 	def getBreadCrumbByUrl(String url) {
