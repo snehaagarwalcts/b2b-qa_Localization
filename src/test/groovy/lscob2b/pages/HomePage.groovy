@@ -18,8 +18,8 @@ class HomePage extends Page{
         masterTemplate {module MasterTemplate}
 		  
 		  switchToLink(required: false) { $("#switchTheme") }
-		  dockersTheme { $("div.subnav a").find('img', src: contains('/medias/?context=bWFzdGVyfHJvb3R8')) }
-		  levisTheme { $("div.subnav a").find('img', src: contains('/medias/?context=bWFzdGVyfHJvb3R8')) }
+		  dockersLogo { $("a.logo-dockers") }
+		  levisLogo { $("a.logo-levis") }
     }
 	 
 	 def checkSwitchTo(){

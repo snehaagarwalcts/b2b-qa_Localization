@@ -29,22 +29,22 @@ class MultibrandUserTest extends GebReportingSpec {
 		then: "Levis theme and switch to dockers is present"
 
 		checkSwitchTo()
-		levisTheme
+		dockersLogo
 	}
 
 	def "Switch to Dockers theme"(){
 		setup:
 		login (multibrandUser)
 		at HomePage
-		levisTheme
+		dockersLogo
 
 		when: "click switch to"
 
 		clickSwitchTo()
 
-		then: "Dockers logo is present"
+		then: "Levis logo is present"
 		
-		dockersTheme
+		levisLogo
 		
 	}
 	
@@ -53,41 +53,39 @@ class MultibrandUserTest extends GebReportingSpec {
 		login (multibrandUser)
 		at HomePage
 		clickSwitchTo()
-		dockersTheme
+		levisLogo
 
 		when: "click switch to"
 		clickSwitchTo()
 		
 
 		then: "Levis logo is present"
-		levisTheme		
+		dockersLogo		
 		
 	}
 	
-	def "Check switch to dockers is present using Levis customer"(){
+	def "Check if switch to dockers is present using Levis customer"(){
 		setup:
 		login (TestDataCatalog.getALevisUser())
 		
 		when: "at home"
 		
 		at HomePage
-		levisTheme
-		
+				
 		then: "Switch to dockers should not be present"
 		
 		!switchToLink.displayed
 		
 	}
 	
-	def "Check switch to dockers is present using Dockers customer"(){
+	def "Check if switch to dockers is present using Dockers customer"(){
 		setup:
 		login (TestDataCatalog.getADockersUser())
 		
 		when: "at home"
 		
 		at HomePage
-		dockersTheme
-		
+				
 		then: "Switch to dockers should not be present"
 		
 		!switchToLink.displayed
