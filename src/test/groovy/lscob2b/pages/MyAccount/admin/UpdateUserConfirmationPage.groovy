@@ -7,7 +7,8 @@ import geb.navigator.Navigator;
 
 class UpdateUserConfirmationPage extends Page{
 	static at = {
-		$(".alert").text()=="Customer successfully updated"
+		//$(".alert").text()=="Customer successfully updated"
+		title == "LSCO B2B Site"
 	}
 
 	static content = {

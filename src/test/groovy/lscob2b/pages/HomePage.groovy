@@ -18,8 +18,8 @@ class HomePage extends Page{
         masterTemplate {module MasterTemplate}
 		  
 		  switchToLink(required: false) { $("#switchTheme") }
-		  dockersTheme { $("a").find('img', src: endsWith('/medias/?context=bWFzdGVyfHJvb3R8NzMyNHxpbWFnZS9wbmd8aDdlL2g3Ny84Nzk2NDM4OTIxMjQ2LnBuZ3wzYWI3N2RkYjRlMGRmNjYyZmU2MTE0YmU5Y2NmNjA2YjkxNWZmM2NmNTMyY2RlNmI2MTdjNmE4ODEzZGUxZDE4')) }
-		  levisTheme { $("a").find('img', src: endsWith('/medias/?context=bWFzdGVyfHJvb3R8ODI0MnxpbWFnZS9wbmd8aDdmL2gwZS84Nzk2NDM4ODg4NDc4LnBuZ3w3NDA1YWYzZTc0N2IzYWIwYzU0YTFmZmRlMzI4YzQ2NTU3MjEzNjE0MWMyYmQ5ZWU5NjFlZjI0ZjA1ZjQwMWVh')) }
+		  dockersTheme { $("div.subnav a").find('img', src: contains('/medias/?context=bWFzdGVyfHJvb3R8')) }
+		  levisTheme { $("div.subnav a").find('img', src: contains('/medias/?context=bWFzdGVyfHJvb3R8')) }
     }
 	 
 	 def checkSwitchTo(){

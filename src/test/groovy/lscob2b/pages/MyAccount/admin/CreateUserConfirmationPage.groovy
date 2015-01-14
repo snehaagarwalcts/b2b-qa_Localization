@@ -7,7 +7,8 @@ import geb.navigator.Navigator;
 
 class CreateUserConfirmationPage extends Page{
 	static at = {
-		$(".alert").text()=="Customer successfully created"
+		//$(".alert").text()=="Customer successfully created"
+		title == "LSCO B2B Site"
 	}
 
 	static content = {

@@ -10,6 +10,7 @@ import lscob2b.pages.QuickOrder.QuickOrderPage
 import lscob2b.pages.cart.CartPage
 import spock.lang.Stepwise
 import static lscob2b.TestConstants.*
+import spock.lang.Ignore
 
 //@Stepwise
 class QuickOrderTest extends GebReportingSpec {
@@ -72,6 +73,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	@Ignore
 	def "Add to cart from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
 		loginAsUserAndGoToQuickOrder(user)
@@ -99,6 +101,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	@Ignore
 	def "Remove product from checkout Page"(){
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
@@ -125,6 +128,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	@Ignore
 	def "Place an order from Quick Order Page"(){
 		setup: 
 		loginAsUserAndGoToQuickOrder(user)
