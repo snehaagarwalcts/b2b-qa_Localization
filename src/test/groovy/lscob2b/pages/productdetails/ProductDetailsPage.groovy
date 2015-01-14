@@ -2,9 +2,13 @@ package lscob2b.pages.productdetails
 
 import lscob2b.modules.MasterTemplate;
 import lscob2b.modules.SizingGridModule;
+import lscob2b.modules.CheckOutModule
+import lscob2b.modules.CartModule
 import geb.Page;
 import geb.navigator.Navigator;
 import groovy.lang.MetaClass;
+
+
 
 class ProductDetailsPage extends Page {
 
@@ -18,8 +22,12 @@ class ProductDetailsPage extends Page {
 	static content = {
 		masterTemplate { module MasterTemplate }
 		sizingGrid { module SizingGridModule}
+		checkOut { module CheckOutModule}
+		cartTemplate {module CartModule}
+		
 		wholesalePriceText { $("div.wholesale-price > span").text()}
 		recommendedRetailPriceText { $("div.recommended-retail-price > span").text()}
+		orderQuantity{ $(".grid_three_dimensions").find("tr > td > .sku-quantity",0) }
 		recommendedRetailPriceValue {
 			parsePrice(recommendedRetailPriceText)
 		}
@@ -45,4 +53,7 @@ class ProductDetailsPage extends Page {
 		Double.parseDouble(s.substring(0, s.length()-2) + "." + s.substring(s.length()-2))
 	}
 	
+	def addOrderQuantity(String quantity){
+		orderQuantity.value(quantity)
+	}
 }

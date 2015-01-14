@@ -138,7 +138,7 @@ class QuickOrderTest extends GebReportingSpec {
 		sizingGrid.addToCart()
 		
 		when: "Checking out from quick order page"
-		doCheckOut()
+		checkOut.doCheckOut()
 		
 		then: "Place an order"
 		at CheckOutPage

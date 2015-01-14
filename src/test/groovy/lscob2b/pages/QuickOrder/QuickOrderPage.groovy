@@ -4,6 +4,7 @@ import geb.Page
 import geb.navigator.Navigator;
 import lscob2b.modules.MasterTemplate
 import lscob2b.modules.SizingGridModule;
+import lscob2b.modules.CheckOutModule
 
 class QuickOrderPage extends Page{
 	static url = "/search/advanced"
@@ -14,6 +15,7 @@ class QuickOrderPage extends Page{
 		
 		masterTemplate { module MasterTemplate } 
 		sizingGrid { module SizingGridModule}
+		checkOut { module CheckOutModule}
 		
 		//Quick order page content
 		keywordSearch { $("div label.control-label") }
@@ -53,11 +55,6 @@ class QuickOrderPage extends Page{
 		searchInput = productID
 		addButton.click()
 	}*/
-
-	
-	def doCheckOut(){
-		checkOutLink.click()
-	}
 	
 	def checkKeywordSearchLinkExists(){
 		!keywordSearch.empty
