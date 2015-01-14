@@ -39,4 +39,38 @@ class WaitListPage extends Page {
 		}
 	}
 	
+	def editProductQuantityRequested(String productCode, int quantity) {
+		//Search for product Item
+		def item = cartItems.find("div.itemName > a", href:endsWith(productCode))
+		
+		//Go up of 4 level to "div.cartItem"
+		item = item.parent().parent().parent().parent()
+		
+		//Click EditQuantity
+		item.find("a.updateWaitlistQuantityProduct").click()
+		
+		//Wait
+		waitFor(1) {
+		
+			//Update Quantity
+			item.find("td.Red").find("input.sku-quantity",0).value(quantity)
+			
+			//Click Update
+			item.find("a.add_to_waitlist_button").click()
+			
+		}
+	}
+	
+	def removeProduct(String productCode) {
+		//Search for product Item
+		def item = cartItems.find("div.itemName > a", href:endsWith(productCode))
+		
+		//Go up of 4 level to "div.cartItem"
+		item = item.parent().parent().parent().parent()
+		
+		//Click Remove
+		item.find("a.submitWaitlistRemoveProduct").click()
+		
+	}
+	
 }
