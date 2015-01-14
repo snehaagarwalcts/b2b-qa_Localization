@@ -116,6 +116,79 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
+	def "Edit quantities of product in WaitList page"() {
+		setup:
+			login(user)
+			
+		when: "At HomePage"
+			at HomePage
+			
+		then: "Add product to waitlist"
+			openSizingGridAtProductDetailsPage(productCode)
+			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
+			sizingGrid.checkIfWaitListGridPoppedUp()
+			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+			sizingGrid.clickAddToWaitList()
+			
+		and: "Go to waitlist page"
+			masterTemplate.waitListLink.click()
+			
+		when: "At WaitList page"
+			at WaitListPage
+		
+		then: "Check product quantity"
+			int currentQuantity = getProductQuantityRequested(productCode)
+			currentQuantity > 0
+			
+		and: "Edit product quantity"
+			editProductQuantityRequested(productCode,currentQuantity+1)
+			
+		and: "Check edited product quantity"
+			getProductQuantityRequested(productCode) == (currentQuantity+1)
+			
+		where:
+			productCode 	| user
+			"05527-0458"	| TestDataCatalog.getALevisUser()
+//			"05527-0458"	| TestDataCatalog.getADockersUser()
+	}
+	
+	def "Remove product from WaitList page"() {
+		setup:
+			login(user)
+			
+		when: "At HomePage"
+			at HomePage
+			
+		then: "Add product to waitlist"
+			openSizingGridAtProductDetailsPage(productCode)
+			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
+			sizingGrid.checkIfWaitListGridPoppedUp()
+			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+			sizingGrid.clickAddToWaitList()
+			
+		and: "Go to waitlist page"
+			masterTemplate.waitListLink.click()
+			
+		when: "At WaitList page"
+			at WaitListPage
+		
+		then: "Check product quantity"
+			getProductQuantityRequested(productCode) > 0
+			
+		and: "Remove product from waitlist"
+			removeProduct(productCode)
+			
+		when: "At WaitList page"
+			at WaitListPage
+			
+		then: "Check absence of product"
+			getProductQuantityRequested(productCode) == 0
+						
+		where:
+			productCode 	| user
+			"05527-0458"	| TestDataCatalog.getALevisUser()
+//			"05527-0458"	| TestDataCatalog.getADockersUser()
+	}
 	
 	//FIXME create a page helper
 	def openSizingGridAtQuickOrderPage(String productCode){
