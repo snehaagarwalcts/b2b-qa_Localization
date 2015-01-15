@@ -1,6 +1,8 @@
 package lscob2b.test.productdetails;
 
 import org.spockframework.compiler.model.ExpectBlock;
+
+import spock.lang.Ignore;
 import spock.lang.Stepwise;
 import lscob2b.pages.HomePage;
 import lscob2b.pages.LoginPage;
@@ -44,6 +46,7 @@ public class ProductDetailsPageTest extends GebReportingSpec {
 		wholesalePriceValue == product.getPriceForUser(user).wholesalePrice
 	}
 	
+	@Ignore
 	def "place an order from product details page"(){
 		
 		User user = TestDataCatalog.getACustomerUser()

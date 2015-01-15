@@ -1,12 +1,11 @@
 package lscob2b.test.MultibrandUser
 
+import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
-import lscob2b.TestConstants
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import spock.lang.Stepwise
-import lscob2b.test.data.TestDataCatalog;
-import static lscob2b.TestConstants.*
+import lscob2b.test.data.TestDataCatalog
+import spock.lang.Ignore
 
 class MultibrandUserTest extends GebReportingSpec {
 
@@ -18,6 +17,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 
+	@Ignore
 	def "Check switch to dockers is present"() {
 		setup:
 		login (multibrandUser)
@@ -32,6 +32,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		dockersLogo
 	}
 
+	@Ignore
 	def "Switch to Dockers theme"(){
 		setup:
 		login (multibrandUser)
@@ -48,6 +49,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
+	@Ignore
 	def "Swtich to Levis theme"(){
 		setup:
 		login (multibrandUser)
@@ -64,6 +66,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
+	@Ignore
 	def "Check if switch to dockers is present using Levis customer"(){
 		setup:
 		login (TestDataCatalog.getALevisUser())
@@ -78,6 +81,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
+	@Ignore
 	def "Check if switch to dockers is present using Dockers customer"(){
 		setup:
 		login (TestDataCatalog.getADockersUser())

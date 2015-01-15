@@ -1,5 +1,6 @@
 package lscob2b.test.myaccount.admin;
 
+import spock.lang.Ignore;
 import spock.lang.Shared;
 import spock.lang.Stepwise;
 import geb.spock.GebReportingSpec
@@ -25,6 +26,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 	@Shared
 	String email
 
+	@Ignore
 	def "Create a user"(){
 
 		when: "Open manage users page"
@@ -66,7 +68,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
 	}
 
-	//continue from CreateUserConfirmationPage
+	@Ignore
 	def "Update the created user"(){
 
 		when:

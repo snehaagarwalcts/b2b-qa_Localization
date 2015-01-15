@@ -116,6 +116,7 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
+	@Ignore
 	def "Edit quantities of product in WaitList page"() {
 		setup:
 			login(user)
@@ -152,6 +153,7 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
+	@Ignore
 	def "Remove product from WaitList page"() {
 		setup:
 			login(user)

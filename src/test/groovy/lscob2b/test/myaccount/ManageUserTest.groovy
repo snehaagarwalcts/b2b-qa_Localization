@@ -35,10 +35,10 @@ class ManageUserTest extends GebReportingSpec {
 			
 		when: "at manage users page"
 			at ManageUsersPage
-			println "current user ${loginUser.email}"
+//			println "current user ${loginUser.email}"
 		
 		then: "search for target user"
-			println "searching for user ${targetUser.email}"
+//			println "searching for user ${targetUser.email}"
 			def detailLink = searchUserDetailLinkInAllPages(targetUser.email)
 			assert !detailLink.empty
 			detailLink.click()
@@ -48,7 +48,7 @@ class ManageUserTest extends GebReportingSpec {
 			
 		then: "check current delivery address"
 			def initialDeliveryAddress = getDefaultDeliveryAddress()
-			println "current delivery address is ${initialDeliveryAddress}"
+//			println "current delivery address is ${initialDeliveryAddress}"
 			assert !editButton.empty
 			editButton.click()
 			
@@ -69,7 +69,7 @@ class ManageUserTest extends GebReportingSpec {
 			
 		then: "check change of delivery address on detail page"
 			def updateDeliveryAddress = getDefaultDeliveryAddress()
-			println "new delivery addres is ${updateDeliveryAddress}"
+//			println "new delivery addres is ${updateDeliveryAddress}"
 			assert updateDeliveryAddress != initialDeliveryAddress
 			
 		where:
