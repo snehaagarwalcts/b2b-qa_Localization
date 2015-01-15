@@ -13,5 +13,16 @@ class CartPage extends Page{
 	static content = {
 		masterTemplate {module MasterTemplate}
 		cartTemplate {module CartModule}
+		
+		alertMessage1 { $(".alert-message h2") }
+		alertMessage2 { $(".alert-message p") }
+	}
+	
+	def checkAlertMessage1(){
+		!alertMessage1.empty
+	}
+	
+	def checkAlertMessage2(){
+		!alertMessage2.empty
 	}
 }

@@ -9,8 +9,10 @@ import lscob2b.pages.OrderConfirmation.OrderConfirmationPage;
 import lscob2b.pages.QuickOrder.QuickOrderPage
 import lscob2b.pages.cart.CartPage
 import spock.lang.Stepwise
+import lscob2b.TestConstants
 import static lscob2b.TestConstants.*
 import spock.lang.Ignore
+import spock.lang.IgnoreRest
 
 //@Stepwise
 class QuickOrderTest extends GebReportingSpec {
@@ -73,7 +75,6 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	@Ignore
 	def "Add to cart from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
 		loginAsUserAndGoToQuickOrder(user)
@@ -101,7 +102,6 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	@Ignore
 	def "Remove product from checkout Page"(){
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
@@ -128,7 +128,6 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	@Ignore
 	def "Place an order from Quick Order Page"(){
 		setup: 
 		loginAsUserAndGoToQuickOrder(user)
@@ -147,6 +146,26 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		where:
 		user << [levisUser]
+	}
+	
+	def "user that does not hold customer rights tries to place an order from quick order page"(){
+		setup: "Log in"
+		loginAsUserAndGoToQuickOrder(user)
+		
+		when: "add product to cart"
+		doSearch('00501-1615')
+		sizingGrid.waitForSizingGridLoadedCompletely()
+		sizingGrid.addOrderQuantity('1')
+		sizingGrid.addToCart()
+		
+		then: "check out"
+		checkOut.doCheckOut()
+		at CartPage
+		checkAlertMessage1()
+		checkAlertMessage2()
+		
+		where:
+		user << [admin1]
 	}
 		
 	/*def "Place an order with multiple product ID's"(){

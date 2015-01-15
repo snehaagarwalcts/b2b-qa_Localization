@@ -26,7 +26,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 	@Shared
 	String email
 
-	@Ignore
+	//@Ignore
 	def "Create a user"(){
 
 		when: "Open manage users page"
@@ -68,7 +68,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
 	}
 
-	@Ignore
+	//@Ignore
 	def "Update the created user"(){
 
 		when:
@@ -93,5 +93,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 		userDetails.lastNameText == lastName
 		userDetails.emailText == email
 		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
+		
+		masterTemplate.doLogout()
 	}
 }

@@ -17,7 +17,6 @@ class MultibrandUserTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 
-	@Ignore
 	def "Check switch to dockers is present"() {
 		setup:
 		login (multibrandUser)
@@ -32,7 +31,6 @@ class MultibrandUserTest extends GebReportingSpec {
 		dockersLogo
 	}
 
-	@Ignore
 	def "Switch to Dockers theme"(){
 		setup:
 		login (multibrandUser)
@@ -49,7 +47,6 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
-	@Ignore
 	def "Swtich to Levis theme"(){
 		setup:
 		login (multibrandUser)
@@ -66,7 +63,6 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
-	@Ignore
 	def "Check if switch to dockers is present using Levis customer"(){
 		setup:
 		login (TestDataCatalog.getALevisUser())
@@ -81,7 +77,6 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
-	@Ignore
 	def "Check if switch to dockers is present using Dockers customer"(){
 		setup:
 		login (TestDataCatalog.getADockersUser())
