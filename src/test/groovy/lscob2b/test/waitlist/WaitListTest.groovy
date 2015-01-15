@@ -29,7 +29,6 @@ public class WaitListTest extends GebReportingSpec {
 		masterTemplate.waitListLink.click()
 	}
 
-	@Ignore
 	def "Test WaitList link"() {
 		setup:
 			login(user)
@@ -62,10 +61,9 @@ public class WaitListTest extends GebReportingSpec {
 		
 		and: "Open waitlist grid at QuickOrderPage"
 			openSizingGridAtQuickOrderPage(productCode)	
-			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
+			sizingGrid.clickNotifyMe()
 			
 		and: "Add item to waitlist"
-			sizingGrid.checkIfWaitListGridPoppedUp()
 			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
 			sizingGrid.clickAddToWaitList()
 		
@@ -84,7 +82,6 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
-	@Ignore
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 			loginAndGoToPage(user)
@@ -97,10 +94,9 @@ public class WaitListTest extends GebReportingSpec {
 		
 		and: "Open waitlist grid at ProductDetail"
 			openSizingGridAtProductDetailsPage(productCode)
-			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
+			sizingGrid.clickNotifyMe()
 			
 		and: "Add item to waitlist"
-			sizingGrid.checkIfWaitListGridPoppedUp()
 			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
 			sizingGrid.clickAddToWaitList()
 		
@@ -119,7 +115,6 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
-	@Ignore
 	def "Edit quantities of product in WaitList page"() {
 		setup:
 			login(user)
@@ -129,8 +124,7 @@ public class WaitListTest extends GebReportingSpec {
 			
 		then: "Add product to waitlist"
 			openSizingGridAtProductDetailsPage(productCode)
-			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
-			sizingGrid.checkIfWaitListGridPoppedUp()
+			sizingGrid.clickNotifyMe()
 			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
 			sizingGrid.clickAddToWaitList()
 			
@@ -156,7 +150,6 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
-	@Ignore
 	def "Remove product from WaitList page"() {
 		setup:
 			login(user)
@@ -166,8 +159,7 @@ public class WaitListTest extends GebReportingSpec {
 			
 		then: "Add product to waitlist"
 			openSizingGridAtProductDetailsPage(productCode)
-			sizingGrid.clickNotifyMeWhenItemsBecomeAvailable()
-			sizingGrid.checkIfWaitListGridPoppedUp()
+			sizingGrid.clickNotifyMe()
 			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
 			sizingGrid.clickAddToWaitList()
 			

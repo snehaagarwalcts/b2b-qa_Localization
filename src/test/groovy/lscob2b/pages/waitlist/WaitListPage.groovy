@@ -50,7 +50,7 @@ class WaitListPage extends Page {
 		item.find("a.updateWaitlistQuantityProduct").click()
 		
 		//Wait
-		waitFor(1) {
+		waitFor {
 		
 			//Update Quantity
 			item.find("td.Red").find("input.sku-quantity",0).value(quantity)

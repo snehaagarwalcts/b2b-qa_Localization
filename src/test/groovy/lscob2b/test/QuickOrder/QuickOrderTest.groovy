@@ -75,6 +75,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	@Ignore
 	def "Add to cart from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
 		loginAsUserAndGoToQuickOrder(user)
@@ -102,6 +103,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	@Ignore
 	def "Remove product from checkout Page"(){
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
@@ -128,6 +130,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	@Ignore
 	def "Place an order from Quick Order Page"(){
 		setup: 
 		loginAsUserAndGoToQuickOrder(user)
@@ -148,6 +151,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	@Ignore
 	def "user that does not hold customer rights tries to place an order from quick order page"(){
 		setup: "Log in"
 		loginAsUserAndGoToQuickOrder(user)

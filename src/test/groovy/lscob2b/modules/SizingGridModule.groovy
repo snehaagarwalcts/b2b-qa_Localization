@@ -47,4 +47,11 @@ class SizingGridModule extends Module{
 		$("div#overlay form#AddToWaitListForm input.sku-quantity", 0).value(value)
 	}
 
+	def void clickNotifyMe() {
+		notifyMeWhenItemsBecomeAvailableLink.click()
+		waitFor {
+			$("div#overlay").displayed
+		}
+	}
+	
 }
