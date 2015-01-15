@@ -29,6 +29,7 @@ public class WaitListTest extends GebReportingSpec {
 		masterTemplate.waitListLink.click()
 	}
 
+	@Ignore
 	def "Test WaitList link"() {
 		setup:
 			login(user)
@@ -48,6 +49,7 @@ public class WaitListTest extends GebReportingSpec {
 		
 	}
 	
+	@Ignore
 	def "Adding to waitlist from QuickOrder page"() {
 		setup:
 			loginAndGoToPage(user)
@@ -82,6 +84,7 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
+	@Ignore
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 			loginAndGoToPage(user)
