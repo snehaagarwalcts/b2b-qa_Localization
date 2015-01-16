@@ -15,13 +15,11 @@ class ManageUsersPage extends Page{
 	static content = {
 		masterTemplate { module MasterTemplate }
 
-		//Manage users page content
-		//manageUsersData { $("form table tr th")*.text() }
 		manageUsersData { $("form table tr th") }
-		//createNewUser { $("div.paginationBar a") }
+		
 		createNewUserLink { $("a.addnewuser") }
+		
 		manageUsers { $("#breadcrumb li").not('separator')*.text()}
-		//manageUsers { $("#breadcrumb li").not('separator')
 		
 		userTable { $("table#manage_user") }
 		
@@ -49,10 +47,6 @@ class ManageUsersPage extends Page{
 		!createNewUserLink.empty
 	}
 	
-	/*def checkManageUsersBreadCrumbExists(){
-		!manageUsers.empty
-	}*/
-
 	//Getter
 		
 	def getUsername(index) {

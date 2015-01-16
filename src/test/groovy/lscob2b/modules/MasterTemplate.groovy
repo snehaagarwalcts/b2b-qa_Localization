@@ -99,6 +99,9 @@ class MasterTemplate extends Module {
 	
 	def selectManageUsers(){
 		mouseOverMyAccountMenuItem()
-		manageUsersLink.click()
+		waitFor {
+			manageUsersLink.displayed
+			manageUsersLink.click()
+		}
 	}
 }

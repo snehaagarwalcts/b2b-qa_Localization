@@ -26,49 +26,41 @@ public class CrudUserAccountTest extends GebReportingSpec {
 	@Shared
 	String email
 
-	//@Ignore
 	def "Create a user"(){
 
 		when: "Open manage users page"
-
-		masterTemplate.selectManageUsers()
+			masterTemplate.selectManageUsers()
 
 		then: "We should be at manage users page"
-
-		at ManageUsersPage
+			at ManageUsersPage
 
 		when: "Open create new user page"
-
-		clickCreateNewUsersLink()
+			clickCreateNewUsersLink()
 
 		then: "We should be at create user page"
-
-		at CreateUserPage
+			at CreateUserPage
 
 		when: "Fill in the form and submit it"
-
-		def firstName = "firstName"
-		def lastName = "lastName"
-		email = UUID.randomUUID().toString() + "@test.tst"
-		def title = userDetails.selectTitleOption(1)
-		def defaultDeliveryAddr = userDetails.selectDefaultDeliveryAddrOption(1)
-		userDetails.setFirstNameField(firstName)
-		userDetails.setLastNameField(lastName)
-		userDetails.setEmailField(email)
-		userDetails.selectAllRoles()
-		userDetails.submit()
+			def firstName = "firstName"
+			def lastName = "lastName"
+			email = UUID.randomUUID().toString() + "@test.tst"
+			def title = userDetails.selectTitleOption(1)
+			def defaultDeliveryAddr = userDetails.selectDefaultDeliveryAddrOption(1)
+			userDetails.setFirstNameField(firstName)
+			userDetails.setLastNameField(lastName)
+			userDetails.setEmailField(email)
+			userDetails.selectAllRoles()
+			userDetails.submit()
 
 		then: "Should be at customer created page"
-
-		at CreateUserConfirmationPage
-		userDetails.titleText.toUpperCase() == title.toUpperCase()
-		userDetails.firstNameText == firstName
-		userDetails.lastNameText == lastName
-		userDetails.emailText == email
-		userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
+			at CreateUserConfirmationPage
+			userDetails.titleText.toUpperCase() == title.toUpperCase()
+			userDetails.firstNameText == firstName
+			userDetails.lastNameText == lastName
+			userDetails.emailText == email
+			userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
 	}
 
-	//@Ignore
 	def "Update the created user"(){
 
 		when:
