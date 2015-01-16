@@ -64,7 +64,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at ProductDetailsPage
 		
 		when: "add product to cart"
-		addOrderQuantity('10')
+		addOrderQuantity('1')
 		sizingGrid.addToCart()
 		
 		then: "check product has been added to cart"
@@ -91,7 +91,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at ProductDetailsPage
 		
 		when: "add product to cart"
-		addOrderQuantity('10')
+		addOrderQuantity('1')
 		sizingGrid.addToCart()
 		masterTemplate.doGoToCart()
 		
@@ -115,7 +115,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at ProductDetailsPage
 		
 		when: "add product to cart"
-		addOrderQuantity('10')
+		addOrderQuantity('1')
 		sizingGrid.addToCart()
 		masterTemplate.doGoToCart()
 		

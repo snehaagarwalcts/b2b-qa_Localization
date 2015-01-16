@@ -109,7 +109,7 @@ class QuickOrderTest extends GebReportingSpec {
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
 		sizingGrid.waitForSizingGridLoadedCompletely()
-		sizingGrid.addOrderQuantity('10')
+		sizingGrid.addOrderQuantity('1')
 		sizingGrid.addToCart()
 		masterTemplate.doGoToCart()
 		
