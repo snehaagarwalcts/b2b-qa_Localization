@@ -18,7 +18,7 @@ if (sauceBrowser) {
 		def platform = env.get "SELENIUM_PLATFORM"
 		def version = env.get "SELENIUM_VERSION"
 		def browserName = env.get "SELENIUM_BROWSER"
-		def capabilities = [platform: platform, version: version, browserName: browserName, 'max-duration': 5400, name:"lscob2b-qa"] //1:30h
+		def capabilities = [platform: platform, version: version, browserName: browserName, 'max-duration': 5400, name: "" + platform + "-" + browserName + "-" + version] //1:30h
 		new SauceLabsDriverFactory().create("", username, accessKey, capabilities)
 	}
 } else if (sysProps.get("geb.chrome.browser")){

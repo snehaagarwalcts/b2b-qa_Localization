@@ -1,6 +1,6 @@
-SELENIUM_PLATFORM="Windows 7"
-SELENIUM_VERSION="8"
-SELENIUM_BROWSER="internet explorer"
+set SELENIUM_PLATFORM=Windows 7
+set SELENIUM_VERSION=8
+set SELENIUM_BROWSER=Internet explorer
 
 echo "Starting test on %SELENIUM_PLATFORM% / %SELENIUM_BROWSER% / %SELENIUM_VERSION%"
-mvn test-compile test -DargLine="-Dgeb.sauce.browser=1 -Dgeb.sauce.user=USERNAME -Dgeb.sauce.access.key=ACCESS_KEY"
+mvn test-compile test -DargLine="-Dgeb.sauce.browser=1 -Dgeb.sauce.user=dshah1992 -Dgeb.sauce.access.key=2620798f-5186-4a1c-b1ea-3b5f5f2ae882"
