@@ -54,7 +54,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 
 		then: "Should be at customer created page"
 			at CreateUserConfirmationPage
-			userDetails.titleText.toUpperCase() == title.toUpperCase()
+			//userDetails.titleText.toUpperCase() == title.toUpperCase()
 			userDetails.firstNameText == firstName
 			userDetails.lastNameText == lastName
 			userDetails.emailText == email
