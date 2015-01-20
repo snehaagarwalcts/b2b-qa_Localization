@@ -71,7 +71,6 @@ class OrderHistoryTest extends GebReportingSpec {
 		then: "User can access to page"
 			
 		where:
-			//user = TestDataCatalog.getUserNotInGroups([ TestDataCatalog.ADMIN_GROUP, TestDataCatalog.FINANCE_GROUP ]);
 			user = TestDataCatalog.getACustomerUser()
 	}
 
@@ -142,4 +141,74 @@ class OrderHistoryTest extends GebReportingSpec {
 
 	}
 		
+	def "Test search functionality in history"() {	//TODO What's a PO???
+		setup:
+		login(user)
+		
+		when: "At HomePage"
+			at HomePage
+		
+		then: "Create a test order"
+			def currentOrder = placeAnOrder(productCode)
+			goToOrderHistory()
+	
+		when: "At OrderHistory page"
+			at OrderHistoryPage
+		
+		then: "Test search by: order number"
+			searchByOrderNumber(currentOrder.number)
+			checkUniqueResult()
+			clearForm()
+			
+		and: "Test search by: order number and order source b2b"
+			searchByOrderNumberAndOrderSource(currentOrder.number, true, false, false, false, false)
+			checkUniqueResult()
+			clearForm()
+			
+		and: "Test search by: order number and order source not b2b"
+			searchByOrderNumberAndOrderSource(currentOrder.number, false, true, true, true, true)
+			checkEmptyResult()
+			clearForm()
+		
+		and: "Test search by: order number and order type at once"
+			searchByOrderNumberAndOrderType(currentOrder.number, true, false)
+			checkUniqueResult()
+			clearForm()
+			
+		and: "Test search by: order number and order type pre book"
+			searchByOrderNumberAndOrderType(currentOrder.number, false, true)
+			checkEmptyResult()
+			clearForm()
+			
+		and: "Test search by: order number and order date last 30d"
+			searchByOrderNumberAndOrderDate(currentOrder.number, true, false, false)
+			checkUniqueResult()
+			clearForm()
+		
+		and: "Test search by: order number and order date last 90d"
+			searchByOrderNumberAndOrderDate(currentOrder.number, false, true, false)
+			checkUniqueResult()
+			clearForm()
+		
+		and: "Test search by: order number and order date last year"
+			searchByOrderNumberAndOrderDate(currentOrder.number, false, false, true)
+			checkUniqueResult()
+			clearForm()
+		
+		and: "Test search by: order number and order status submitted"
+			searchByOrderNumberAndOrderStatus(currentOrder.number, true, false, false)
+			checkUniqueResult()
+			clearForm()
+			
+		and: "Test search by: order number and order status not submitted"
+			searchByOrderNumberAndOrderStatus(currentOrder.number, false, true, true)
+			checkEmptyResult()
+			clearForm()
+			
+		where:
+			user =TestDataCatalog.getACustomerUser()
+			productCode = "05527-0458"
+	}
+	
+	
 }

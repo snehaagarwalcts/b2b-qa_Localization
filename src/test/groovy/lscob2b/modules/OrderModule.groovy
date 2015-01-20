@@ -12,6 +12,8 @@ class OrderModule extends Module {
 		orderAddress { $("div.address") }
 	}
 
+	//Order
+	
 	def String getOrderNumber() {
 		return orderInfo.find("p.ordernumber",0).text()
 	}
@@ -37,6 +39,14 @@ class OrderModule extends Module {
 	def String getAddressCountry() {
 		return orderAddress.find("p",5)
 	}
+	
+	//Product
+	
+	def String getProductCode() {
+		
+	}
+	
+	//Bean
 	
 	def getOrder() {
 		Order order = new Order()
