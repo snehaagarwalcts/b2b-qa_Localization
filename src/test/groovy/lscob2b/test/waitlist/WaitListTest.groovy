@@ -48,10 +48,10 @@ public class WaitListTest extends GebReportingSpec {
 		
 	}
 	
-	@Ignore
 	def "Adding to waitlist from QuickOrder page"() {
 		setup:
 			loginAndGoToPage(user)
+//			println "User ${user.email}"
 			
 		when: "At WaitList page"
 			at WaitListPage	

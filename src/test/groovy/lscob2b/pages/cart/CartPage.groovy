@@ -16,6 +16,9 @@ class CartPage extends Page{
 		
 		alertMessage1 { $(".alert-message h2") }
 		alertMessage2 { $(".alert-message p") }
+		
+		linkCheckout { $("a.checkout") }
+		
 	}
 	
 	def checkAlertMessage1(){

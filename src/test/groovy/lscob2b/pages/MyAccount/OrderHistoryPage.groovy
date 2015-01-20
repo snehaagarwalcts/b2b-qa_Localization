@@ -14,29 +14,40 @@ class OrderHistoryPage extends Page{
 	static content = {
 		masterTemplate { module MasterTemplate }
 
-		//Order history page content //TODO update this as page gets developed
 		orderHistoryData { $("div#main-container>h1") }
 		orderHistoryDescription { $("div.description").text() }
 		orderHistoryBar { $("div.paginationBar").text() }
 		orderHistoryListTable { $("table.orderListTable thead tr").text() }
-		/*orderHistoryDescription { $("div.description") }
-		orderHistoryBar { $("div.paginationBar") }
-		orderHistoryListTable { $("table.orderListTable thead tr") }*/
+
+		/* FORM */
+				
+		searchForm { $("form#orderSearchForm") }
+		
+		searchButton(to: OrderHistoryPage) { searchForm.find("button", type:'submit') }
+		
+		fieldOrderNumber { searchForm.find("input", name: 'orderNum') }
+	
+		/* Result */
+		
+		resultTable { $("table.orderListTable") }
+			
 	}
 	
 	def checkOrderHistoryData(){
 		!orderHistoryData.empty
 	}
-	
-	/*def checkOrderHistoryDescription(){
-		!orderHistoryDescription.empty
+
+	def searchByOrderNumber(String orderNumber) {
+		fieldOrderNumber.value(orderNumber)
+		searchButton.click()
+	}	
+
+	def checkUniqueResult() {
+		resultTable.find("tbody>tr").size() == 1
 	}
-	
-	def checkOrderHistoryBar(){
-		!orderHistoryBar.empty
+			
+	def clickOnFirstOrder() {
+		resultTable.find("tbody>tr a",0).click()
 	}
-	
-	def checkOrderHistoryListTable(){
-		!orderHistoryListTable.empty
-	}*/
+		
 }

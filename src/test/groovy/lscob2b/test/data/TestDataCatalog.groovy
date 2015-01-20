@@ -102,6 +102,19 @@ class TestDataCatalog {
 		}
 	}
 	
+	static User getUserNotInGroups(groups) {
+		for (user in users) {
+			
+			boolean isInGroup = false;
+			for(int i = 0; i < groups.size() && !isInGroup; i++) {
+				isInGroup = user.groups.contains(groups[i])
+			}
+
+			if(!isInGroup) return user
+						
+		}
+	}
+	
 	static User getAnotherUserOfSameBU(User parentUser, String group) {
 		for (user in users) {
 			if (user.groups.contains(group) && user.defaultB2BUnit.uid == parentUser.defaultB2BUnit.uid && user.email != parentUser.email) return user
