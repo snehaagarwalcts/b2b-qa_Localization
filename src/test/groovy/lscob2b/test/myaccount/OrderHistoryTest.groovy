@@ -10,6 +10,7 @@ import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.test.data.TestDataCatalog
+import spock.lang.Ignore;
 import spock.lang.IgnoreRest
 import spock.lang.Shared;
 import spock.lang.Stepwise
@@ -59,8 +60,41 @@ class OrderHistoryTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 	
-	def "Test access to OrderHistory page for a customer"() {
+	def "Check access to OrderHistory for [b2bcustomergroup]"() {
+		setup:
+			login(user)
 		
+		when: "At HomePage"
+			at HomePage
+		
+		then: "Go to my-account/orders"
+			browser.go(baseUrl + "my-account/orders")
+			at OrderHistoryPage
+			
+		where:
+			user = TestDataCatalog.getACustomerUser()
+	}
+	
+	@Ignore
+	def "Check denied access to OrderHistory for not [b2bcustomergroup]"() {
+		setup:
+			login(user)
+		
+		when: "At HomePage"
+			at HomePage
+		
+		then: "Go to my-account/orders"
+			browser.go(baseUrl + "my-account/orders")
+			at HomePage
+			
+		where:
+			user | _
+			TestDataCatalog.getUserNotInGroups([TestDataCatalog.CUSTOMER_GROUP, TestDataCatalog.ADMIN_GROUP]) | _
+			TestDataCatalog.getUserNotInGroups([TestDataCatalog.CUSTOMER_GROUP, TestDataCatalog.FINANCE_GROUP]) | _
+	}
+	
+	@Ignore
+	def "Test clear functionality"() {
 		setup:
 			login(user)
 			goToOrderHistory()
@@ -68,12 +102,19 @@ class OrderHistoryTest extends GebReportingSpec {
 		when: "At OrderHistory Page"
 			at OrderHistoryPage
 		
-		then: "User can access to page"
+		then: "Click on all field"
+			switchOnForm()
+		
+		and: "Clear form"
+			clearButton.click()
 			
+		and: "Check form status"
+			isFormClear()
+						
 		where:
 			user = TestDataCatalog.getACustomerUser()
 	}
-
+	
 	def "Test order creation in history"() {
 		setup:
 			login(user)

@@ -25,9 +25,11 @@ class OrderHistoryPage extends Page{
 		
 		searchButton(to: OrderHistoryPage) { searchForm.find("button", type:'submit') }
 		
-		clearButton() { searchForm.find("a.clear") }
+		clearButton { searchForm.find("a.clear") }
 		
 		fieldOrderNumber { searchForm.find("input", name: 'orderNum') }
+		
+		fieldPONumber { searchForm.find("input", name: 'poNum') }
 	
 		checkboxOrderSourceB2B { searchForm.find("input", type:'checkbox', name:'b2b',0) }
 		
@@ -80,10 +82,35 @@ class OrderHistoryPage extends Page{
 		if(checkboxOrderStatusSubmitted.value() != false) checkboxOrderStatusSubmitted.parent().click()
 		if(checkboxOrderStatusCompleted.value() != false) checkboxOrderStatusCompleted.parent().click()
 		if(checkboxOrderStatusInProgress.value() != false) checkboxOrderStatusInProgress.parent().click()
-		
+		fieldPONumber.value("")
 		fieldOrderNumber.value("")
 	}
 	
+	def isFormClear() {
+		return !checkboxOrderSourceB2B.value() && !checkboxOrderSourceEDI.value() && !checkboxOrderSourceSAP.value() &&
+		!checkboxOrderSourceSFA.value() && !checkboxOrderSourceLEO.value() && !checkboxOrderTypeAO.value() && 
+		!checkboxOrderTypePB.value() && !checkboxOrderDate30.value() && !checkboxOrderDate90.value() &&
+		!checkboxOrderDateYear.value() && !checkboxOrderStatusSubmitted.value() && !checkboxOrderStatusCompleted.value() &&
+		!checkboxOrderStatusInProgress.value() && fieldOrderNumber.value() == "" && fieldPONumber.value() == ""
+	}
+	
+	def switchOnForm() {
+		checkboxOrderSourceB2B.parent().click()
+		checkboxOrderSourceEDI.parent().click()
+		checkboxOrderSourceSAP.parent().click()
+		checkboxOrderSourceSFA.parent().click()
+		checkboxOrderSourceLEO.parent().click()
+		checkboxOrderTypeAO.parent().click()
+		checkboxOrderTypePB.parent().click()
+		checkboxOrderDate30.parent().click()
+		checkboxOrderDate90.parent().click()
+		checkboxOrderDateYear.parent().click()
+		checkboxOrderStatusSubmitted.parent().click()
+		checkboxOrderStatusCompleted.parent().click()
+		checkboxOrderStatusInProgress.parent().click()
+		fieldPONumber.value("Test PO")
+		fieldOrderNumber.value("Test Order")
+	}
 	
 	def searchByOrderNumber(String orderNumber) {
 		fieldOrderNumber.value(orderNumber)

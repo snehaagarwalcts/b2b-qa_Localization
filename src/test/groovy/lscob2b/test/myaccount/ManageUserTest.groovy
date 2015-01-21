@@ -1,5 +1,6 @@
 package lscob2b.test.myaccount
 
+import spock.lang.IgnoreRest;
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
@@ -29,6 +30,38 @@ class ManageUserTest extends GebReportingSpec {
 		manageUsers.click()
 	}
 
+	def "Check access to ManageUserPage for [b2badmingroup]"() {
+		setup:
+			login(user)
+			
+		when: "At HomePage"
+			at HomePage
+			
+		then: "Go to my-account/manage-users"
+			browser.go(baseUrl + "my-account/manage-users")
+			at ManageUsersPage
+			
+		where:
+			user = TestDataCatalog.getAnAdminUser()
+	}
+	
+	def "Check denied access to ManageUserPage for not [b2badmingroup]"() {
+		setup:
+			login(user)
+			
+		when: "At HomePage"
+			at HomePage
+			
+		then: "Go to my-account/manage-users"
+			browser.go(baseUrl + "my-account/manage-users")
+			at HomePage
+			
+		where:
+			user | _
+			TestDataCatalog.getUserNotInGroups([TestDataCatalog.ADMIN_GROUP, TestDataCatalog.FINANCE_GROUP]) | _
+			TestDataCatalog.getUserNotInGroups([TestDataCatalog.ADMIN_GROUP, TestDataCatalog.CUSTOMER_GROUP]) | _
+	}
+	
 	def "Change default delivery address"() {
 		setup:
 			loginAndGoToTargetPage(loginUser)
