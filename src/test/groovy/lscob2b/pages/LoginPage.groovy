@@ -35,6 +35,9 @@ class LoginPage extends Page {
 		langSelectorFor { value -> $("#lang-selector option[value='${value}']") }
 		langSelectorValueCount { $("#lang-selector option").size() }
 		pageheading { $("#main-container h1").text() }
+		
+		// contact us
+		contactUS { $('div.contact a') }
 	}
 
 	def login(User user){
@@ -69,5 +72,9 @@ class LoginPage extends Page {
 	def sendForgottenPasswordEmail(String email) {
 		emailAddress = email
 		sendEmailButton.click()
+	}
+	
+	def clickContactUS(){
+		contactUS.click()
 	}
 }
