@@ -2,6 +2,7 @@ package lscob2b.modules
 
 import geb.Module
 import geb.navigator.Navigator
+import org.openqa.selenium.Keys
 
 /**
  * Created by i303936 on 11/20/14.
@@ -41,6 +42,16 @@ class MasterTemplate extends Module {
 		switchBrandLink {$("a#switchTheme")}
 		
 		waitListLink { $("a.miniWaitlistLink") }
+		
+		searchInput { $("#input-search") }
+		
+		searchLink { $('a.search-icon') } //TODO Enable once working
+		
+	}
+	
+	def doSearch(String productID){
+		searchInput = productID
+		searchInput << Keys.ENTER
 	}
 
 	def getBreadCrumbByUrl(String url) {
