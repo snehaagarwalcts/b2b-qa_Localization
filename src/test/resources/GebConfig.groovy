@@ -5,7 +5,7 @@ import geb.driver.SauceLabsDriverFactory
 
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.chrome.ChromeDriver
-//import org.openqa.selenium.ie.InternetExplorerDriver
+import org.openqa.selenium.ie.InternetExplorerDriver
 
 def sysProps = System.getProperties()
 
@@ -33,7 +33,8 @@ if (sauceBrowser) {
 }else {
 	driver = { new FirefoxDriver() }
 }
-//driver = {new InternetExplorerDriver() }
+/*System.setProperty("webdriver.ie.driver", "C:\IEDriver\IEDriverServer.exe")
+driver = {new InternetExplorerDriver() }*/
 
 localHost = "lscob2b.local:9001"
 intHost000 = "b2bint-000-store-000.lsco-b2b.com:9001"

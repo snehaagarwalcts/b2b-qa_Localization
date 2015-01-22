@@ -32,6 +32,10 @@ class ContactUsPage extends Page{
 		//comments { $('#contactUsForm div.controls input', 7) }
 		
 		sendButton { $('button.button') }
+		//required fields left unfilled or something wrong with server
+		alertMessage { $('div.alert-message') }
+		//when email sends
+		noteMessage { $('div.note-message') }
 	}
 	
 	def checkRequiredContent(){
@@ -39,6 +43,14 @@ class ContactUsPage extends Page{
 		!introContainer.empty
 		!required.empty
 		!contactUsForm.empty
+	}
+	
+	def checkAlertMessageExists(){
+		!alertMessage.empty
+	}
+	
+	def checkNoteMessageExists(){
+		!noteMessage.empty
 	}
 	
 	def fillOutFirstName(String firstname){

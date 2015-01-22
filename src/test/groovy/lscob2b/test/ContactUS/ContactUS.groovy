@@ -28,16 +28,33 @@ class ContactUS extends GebReportingSpec {
 		at ContactUsPage
 		
 		then: "fill out the form and request access"
-		def title = selectTitleOption(2)
-		fillOutFirstName('abc')
-		fillOutlastName('def')
-		fillOutEmail('cust@unit-2')
+		def title = selectTitleOption(3)
+		fillOutFirstName('Dipen')
+		fillOutlastName('Shah')
+		fillOutEmail('dipen.shah@sap.com')
 		fillOutPhone('111-222-3333')
-		fillOutCompanyName('Levis')
+		fillOutCompanyName('SAP')
 		fillOutCustomerNumber('111-222-3333')
 		def country = selectCountryOption(18)
 		clickSendButton()
-		Thread.sleep(2000)
-		//TODO check if it goes to confirmation page when its implemented
+		checkNoteMessageExists()
+	}
+	
+	def "New customer tried to submit form without filling out all require information"(){
+		
+		when: "At contact us page fill out most of the information"
+		at ContactUsPage
+		def title = selectTitleOption(3)
+		//fillOutFirstName('Dipen')
+		fillOutlastName('Shah')
+		fillOutEmail('cust@unit-2')
+		fillOutPhone('111-222-3333')
+		fillOutCompanyName('SAP')
+		fillOutCustomerNumber('111-222-3333')
+		def country = selectCountryOption(18)
+		clickSendButton()
+		
+		then: "We should get an alert message"
+		checkAlertMessageExists()
 	}
 }
