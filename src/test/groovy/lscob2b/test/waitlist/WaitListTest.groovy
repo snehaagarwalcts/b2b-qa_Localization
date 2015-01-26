@@ -9,195 +9,216 @@ import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.IgnoreIf
+import de.hybris.geb.page.hac.console.ImpexImportPage
 
 
-public class WaitListTest extends GebReportingSpec {
-	
+public class WaitListTest extends GebReportingSpec{
+
 	def setupSpec() {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 	}
-	
+
 	def setup() {
 		to LoginPage
 	}
 
-	def cleanup() {
+	/*def cleanup() {
 		masterTemplate.doLogout()
-	}
-	
+	}*/
+
 	def loginAndGoToPage(user) {
 		login(user)
-		
+
 		at HomePage
 		masterTemplate.waitListLink.click()
 	}
 
+	def "Load Out Of Stock impex"(){
+		when: "go to HAC login"
+		browser.go(baseUrl +"../")
+
+		then: "At HAC login"
+		at de.hybris.geb.page.hac.LoginPage
+
+		when: "at do login"
+		doLogin("admin", "nimda")
+		at de.hybris.geb.page.hac.HomePage
+		browser.go(baseUrl +"../"+"console/impex/import")
+
+		then:"At impex import page and import the impex"
+		at ImpexImportPage
+		importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
+		checkNotification()
+	}
+	
 	def "Test WaitList link"() {
 		setup:
-			login(user)
-		
+		login(user)
+
 		when: "At homepage"
-			at HomePage
-			
+		at HomePage
+
 		then: "Check waitlist link"
-			!masterTemplate.waitListLink.empty
-				
+		!masterTemplate.waitListLink.empty
+
 		and: "Click on link"
-			masterTemplate.waitListLink.click()
-			at WaitListPage
-			
+		masterTemplate.waitListLink.click()
+		at WaitListPage
+
 		where:
-		user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getADockersUser()]
-		
+		user << [
+			TestDataCatalog.getALevisUser(),
+			TestDataCatalog.getADockersUser()
+		]
 	}
-	
+
 	def "Adding to waitlist from QuickOrder page"() {
 		setup:
-			loginAndGoToPage(user)
-//			println "User ${user.email}"
-			
+		loginAndGoToPage(user)
+		//			println "User ${user.email}"
+
 		when: "At WaitList page"
-			at WaitListPage	
-		
+		at WaitListPage
+
 		then: "Check current quantity of product"
-			int currentQuantity = getProductQuantityRequested(productCode)
-		
+		int currentQuantity = getProductQuantityRequested(productCode)
+
 		and: "Open waitlist grid at QuickOrderPage"
-			openSizingGridAtQuickOrderPage(productCode)	
-			sizingGrid.clickNotifyMe()
-			
+		openSizingGridAtQuickOrderPage(productCode)
+		sizingGrid.clickNotifyMe()
+
 		and: "Add item to waitlist"
-			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-			sizingGrid.clickAddToWaitList()
-		
+		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+		sizingGrid.clickAddToWaitList()
+
 		and: "Go to waitlist page"
-			masterTemplate.waitListLink.click()
-			
+		masterTemplate.waitListLink.click()
+
 		when: "At WaitList page"
-			at WaitListPage
-			
+		at WaitListPage
+
 		then: "Check updated quantity of product"
-			getProductQuantityRequested(productCode) == (currentQuantity+1)
-		
+		getProductQuantityRequested(productCode) == (currentQuantity+1)
+
 		where:
-			productCode 	| user
-			"05527-0458"	| TestDataCatalog.getALevisUser()
-//			"05527-0458"	| TestDataCatalog.getADockersUser()
+		productCode 	| user
+		"05527-0458"	| TestDataCatalog.getALevisUser()
+		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
-	
+
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
-			loginAndGoToPage(user)
-			
+		loginAndGoToPage(user)
+
 		when: "At WaitList page"
-			at WaitListPage
-		
+		at WaitListPage
+
 		then: "Check current quantity of product"
-			int currentQuantity = getProductQuantityRequested(productCode)
-		
+		int currentQuantity = getProductQuantityRequested(productCode)
+
 		and: "Open waitlist grid at ProductDetail"
-			openSizingGridAtProductDetailsPage(productCode)
-			sizingGrid.clickNotifyMe()
-			
+		openSizingGridAtProductDetailsPage(productCode)
+		sizingGrid.clickNotifyMe()
+
 		and: "Add item to waitlist"
-			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-			sizingGrid.clickAddToWaitList()
-		
+		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+		sizingGrid.clickAddToWaitList()
+
 		and: "Go to waitlist page"
-			masterTemplate.waitListLink.click()
-			
+		masterTemplate.waitListLink.click()
+
 		when: "At WaitList page"
-			at WaitListPage
-			
+		at WaitListPage
+
 		then: "Check updated quantity of product"
-			getProductQuantityRequested(productCode) == (currentQuantity+1)
-		
+		getProductQuantityRequested(productCode) == (currentQuantity+1)
+
 		where:
-			productCode 	| user
-			"05527-0458"	| TestDataCatalog.getALevisUser()
-//			"05527-0458"	| TestDataCatalog.getADockersUser()
+		productCode 	| user
+		"05527-0458"	| TestDataCatalog.getALevisUser()
+		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
-	
+
 	def "Edit quantities of product in WaitList page"() {
 		setup:
-			login(user)
-			
+		login(user)
+
 		when: "At HomePage"
-			at HomePage
-			
+		at HomePage
+
 		then: "Add product to waitlist"
-			openSizingGridAtProductDetailsPage(productCode)
-			sizingGrid.clickNotifyMe()
-			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-			sizingGrid.clickAddToWaitList()
-			
+		openSizingGridAtProductDetailsPage(productCode)
+		sizingGrid.clickNotifyMe()
+		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+		sizingGrid.clickAddToWaitList()
+
 		and: "Go to waitlist page"
-			masterTemplate.waitListLink.click()
-			
+		masterTemplate.waitListLink.click()
+
 		when: "At WaitList page"
-			at WaitListPage
-		
+		at WaitListPage
+
 		then: "Check product quantity"
-			int currentQuantity = getProductQuantityRequested(productCode)
-			currentQuantity > 0
-			
+		int currentQuantity = getProductQuantityRequested(productCode)
+		currentQuantity > 0
+
 		and: "Edit product quantity"
-			editProductQuantityRequested(productCode,currentQuantity+1)
-			
+		editProductQuantityRequested(productCode,currentQuantity+1)
+
 		and: "Check edited product quantity"
-			getProductQuantityRequested(productCode) == (currentQuantity+1)
-			
+		getProductQuantityRequested(productCode) == (currentQuantity+1)
+
 		where:
-			productCode 	| user
-			"05527-0458"	| TestDataCatalog.getALevisUser()
-//			"05527-0458"	| TestDataCatalog.getADockersUser()
+		productCode 	| user
+		"05527-0458"	| TestDataCatalog.getALevisUser()
+		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
-	
+
 	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Remove product from WaitList page"() {
 		setup:
-			login(user)
-			
+		login(user)
+
 		when: "At HomePage"
-			at HomePage
-			
+		at HomePage
+
 		then: "Add product to waitlist"
-			openSizingGridAtProductDetailsPage(productCode)
-			sizingGrid.clickNotifyMe()
-			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-			sizingGrid.clickAddToWaitList()
-			
+		openSizingGridAtProductDetailsPage(productCode)
+		sizingGrid.clickNotifyMe()
+		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+		sizingGrid.clickAddToWaitList()
+
 		and: "Go to waitlist page"
-			masterTemplate.waitListLink.click()
-			
+		masterTemplate.waitListLink.click()
+
 		when: "At WaitList page"
-			at WaitListPage
-		
+		at WaitListPage
+
 		then: "Check product quantity"
-			getProductQuantityRequested(productCode) > 0
-			
+		getProductQuantityRequested(productCode) > 0
+
 		and: "Remove product from waitlist"
-			removeProduct(productCode)
-			
+		removeProduct(productCode)
+
 		when: "At WaitList page"
-			at WaitListPage
-			
+		at WaitListPage
+
 		then: "Check absence of product"
-			getProductQuantityRequested(productCode) == 0
-						
+		getProductQuantityRequested(productCode) == 0
+
 		where:
-			productCode 	| user
-			"05527-0458"	| TestDataCatalog.getALevisUser()
-//			"05527-0458"	| TestDataCatalog.getADockersUser()
+		productCode 	| user
+		"05527-0458"	| TestDataCatalog.getALevisUser()
+		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
-	
+
 	//FIXME create a page helper
 	def openSizingGridAtQuickOrderPage(String productCode){
 		browser.go(baseUrl + "search/advanced")
 		at QuickOrderPage
 		doSearch(productCode)
 	}
-	
+
 	//FIXME create a page helper
 	def openSizingGridAtProductDetailsPage(String productCode){
 		browser.go(baseUrl + "p/" + productCode)

@@ -15,7 +15,8 @@ class WaitListPage extends Page {
 	static content = {
 		masterTemplate {module MasterTemplate}
 		itemLink { $(".details>.itemName>a", href: endsWith(it)) }
-		quantityRequested { $(".details span.qty", id: contains(it)) }
+		quantityRequested { $(".details #05527-0458\\.styleQty", id: contains(it)) }
+		quantityAvailable { $(".details #05527-0458\\.styleStock", id: contains(it)) }
 		
 		cartItems(required: false) { $("div.cartItems") }
 		
@@ -36,6 +37,14 @@ class WaitListPage extends Page {
 		else {
 			def item = cartItems.find("div.itemName > a", href:endsWith(productCode))
 			return (item.empty) ? -1 : item.parent().parent().find("div.requested>span.qty").text().toInteger()
+		}
+	}
+	
+	int getProductQuantityAvailable(String productCode) {
+		if(!emptyItems.empty) return 0 //Waitlist is empty
+		else {
+			def item = cartItems.find("div.itemName > a", href:endsWith(productCode))
+			return (item.empty) ? -1 : item.parent().parent().find("div.quantity>span.qty").text().toInteger()
 		}
 	}
 	

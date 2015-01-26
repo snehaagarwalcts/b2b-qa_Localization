@@ -34,11 +34,6 @@ class QuickOrderPage extends Page{
 		searchLink { $("div.searchButton button") }
 		prodcutIDs { $("div.idCheckbox div label") }
 		checkOutLink { $("a.checkout") }
-		
-		/*//To place an order with multiple product ids
-		addQuantity { $("#AddToCartOrderForm  tr > td > .sku-quantity", 0) }
-		addButton { $(".add-product-ids button") }
-		addToCartButton { $("") }*/
 	}
 	
 	def doSearch(String productID){
@@ -56,17 +51,6 @@ class QuickOrderPage extends Page{
 	def int getResultSize() {
 		$("div.cartItem").size()
 	}
-	
-	/*def doAdd(String productID){
-		searchInput = productID
-		prodcutIDs.click()
-		addButton.click()
-	}*/
-	
-	/*def doAddButton(String productID){
-		searchInput = productID
-		addButton.click()
-	}*/
 	
 	def checkKeywordSearchLinkExists(){
 		!keywordSearch.empty
