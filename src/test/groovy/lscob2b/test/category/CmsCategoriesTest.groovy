@@ -1,18 +1,13 @@
 package lscob2b.test.category;
 
-import org.spockframework.compiler.model.ExpectBlock;
-
-import spock.lang.Shared;
-import spock.lang.Stepwise;
-import lscob2b.pages.HomePage;
-import lscob2b.pages.LoginPage;
-import lscob2b.pages.productcategory.ProductCategoryPage;
-import lscob2b.pages.productdetails.ProductDetailsPage;
-import lscob2b.test.data.TestDataCatalog;
-import lscob2b.test.data.User;
-import lscob2b.test.login.LoginFailureTest;
-import geb.navigator.Navigator;
-import geb.spock.GebReportingSpec;
+import geb.spock.GebReportingSpec
+import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
+import lscob2b.test.data.TestDataCatalog
+import lscob2b.test.data.TestHelper
+import spock.lang.IgnoreIf
+import spock.lang.Shared
+import spock.lang.Stepwise
 
 @Stepwise
 public class CmsCategoriesTest extends GebReportingSpec {
@@ -21,11 +16,14 @@ public class CmsCategoriesTest extends GebReportingSpec {
 	def currentOpenMenu
 
 	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 		to LoginPage
 		login (TestDataCatalog.getAMultibrandUser())
 		at HomePage
 	}
-
+	
+	
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "All cms categories should be displayed in the navigation menu"(){
 
 		when: "Switch to correct brand if not already there"

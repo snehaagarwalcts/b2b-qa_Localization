@@ -11,7 +11,7 @@ class CreateUserPage extends Page{
 
 	static url = "my-account/manage-users/create"
 
-	static at = { title == "LSCO B2B Site" }
+	static at = { waitFor { title == "LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate { module MasterTemplate }

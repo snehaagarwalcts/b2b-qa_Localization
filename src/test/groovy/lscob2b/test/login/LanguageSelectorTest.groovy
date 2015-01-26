@@ -15,10 +15,10 @@ class LanguageSelectorTest extends GebReportingSpec {
 		to LoginPage
 
 		// force redirect to ensure URL is correct
-		langSelector = 'sv'
+//		langSelector = 'sv'
 		langSelector = 'en'
 	}
-
+	
 	def "Check languages are present" () {
 		setup: "Define languages"
 
@@ -46,9 +46,11 @@ class LanguageSelectorTest extends GebReportingSpec {
 		then: "Page content changes language"
 		and: "URL changes"
 
-		pageheading == greetingValue
-		browser.currentUrl.contains(urlPart)
-
+		waitFor {
+			pageheading == greetingValue
+		
+			browser.currentUrl.contains(urlPart)
+		}
 		where:
 
 		lang 	| greetingValue			|	urlPart

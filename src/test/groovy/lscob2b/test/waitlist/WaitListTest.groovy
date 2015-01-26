@@ -7,12 +7,15 @@ import lscob2b.pages.QuickOrder.QuickOrderPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestDataCatalog
-import spock.lang.Ignore
-import spock.lang.IgnoreRest;
-import spock.lang.Stepwise
+import lscob2b.test.data.TestHelper
+import spock.lang.IgnoreIf
 
 
 public class WaitListTest extends GebReportingSpec {
+	
+	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+	}
 	
 	def setup() {
 		to LoginPage
@@ -150,6 +153,7 @@ public class WaitListTest extends GebReportingSpec {
 //			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Remove product from WaitList page"() {
 		setup:
 			login(user)

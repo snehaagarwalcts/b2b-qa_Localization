@@ -3,7 +3,7 @@ package lscob2b.modules
 import geb.Module
 import geb.navigator.Navigator
 
-class SizingGridModule extends Module{
+class SizingGridModule extends Module {
 
 	static content = {
 
@@ -31,7 +31,7 @@ class SizingGridModule extends Module{
 	}
 
 	def addOrderQuantity(String quantity){
-		orderQuantity.value(quantity)
+		$("form.add_to_cart_order_form input.sku-quantity",0).value(quantity)
 	}
 
 	def addQuantityToFirstPossibleItemInWaitListGrid(Integer value) {

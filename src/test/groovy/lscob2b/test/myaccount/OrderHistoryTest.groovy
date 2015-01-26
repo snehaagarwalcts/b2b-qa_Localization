@@ -4,21 +4,22 @@ import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.CheckOut.CheckOutPage
-import lscob2b.pages.MyAccount.OrderDetailPage;
+import lscob2b.pages.MyAccount.OrderDetailPage
 import lscob2b.pages.MyAccount.OrderHistoryPage
 import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.test.data.TestDataCatalog
-import spock.lang.Ignore;
-import spock.lang.IgnoreRest
-import spock.lang.Shared;
-import spock.lang.Stepwise
-
-
+import lscob2b.test.data.TestHelper
+import spock.lang.Ignore
+import spock.lang.IgnoreIf
 
 class OrderHistoryTest extends GebReportingSpec {
 
+	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+	}
+	
 	def placeAnOrder(String productCode) {
 		//Order Detail
 		browser.go(baseUrl + "p/" + productCode)
@@ -115,6 +116,7 @@ class OrderHistoryTest extends GebReportingSpec {
 			user = TestDataCatalog.getACustomerUser()
 	}
 	
+	@IgnoreIf ({ System.getProperty("geb.browser").contains("safari")})
 	def "Test order creation in history"() {
 		setup:
 			login(user)
@@ -182,7 +184,8 @@ class OrderHistoryTest extends GebReportingSpec {
 
 	}
 		
-	def "Test search functionality in history"() {	//TODO What's a PO???
+	@IgnoreIf ({ System.getProperty("geb.browser").contains("safari")})
+	def "Test search functionality in history"() {	
 		setup:
 		login(user)
 		

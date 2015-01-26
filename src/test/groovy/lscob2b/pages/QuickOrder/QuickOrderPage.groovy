@@ -9,13 +9,15 @@ import lscob2b.modules.CheckOutModule
 class QuickOrderPage extends Page{
 	static url = "/search/advanced"
 
-	static at = { title == "Quick Order | LSCO B2B Site" }
+	static at = { waitFor { title == "Quick Order | LSCO B2B Site" } }
 
 	static content = { 
 		
 		masterTemplate { module MasterTemplate } 
 		sizingGrid { module SizingGridModule}
 		checkOut { module CheckOutModule}
+		
+		productSizingGrids { $("div.cartItem").collect { module SizingGridModule, it  } }
 		
 		//Quick order page content
 		keywordSearch { $("div label.control-label") }
@@ -31,7 +33,7 @@ class QuickOrderPage extends Page{
 		searchInput { $("#js-product-ids") }
 		searchLink { $("div.searchButton button") }
 		prodcutIDs { $("div.idCheckbox div label") }
-		checkOutLink { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')) }
+		checkOutLink { $("a.checkout") }
 		
 		/*//To place an order with multiple product ids
 		addQuantity { $("#AddToCartOrderForm  tr > td > .sku-quantity", 0) }
@@ -43,6 +45,16 @@ class QuickOrderPage extends Page{
 		searchInput = productID
 		prodcutIDs.click()
 		searchLink.click()
+	}
+	
+	def doMultipleSearch(String productID1, String productID2) {
+		searchInput.value(productID1 + ", " + productID2)
+		prodcutIDs.click()
+		searchLink.click()
+	}
+	
+	def int getResultSize() {
+		$("div.cartItem").size()
 	}
 	
 	/*def doAdd(String productID){
@@ -87,4 +99,14 @@ class QuickOrderPage extends Page{
 	def checkCheckOuLinkExists(){
 		!checkOutLink.empty
 	}
+	
+	def gotoCartPage() {
+		waitFor {
+			js.exec("return document.readyState").equals("complete")
+		}
+		checkOutLink.click()
+	}
+	
+	
+	
 }

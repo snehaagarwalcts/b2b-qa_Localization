@@ -9,7 +9,7 @@ import lscob2b.modules.MasterTemplate
 
 class EditUserDetailsPage extends Page{
 
-	static at = { title == "LSCO B2B Site" }
+	static at = { waitFor { title == "LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate { module MasterTemplate }

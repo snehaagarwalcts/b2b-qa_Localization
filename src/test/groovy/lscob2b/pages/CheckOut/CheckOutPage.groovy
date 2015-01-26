@@ -7,8 +7,8 @@ class CheckOutPage extends Page{
 
 	static url = "/checkout/single/summary"
 
-	static at = { title == "Checkout | LSCO B2B Site" }
-
+	static at = { waitFor { title == "Checkout | LSCO B2B Site" } }
+ 
 	static content = {
 		masterTemplate {module MasterTemplate}
 		

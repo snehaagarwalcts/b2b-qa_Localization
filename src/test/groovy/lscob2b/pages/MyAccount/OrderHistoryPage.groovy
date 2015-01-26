@@ -9,7 +9,7 @@ class OrderHistoryPage extends Page{
 
 	static url = "my-account/orders"
 
-	static at = { title == "Order History | LSCO B2B Site" }
+	static at = { waitFor { title == "Order History | LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate { module MasterTemplate }

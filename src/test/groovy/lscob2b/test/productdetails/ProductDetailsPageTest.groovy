@@ -1,27 +1,24 @@
 package lscob2b.test.productdetails;
 
-import org.spockframework.compiler.model.ExpectBlock;
-
-import spock.lang.Ignore;
-import spock.lang.Stepwise;
-import lscob2b.pages.HomePage;
-import lscob2b.pages.LoginPage;
-import lscob2b.pages.productcategory.ProductCategoryPage;
-import lscob2b.pages.productdetails.ProductDetailsPage;
-import lscob2b.pages.CheckOut.CheckOutPage;
-import lscob2b.pages.cart.CartPage
-import lscob2b.pages.OrderConfirmation.OrderConfirmationPage;
-import lscob2b.test.data.Product;
-import lscob2b.test.data.TestDataCatalog;
-import lscob2b.test.data.User;
-import lscob2b.test.login.LoginFailureTest;
-import lscob2b.TestConstants
-import geb.navigator.Navigator;
-import geb.spock.GebReportingSpec;
-import spock.lang.IgnoreRest
 import static lscob2b.TestConstants.*
+import geb.spock.GebReportingSpec
+import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
+import lscob2b.pages.CheckOut.CheckOutPage
+import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
+import lscob2b.pages.cart.CartPage
+import lscob2b.pages.productdetails.ProductDetailsPage
+import lscob2b.test.data.Product
+import lscob2b.test.data.TestDataCatalog
+import lscob2b.test.data.TestHelper
+import lscob2b.test.data.User
+import spock.lang.IgnoreIf
 
 class ProductDetailsPageTest extends GebReportingSpec {
+	
+	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+	}
 	
 	def cleanup() {
 		masterTemplate.doLogout()
@@ -77,6 +74,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		cartTemplate.checkItemTotalExists()
 	}
 	
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "place an order from product details page"(){
 		
 		User user = TestDataCatalog.getACustomerUser()
@@ -102,6 +100,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at OrderConfirmationPage
 	}
 	
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "user that does not hold customer rights tries to place an order from product details page"(){
 		User user = TestDataCatalog.getALevisUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)

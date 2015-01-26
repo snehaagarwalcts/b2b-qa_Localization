@@ -8,7 +8,7 @@ class MyAccountPage extends Page {
 
 	static url = "my-account"
 
-	static at = { title == "Your Account | LSCO B2B Site" }
+	static at = { waitFor { title == "Your Account | LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate { module MasterTemplate }

@@ -10,7 +10,7 @@ class WaitListPage extends Page {
 
 	static url = "waitlist"
 
-	static at = { title == "Your Shopping Waitlist | LSCO B2B Site" }
+	static at = { waitFor { title == "Your Shopping Waitlist | LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate {module MasterTemplate}

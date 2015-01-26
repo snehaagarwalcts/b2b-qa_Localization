@@ -9,7 +9,7 @@ class LoginPage extends Page {
 
 	static url = "login"
 
-	static at = { title == "LSCO B2B Site" }
+	static at = { waitFor { title == "Login | LSCO B2B Site" } }
 
 	static content = {
 		// login form

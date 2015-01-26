@@ -1,18 +1,19 @@
 package lscob2b.test.login
 
-import geb.spock.GebReportingSpec
-
-import lscob2b.pages.LoginPage
-import spock.lang.Stepwise
 import static lscob2b.TestConstants.*
+import geb.spock.GebReportingSpec
+import lscob2b.pages.LoginPage
+import lscob2b.test.data.TestHelper
+import spock.lang.Stepwise
 
 @Stepwise
 class ForgottenYourPasswordTest extends GebReportingSpec {
 
     def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
         to LoginPage
     }
-
+	
     def "Open forgotten password dialog"() {
 
         when: "Click forgot password link"

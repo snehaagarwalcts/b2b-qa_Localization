@@ -1,22 +1,24 @@
-package lscob2b.test.QuickOrder
+package lscob2b.test.quickorder
 
+import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
-import lscob2b.TestConstants
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.CheckOut.CheckOutPage;
-import lscob2b.pages.OrderConfirmation.OrderConfirmationPage;
+import lscob2b.pages.CheckOut.CheckOutPage
+import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
 import lscob2b.pages.QuickOrder.QuickOrderPage
 import lscob2b.pages.cart.CartPage
-import spock.lang.Stepwise
-import lscob2b.TestConstants
-import static lscob2b.TestConstants.*
+import lscob2b.test.data.TestDataCatalog
+import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
-import spock.lang.IgnoreRest
 
 //@Stepwise
 class QuickOrderTest extends GebReportingSpec {
 
+	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+	}
+	
 	def setup() {
 		to LoginPage
 	}
@@ -172,23 +174,34 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [admin1]
 	}
 		
-	/*def "Place an order with multiple product ID's"(){
+	@Ignore
+	def "Quick order with multiple product ID's"(){
 		setup:
-		loginAsUserAndGoToQuickOrder(user)
+			login(user)
+			at HomePage
+			masterTemplate.clickQuickOrder()
+			
+		when: "At QuickOrder Page"
+			at QuickOrderPage
+			
+		then: "Search Multiple ID's"
+			doMultipleSearch(product1, product2)
+			getResultSize() == 2
+			
+		and: "Add first product to cart"	
+			productSizingGrids[0].addOrderQuantity('1')
+			productSizingGrids[0].addToCart()
+			
+		and: "Add second product to cart"
+			productSizingGrids[1].addOrderQuantity('1')
+			productSizingGrids[1].addToCart()
 		
-		when: "Placing orders with mulitple ID's"
-		doAdd('00501-1615')
-		
-		then: "Do search"
-		doAddButton('00501-0039')
-		searchLink.click()
-		
-		sizingGrid.addOrderQuantity('10')
-		sizingGrid.addToCart()
-		addQuantity('10')
-		sizingGrid.addToCart()
-		
+		and: "Go to cart page"
+			gotoCartPage()
+			//FIXME popup problem on page
+						
 		where:
-		user << [levisUser]
-	}*/
+			product1 | product2 | user
+			"05527-0458" | "00501-1615" | TestDataCatalog.getALevisUser()
+	}
 }

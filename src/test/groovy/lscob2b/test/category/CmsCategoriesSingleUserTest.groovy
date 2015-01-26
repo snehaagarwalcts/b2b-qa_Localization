@@ -1,24 +1,20 @@
 package lscob2b.test.category
 
-import org.spockframework.compiler.model.ExpectBlock;
-
-import spock.lang.Shared
-import spock.lang.Stepwise
+import static lscob2b.TestConstants.*
+import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.productcategory.ProductCategoryPage
-import lscob2b.pages.productdetails.ProductDetailsPage
-import lscob2b.test.data.TestDataCatalog;
-import lscob2b.test.data.User
-import lscob2b.test.login.LoginFailureTest
-import geb.navigator.Navigator
-import geb.spock.GebReportingSpec
-import static lscob2b.TestConstants.*
+import lscob2b.test.data.TestHelper
+import spock.lang.Shared
 
 class CmsCategoriesSingleUserTest extends GebReportingSpec {
 
 	@Shared
 	def currentOpenMenu
+	
+	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+	}
 	
 	def setup(){
 		to LoginPage

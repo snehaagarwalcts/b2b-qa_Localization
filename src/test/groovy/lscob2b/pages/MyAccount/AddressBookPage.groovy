@@ -9,7 +9,7 @@ class AddressBookPage extends Page{
 
 	static url = "my-account/address-book"
 
-	static at = { title == "Address Book | LSCO B2B Site" }
+	static at = { waitFor { title == "Address Book | LSCO B2B Site" }  }
 
 	static content = {
 		

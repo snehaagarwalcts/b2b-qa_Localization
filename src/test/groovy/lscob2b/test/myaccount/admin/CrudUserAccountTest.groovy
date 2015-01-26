@@ -1,23 +1,24 @@
 package lscob2b.test.myaccount.admin;
 
-import spock.lang.Ignore;
-import spock.lang.Shared;
-import spock.lang.Stepwise;
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.MyAccount.admin.CreateUserPage;
-import lscob2b.pages.MyAccount.admin.UpdateUserConfirmationPage;
-import lscob2b.pages.MyAccount.admin.EditUserDetailsPage;
-import lscob2b.pages.MyAccount.admin.ManageUsersPage;
-import lscob2b.pages.MyAccount.admin.CreateUserConfirmationPage;
-import lscob2b.pages.MyAccount.admin.ViewUserDetailsPage;
-import lscob2b.test.data.TestDataCatalog;
+import lscob2b.pages.MyAccount.admin.CreateUserConfirmationPage
+import lscob2b.pages.MyAccount.admin.CreateUserPage
+import lscob2b.pages.MyAccount.admin.EditUserDetailsPage
+import lscob2b.pages.MyAccount.admin.ManageUsersPage
+import lscob2b.pages.MyAccount.admin.UpdateUserConfirmationPage
+import lscob2b.test.data.TestDataCatalog
+import lscob2b.test.data.TestHelper
+import spock.lang.IgnoreIf
+import spock.lang.Shared
+import spock.lang.Stepwise
 
 @Stepwise
 public class CrudUserAccountTest extends GebReportingSpec {
 
 	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 		to LoginPage
 		login (TestDataCatalog.getAnAdminUser())
 		at HomePage
@@ -26,6 +27,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 	@Shared
 	String email
 
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Create a user"(){
 
 		when: "Open manage users page"
@@ -61,6 +63,7 @@ public class CrudUserAccountTest extends GebReportingSpec {
 			userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
 	}
 
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Update the created user"(){
 
 		when:

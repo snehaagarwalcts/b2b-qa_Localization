@@ -8,11 +8,14 @@ class CartPage extends Page{
 
 	static url = "/cart"
 
-	static at = { title == "Your Shopping Cart | LSCO B2B Site" }
+	static at = { waitFor { title == "Your Shopping Cart | LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate {module MasterTemplate}
-		cartTemplate {module CartModule}
+		cartTemplate {module CartModule} 	//TODO to remove use cartItems
+		
+		cartItems { $("div.cartItem").collect { module CartModule, it  } }
+		
 		
 		alertMessage1 { $(".alert-message h2") }
 		alertMessage2 { $(".alert-message p") }
@@ -28,4 +31,10 @@ class CartPage extends Page{
 	def checkAlertMessage2(){
 		!alertMessage2.empty
 	}
+	
+	def boolean removeProduct(productID) {
+		String replaced = productID.collectReplacements{ if(it == '-') { '' } else { null } }
+		println(replaced)
+	}
+	
 }

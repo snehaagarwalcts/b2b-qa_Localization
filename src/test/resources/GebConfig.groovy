@@ -1,11 +1,11 @@
 package test.resources
 
-import lscob2b.util.geb.DummyReporter;
 import geb.driver.SauceLabsDriverFactory
+import lscob2b.util.geb.DummyReporter
 
-import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.ie.InternetExplorerDriver
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.safari.SafariDriver
 
 def sysProps = System.getProperties()
 
@@ -30,11 +30,18 @@ if (sauceBrowser) {
  * see: https://code.google.com/p/selenium/wiki/ChromeDriver for details
  */
 	driver = { new ChromeDriver() }
-}else {
-	driver = { new FirefoxDriver() }
+}else if (sysProps.get("geb.safari.browser")){
+	
+	driver = { new SafariDriver() }
+	
+} else {
+	driver = { new FirefoxDriver() } 
 }
 /*System.setProperty("webdriver.ie.driver", "C:\IEDriver\IEDriverServer.exe")
 driver = {new InternetExplorerDriver() }*/
+
+/* Setting property for @IgnoreIf  */
+System.setProperty("geb.browser","firefox")
 
 localHost = "lscob2b.local:9001"
 intHost000 = "b2bint-000-store-000.lsco-b2b.com:9001"

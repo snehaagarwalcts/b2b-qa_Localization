@@ -9,7 +9,7 @@ import lscob2b.pages.CheckOut.CheckOutPage
 
 class OrderDetailPage extends Page{
 
-	static at = { title == "Order Details | LSCO B2B Site" }
+	static at = { waitFor { title == "Order Details | LSCO B2B Site" } }
 
 	static content = {
 		

@@ -6,12 +6,15 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.OrderSearchPage
 import lscob2b.test.data.TestDataCatalog
-import spock.lang.Ignore
-import spock.lang.IgnoreRest
-import lscob2b.pages.productdetails.ProductDetailsPage
+import lscob2b.test.data.TestHelper
+import spock.lang.IgnoreIf
 
 class MultibrandUserTest extends GebReportingSpec {
 
+	def setupSpec() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+	}
+	
 	def setup() {
 		to LoginPage
 	}
@@ -34,6 +37,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		dockersLogo
 	}
 
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Switch to Dockers theme"(){
 		setup:
 		login (multibrandUser)
@@ -50,6 +54,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Swtich to Levis theme"(){
 		setup:
 		login (multibrandUser)
@@ -94,6 +99,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 	
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Check if correct products/catalogs are displayed on Levis Theme"(){
 		setup:
 		login (multibrandUser)
@@ -111,7 +117,7 @@ class MultibrandUserTest extends GebReportingSpec {
 		checkMessageTextExists()
 	}
 	
-
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Check if correct products/catalogs are displayed on Dockers Theme"(){
 		setup:
 		login (multibrandUser)

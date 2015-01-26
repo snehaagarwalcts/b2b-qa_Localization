@@ -10,7 +10,7 @@ class ContactUsPage extends Page{
 
 	static url = "/contactus"
 
-	static at = { title == "LSCO B2B Site" }
+	static at = { waitFor { title == "LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate {module MasterTemplate}
