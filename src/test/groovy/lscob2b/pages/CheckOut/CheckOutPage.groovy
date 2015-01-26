@@ -13,9 +13,26 @@ class CheckOutPage extends Page{
 		masterTemplate {module MasterTemplate}
 		
 		placeOrderLink { $("div.cartButtons a.placeOrderButton") }
+		
+		//Checkout page labels
+		total { $('.total span') }
+		subTotal { $('.subtotal span') }
+		including { $('#ajaxCart .including') } //For this to work order simulation has to be turned on
 	}
 
 	def doPlaceOrder(){
 		placeOrderLink.click()
+	}
+	
+	def checkTotalExists(){
+		!total.empty
+	}
+	
+	def checkSubTotalExists(){
+		!subTotal.empty
+	}
+	
+	def checkIncludingExists(){
+		!including.empty
 	}
 }

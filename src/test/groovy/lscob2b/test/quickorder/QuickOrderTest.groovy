@@ -204,4 +204,22 @@ class QuickOrderTest extends GebReportingSpec {
 			product1 | product2 | user
 			"05527-0458" | "00501-1615" | TestDataCatalog.getALevisUser()
 	}
+	
+	@Ignore
+	def "check content of check out page"(){
+		
+		when: "At Quick Order page look for product, add quantity, and go to check out page"
+		loginAsUserAndGoToQuickOrder(levisUser)
+		doSearch('00501-1615')
+		//sizingGrid.waitForSizingGridLoadedCompletely()
+		sizingGrid.addOrderQuantity('1')
+		sizingGrid.addToCart()
+		checkOut.doCheckOut()
+		
+		then: "At check out page look for the common content"
+		at CheckOutPage
+		checkTotalExists()
+		checkSubTotalExists()
+		//checkIncludingExists()
+	}
 }
