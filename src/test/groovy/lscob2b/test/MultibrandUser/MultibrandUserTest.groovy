@@ -4,10 +4,10 @@ import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.OrderSearchPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
-import spock.lang.IgnoreIf
+import spock.lang.Ignore
+import spock.lang.IgnoreRest;
 
 class MultibrandUserTest extends GebReportingSpec {
 
@@ -22,118 +22,157 @@ class MultibrandUserTest extends GebReportingSpec {
 	def cleanup() {
 		masterTemplate.doLogout()
 	}
-
+	
 	def "Check switch to dockers is present"() {
 		setup:
-		login (multibrandUser)
+			login (multibrandUser)
 
-		when: "at home"
+		when: "At HomePage"
+			at HomePage
 
-		at HomePage
-
-		then: "Levis theme and switch to dockers is present"
-
-		checkSwitchTo()
-		dockersLogo
+		then: "Check SwitchTo Link"
+			waitFor {
+				masterTemplate.levisLogo.empty
+				!masterTemplate.dockersLogo.empty
+			}
 	}
 
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Switch to Dockers theme"(){
 		setup:
-		login (multibrandUser)
-		at HomePage
-		dockersLogo
+			login (multibrandUser)
 
-		when: "click switch to"
-
-		clickSwitchTo()
-
-		then: "Levis logo is present"
+		when: "At HomePage"
+			at HomePage
+			
+		then: "Check SwitchTo Dockers"
+			waitFor {
+				masterTemplate.levisLogo.empty
+				!masterTemplate.dockersLogo.empty
+			}
 		
-		levisLogo
+		and: "Switch to dockers brand"	
+			masterTemplate.switchBrand()
+			
+		when: "at HomePage"
+			at HomePage
+			
+		then: "Check SwitchTo Levis"
+			waitFor {
+				!masterTemplate.levisLogo.empty
+				masterTemplate.dockersLogo.empty
+			}
 		
 	}
-	
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
+
 	def "Swtich to Levis theme"(){
 		setup:
-		login (multibrandUser)
-		at HomePage
-		clickSwitchTo()
-		levisLogo
-
-		when: "click switch to"
-		clickSwitchTo()
+			login (multibrandUser)
+			
+		when: "At HomePage"
+			at HomePage
 		
-
-		then: "Levis logo is present"
-		dockersLogo		
+		then: "Switch to dockers brand"
+			masterTemplate.switchBrand()
+			
+		when: "At Homepage"
+			at HomePage
 		
+		then: "Check SwitchTo Levis"
+			waitFor {
+				!masterTemplate.levisLogo.empty
+				masterTemplate.dockersLogo.empty
+			}
+
+		and: "Switch to levis brand"
+			masterTemplate.switchBrand()
+			
+		when: "At Homepage"
+			at HomePage
+		
+		then: "Check SwitchTo Dockers"
+			waitFor {
+				masterTemplate.levisLogo.empty
+				!masterTemplate.dockersLogo.empty
+			}
 	}
 	
 	def "Check if switch to dockers is present using Levis customer"(){
 		setup:
-		login (TestDataCatalog.getALevisUser())
+			login (TestDataCatalog.getALevisUser())
 		
 		when: "at home"
-		
-		at HomePage
+			at HomePage
 				
 		then: "Switch to dockers should not be present"
-		
-		!switchToLink.displayed
-		
+			waitFor {
+				masterTemplate.levisLogo.empty
+				masterTemplate.dockersLogo.empty
+			}
 	}
 	
 	def "Check if switch to dockers is present using Dockers customer"(){
 		setup:
-		login (TestDataCatalog.getADockersUser())
+			login (TestDataCatalog.getADockersUser())
 		
 		when: "at home"
-		
-		at HomePage
+			at HomePage
 				
 		then: "Switch to dockers should not be present"
-		
-		!switchToLink.displayed
-		
+		waitFor {
+			masterTemplate.levisLogo.empty
+			masterTemplate.dockersLogo.empty
+		}
 	}
 	
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
+	@Ignore
 	def "Check if correct products/catalogs are displayed on Levis Theme"(){
 		setup:
-		login (multibrandUser)
-		at HomePage
-		dockersLogo
-
-		when: "At homepage search for Levis products"
-
-		masterTemplate.doSearch('501 Levis Original Fit Homestead')
-		at OrderSearchPage
+			login (multibrandUser)
 		
-		then: "Search for Dockers products"
-		masterTemplate.doSearch('dockers') //TODO change to dockers products
-		at OrderSearchPage
-		checkMessageTextExists()
+		when: "At Homepage"
+			at HomePage
+			
+		then: "Check SwitchTo Docker"	
+			masterTemplate.levisLogo.empty
+			!masterTemplate.dockersLogo.empty
+
+		//FIXME use more robust check (ex. product detail)
+//		and: "Search for Levis products"
+//			masterTemplate.doSearch('501 Levis Original Fit Homestead')		
+//			at OrderSearchPage
+//																			
+//		then: "Search for Dockers products"
+//			masterTemplate.doSearch('dockers')								
+//			at OrderSearchPage
+//			waitFor { checkMessageTextExists() }
 	}
 	
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
+	@Ignore
 	def "Check if correct products/catalogs are displayed on Dockers Theme"(){
 		setup:
-		login (multibrandUser)
-		at HomePage
-		dockersLogo
-		clickSwitchTo()
-		levisLogo
+			login (multibrandUser)
 		
-		when: "At homepage search for Dockers products"
-		masterTemplate.doSearch('dockers') //TODO change to dockers products
-		at OrderSearchPage
-		checkMessageTextExists()//TODO Delete once dockers products added
-				
-		then: "Search for Levis products and we should get a message"
-		masterTemplate.doSearch('501 Levis Original Fit Homestead')
-		at OrderSearchPage
-		checkMessageTextExists()
+		when: "At Homepage"
+			at HomePage
+			
+		then: "Switch Brand"
+			masterTemplate.switchBrand()
+		
+		when: "At Homepage"
+			at HomePage
+		
+		then: "Check SwitchTo Levis"	
+			!masterTemplate.levisLogo.empty
+			masterTemplate.dockersLogo.empty
+
+		//FIXME use more robust check (ex. product detail)
+//		and: "Search for Dockers products"
+//			masterTemplate.doSearch('dockers')								
+//			at OrderSearchPage
+//																			
+//		then: "Search for Levis products"
+//			masterTemplate.doSearch('501 Levis Original Fit Homestead')		
+//			at OrderSearchPage
+//			waitFor { checkMessageTextExists() }
 	}
 }

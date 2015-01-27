@@ -9,11 +9,8 @@ import spock.lang.IgnoreIf
 import spock.lang.Shared
 import spock.lang.Stepwise
 
-@Stepwise
-public class CmsCategoriesTest extends GebReportingSpec {
 
-	@Shared
-	def currentOpenMenu
+public class CmsCategoriesTest extends GebReportingSpec {
 
 	def setupSpec() {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
@@ -22,30 +19,26 @@ public class CmsCategoriesTest extends GebReportingSpec {
 		at HomePage
 	}
 	
-	
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "All cms categories should be displayed in the navigation menu"(){
 
-		when: "Switch to correct brand if not already there"
+		when: "At homepage"
+			at HomePage
+			
+		then: "Switch to correct brand if not already there"	
+			masterTemplate.switchBrandIfNecessary(brand)
 
-		masterTemplate.switchBrandIfNecessary(brand)
+		when: "At homepage"
+			at HomePage
+			
+		then: "Check Category"
+			waitFor { !masterTemplate.getCategoryLink(parentCategory).empty }
 
-		then: "we should be at correct brand" //could not find a good way to confirm this
-
-		when: "Open category menu"
-
-		if (currentOpenMenu != parentCategory) {
-			masterTemplate.mouseOverParentCategory(parentCategory)
-			currentOpenMenu = parentCategory
-		}
-
-		then: "Check category exists in menu"
-
-		masterTemplate.subCategoryLinkExists(subCategory)
-
+		and: "Check SubCategory"	
+			waitFor { !masterTemplate.getSubcategoryLink(parentCategory,subCategory).empty }
+			
 		where:
-
 		[brand, parentCategory, subCategory] << new File("src/test/resources/testinput/CmsCategories.txt").readLines()*.tokenize()
-
 	}
+	
+	
 }

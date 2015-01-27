@@ -37,7 +37,7 @@ class MasterTemplate extends Module {
 
 		goToCartLink { $("div.mini-cart h3") }
 
-		brandSelectionInput {$("form#theme-form > input")}
+		brandSelectionInput { $("form#theme-form").find("input", type: "hidden", name: "code") }
 		
 		switchBrandLink {$("a#switchTheme")}
 		
@@ -46,6 +46,10 @@ class MasterTemplate extends Module {
 		searchInput { $("#input-search") }
 		
 		searchLink { $('a.search-icon') } //TODO Enable once working
+		
+		dockersLogo(required:false) { $("a.logo-dockers") }
+		
+		levisLogo(required: false) { $("a.logo-levis") }
 		
 	}
 	
@@ -82,30 +86,44 @@ class MasterTemplate extends Module {
 		switchBrandLink.click()
 	}
 
-	def switchBrandIfNecessary(brand){
+	def void switchBrandIfNecessary(brand){
 		if (brandSelectionInput.value() == brand){
 			switchBrand()
 		}
 	}
 
-	def Navigator getSubCategoryLink(subCategory){
-		$("div.menu a", href: endsWith(subCategory))
-	}
-
-	def subCategoryLinkExists(subCategory){
-		!getSubCategoryLink(subCategory).empty
-	}
-
-	def Navigator getParentCategory(parentCategory){
-		$("div.subnav ul.subnav-list li>h2>a", href: endsWith(parentCategory))
-	}
-
-	def mouseOverParentCategory(parentCategory){
-		getParentCategory(parentCategory).jquery.mouseover()
-	}
+//	def Navigator getSubCategoryLink(subCategory){
+//		$("div.menu a", href: endsWith(subCategory))
+//	}
+//
+//	def subCategoryLinkExists(subCategory){
+//		!getSubCategoryLink(subCategory).empty
+//	}
+//
+//	def Navigator getParentCategory(parentCategory){
+//		$("div.subnav ul.subnav-list li>h2>a", href: endsWith(parentCategory))
+//	}
+//
+//	def mouseOverParentCategory(parentCategory){
+//		getParentCategory(parentCategory).jquery.mouseover()
+//	}
 
 	def mouseOverMyAccountMenuItem(){
 		myAccountLink.jquery.mouseover()
+	}
+	
+	def getCategoryLink(parentCategory) {
+		$("a", href: endsWith(parentCategory))
+	}
+	
+	def getSubcategoryLink(parentCategory, subCategory) {
+		def item = getCategoryLink(parentCategory)
+		def menu = item.parent().parent().find("div.menu")
+		item.jquery.mouseover()
+		waitFor {
+			menu.displayed
+			return menu.find("a", href: endsWith(subCategory))
+		}
 	}
 	
 	def selectManageUsers(){

@@ -44,17 +44,20 @@ class LanguageSelectorTest extends GebReportingSpec {
 		langSelector = lang
 
 		then: "Page content changes language"
-		and: "URL changes"
-
 		waitFor {
 			pageheading == greetingValue
+		}
 		
+		and: "Check browser url"
+		waitFor {
 			browser.currentUrl.contains(urlPart)
 		}
+		
 		where:
-
+		//TODO change sv greetingValue once the language is implemented
+		//FIXME Put in JSON
 		lang 	| greetingValue			|	urlPart
-		"sv"	| "WELCOME"	|	"/sv/"  //TODO change sv greetingValue once the language is implemented 
+		"sv"	| "WELCOME"	|	"/sv/"   
 		"en"	| "WELCOME"	|	"/en/"
 		"ru"	| "WELCOME"	|	"/ru/"
 		"cs"	| "WELCOME"	|	"/cs/"

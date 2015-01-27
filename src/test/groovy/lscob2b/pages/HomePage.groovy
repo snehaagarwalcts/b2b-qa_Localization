@@ -17,10 +17,6 @@ class HomePage extends Page{
 
     static content = {
         masterTemplate {module MasterTemplate}
-		  
-		  switchToLink(required: false) { $("#switchTheme") }
-		  dockersLogo { $("a.logo-dockers") }
-		  levisLogo { $("a.logo-levis") }
     }
 	 
 	 def checkSwitchTo(){

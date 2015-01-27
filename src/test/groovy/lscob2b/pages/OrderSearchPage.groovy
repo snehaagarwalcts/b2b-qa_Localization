@@ -15,7 +15,8 @@ class OrderSearchPage extends Page {
 	static String numberRegex = "\\d+(\\.|,)\\d+((\\.|,)\\d+)?"
 
 	static at = {
-		!$("body.pageType-ContentPage").empty
+//		!$("body.pageType-ContentPage").empty
+		waitFor { title.endsWith("LSCO B2B Site") }
 	}
 
 	static content = {
