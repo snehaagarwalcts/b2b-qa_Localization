@@ -1,12 +1,12 @@
 package lscob2b.pages.productdetails
 
-import lscob2b.modules.MasterTemplate;
-import lscob2b.modules.SizingGridModule;
-import lscob2b.modules.CheckOutModule
+import geb.Page
+import geb.navigator.Navigator
 import lscob2b.modules.CartModule
-import geb.Page;
-import geb.navigator.Navigator;
-import groovy.lang.MetaClass;
+import lscob2b.modules.CheckOutModule
+import lscob2b.modules.MasterTemplate
+import lscob2b.modules.SellModule
+import lscob2b.modules.SizingGridModule
 
 
 
@@ -15,15 +15,22 @@ class ProductDetailsPage extends Page {
 	static String numberRegex = "\\d+(\\.|,)\\d+((\\.|,)\\d+)?"
 
 	static at = {
-		!$("body.pageType-ProductPage").empty
-		browser.currentUrl ==~ /^.*\/p\/[\-\w]+$/
+		waitFor { browser.currentUrl ==~ /^.*\/p\/[\-\w]+$/ }
 	}
 
 	static content = {
 		masterTemplate { module MasterTemplate }
+		
 		sizingGrid { module SizingGridModule}
+		
 		checkOut { module CheckOutModule}
+		
 		cartTemplate {module CartModule}
+		
+		upSelling(required: false) { module SellModule, $("div.up-sell") }
+		
+		crossSelling(required: false) { module SellModule, $("div.cross-sell") }
+		
 		
 		wholesalePriceText { $("div.wholesale-price > span").text()}
 		recommendedRetailPriceText { $("div.recommended-retail-price > span").text()}

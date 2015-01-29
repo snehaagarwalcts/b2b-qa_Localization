@@ -13,6 +13,7 @@ import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import lscob2b.test.data.User
 import spock.lang.IgnoreIf
+import spock.lang.IgnoreRest;
 
 class ProductDetailsPageTest extends GebReportingSpec {
 	
@@ -74,7 +75,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		cartTemplate.checkItemTotalExists()
 	}
 	
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
+//	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "place an order from product details page"(){
 		
 		User user = TestDataCatalog.getACustomerUser()
@@ -100,7 +101,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at OrderConfirmationPage
 	}
 	
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
+//	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "user that does not hold customer rights tries to place an order from product details page"(){
 		User user = TestDataCatalog.getALevisUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
@@ -124,4 +125,26 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		checkAlertMessage1()
 		checkAlertMessage2()
 	}
+	
+	def "Check Up-Selling and Cross-Selling"() {
+		setup:
+			to LoginPage
+			login(user)
+			browser.go(baseUrl + "p/" + productCode)
+						
+		when: "At ProductDetail page"	
+			at ProductDetailsPage
+			
+		then: "Check Up-Selling product"
+			for(pc in upSellingPCs) !upSelling.getItemLink(pc).empty
+		
+		and: "Check Cross-Selling product"
+			for(pc in crossSellingPCs) !crossSelling.getItemLink(pc).empty
+			
+		where:
+			user | productCode | upSellingPCs | crossSellingPCs
+			TestDataCatalog.getALevisUser() | "00501-0039" | ["00501-1964", "00501-1711", "00501-1764", "00501-1860"] | ["00501-0101", "00501-0113", "00501-0114", "00501-1307", "00501-1622"]
+	}
+	
+	
 }
