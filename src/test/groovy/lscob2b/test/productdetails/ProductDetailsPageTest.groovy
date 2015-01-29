@@ -136,11 +136,12 @@ class ProductDetailsPageTest extends GebReportingSpec {
 			at ProductDetailsPage
 			
 		then: "Check Up-Selling product"
-			for(pc in upSellingPCs) !upSelling.getItemLink(pc).empty
+			for(pc in upSellingPCs) !upSelling.itemLink(pc).empty
 		
 		and: "Check Cross-Selling product"
-			for(pc in crossSellingPCs) !crossSelling.getItemLink(pc).empty
+			for(pc in crossSellingPCs) !crossSelling.itemLink(pc).empty
 			
+		//TODO we can improve the test by checking the all product data is in page
 		where:
 			user | productCode | upSellingPCs | crossSellingPCs
 			TestDataCatalog.getALevisUser() | "00501-0039" | ["00501-1964", "00501-1711", "00501-1764", "00501-1860"] | ["00501-0101", "00501-0113", "00501-0114", "00501-1307", "00501-1622"]

@@ -51,6 +51,16 @@ class MasterTemplate extends Module {
 		
 		levisLogo(required: false) { $("a.logo-levis") }
 		
+		/* SubMenu */
+		
+		subMenu { $("div.subnav") }
+		
+		categoryItems { subMenu.find("ul.subnav-list li").not("li.subnav-quickorder") }
+		
+		categoryLink { index -> categoryItems[index].find("a") }
+		
+		quickOrder { subMenu.find("ul.subnav-list li.subnav-quickorder") }
+		
 	}
 	
 	def doSearch(String productID){
@@ -92,21 +102,21 @@ class MasterTemplate extends Module {
 		}
 	}
 
-//	def Navigator getSubCategoryLink(subCategory){
-//		$("div.menu a", href: endsWith(subCategory))
-//	}
-//
-//	def subCategoryLinkExists(subCategory){
-//		!getSubCategoryLink(subCategory).empty
-//	}
-//
-//	def Navigator getParentCategory(parentCategory){
-//		$("div.subnav ul.subnav-list li>h2>a", href: endsWith(parentCategory))
-//	}
-//
-//	def mouseOverParentCategory(parentCategory){
-//		getParentCategory(parentCategory).jquery.mouseover()
-//	}
+	def Navigator getSubCategoryLink(subCategory){
+		$("div.menu a", href: endsWith(subCategory))
+	}
+
+	def subCategoryLinkExists(subCategory){
+		!getSubCategoryLink(subCategory).empty
+	}
+
+	def Navigator getParentCategory(parentCategory){
+		$("div.subnav ul.subnav-list li>h2>a", href: endsWith(parentCategory))
+	}
+
+	def mouseOverParentCategory(parentCategory){
+		getParentCategory(parentCategory).jquery.mouseover()
+	}
 
 	def mouseOverMyAccountMenuItem(){
 		myAccountLink.jquery.mouseover()

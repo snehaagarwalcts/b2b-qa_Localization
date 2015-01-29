@@ -11,10 +11,8 @@ class SellModule extends Module{
 		
 		items { $("ul li") }
 		
-	}
-	
-	def getItemLink(productCode) {
-		items.find("a", href: endsWith(productCode)).parent()
+		itemLink { productCode -> items.find("a", href: endsWith(productCode)) }
+		
 	}
 
 }
