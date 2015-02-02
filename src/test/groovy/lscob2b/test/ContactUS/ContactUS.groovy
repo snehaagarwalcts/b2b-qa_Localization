@@ -28,7 +28,7 @@ class ContactUS extends GebReportingSpec {
 		at ContactUsPage
 		
 		then: "fill out the form and request access"
-		def title = selectTitleOption(3)
+		def title = selectTitleOption(2)
 		fillOutFirstName('Dipen')
 		fillOutlastName('Shah')
 		fillOutEmail('dipen.shah@sap.com')
@@ -44,7 +44,7 @@ class ContactUS extends GebReportingSpec {
 		
 		when: "At contact us page fill out most of the information"
 		at ContactUsPage
-		def title = selectTitleOption(3)
+		//def title = selectTitleOption(3)
 		//fillOutFirstName('Dipen')
 		fillOutlastName('Shah')
 		fillOutEmail('cust@unit-2')
