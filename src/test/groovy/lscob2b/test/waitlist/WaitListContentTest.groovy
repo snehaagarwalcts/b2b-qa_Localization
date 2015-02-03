@@ -77,6 +77,7 @@ class WaitListContentTest extends GebReportingSpec{
 		then: "Check updated quantity of product"
 			getProductQuantityRequested(productCode) == (currentQuantity+1)
 
+		where:
 		productCode <<["05527-0458"]
 	}
 	
