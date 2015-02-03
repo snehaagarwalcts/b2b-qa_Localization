@@ -15,7 +15,6 @@ class OrderSearchPage extends Page {
 	static String numberRegex = "\\d+(\\.|,)\\d+((\\.|,)\\d+)?"
 
 	static at = {
-//		!$("body.pageType-ContentPage").empty
 		waitFor { title.endsWith("LSCO B2B Site") }
 	}
 
@@ -26,6 +25,13 @@ class OrderSearchPage extends Page {
 		cartTemplate {module CartModule}
 		
 		messageText { $('div.title_holder h2') }
+		
+		/**/
+		
+		paginationBar { $("div.paginationBar") }
+		
+		sortOptions { $("select#sortOptions1") }
+		
 	}
 	
 	def checkMessageTextExists(){

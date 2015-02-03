@@ -1,3 +1,5 @@
+
+
 package lscob2b.pages.productdetails
 
 import geb.Page
@@ -5,10 +7,9 @@ import geb.navigator.Navigator
 import lscob2b.modules.CartModule
 import lscob2b.modules.CheckOutModule
 import lscob2b.modules.MasterTemplate
+import lscob2b.modules.PDPBuyStackModule
 import lscob2b.modules.SellModule
 import lscob2b.modules.SizingGridModule
-
-
 
 class ProductDetailsPage extends Page {
 
@@ -19,6 +20,7 @@ class ProductDetailsPage extends Page {
 	}
 
 	static content = {
+		
 		masterTemplate { module MasterTemplate }
 		
 		sizingGrid { module SizingGridModule}
@@ -31,6 +33,7 @@ class ProductDetailsPage extends Page {
 		
 		crossSelling(required: false) { module SellModule, $("div.cross-sell") }
 		
+		buyStack { module PDPBuyStackModule, $("div.pdp-buystack") }
 		
 		wholesalePriceText { $("div.wholesale-price > span").text()}
 		recommendedRetailPriceText { $("div.recommended-retail-price > span").text()}

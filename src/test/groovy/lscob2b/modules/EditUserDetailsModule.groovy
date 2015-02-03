@@ -21,8 +21,12 @@ class EditUserDetailsModule extends Module{
 	 * @param index starts from 1
 	 * @return
 	 */
-	def String selectTitleOption(int index){
-		customerForm.titleCode = titleOption(index).text()
+	def void selectTitleOption(int index){
+		def indexCode = customerForm.find("select", name: "titleCode").find("option", index).value()
+		customerForm.titleCode = indexCode
+		waitFor {
+			customerForm.titleCode == indexCode
+		}
 	}
 
 	/**

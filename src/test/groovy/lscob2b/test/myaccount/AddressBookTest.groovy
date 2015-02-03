@@ -53,20 +53,8 @@ class AddressBookTest extends GebReportingSpec {
 						getShippingPostalcode(i) == shippingData[j].postalcode &&
 						getShippingCountry(i) == shippingData[j].country
 			} 
-//			println "shipping address [${i}] for user ${user.email} has status ${findAddress}"
 			assert findAddress
 		}
-		
-		//TODO address is printed in "random" order!!!
-//		for(int i = 0; i < shippingData.size(); i++) {
-//			assert getShippingFirstname(i) == shippingData[shippingData.size()-(i+1)].firstname
-//			assert getShippingStreetname(i) == shippingData[shippingData.size()-(i+1)].streetname
-//			assert getShippingLastname(i) == shippingData[shippingData.size()-(i+1)].lastname
-//			assert getShippingTown(i) == shippingData[shippingData.size()-(i+1)].town
-//			assert getShippingRegion(i) == shippingData[shippingData.size()-(i+1)].region
-//			assert getShippingPostalcode(i) == shippingData[shippingData.size()-(i+1)].postalcode
-//			assert getShippingCountry(i) == shippingData[shippingData.size()-(i+1)].country
-//		}			
 		
 		where:
 			user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getAMultibrandUser(), TestDataCatalog.getADockersUser()]
@@ -99,17 +87,7 @@ class AddressBookTest extends GebReportingSpec {
 				
 			}
 			
-//			println "billing address [${i}] for user ${user.email} has status ${findAddress}"
 			assert findAddress
-			
-			//TODO address is printed in "random" order!!!
-//			assert getBillingFirstname(i) == billingData[i].firstname
-//			assert getBillingStreetname(i) == billingData[i].streetname
-//			assert getBillingLastname(i) == billingData[i].lastname
-//			assert getBillingTown(i) == billingData[i].town
-//			assert getBillingRegion(i) == billingData[i].region
-//			assert getBillingPostalcode(i) == billingData[i].postalcode
-//			assert getBillingCountry(i) == billingData[i].country
 		}
 		
 		where:

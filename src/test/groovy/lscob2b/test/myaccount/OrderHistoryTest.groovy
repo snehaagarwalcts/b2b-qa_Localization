@@ -13,6 +13,7 @@ import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
 import spock.lang.IgnoreIf
+import spock.lang.IgnoreRest;
 
 class OrderHistoryTest extends GebReportingSpec {
 
@@ -116,7 +117,7 @@ class OrderHistoryTest extends GebReportingSpec {
 			user = TestDataCatalog.getACustomerUser()
 	}
 	
-	@IgnoreIf ({ System.getProperty("geb.browser").contains("safari")})
+	@Ignore
 	def "Test order creation in history"() {
 		setup:
 			login(user)
@@ -149,6 +150,7 @@ class OrderHistoryTest extends GebReportingSpec {
 			productCode = "05527-0458"
 	}	
 
+	@Ignore
 	def "Test re-order functionality in history"() {
 		setup:
 			login(user)
@@ -184,7 +186,7 @@ class OrderHistoryTest extends GebReportingSpec {
 
 	}
 		
-	@IgnoreIf ({ System.getProperty("geb.browser").contains("safari")})
+	@Ignore
 	def "Test search functionality in history"() {	
 		setup:
 		login(user)

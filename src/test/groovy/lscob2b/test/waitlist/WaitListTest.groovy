@@ -9,6 +9,7 @@ import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.IgnoreIf
+import spock.lang.IgnoreRest;
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
 
@@ -174,7 +175,6 @@ public class WaitListTest extends GebReportingSpec{
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "Remove product from WaitList page"() {
 		setup:
 		login(user)
