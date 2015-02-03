@@ -13,7 +13,7 @@ class SizingGridModule extends Module {
 		
 		linkNotifyMe(required: false) { $("a.addtowaitlist") }
 		
-		linkAddToWaitList(required: false) { $("a#add_to_waitlist_button") }
+		linkAddToWaitList(required: false) { $("a#add_to_waitlist_button",1) }
 		
 		overlayWaitList(required: false) { $("div#overlay") }
 		

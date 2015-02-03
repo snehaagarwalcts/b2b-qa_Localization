@@ -4,4 +4,4 @@
 # Copyright (c) Levi's Strauss & Co.
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true];available;inStockStatus(code)[default=notSpecified];maxPreOrder[default=0];maxStockLevelHistoryCount[default=5];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;05527045803336;3001;20
+;05527045803130;3001;20

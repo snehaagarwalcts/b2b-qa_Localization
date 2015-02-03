@@ -77,8 +77,7 @@ class WaitListContentTest extends GebReportingSpec{
 		then: "Check updated quantity of product"
 			getProductQuantityRequested(productCode) == (currentQuantity+1)
 
-		productCode
-		"05527-0458"	
+		productCode <<["05527-0458"]
 	}
 	
 	def "Load Update In Stock impex"(){
