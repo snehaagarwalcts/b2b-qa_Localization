@@ -34,6 +34,9 @@ class QuickOrderPage extends Page{
 		searchLink { $("div.searchButton button") }
 		prodcutIDs { $("div.idCheckbox div label") }
 		checkOutLink { $("a.checkout") }
+		
+		addToWaitListForm (required: false) { $("#AddToWaitListForm",1) }
+		popupBoxClose { $("#popupBoxClose") }
 	}
 	
 	def doSearch(String productID){

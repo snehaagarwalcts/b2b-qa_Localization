@@ -212,6 +212,33 @@ public class WaitListTest extends GebReportingSpec{
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 
+	def "Open waitlist grid"() {
+		setup:
+		loginAndGoToPage(user)
+		//			println "User ${user.email}"
+
+		when: "At WaitList page"
+		at WaitListPage
+
+		then: "Check current quantity of product"
+		int currentQuantity = getProductQuantityRequested(productCode)
+
+		and: "Open waitlist grid at QuickOrderPage"
+		openSizingGridAtQuickOrderPage(productCode)
+		sizingGrid.clickNotifyMe()
+
+		and: "watilist should be displayed"
+		addToWaitListForm.displayed
+		
+		then: "click close so the waitlist is not displayed anymore"
+		popupBoxClose.click()
+		!addToWaitListForm.displayed
+
+		where:
+		productCode 	| user
+		"05527-0458"	| TestDataCatalog.getALevisUser()
+	}
+	
 	//FIXME create a page helper
 	def openSizingGridAtQuickOrderPage(String productCode){
 		browser.go(baseUrl + "search/advanced")
