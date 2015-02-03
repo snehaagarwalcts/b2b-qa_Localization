@@ -211,7 +211,7 @@ public class WaitListTest extends GebReportingSpec{
 		"05527-0458"	| TestDataCatalog.getALevisUser()
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
-
+@IgnoreRest
 	def "Open waitlist grid"() {
 		setup:
 		loginAndGoToPage(user)
@@ -232,6 +232,7 @@ public class WaitListTest extends GebReportingSpec{
 		
 		then: "click close so the waitlist is not displayed anymore"
 		popupBoxClose.click()
+		Thread.sleep(1000)
 		!addToWaitListForm.displayed
 
 		where:
