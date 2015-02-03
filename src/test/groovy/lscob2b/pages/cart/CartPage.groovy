@@ -22,6 +22,7 @@ class CartPage extends Page{
 		
 		linkCheckout { $("a.checkout") }
 		
+		editQuantities { $(".itemButtons a.btn-white") }
 	}
 	
 	def checkAlertMessage1(){
@@ -37,4 +38,7 @@ class CartPage extends Page{
 		println(replaced)
 	}
 	
+	def editQuantitiesButtonclick(){
+		editQuantities.click()
+	}
 }

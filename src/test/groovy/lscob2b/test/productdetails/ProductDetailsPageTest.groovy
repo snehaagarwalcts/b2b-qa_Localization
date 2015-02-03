@@ -100,6 +100,29 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at OrderConfirmationPage
 	}
 	
+	def "Change order quantity on cart page"(){
+		
+		User user = TestDataCatalog.getACustomerUser()
+		Product product = TestDataCatalog.getAProductAvailableForUser(user)
+
+		setup: "Log in"
+
+		to LoginPage
+		login (user)
+		at HomePage
+		browser.go(baseUrl + "p/" + product.getCode())
+		at ProductDetailsPage
+		
+		when: "add product to cart"
+		addOrderQuantity('1')
+		sizingGrid.addToCart()
+		masterTemplate.doGoToCart()
+		
+		then: "change the product quantity on cart page"
+		at CartPage
+		editQuantitiesButtonclick()
+	}
+	
 //	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "user that does not hold customer rights tries to place an order from product details page"(){
 		User user = TestDataCatalog.getALevisUser()
