@@ -16,13 +16,13 @@ class CartModule extends Module{
 		itemTotal { $("div.itemSummary .total span.label") }
 		
 		//Remove product from cart
-		removeProductLink { $("div.itemButtons #RemoveProduct_00501-1615") }
-		//removeProduct { $("div.dialogueButtons #RemoveProduct_0") }
+		removeProductLink { $("#RemoveProduct_0") }
+		removeProduct { $("#RemoveProduct_0",1) }
 	}
 	
 	def doRemove(){
 		removeProductLink.click()
-		//removeProduct.click()
+		removeProduct.click()
 	}
 	
 	def checkItemNameExists(){

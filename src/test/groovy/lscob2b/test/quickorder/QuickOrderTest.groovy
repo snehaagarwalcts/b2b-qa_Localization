@@ -10,7 +10,7 @@ import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
-import spock.lang.Ignore
+import spock.lang.IgnoreRest
 
 //@Stepwise
 class QuickOrderTest extends GebReportingSpec {
@@ -77,14 +77,14 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	@Ignore
+	
 	def "Add to cart from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
 		loginAsUserAndGoToQuickOrder(user)
 		
 		then: "Add to Cart"
 		doSearch('00501-1615')
-		sizingGrid.waitForSizingGridLoadedCompletely()
+		//sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('10')
 		sizingGrid.addToCart()
 		
@@ -105,12 +105,11 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	@Ignore
 	def "Remove product from checkout Page"(){
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
-		sizingGrid.waitForSizingGridLoadedCompletely()
+		//sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('1')
 		sizingGrid.addToCart()
 		masterTemplate.doGoToCart()
@@ -132,12 +131,12 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	@Ignore
+	
 	def "Place an order from Quick Order Page"(){
 		setup: 
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
-		sizingGrid.waitForSizingGridLoadedCompletely()
+		//sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('1')
 		sizingGrid.addToCart()
 		
@@ -153,14 +152,14 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	@Ignore
+	
 	def "user that does not hold customer rights tries to place an order from quick order page"(){
 		setup: "Log in"
 		loginAsUserAndGoToQuickOrder(user)
 		
 		when: "add product to cart"
 		doSearch('00501-1615')
-		sizingGrid.waitForSizingGridLoadedCompletely()
+		//sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('1')
 		sizingGrid.addToCart()
 		
@@ -174,7 +173,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [admin1]
 	}
 		
-	@Ignore
+	
 	def "Quick order with multiple product ID's"(){
 		setup:
 			login(user)
@@ -205,7 +204,7 @@ class QuickOrderTest extends GebReportingSpec {
 			"05527-0458" | "00501-1615" | TestDataCatalog.getALevisUser()
 	}
 	
-	@Ignore
+	
 	def "check content of check out page"(){
 		
 		when: "At Quick Order page look for product, add quantity, and go to check out page"
