@@ -13,7 +13,7 @@ import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import lscob2b.test.data.User
 import spock.lang.Ignore
-import spock.lang.IgnoreRest
+import spock.lang.IgnoreIf
 
 class ProductDetailsPageTest extends GebReportingSpec {
 	
@@ -123,7 +123,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		editQuantitiesButtonclick()
 	}
 	
-//	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
+	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
 	def "user that does not hold customer rights tries to place an order from product details page"(){
 		User user = TestDataCatalog.getALevisUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)

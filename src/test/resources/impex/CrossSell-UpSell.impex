@@ -1,0 +1,18 @@
+$brand=Levis
+$season=151
+$year=2015
+$productCatalog=$brand$season$yearProductCatalog
+$approvalStatus=approved
+$approved=approvalstatus(code)[default='approved']
+$catalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+
+INSERT_UPDATE ProductReference;source(code,$catalogVersion)[unique=true];target(code,$catalogVersion)[unique=true];referenceType(code);active[default=true];preselected[default=false]
+;00501-0039;00501-0101;CROSSELLING
+;00501-0039;00501-0113;CROSSELLING
+;00501-0039;00501-0114;CROSSELLING
+;00501-0039;00501-1307;CROSSELLING
+;00501-0039;00501-1622;CROSSELLING
+;00501-0039;00501-1964;UPSELLING
+;00501-0039;00501-1711;UPSELLING
+;00501-0039;00501-1764;UPSELLING
+;00501-0039;00501-1860;UPSELLING

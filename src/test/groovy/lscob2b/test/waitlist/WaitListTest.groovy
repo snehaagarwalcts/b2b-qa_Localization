@@ -211,7 +211,7 @@ public class WaitListTest extends GebReportingSpec{
 		"05527-0458"	| TestDataCatalog.getALevisUser()
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
-@IgnoreRest
+
 	def "Open waitlist grid"() {
 		setup:
 		loginAndGoToPage(user)
