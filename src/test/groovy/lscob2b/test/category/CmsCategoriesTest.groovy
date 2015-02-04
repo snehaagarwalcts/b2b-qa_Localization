@@ -5,9 +5,6 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
-import spock.lang.IgnoreIf
-import spock.lang.Shared
-import spock.lang.Stepwise
 
 
 public class CmsCategoriesTest extends GebReportingSpec {

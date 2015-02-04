@@ -4,7 +4,6 @@ import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import spock.lang.Ignore
 import spock.lang.Stepwise
  
 @Stepwise

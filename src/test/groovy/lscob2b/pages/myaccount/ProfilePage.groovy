@@ -1,6 +1,6 @@
 //created by I844489 on 12/9/2014
 
-package lscob2b.pages.MyAccount
+package lscob2b.pages.myaccount
 
 import geb.Page
 import lscob2b.modules.MasterTemplate

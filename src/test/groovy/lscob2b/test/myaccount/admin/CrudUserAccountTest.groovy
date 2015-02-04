@@ -3,14 +3,13 @@ package lscob2b.test.myaccount.admin;
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.MyAccount.admin.CreateUserConfirmationPage
-import lscob2b.pages.MyAccount.admin.CreateUserPage
-import lscob2b.pages.MyAccount.admin.EditUserDetailsPage
-import lscob2b.pages.MyAccount.admin.ManageUsersPage
-import lscob2b.pages.MyAccount.admin.UpdateUserConfirmationPage
+import lscob2b.pages.myaccount.admin.CreateUserConfirmationPage
+import lscob2b.pages.myaccount.admin.CreateUserPage
+import lscob2b.pages.myaccount.admin.EditUserDetailsPage
+import lscob2b.pages.myaccount.admin.ManageUsersPage
+import lscob2b.pages.myaccount.admin.UpdateUserConfirmationPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
-import spock.lang.IgnoreIf
 import spock.lang.Shared
 import spock.lang.Stepwise
 

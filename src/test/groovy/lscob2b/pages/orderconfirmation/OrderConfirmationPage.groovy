@@ -1,4 +1,4 @@
-package lscob2b.pages.OrderConfirmation
+package lscob2b.pages.orderconfirmation
 
 import geb.Page
 import lscob2b.modules.MasterTemplate

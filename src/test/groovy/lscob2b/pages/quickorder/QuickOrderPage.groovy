@@ -1,4 +1,4 @@
-package lscob2b.pages.QuickOrder
+package lscob2b.pages.quickorder
 
 import geb.Page
 import geb.navigator.Navigator;

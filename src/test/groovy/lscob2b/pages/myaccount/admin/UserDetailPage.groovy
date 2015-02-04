@@ -1,4 +1,4 @@
-package lscob2b.pages.MyAccount.admin
+package lscob2b.pages.myaccount.admin
 
 import geb.Page
 import lscob2b.modules.MasterTemplate

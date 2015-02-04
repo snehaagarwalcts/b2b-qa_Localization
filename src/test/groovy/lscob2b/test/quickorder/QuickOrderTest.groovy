@@ -4,10 +4,10 @@ import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.CheckOut.CheckOutPage
-import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
-import lscob2b.pages.QuickOrder.QuickOrderPage
 import lscob2b.pages.cart.CartPage
+import lscob2b.pages.checkout.CheckOutPage
+import lscob2b.pages.orderconfirmation.OrderConfirmationPage
+import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore

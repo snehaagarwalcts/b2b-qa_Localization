@@ -1,10 +1,8 @@
-package lscob2b.test.ContactUS
+package lscob2b.test.contactus
 
 import geb.spock.GebReportingSpec
-
-import lscob2b.pages.LoginPage
 import lscob2b.pages.ContactUsPage
-import spock.lang.Stepwise
+import lscob2b.pages.LoginPage
 
 class ContactUS extends GebReportingSpec {
 

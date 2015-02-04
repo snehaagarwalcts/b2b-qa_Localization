@@ -6,7 +6,6 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestHelper
-import spock.lang.IgnoreRest
 import de.hybris.geb.page.hac.HomePage
 import de.hybris.geb.page.hac.console.ImpexImportPage
 

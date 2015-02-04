@@ -3,17 +3,15 @@ package lscob2b.test.myaccount
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.CheckOut.CheckOutPage
-import lscob2b.pages.MyAccount.OrderDetailPage
-import lscob2b.pages.MyAccount.OrderHistoryPage
-import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
 import lscob2b.pages.cart.CartPage
+import lscob2b.pages.checkout.CheckOutPage
+import lscob2b.pages.myaccount.OrderDetailPage
+import lscob2b.pages.myaccount.OrderHistoryPage
+import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
-import spock.lang.IgnoreIf
-import spock.lang.IgnoreRest;
 
 class OrderHistoryTest extends GebReportingSpec {
 

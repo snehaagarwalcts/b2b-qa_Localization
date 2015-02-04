@@ -1,18 +1,14 @@
 package lscob2b.test.myaccount
 
+import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.MyAccount.MyAccountPage;
-import lscob2b.pages.MyAccount.ProfilePage;
-import lscob2b.pages.MyAccount.OrderHistoryPage;
-import lscob2b.pages.MyAccount.AddressBookPage;
-import lscob2b.pages.MyAccount.admin.ManageUsersPage;
-import lscob2b.pages.QuickOrder.QuickOrderPage
-import lscob2b.pages.CheckOut.CheckOutPage
-import lscob2b.pages.OrderConfirmation.OrderConfirmationPage
-import lscob2b.modules.MasterTemplate
-import static lscob2b.TestConstants.*
+import lscob2b.pages.myaccount.AddressBookPage
+import lscob2b.pages.myaccount.MyAccountPage
+import lscob2b.pages.myaccount.OrderHistoryPage
+import lscob2b.pages.myaccount.ProfilePage
+import lscob2b.pages.myaccount.admin.ManageUsersPage
 
 class MyAccountTest extends GebReportingSpec {
 

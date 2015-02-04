@@ -3,13 +3,11 @@ package lscob2b.test.waitlist
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.QuickOrder.QuickOrderPage
 import lscob2b.pages.productdetails.ProductDetailsPage
+import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
-import spock.lang.IgnoreIf
-import spock.lang.IgnoreRest;
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
 
