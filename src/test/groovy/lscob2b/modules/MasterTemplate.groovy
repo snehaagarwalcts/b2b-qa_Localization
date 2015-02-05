@@ -25,9 +25,13 @@ class MasterTemplate extends Module {
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
 		}
 
+		/* BreadCrumb */
+		
 		breadCrumbs {
-			$('#breadcrumb li').not('.separator')
+			$('div#breadcrumb').find('li').not('li.separator')
 		}
+		
+		breadCrumbHref { String href -> $('div#breadcrumb').find("a", href:endsWith(href),0) }
 
 		logoAltTag {$('header h1 a img').attr('alt')}
 
@@ -47,20 +51,24 @@ class MasterTemplate extends Module {
 		
 		searchLink { $('a.search-icon') } //TODO Enable once working
 		
+		/* SwitchTo Link */
+		
 		dockersLogo(required:false) { $("a.logo-dockers") }
 		
 		levisLogo(required: false) { $("a.logo-levis") }
 		
-		/* SubMenu */
+		/* SubNav Menu */
 		
-		subMenu { $("div.subnav") }
+		subNav { $("div.subnav") }
 		
-		categoryItems { subMenu.find("ul.subnav-list li").not("li.subnav-quickorder") }
+		quickOrderLink { subNav.find("ul.subnav-list li.subnav-quickorder").find("a") }
 		
-		categoryLink { index -> categoryItems[index].find("a") }
-		
-		quickOrder { subMenu.find("ul.subnav-list li.subnav-quickorder") }
-		
+		categoryItems { subNav.find("ul.subnav-list li").not(".subnav-quickorder") }
+
+		categoryLink { categoryName ->  subNav.find("a", href: endsWith(categoryName)) }
+				
+		subCategoryLink { categoryName,subCategoryName -> subNav.find("a", href: endsWith(categoryName)).parent().parent().find("a",href: endsWith(subCategoryName)) }
+		 		
 	}
 	
 	def doSearch(String productID){

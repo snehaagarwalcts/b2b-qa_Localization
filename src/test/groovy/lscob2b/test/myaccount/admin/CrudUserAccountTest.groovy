@@ -3,100 +3,143 @@ package lscob2b.test.myaccount.admin;
 import geb.spock.GebReportingSpec
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.myaccount.admin.CreateUserConfirmationPage
-import lscob2b.pages.myaccount.admin.CreateUserPage
-import lscob2b.pages.myaccount.admin.EditUserDetailsPage
-import lscob2b.pages.myaccount.admin.ManageUsersPage
-import lscob2b.pages.myaccount.admin.UpdateUserConfirmationPage
+import lscob2b.pages.MyAccount.admin.CreateUserPage
+import lscob2b.pages.MyAccount.admin.EditUserDetailsPage
+import lscob2b.pages.MyAccount.admin.ManageUsersPage
+import lscob2b.pages.MyAccount.admin.UpdateUserConfirmationPage
+import lscob2b.pages.MyAccount.admin.ViewUserDetailsPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
+import lscob2b.test.data.User
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Stepwise
 
+
 @Stepwise
-public class CrudUserAccountTest extends GebReportingSpec {
+class CrudUserAccountTest extends GebReportingSpec {
 
 	def setupSpec() {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+		
 		to LoginPage
 		login (TestDataCatalog.getAnAdminUser())
 		at HomePage
 	}
 
-	def cleanupSpec() {
-		masterTemplate.doLogout()
-	}
-	
 	@Shared
-	String email
-
-	def "Create a new user"(){
+	User createdUser
+	
+	def "[C] Go to create new user page"(){
 		setup: 
 			masterTemplate.selectManageUsers()
 
-		when: "At ManageUsers"
+		when: "At ManageUsers page"
 			at ManageUsersPage
+			
+		and: "Click create a new user"
+			buttonCreateNewUser.click()
 
-		then: "Open create new user page"
-			clickCreateNewUsersLink()
-
-		when: "At CreateUserPage"
+		then: "At CreateUser page"
 			at CreateUserPage
-			email = UUID.randomUUID().toString() + "@test.tst"
 			
-		then: "Fill the form"
-			def firstName = "firstName"
-			def lastName = "lastName"
-			userDetails.selectTitleOption(1)
-			def defaultDeliveryAddr = userDetails.selectDefaultDeliveryAddrOption(1)
-			userDetails.setFirstNameField(firstName)
-			userDetails.setLastNameField(lastName)
-			userDetails.setEmailField(email)
-			userDetails.selectAllRoles()
-			
-		and: "Submit the form"	
-			userDetails.submit()
-
-		when: "At UserConfirmation page"
-			at CreateUserConfirmationPage
-		
-		then: "Check user details"
-			waitFor { 
-			userDetails.firstNameText == firstName
-			userDetails.lastNameText == lastName
-			userDetails.emailText == email
-			userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
-			}
 	}
 
-	def "Update the created user"(){
+	def "[C] Create new user "() {
 		setup:
-			userDetails.clickEditUser()
-
-		when: "At EditUserDetail page"
-			at EditUserDetailsPage
-
-		then: "Fill the form"
-			def firstName = "firstName_updt"
-			def lastName = "lastName_updt"
-//TODO to fix in Safari			def defaultDeliveryAddr = userDetails.selectDefaultDeliveryAddrOption(2)
-			waitFor { !userDetails.empty }
-			userDetails.setFirstNameField(firstName)
-			userDetails.setLastNameField(lastName)
-			userDetails.unSelectFirstRole()
-
-		and: "Submit Form"
-			userDetails.submit()
+			createdUser = createTemporaryUser()
 		
-		when: "At UpdateUserConfirmation page"		
-			at UpdateUserConfirmationPage
+		when: "At CreateUser page"
+			at CreateUserPage
 		
-		then: "Check user details"	
-			waitFor {
-				userDetails.firstNameText == firstName
-				userDetails.lastNameText == lastName
-				userDetails.emailText == email
-//				userDetails.defaultDeliveryAddrText == defaultDeliveryAddr
-			}
+		and: "Prepare form"
+			userDetails.setUser(createdUser)
+			
+		and: "Submit form"
+			userDetails.saveButton.click()
+			
+		then: "At ViewUserDetail page" 	
+			at ViewUserDetailsPage
+		
+		and: "Check message"
+			waitFor { noteMessage.displayed }				
 	}
+	
+	def "[R] Read created user"() {
+		when: "At ViewUserDetail page" 	
+			at ViewUserDetailsPage
+		
+		then: "Compare user data"
+			createdUser.title == userDetails.getUser().title
+			createdUser.name == userDetails.getUser().name
+			createdUser.surname == userDetails.getUser().surname
+			createdUser.email == userDetails.getUser().email
+	}
+	
+	def "[U] Update created user"() {
+		when: "At ViewUserDetail page"
+			at ViewUserDetailsPage
+			
+		and: "click on edit"
+			userDetails.editUserButton.click()
+			
+		then: "At EditUserDetails page"
+			at EditUserDetailsPage
+			
+		when: "At EditUserDetails page"
+			at EditUserDetailsPage
+			
+		and: "Update user details"
+			createdUser.name = "updateUsername"
+			createdUser.surname = "updateSurname"
+			waitFor { userDetails.customerForm.displayed }
+			userDetails.setUser(createdUser)
+		
+		and: "Submit form"
+			userDetails.saveButton.click()
+			
+		then: "At ViewUserDetail page"
+			at ViewUserDetailsPage
+		
+		and: "Check message"
+			waitFor { noteMessage.displayed }
+			
+	}
+		
+	def "[R] Read updated user"() {
+		when: "At ViewUserDetail page"
+			at ViewUserDetailsPage
+		
+		then: "Compare user data"
+			createdUser.title == userDetails.getUser().title
+			createdUser.name == userDetails.getUser().name
+			createdUser.surname == userDetails.getUser().surname
+			createdUser.email == userDetails.getUser().email
+	}
+	
+	def "[D] Disable updated user"() {
+		when: "At ViewUserDetail page"
+			at ViewUserDetailsPage
+		
+		and: "Disable user"	
+			userDetails.disableUserButton.click()
+		
+		then: "At ViewUserDetails page"
+			at ViewUserDetailsPage
+
+		and: "Check Message"	
+			waitFor { noteMessage.displayed }
+	}
+	
+	def User createTemporaryUser() {
+		User user = new User();
+		user.email = UUID.randomUUID().toString() + "@test.tst"
+		user.title = "Mr."
+		user.name = "userName"
+		user.surname = "userSurname"
+		user.groups = []
+		user.address = ""
+		user
+	}
+	
 }

@@ -1,15 +1,15 @@
 package lscob2b.test.myaccount
 
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
+import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.myaccount.MyAccountPage
-import lscob2b.pages.myaccount.admin.EditUserDetailsPage
-import lscob2b.pages.myaccount.admin.ManageUsersPage
-import lscob2b.pages.myaccount.admin.UserDetailPage
-import lscob2b.test.data.TestDataCatalog
+import lscob2b.pages.MyAccount.admin.EditUserDetailsPage
+import lscob2b.pages.MyAccount.admin.ManageUsersPage
+import lscob2b.pages.MyAccount.admin.ViewUserDetailsPage
 import lscob2b.test.data.TestHelper
-import spock.lang.IgnoreIf
+import spock.lang.Ignore
 
 class ManageUserTest extends GebReportingSpec {
 
@@ -25,16 +25,6 @@ class ManageUserTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 	
-	def loginAndGoToTargetPage(user) {
-		login(user)
-		
-		at HomePage
-		masterTemplate.clickMyAccount()
-				
-		at MyAccountPage
-		manageUsers.click()
-	}
-
 	def "Check access to ManageUserPage for [b2badmingroup]"() {
 		setup:
 			login(user)
@@ -42,12 +32,17 @@ class ManageUserTest extends GebReportingSpec {
 		when: "At HomePage"
 			at HomePage
 			
-		then: "Go to my-account/manage-users"
-			browser.go(baseUrl + "my-account/manage-users")
+		and: "Go to my-account/manage-users"
+			masterTemplate.clickMyAccount()
+		
+		then: "At ManageUsers page"
 			at ManageUsersPage
 			
 		where:
-			user = TestDataCatalog.getAnAdminUser()
+			user | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_ADMIN) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
 	}
 	
 	def "Check denied access to ManageUserPage for not [b2badmingroup]"() {
@@ -57,65 +52,58 @@ class ManageUserTest extends GebReportingSpec {
 		when: "At HomePage"
 			at HomePage
 			
-		then: "Go to my-account/manage-users"
-			browser.go(baseUrl + "my-account/manage-users")
+		and: "Go to my-account/manage-users"
+			masterTemplate.clickMyAccount()
+			
+		then: "Redirect to home page"
 			at HomePage
 			
 		where:
 			user | _
-			TestDataCatalog.getUserNotInGroups([TestDataCatalog.ADMIN_GROUP, TestDataCatalog.FINANCE_GROUP]) | _
-			TestDataCatalog.getUserNotInGroups([TestDataCatalog.ADMIN_GROUP, TestDataCatalog.CUSTOMER_GROUP]) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_FINANCE) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
 	
-	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
+	@Ignore
 	def "Change default delivery address"() {
 		setup:
-			loginAndGoToTargetPage(loginUser)
-			
-		when: "at manage users page"
-			at ManageUsersPage
-//			println "current user ${loginUser.email}"
+			login(loginUser)
+			at HomePage
+			PageHelper.gotoPageViewUserDetail(browser, baseUrl, targetUser.email)
 		
-		then: "search for target user"
-//			println "searching for user ${targetUser.email}"
-			def detailLink = searchUserDetailLinkInAllPages(targetUser.email)
-			assert !detailLink.empty
-			detailLink.click()
+		when: "At UserDetail page"
+			at ViewUserDetailsPage
 			
-		when: "at user detail page"
-			at UserDetailPage
+		and: "Edit current user"		
+			def currentUser = userDetails.getUser()
+			userDetails.editUserButton.click()
 			
-		then: "check current delivery address"
-			def initialDeliveryAddress = getDefaultDeliveryAddress()
-//			println "current delivery address is ${initialDeliveryAddress}"
-			assert !editButton.empty
-			editButton.click()
-			
-		when: "at edit user detail page"
+		then: "At EditUserDetail page"
+			at EditUserDetailsPage
+		
+		when: "At EditUserDetail page"
 			at EditUserDetailsPage
 			
-		then: "change delivery address"
-			def oldDA = getDefaultDeliveryAddressSelected().text()
-			changeDefaultDeliveryAddress()
-			def newDA = getDefaultDeliveryAddressSelected().text()
+		and: "Change delivery address"
+			userDetails.changeDefaultDeliveryAddress()
 					
-		and: "check change of delivery address on edit page"
-			assert oldDA != newDA
+		and: "Save User"
 			userDetails.saveButton.click()
 			
-		when: "at user detail page"
-			at UserDetailPage	
+		then: "At UserDetail page"
+			at ViewUserDetailsPage	
 			
-		then: "check change of delivery address on detail page"
-			def updateDeliveryAddress = getDefaultDeliveryAddress()
-//			println "new delivery addres is ${updateDeliveryAddress}"
-			assert updateDeliveryAddress != initialDeliveryAddress
-			
+		and: "Check updated delivery address"
+			currentUser.address != userDetails.getUser().address
+						
 		where:
 			loginUser | targetUser
-			TestDataCatalog.getAnAdminUser() | TestDataCatalog.getAnotherUserOfSameBU(TestDataCatalog.getAnAdminUser(), TestDataCatalog.ADMIN_GROUP)
-			TestDataCatalog.getAnAdminUser() | TestDataCatalog.getAnotherUserOfSameBU(TestDataCatalog.getAnAdminUser(), TestDataCatalog.CUSTOMER_GROUP)
-			TestDataCatalog.getAnAdminUser() | TestDataCatalog.getAnotherUserOfSameBU(TestDataCatalog.getAnAdminUser(), TestDataCatalog.FINANCE_GROUP)
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
+			
 	}
 		
 }

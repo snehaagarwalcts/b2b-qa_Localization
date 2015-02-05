@@ -1,20 +1,41 @@
 package lscob2b.modules
 
 import geb.Module
-import geb.navigator.Navigator
+import lscob2b.test.data.User
 
-class ViewUserDetailsModule extends Module{
+class ViewUserDetailsModule extends Module {
 
 	static content = {
-		titleText { $("div.control-group:nth-child(1) > div:nth-child(2)").text() }
-		firstNameText { $("div.control-group:nth-child(2) > div:nth-child(2)").text() }
-		lastNameText { $("div.control-group:nth-child(3) > div:nth-child(2)").text() }
-		emailText { $("div.control-group:nth-child(4) > div:nth-child(2)").text() }
-		defaultDeliveryAddrText { $("div.control-group:nth-child(5) > div:nth-child(2)").text() }
+		
+		container { $("div.b2BCustomerFormList") }
+		
+		title { container.find("div.control-group",0).find("div.controls") }
+		
+		firstName { container.find("div.control-group",1).find("div.controls") }
+		
+		lastName { container.find("div.control-group",2).find("div.controls") }
+		
+		email { container.find("div.control-group",3).find("div.controls") }
+		
+		address { container.find("div.control-group",4).find("div.controls") }
+		
 		editUserButton { $("a.button.edituser")}
+
+		disableUserButton { $("a#disableUser") }
 	}
 
 	def clickEditUser(){
 		editUserButton.click()
 	}
+	
+	def User getUser() {
+		User user = new User()
+		user.title = title.text()
+		user.name = firstName.text()
+		user.surname = lastName.text()
+		user.email = email.text()
+		user.address = address.text()
+		user
+	}
+	
 }

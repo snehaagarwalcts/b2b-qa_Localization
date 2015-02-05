@@ -13,58 +13,13 @@ class ManageUsersPage extends Page{
 	static at = { waitFor { title == "Your Account | LSCO B2B Site" } }
 
 	static content = {
+		
 		masterTemplate { module MasterTemplate }
 
-		manageUsersData { $("form table tr th") }
+		tableUsers(required:false) { $("table#manage_user") }
 		
-		createNewUserLink { $("a.addnewuser") }
-		
-		manageUsers { $("#breadcrumb li").not('separator')*.text()}
-		
-		userTable { $("table#manage_user") }
-		
-		userRows(required: false) { userTable.find("tbody>tr") }
-		
-		pagination(required: false) { $("div.pagination") }
-		
-		nextPage(required: false, to: ManageUsersPage) { pagination.find("a.nextPage") }
+		buttonCreateNewUser { $("a.addnewuser") }
 
 	}
-
-	def clickCreateNewUsersLink(){
-		createNewUserLink.click()
-	}
-
-	def clickUserLink(String email){
-		$("#manage_user a", href : endsWith(email)).click()
-	}
-	
-	def checkManageUsersDataExists(){
-		!manageUsersData.empty
-	}
-	
-	def checkCreateNewUsersLinkExists(){
-		!createNewUserLink.empty
-	}
-	
-	//Getter
-		
-	def getUsername(index) {
-		userRows[index].find("td",0).find("a").text()
-	}
-
-	def searchUserDetailLink(userEmail) {
-		userRows.find("a", href: endsWith(userEmail))
-	}
-	
-	def searchUserDetailLinkInAllPages(userEmail) {
-		def userLink = searchUserDetailLink(userEmail)
-		while(userLink.empty && !nextPage.empty) {
-			nextPage.click()
-			userLink = searchUserDetailLink(userEmail)
-		}
-		userLink
-	}
-		
 	
 }

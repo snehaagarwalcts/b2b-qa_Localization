@@ -2,13 +2,16 @@ package lscob2b.test.myaccount
 
 import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.myaccount.AddressBookPage
-import lscob2b.pages.myaccount.MyAccountPage
-import lscob2b.pages.myaccount.OrderHistoryPage
-import lscob2b.pages.myaccount.ProfilePage
-import lscob2b.pages.myaccount.admin.ManageUsersPage
+import lscob2b.pages.MyAccount.AddressBookPage
+import lscob2b.pages.MyAccount.MyAccountPage
+import lscob2b.pages.MyAccount.OrderHistoryPage
+import lscob2b.pages.MyAccount.ProfilePage
+import lscob2b.pages.MyAccount.admin.ManageUsersPage
+import spock.lang.Ignore
+import spock.lang.IgnoreRest
 
 class MyAccountTest extends GebReportingSpec {
 
@@ -245,55 +248,40 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser, dockersUser, multibrandUser]
 	}
 
-	//Manage Users page content
-	def "Check the Manage Users page content"(){
+	def "Check the ManageUsers page structure"(){
 		setup:
-		loginAsUserAndGoToMyAccount(user)
-		manageUsers.click()
-
-		when: "At manage users page"
-		at ManageUsersPage
-
-		then: "Correct sections/links should be visible"
-		/*manageUsersData.contains("NAME")
-		 manageUsersData.contains("ROLES")
-		 manageUsersData.contains("STATUS")
-		 createNewUser.contains("CREATE NEW USER")*/
-		checkManageUsersDataExists()
-		checkCreateNewUsersLinkExists()
-
+			at LoginPage
+			login(user)
+			
+			at HomePage
+			masterTemplate.clickMyAccount()
+		
+		when: "At MyAccount page"
+			at MyAccountPage
+							
+		and: "Go to ManageUser page"
+			manageUsers.click()
+			
+		then: "At ManageUser Page" 	
+			at ManageUsersPage	
+			
+		and: "Check breadcrumb"
+			waitFor { masterTemplate.breadCrumbs.size() == 3 }
+			masterTemplate.breadCrumbs.size() == 3
+			masterTemplate.breadCrumbs[0].text() == 'HOME'
+			masterTemplate.breadCrumbs[1].text() == 'MY ACCOUNT'
+			masterTemplate.breadCrumbs[2].text() == 'MANAGE USERS'
+			
+		and: "Check page element"
+			!buttonCreateNewUser.empty
+			//TODO more elements!!!
+			
 		where:
-		user<<[levisUser, dockersUser, multibrandUser]
-	}
-
-	def "Check Breadcrumb on Manage Users Page"(){
-		setup:
-		loginAsUserAndGoToMyAccount(user)
-		manageUsers.click()
-
-		when: "At Manage Users page"
-		at ManageUsersPage
-
-		then: "There should be 3 breadcrumbs"
-		and: "1 should be home, 2 should be 'my account', and other should be 'manage users'"
-		and: "The text should be correct"
-
-		masterTemplate.breadCrumbs.size() == 3
-
-		def homeBC = masterTemplate.getBreadCrumbByUrl("/")
-		def myAccountBC = masterTemplate.getBreadCrumbByUrl("/my-account")
-
-		homeBC
-		homeBC.text().toUpperCase() == 'HOME'
-
-		myAccountBC
-		myAccountBC.text().toUpperCase()  == 'MY ACCOUNT'
-
-		manageUsers.contains("MANAGE USERS")
-		//checkManageUsersBreadCrumbExists() //checks HTML elements instead of text
-
-		where:
-		user<<[levisUser]
+			user | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_ADMIN) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
+		
 	}
 
 	//Uncomment once we are able to place orders

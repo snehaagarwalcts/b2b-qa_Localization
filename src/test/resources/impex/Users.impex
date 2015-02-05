@@ -1,0 +1,27 @@
+#########################################################################
+# Prepare testing Users
+#########################################################################
+$passwordEncoding=md5
+$defaultPassword=12341234
+$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+
+INSERT_UPDATE B2BCustomer;uid[unique=true];agree;originalUid;email;title(code);name;firstName;lastName;customerID;groups(uid);defaultB2BUnit(uid);active;sendEmailEnabled[default=false];$setPassword
+;super@unit-1;true;super@unit-1;super@unit-1;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-1,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-1;true
+;admin@unit-1;true;admin@unit-1;admin@unit-1;Mr.;"Levis Admin";"Levis";"Admin";0000010002;automated-unit-1,b2badmingroup;automated-unit-1;true
+;cust@unit-1;true;cust@unit-1;cust@unit-1;Ms.;"Levis Customer";"Levis";"Customer";0000010003;automated-unit-1,b2bcustomergroup;automated-unit-1;true
+;finance@unit-1;true;finance@unit-1;finance@unit-1;Ms.;"Levis Finance";"Levis";"Finance";0000010004;automated-unit-1,b2bfinancegroup;automated-unit-1;true
+
+;super@unit-2;true;super@unit-2;super@unit-2;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-2,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-2;true
+;admin@unit-2;true;admin@unit-2;admin@unit-2;Mr.;"Multibrand Admin";"Multibrand";"Admin";0000010012;automated-unit-2,b2badmingroup;automated-unit-2;true
+;cust@unit-2;true;cust@unit-2;cust@unit-2;Ms.;"Multibrand Customer";"Multibrand";"Customer";0000010013;automated-unit-2,b2bcustomergroup;automated-unit-2;true
+;finance@unit-2;true;finance@unit-2;finance@unit-2;Mr.;"Multibrand Finance";"Multibrand";"Finance";0000010014;automated-unit-2,b2bfinancegroup;automated-unit-2;true
+
+;super@unit-3;true;super@unit-3;super@unit-3;Mr.;"Docker SuperUser";"Docker";"SuperUser";0000010011;automated-unit-3,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-3;true
+;admin@unit-3;true;admin@unit-3;admin@unit-3;Mr.;"Docker Admin";"Docker";"Admin";0000010012;automated-unit-3,b2badmingroup;automated-unit-3;true
+;cust@unit-3;true;cust@unit-3;cust@unit-3;Ms.;"Docker Customer";"Docker";"Customer";0000010013;automated-unit-3,b2bcustomergroup;automated-unit-3;true
+;finance@unit-3;true;finance@unit-3;finance@unit-3;Mr.;"Docker Finance";"Docker";"Finance";0000010014;automated-unit-3,b2bfinancegroup;automated-unit-3;true
+
+INSERT_UPDATE B2BCustomer;uid[unique=true,allownull=true];$setPassword;active[allownull=true];email[allownull=true];name;firstName;lastName;groups(uid);sessionCurrency(isocode);defaultB2BUnit(uid);customerId[unique=true];sendEmailEnabled[default=false];agree;
+;robert.moris@monsoon.com;;true;robert.moris@monsoon.com;Robert Moris;Robert;Moris;monsoon,b2badmingroup,b2bcustomergroup,b2bfinancegroup;GBP;monsoon;LSCO_B2B_HYB_SAMPLE_01;true
+;deno.rota@fashion-world.com;;true;deno.rota@fashion-world.com;Deno Rota;Deno;Rota;fashionworld,b2badmingroup,b2bcustomergroup,b2bfinancegroup;EUR;fashionworld;LSCO_B2B_HYB_SAMPLE_02;true
+;joseph.hall@city-apparel.com;;true;joseph.hall@city-apparel.com;Joseph Hall;Joseph;Hall;cityapparels,b2badmingroup,b2bcustomergroup,b2bfinancegroup;SEK;cityapparels;LSCO_B2B_HYB_SAMPLE_03;true

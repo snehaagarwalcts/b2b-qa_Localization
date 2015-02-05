@@ -13,25 +13,10 @@ class EditUserDetailsPage extends Page{
 
 	static content = {
 		masterTemplate { module MasterTemplate }
+		
 		userDetails { module EditUserDetailsModule}
 		
-		form { $("form#b2BCustomerForm") }
-	
-		defaultDeliveryAddressSelect { form.find("select#text\\.company\\.user\\.default\\.shipping\\.address") }
-		
-		defaultDeliveryAddressOptions { defaultDeliveryAddressSelect.find("option") }
-
 	}
 
-	def getDefaultDeliveryAddressSelected() {
-		defaultDeliveryAddressSelect.find('option', value:defaultDeliveryAddressSelect.value())
-	}
-	
-	def changeDefaultDeliveryAddress() {
-		def item = defaultDeliveryAddressSelect.find('option', value: notContainsWord(defaultDeliveryAddressSelect.value()),1)
-		assert !item.empty
-		defaultDeliveryAddressSelect.value(item.value())
-	}
-	
 	
 }

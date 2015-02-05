@@ -2,11 +2,13 @@ package lscob2b.test.multibranduser
 
 import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
+import spock.lang.IgnoreRest;
 
 class MultibrandUserTest extends GebReportingSpec {
 
@@ -117,23 +119,27 @@ class MultibrandUserTest extends GebReportingSpec {
 			at HomePage
 				
 		then: "Switch to dockers should not be present"
-		waitFor {
-			masterTemplate.levisLogo.empty
-			masterTemplate.dockersLogo.empty
-		}
+			waitFor {
+				masterTemplate.levisLogo.empty
+				masterTemplate.dockersLogo.empty
+			}
 	}
 	
-	@Ignore
 	def "Check if correct products/catalogs are displayed on Levis Theme"(){
 		setup:
-			login (multibrandUser)
+			login (user)
 		
 		when: "At Homepage"
 			at HomePage
 			
-		then: "Check SwitchTo Docker"	
-			masterTemplate.levisLogo.empty
-			!masterTemplate.dockersLogo.empty
+		then: "Check SwitchTo Docker"
+			waitFor {
+				masterTemplate.levisLogo.empty
+				!masterTemplate.dockersLogo.empty
+			}
+			
+		where:
+			user = UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER)	
 
 		//FIXME use more robust check (ex. product detail)
 //		and: "Search for Levis products"
@@ -146,10 +152,9 @@ class MultibrandUserTest extends GebReportingSpec {
 //			waitFor { checkMessageTextExists() }
 	}
 	
-	@Ignore
 	def "Check if correct products/catalogs are displayed on Dockers Theme"(){
 		setup:
-			login (multibrandUser)
+			login (user)
 		
 		when: "At Homepage"
 			at HomePage
@@ -161,9 +166,14 @@ class MultibrandUserTest extends GebReportingSpec {
 			at HomePage
 		
 		then: "Check SwitchTo Levis"	
-			!masterTemplate.levisLogo.empty
-			masterTemplate.dockersLogo.empty
+			waitFor {
+				!masterTemplate.levisLogo.empty
+				masterTemplate.dockersLogo.empty
+			}
 
+		where:
+			user = UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER)
+			
 		//FIXME use more robust check (ex. product detail)
 //		and: "Search for Dockers products"
 //			masterTemplate.doSearch('dockers')								
