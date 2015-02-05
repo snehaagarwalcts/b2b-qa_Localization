@@ -1,13 +1,22 @@
 package lscob2b.pages.MyAccount.admin
 
-import lscob2b.modules.ViewUserDetailsModule;
-import geb.Page;
-import geb.navigator.Navigator;
+import geb.Page
+import geb.navigator.Navigator
+import lscob2b.modules.MasterTemplate
+import lscob2b.modules.ViewUserDetailsModule
 
 class ViewUserDetailsPage extends Page{
-	static at = {
-		$(".alert").text()=="Customer successfully created"
-	}
+	
+	static at = { waitFor { title == "LSCO B2B Site" } }
 
-	static content = { userDetails { module ViewUserDetailsModule } }
+	static content = { 
+		
+		masterTemplate {module MasterTemplate}
+		
+		noteMessage { $("div.note-message") }
+		
+		userDetails { module ViewUserDetailsModule }
+		
+	}
+	
 }

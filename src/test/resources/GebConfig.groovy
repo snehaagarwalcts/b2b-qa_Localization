@@ -35,7 +35,7 @@ if (sauceBrowser) {
 	driver = { new SafariDriver() }
 	
 } else {
-	driver = { new FirefoxDriver() } 
+	driver = { new SafariDriver() } 
 }
 /*System.setProperty("webdriver.ie.driver", "C:\IEDriver\IEDriverServer.exe")
 driver = {new InternetExplorerDriver() }*/

@@ -2,69 +2,70 @@ package lscob2b.test.login
 
 import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
+import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import spock.lang.Ignore
-import spock.lang.Stepwise
+import spock.lang.IgnoreRest;
  
-@Stepwise
+
 class LoginTest extends GebReportingSpec { 
 
 	def setup() {
-		to LoginPage
+		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 
-	def cleanup() {
-		masterTemplate.doLogout()
-	}
-
-	def "Login to home page"() { // tests the login itself without worrying about rights
-
-		when: "Logging in"
-
-		login (multibrandUser)
-
-		then: "We should arrive at the homepage"
-
-		at HomePage
-
-	}
-
-	def "Login as Levi's or Dockers customer"() {
-		when: "Logging in as a single brand customer"
-
-		login (user)
-
-		then: "We should see correct logo logo"
-
-		at HomePage
-
-		!masterTemplate.themeForm
-
-		masterTemplate.logoAltTag == themeSpecificAltTag
-
+	def "Test invalid login"() {
+		setup:
+			to LoginPage
+		
+		when: "at login page"
+			at LoginPage
+			
+		and: "do an invalid login"
+			login(user)
+			
+		then: "at login page"
+			at LoginPage
+			
+		and: "a message is displayed"
+			waitFor { errorMessage.displayed }
+					
 		where:
-
-		user		| themeSpecificAltTag
-		levisUser	| "Levis Strauss & Company"
-		dockersUser	| "Levis Strauss & Company" // TODO this should be different for Dockers, not yet implemented
-
+			user = UserHelper.getInvalidUser()
 	}
 
-	def "Login as multi brand"() {
-		when: "Logging in as a multibrand customer"
+	/**
+	 * US BB-17 User is identified as Levis, Dockers or Multibrand
+	 */
+	def "Test valid login"() {
+		setup:
+			to LoginPage
+		
+		when: "at login page"
+			at LoginPage
+			
+		and: "do login "
+			login(user)
 
-		login(multibrandUser)
-
-		then: "We should see Levi's logo and theme selector"
-
-		at HomePage
-
-		// TODO currently logo is not there but when added, should check for it
-		masterTemplate.themeForm
+		then: "at home page"
+			at HomePage
+		
+		where:
+			user | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_SUPER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_ADMIN) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_FINANCE) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_SUPER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
-
-	def login(String username) {
-		doLogin(username, defaultPassword)
-	}
+	
 }
