@@ -6,7 +6,6 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.checkout.CheckOutPage
-import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
@@ -105,7 +104,7 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
-	def "Remove product from checkout Page"(){
+	def "Remove product from cart Page"(){
 		setup:
 		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
@@ -116,7 +115,7 @@ class QuickOrderTest extends GebReportingSpec {
 		
 		Thread.sleep(1000);
 		
-		when: "At Check out page"
+		when: "At Check out page"//FIXME This should be check out page not cart page.
 		at CartPage
 		Thread.sleep(1000);
 		
@@ -131,6 +130,33 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [levisUser]
 	}
 	
+	/*//FIXME remove product from check out page instead of cart page
+	 * def "Remove product from checkout Page"(){
+		setup:
+		loginAsUserAndGoToQuickOrder(user)
+		doSearch('00501-1615')
+		//sizingGrid.waitForSizingGridLoadedCompletely()
+		sizingGrid.addOrderQuantity('1')
+		sizingGrid.addToCart()
+		masterTemplate.doGoToCart()
+		
+		Thread.sleep(1000);
+		
+		when: "At Check out page"//FIXME This should be check out page not cart page.
+		at CartPage
+		Thread.sleep(1000);
+		
+		then: "Remove the product from the page and you should get a message cart is empty"
+		cartTemplate.doRemove()
+		waitFor(5){
+			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
+		}
+		
+		
+		where:
+		user << [levisUser]
+	}*/
+	
 	
 	def "Place an order from Quick Order Page"(){
 		setup: 
@@ -141,12 +167,14 @@ class QuickOrderTest extends GebReportingSpec {
 		sizingGrid.addToCart()
 		
 		when: "Checking out from quick order page"
+		Thread.sleep(1000)
 		checkOut.doCheckOut()
 		
-		then: "Place an order"
+		then: "Place an order"//FIXME Change this for functionality of check out page instead of placing an order
 		at CheckOutPage
-		doPlaceOrder()
-		at OrderConfirmationPage
+		//Do not place an order as stock will be taken up
+		/*doPlaceOrder()
+		at OrderConfirmationPage*/ 
 		
 		where:
 		user << [levisUser]
@@ -164,6 +192,7 @@ class QuickOrderTest extends GebReportingSpec {
 		sizingGrid.addToCart()
 		
 		then: "check out"
+		Thread.sleep(1000)
 		checkOut.doCheckOut()
 		at CartPage
 		checkAlertMessage1()
@@ -173,7 +202,6 @@ class QuickOrderTest extends GebReportingSpec {
 		user << [admin1]
 	}
 		
-	
 	def "Quick order with multiple product ID's"(){
 		setup:
 			login(user)
@@ -184,7 +212,8 @@ class QuickOrderTest extends GebReportingSpec {
 			at QuickOrderPage
 			
 		then: "Search Multiple ID's"
-			doMultipleSearch(product1, product2)
+			doMultipleSearch(product1,product2)
+			Thread.sleep(10000)
 			getResultSize() == 2
 			
 		and: "Add first product to cart"	
@@ -196,6 +225,7 @@ class QuickOrderTest extends GebReportingSpec {
 			productSizingGrids[1].addToCart()
 		
 		and: "Go to cart page"
+			Thread.sleep(1000)
 			gotoCartPage()
 			//FIXME popup problem on page
 						
@@ -219,6 +249,6 @@ class QuickOrderTest extends GebReportingSpec {
 		at CheckOutPage
 		checkTotalExists()
 		checkSubTotalExists()
-		//checkIncludingExists()
+		checkIncludingExists()
 	}
 }

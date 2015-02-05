@@ -46,7 +46,7 @@ class QuickOrderPage extends Page{
 	}
 	
 	def doMultipleSearch(String productID1, String productID2) {
-		searchInput.value(productID1 + ", " + productID2)
+		searchInput.value(productID1 + "," + productID2)
 		prodcutIDs.click()
 		searchLink.click()
 	}

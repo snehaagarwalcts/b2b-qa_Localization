@@ -96,8 +96,9 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		then: "check out"
 		checkOut.doCheckOut()
 		at CheckOutPage
-		doPlaceOrder()
-		at OrderConfirmationPage
+		//NOTE do not place an order. It'll take up stock
+		/*doPlaceOrder()
+		at OrderConfirmationPage*/
 	}
 	
 	def "Change order quantity on cart page"(){
@@ -121,6 +122,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		then: "change the product quantity on cart page"
 		at CartPage
 		editQuantitiesButtonclick()
+		//TODO finish the test
 	}
 	
 	@IgnoreIf({ System.getProperty("geb.browser").contains("safari") })
