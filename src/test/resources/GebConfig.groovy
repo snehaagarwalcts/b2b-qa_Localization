@@ -70,7 +70,7 @@ if (sauceBrowser && sauceBrowser != "false") {
 			browserName: browserName, 
 			'max-duration': 5400, //1:30h
 			name: "" + platform + "-" + browserName + "-" + version, 
-			"record-video": false, 
+			"record-video": true, 
 			"video-upload-on-pass": false,
 			"record-screenshots": false
 		] 

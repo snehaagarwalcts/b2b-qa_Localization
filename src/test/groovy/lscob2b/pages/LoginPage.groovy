@@ -38,6 +38,9 @@ class LoginPage extends Page {
 		
 		// contact us
 		contactUS { $('div.contact a') }
+		
+		//Password sent
+		noteMessage { $("div.note-message") }
 	}
 
 	def login(User user){

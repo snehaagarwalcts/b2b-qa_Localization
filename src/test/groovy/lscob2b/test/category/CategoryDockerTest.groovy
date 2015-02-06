@@ -9,6 +9,7 @@ import lscob2b.pages.LoginPage
 
 class CategoryDockerTest extends GebReportingSpec {
 
+	//TODO fix the mouse over on Firefox Windows 7
 	def setupSpec(){
 		PageHelper.gotoPageLogout(browser, baseUrl)
 		

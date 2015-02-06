@@ -2,6 +2,7 @@ package lscob2b.test.login
 
 import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.UserHelper
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.TestHelper
 import spock.lang.Stepwise
@@ -49,9 +50,8 @@ class ForgottenYourPasswordTest extends GebReportingSpec {
         sendForgottenPasswordEmail(levisUser)
 
         then: "Confirmation message should be display"
-
-        // TODO not yet implemented on front end
-
+		  at LoginPage
+		  noteMessage.displayed
     }
 
 }
