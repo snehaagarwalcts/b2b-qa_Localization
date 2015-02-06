@@ -5,12 +5,20 @@ import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
+<<<<<<< HEAD
+import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.admin.EditUserDetailsPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
-import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
+import lscob2b.pages.myaccount.admin.UserDetailPage
+import lscob2b.test.data.TestDataCatalog
+=======
+import lscob2b.pages.MyAccount.admin.EditUserDetailsPage
+import lscob2b.pages.MyAccount.admin.ManageUsersPage
+import lscob2b.pages.MyAccount.admin.ViewUserDetailsPage
+>>>>>>> refactorIE
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
- 
+
 class ManageUserTest extends GebReportingSpec {
 
 	def setupSpec() {
@@ -53,7 +61,7 @@ class ManageUserTest extends GebReportingSpec {
 			at HomePage
 			
 		and: "Go to my-account/manage-users"
-			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_MANAGE_USERS)
+			masterTemplate.clickMyAccount()
 			
 		then: "Redirect to home page"
 			at HomePage

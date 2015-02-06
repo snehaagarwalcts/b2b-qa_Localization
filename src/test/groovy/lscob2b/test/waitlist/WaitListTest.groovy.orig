@@ -8,8 +8,11 @@ import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
+<<<<<<< HEAD
+=======
 import spock.lang.Ignore
 import spock.lang.IgnoreRest
+>>>>>>> refactorIE
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
 
@@ -217,8 +220,11 @@ public class WaitListTest extends GebReportingSpec{
 		"05527-0458"	| TestDataCatalog.getALevisUser()
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
-	
-	@Ignore
+
+<<<<<<< HEAD
+=======
+	@Ignore //FIXME IE Problem
+>>>>>>> refactorIE
 	def "Open waitlist grid"() {
 		setup:
 		loginAndGoToPage(user)

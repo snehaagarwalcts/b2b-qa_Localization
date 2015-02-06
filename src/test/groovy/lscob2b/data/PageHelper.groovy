@@ -3,6 +3,7 @@ package lscob2b.data
 class PageHelper  {
 
 	public static final String PAGE_LOGOUT = "en/logout"
+	public static final String PAGE_MANAGE_USERS = "my-account/manage-users"
 	public static final String PAGE_VIEW_USER_DETAIL = "my-account/manage-users/details"
 	public static final String PAGE_EDIT_USER_DETAIL = "my-account/manage-users/edit"
 	

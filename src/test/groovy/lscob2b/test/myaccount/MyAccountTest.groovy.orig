@@ -5,11 +5,21 @@ import geb.spock.GebReportingSpec
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
+<<<<<<< HEAD
 import lscob2b.pages.myaccount.AddressBookPage
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.myaccount.ProfilePage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
+=======
+import lscob2b.pages.MyAccount.AddressBookPage
+import lscob2b.pages.MyAccount.MyAccountPage
+import lscob2b.pages.MyAccount.OrderHistoryPage
+import lscob2b.pages.MyAccount.ProfilePage
+import lscob2b.pages.MyAccount.admin.ManageUsersPage
+import spock.lang.Ignore
+import spock.lang.IgnoreRest
+>>>>>>> refactorIE
 
 class MyAccountTest extends GebReportingSpec {
 
