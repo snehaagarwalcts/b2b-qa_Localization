@@ -9,7 +9,7 @@ import lscob2b.pages.cart.CartPage
 import lscob2b.pages.checkout.CheckOutPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.test.data.TestHelper
-import spock.lang.Ignore
+import spock.lang.IgnoreRest
 
 class QuickOrderTest extends GebReportingSpec {
 
@@ -40,7 +40,12 @@ class QuickOrderTest extends GebReportingSpec {
 		doRemove()
 	}
 
-	@Ignore //FIXME IE Problem
+	/**
+	 * US BB-88 Be able to place a quick order 
+	 * TC BB-436 Automated Test Case: Any User should see the "Quick Order" link in the header section of the Application,
+	 * that should redirect the user to the Quick Order Page.
+	 */
+
 	def "Quick Order link is accessible"() {
 
 		when: "logged in as any user"
@@ -59,11 +64,17 @@ class QuickOrderTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	//@Ignore //FIXME IE Problem
+	/**
+	 * TC BB-437 Automated Test Case: validate the content of the "Quick Order" Page for any user
+	 */
+
 	def "Check the Quick Order page content"(){
 
 		when: "Logging in and going to Quick Order page"
-		loginAsUserAndGoToQuickOrder(user)
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
 
 		then: "Correct sections/links should be visible"
 		checkKeywordSearchLinkExists()
@@ -82,10 +93,16 @@ class QuickOrderTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	@Ignore //FIXME problem after merge
+	/**
+	 * TC BB-456 Automated Test Case: be able to add to cart from quick order page
+	 */
+	//Safari issue
 	def "Add to cart from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
-		loginAsUserAndGoToQuickOrder(user)
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
 
 		then: "Add to Cart"
 		doSearch('00501-1615')
@@ -109,14 +126,16 @@ class QuickOrderTest extends GebReportingSpec {
 		where:
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
-		UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) | _
 		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	@Ignore //FIXME problem after merge
+	//Safari issue
 	def "Remove product from cart Page"(){
 		setup:
-		loginAsUserAndGoToQuickOrder(user)
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
 		doSearch('00501-1615')
 		//sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('1')
@@ -141,10 +160,16 @@ class QuickOrderTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
+	/** 
+	 * TC BB-477 Automated Test Case: Remove product from Check Out page 
+	 */
 	/*//FIXME remove product from check out page instead of cart page
 	 * def "Remove product from checkout Page"(){
 	 setup:
-	 loginAsUserAndGoToQuickOrder(user)
+	 login(user)
+	 at HomePage
+	 masterTemplate.clickQuickOrder()
+	 at QuickOrderPage
 	 doSearch('00501-1615')
 	 //sizingGrid.waitForSizingGridLoadedCompletely()
 	 sizingGrid.addOrderQuantity('1')
@@ -162,11 +187,17 @@ class QuickOrderTest extends GebReportingSpec {
 	 where:
 	 user << [levisUser]
 	 }*/
-	
-	@Ignore //FIXME problem after merge
+
+	/**
+	 * TC BB-438 Automated Test Case: Place an order from "Quick Order" Page.
+	 */
+	//Safari issue
 	def "Place an order from Quick Order Page"(){
 		setup:
-		loginAsUserAndGoToQuickOrder(user)
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
 		doSearch('00501-1615')
 		//sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('1')
@@ -187,10 +218,13 @@ class QuickOrderTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	@Ignore //FIXME problem after merge
+	//Safari issue
 	def "user that does not hold customer rights tries to place an order from quick order page"(){
 		setup: "Log in"
-		loginAsUserAndGoToQuickOrder(user)
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
 
 		when: "add product to cart"
 		doSearch('00501-1615')
@@ -207,15 +241,17 @@ class QuickOrderTest extends GebReportingSpec {
 
 		where:
 		user | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _	
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
-		UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_ADMIN) | _
-		UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_FINANCE) | _
 		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
 		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
-
-	@Ignore //FIXME problem after merge
+	
+	/**
+	 * TC BB-448 Automated Test Case: Place an order from "Quick Order" Page with multiple product ID's
+	 */
+	
+	//Safari issue
 	def "Quick order with multiple product ID's"(){
 		setup:
 		login(user)
@@ -231,10 +267,12 @@ class QuickOrderTest extends GebReportingSpec {
 		getResultSize() == 2
 
 		and: "Add first product to cart"
+		editQuantities.click()
 		productSizingGrids[0].addOrderQuantity('1')
 		productSizingGrids[0].addToCart()
 
 		and: "Add second product to cart"
+		editQuantities1.click()
 		productSizingGrids[1].addOrderQuantity('1')
 		productSizingGrids[1].addToCart()
 
@@ -248,11 +286,19 @@ class QuickOrderTest extends GebReportingSpec {
 		"05527-0458" | "00501-1615" | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	@Ignore //FIXME problem after merge
+	/**
+	 * TC BB-437 Automated Test Case: validate the content of the "Quick Order" Page for any user
+	 */
+	
+	//Safari issue
 	def "check content of check out page"(){
+		setup:
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
+		at QuickOrderPage
 
 		when: "At Quick Order page look for product, add quantity, and go to check out page"
-		loginAsUserAndGoToQuickOrder(user)
 		doSearch('00501-1615')
 		//sizingGrid.waitForSizingGridLoadedCompletely()
 		sizingGrid.addOrderQuantity('1')
@@ -264,7 +310,7 @@ class QuickOrderTest extends GebReportingSpec {
 		checkTotalExists()
 		checkSubTotalExists()
 		checkIncludingExists()
-		
+
 		where:
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
