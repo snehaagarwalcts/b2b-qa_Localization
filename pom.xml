@@ -239,7 +239,14 @@
 				<test.browser.version>34</test.browser.version>
 			</properties>
 		</profile>
-
+		<profile>
+			<id>chrome</id>
+			<properties>
+				<test.platform>windows</test.platform>
+				<test.browser>chrome</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
+				<test.browser.version>40</test.browser.version>
+			</properties>
+		</profile>
 		<!-- ENV PROFILE -->
 		<profile>
 			<id>INT000</id>
