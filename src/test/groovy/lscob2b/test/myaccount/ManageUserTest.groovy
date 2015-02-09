@@ -18,7 +18,7 @@ class ManageUserTest extends GebReportingSpec {
 	}
 	
 	def setup() {
-		to LoginPage
+		to LoginPage //FIXME Firefox issue
 	}
 	
 	def "Check access to ManageUserPage for [b2badmingroup]"() {

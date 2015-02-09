@@ -113,7 +113,7 @@ class ProductDetailsPageTest extends GebReportingSpec {
 
 		setup: "Log in"
 
-		to LoginPage
+		to LoginPage //FIXME chrome issue
 		login (user)
 		at HomePage
 		browser.go(baseUrl + "p/" + product.getCode())
@@ -134,6 +134,8 @@ class ProductDetailsPageTest extends GebReportingSpec {
 	}
 
 	//FIXME Safari Problem	
+	//FIXME IE problem
+	@Ignore
 	def "user that does not hold customer rights tries to place an order from product details page"(){
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
 
