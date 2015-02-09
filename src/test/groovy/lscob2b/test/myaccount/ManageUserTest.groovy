@@ -21,6 +21,10 @@ class ManageUserTest extends GebReportingSpec {
 		to LoginPage //FIXME Firefox issue
 	}
 	
+	def cleanup() {
+		masterTemplate.doLogout()
+	}
+	
 	def "Check access to ManageUserPage for [b2badmingroup]"() {
 		setup:
 			login(user)

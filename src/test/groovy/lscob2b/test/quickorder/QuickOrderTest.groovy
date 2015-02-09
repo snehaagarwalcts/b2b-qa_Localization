@@ -21,6 +21,10 @@ class QuickOrderTest extends GebReportingSpec {
 		to LoginPage  //FIXME Chrome issue
 	}
 
+	def cleanup() {
+		masterTemplate.doLogout()
+	}
+	
 	def login(String username) {
 		doLogin(username, defaultPassword)
 	}

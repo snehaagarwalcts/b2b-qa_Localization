@@ -19,6 +19,10 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 	}
 	
+	def cleanup() {
+		masterTemplate.doLogout()
+	}
+	
 	def "wholesale and recommended retail prices should be displayed"(){
 
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
