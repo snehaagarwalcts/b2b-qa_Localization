@@ -2,18 +2,16 @@ package lscob2b.test.productdetails;
 
 import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.checkout.CheckOutPage
-import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.test.data.Product
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
-import lscob2b.test.data.User
 import spock.lang.Ignore
-import spock.lang.IgnoreIf
 
 class ProductDetailsPageTest extends GebReportingSpec {
 	
@@ -21,13 +19,8 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 	}
 	
-	def cleanup() {
-		masterTemplate.doLogout()
-	}
-
 	def "wholesale and recommended retail prices should be displayed"(){
 
-		User user = TestDataCatalog.getALevisUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
 
 		setup: "Log in"
@@ -47,10 +40,14 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		wholesalePriceExist()
 		recommendedRetailPriceValue == product.getPriceForUser(user).retailPrice
 		wholesalePriceValue == product.getPriceForUser(user).wholesalePrice
+		
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
+	//FIXME Safari issue
 	def "Add to cart from prdouct details page"(){
-		User user = TestDataCatalog.getACustomerUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
 
 		setup: "Log in"
@@ -73,11 +70,15 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		cartTemplate.checkItemPriceExists()
 		cartTemplate.checkItemQuantityExists()
 		cartTemplate.checkItemTotalExists()
+		
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
+	//FIXME Safari issue
 	def "place an order from product details page"(){
 		
-		User user = TestDataCatalog.getACustomerUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
 
 		setup: "Log in"
@@ -99,11 +100,15 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		//NOTE do not place an order. It'll take up stock
 		/*doPlaceOrder()
 		at OrderConfirmationPage*/
+		
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
+	//FIXME Safari issue
 	def "Change order quantity on cart page"(){
 		
-		User user = TestDataCatalog.getACustomerUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
 
 		setup: "Log in"
@@ -123,11 +128,13 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at CartPage
 		editQuantitiesButtonclick()
 		//TODO finish the test
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	@Ignore //FIXME Safari Problem	
+	//FIXME Safari Problem	
 	def "user that does not hold customer rights tries to place an order from product details page"(){
-		User user = TestDataCatalog.getALevisUser()
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
 
 		setup: "Log in"
@@ -148,6 +155,11 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		at CartPage
 		checkAlertMessage1()
 		checkAlertMessage2()
+		
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
 	}
 	
 	@Ignore
@@ -167,8 +179,8 @@ class ProductDetailsPageTest extends GebReportingSpec {
 			for(pc in crossSellingPCs) !crossSelling.itemLink(pc).empty
 			
 		where:
-			user | productCode | upSellingPCs | crossSellingPCs
-			TestDataCatalog.getALevisUser() | "00501-0039" | ["00501-1964", "00501-1711", "00501-1764", "00501-1860"] | ["00501-0101", "00501-0113", "00501-0114", "00501-1307", "00501-1622"]
+			user | _ | productCode | upSellingPCs | crossSellingPCs
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _  | "00501-0039" | ["00501-1964", "00501-1711", "00501-1764", "00501-1860"] | ["00501-0101", "00501-0113", "00501-0114", "00501-1307", "00501-1622"]
 	}
 	
 	@Ignore
@@ -196,8 +208,8 @@ class ProductDetailsPageTest extends GebReportingSpec {
 			title != buyStack.title.text()
 		
 		where:
-			user | productCode 
-			TestDataCatalog.getALevisUser() | "00501-0039" 
+			user | _ | productCode 
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _ | "00501-0039" 
 	}
 	
 	

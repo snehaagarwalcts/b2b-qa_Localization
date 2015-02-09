@@ -21,10 +21,6 @@ class ManageUserTest extends GebReportingSpec {
 		to LoginPage
 	}
 	
-	def cleanup() {
-		masterTemplate.doLogout()
-	}
-	
 	def "Check access to ManageUserPage for [b2badmingroup]"() {
 		setup:
 			login(user)
@@ -68,7 +64,7 @@ class ManageUserTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
 	
-	@Ignore
+	//FIXME Safari issue
 	def "Change default delivery address"() {
 		setup:
 			login(loginUser)
@@ -97,6 +93,7 @@ class ManageUserTest extends GebReportingSpec {
 		then: "At UserDetail page"
 			at ViewUserDetailsPage	
 			
+			//This might be the issue
 		and: "Check updated delivery address"
 			currentUser.address != userDetails.getUser().address
 						

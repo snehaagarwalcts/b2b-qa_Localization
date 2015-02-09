@@ -21,10 +21,6 @@ class QuickOrderTest extends GebReportingSpec {
 		to LoginPage
 	}
 
-	def cleanup() {
-		masterTemplate.doLogout()
-	}
-
 	def login(String username) {
 		doLogin(username, defaultPassword)
 	}
@@ -96,7 +92,7 @@ class QuickOrderTest extends GebReportingSpec {
 	/**
 	 * TC BB-456 Automated Test Case: be able to add to cart from quick order page
 	 */
-	//Safari issue
+	//FIXME Safari issue
 	def "Add to cart from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
 		login(user)
@@ -129,7 +125,7 @@ class QuickOrderTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	//Safari issue
+	//FIXME Safari issue
 	def "Remove product from cart Page"(){
 		setup:
 		login(user)
@@ -144,7 +140,7 @@ class QuickOrderTest extends GebReportingSpec {
 
 		Thread.sleep(1000);
 
-		when: "At Check out page"//FIXME This should be check out page not cart page.
+		when: "At cart page"//FIXME This should be check out page not cart page.
 		at CartPage
 		Thread.sleep(1000);
 
@@ -191,7 +187,7 @@ class QuickOrderTest extends GebReportingSpec {
 	/**
 	 * TC BB-438 Automated Test Case: Place an order from "Quick Order" Page.
 	 */
-	//Safari issue
+	//FIXME Safari issue
 	def "Place an order from Quick Order Page"(){
 		setup:
 		login(user)
@@ -218,7 +214,7 @@ class QuickOrderTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	//Safari issue
+	//FIXME Safari issue
 	def "user that does not hold customer rights tries to place an order from quick order page"(){
 		setup: "Log in"
 		login(user)
@@ -251,7 +247,7 @@ class QuickOrderTest extends GebReportingSpec {
 	 * TC BB-448 Automated Test Case: Place an order from "Quick Order" Page with multiple product ID's
 	 */
 	
-	//Safari issue
+	//FIXME Safari issue
 	def "Quick order with multiple product ID's"(){
 		setup:
 		login(user)
@@ -290,7 +286,7 @@ class QuickOrderTest extends GebReportingSpec {
 	 * TC BB-437 Automated Test Case: validate the content of the "Quick Order" Page for any user
 	 */
 	
-	//Safari issue
+	//FIXME Safari issue
 	def "check content of check out page"(){
 		setup:
 		login(user)

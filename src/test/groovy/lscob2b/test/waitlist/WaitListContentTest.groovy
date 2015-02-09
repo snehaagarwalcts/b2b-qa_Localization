@@ -31,7 +31,10 @@ class WaitListContentTest extends GebReportingSpec{
 	 masterTemplate.doLogout()
 	 }*/
 
-	@Ignore //FIXME IE Proble
+	//Unable to load impexes in IE
+	
+	//FIXME IE Problem //FIXME Safari problem
+	@Ignore
 	def "Load Out Of Stock impex"(){
 		when: "go to HAC login"
 		browser.go(baseUrl +"../")
@@ -50,7 +53,8 @@ class WaitListContentTest extends GebReportingSpec{
 		checkNotification()
 	}
 
-	@Ignore //FIXME IE Proble
+	//FIXME IE Problem
+	@Ignore
 	def "Adding to waitlist from Product Details page"() {
 		setup:
 			loginAndGoToPage(levisUser)
@@ -82,7 +86,8 @@ class WaitListContentTest extends GebReportingSpec{
 		productCode <<["05527-0458"]
 	}
 	
-	@Ignore //FIXME IE Proble
+	//FIXME IE Problem //FIXME Safari problem
+	@Ignore
 	def "Load Update In Stock impex"(){
 		when: "go to HAC login"
 		browser.go(baseUrl +"../")
@@ -100,7 +105,8 @@ class WaitListContentTest extends GebReportingSpec{
 		checkNotification()
 	}
 	
-	@Ignore //FIXME IE Proble
+	//FIXME IE Problem //FIXME Safari problem
+	@Ignore
 	def "Go to Waitlist and check for requested and available quantity"(){
 		setup:
 			loginAndGoToPage(levisUser)
