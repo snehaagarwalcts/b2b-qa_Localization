@@ -157,10 +157,6 @@ class MyAccountTest extends GebReportingSpec {
 		at ProfilePage
 
 		then: "Correct sections/links should be visible"
-		/*profileData.contains("TITLE:")
-		 profileData.contains("FIRST NAME:")
-		 profileData.contains("LAST NAME:")
-		 profileData.contains("EMAIL:")*/
 		checkProfileDataExists()
 		checkUpdatePersonalDetailsLinkExists()
 		checkChangeYourPasswordLinkExists()
@@ -197,25 +193,6 @@ class MyAccountTest extends GebReportingSpec {
 		where:
 		user<<[levisUser, dockersUser, multibrandUser]
 	}
-
-	/*	//Address book page content //Don't need this since Simone created address book test  //TODO add more content as page gets developed
-	 def "Check the Address book page content"(){
-	 setup:
-	 loginAsUserAndGoToMyAccount(user)
-	 addressBookLink.click()
-	 when: "At address book page"
-	 at AddressBookPage
-	 then: "Correct sections/links should be visible"
-	 addressBookData.contains("VIEW MY ADDRESS BOOK")
-	 addressBookData.contains("VIEW YOUR BILLING ADDRESSES")
-	 addressItem.contains("Cassilis Road")
-	 addressItem.contains("12, Turner House, Canary Central")
-	 addressItem.contains("Dublin")
-	 addressItem.contains("E149LJ")
-	 addressItem.contains("Ireland")
-	 where:
-	 user<<[levisUser]
-	 }*/
 
 	def "Check Breadcrumb on Address Book Page"(){
 		setup:
