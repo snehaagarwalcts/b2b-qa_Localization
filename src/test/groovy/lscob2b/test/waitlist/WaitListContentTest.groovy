@@ -31,8 +31,11 @@ class WaitListContentTest extends GebReportingSpec{
 	 masterTemplate.doLogout()
 	 }*/
 
-	//Unable to load impexes in IE
+	//TODO change HAC import of impex
 	
+	/**
+	 * TC BB-629 Automated test case: BB-497 Order from wait list
+	 */
 	//FIXME IE Problem //FIXME Safari problem
 	@Ignore
 	def "Load Out Of Stock impex"(){
@@ -53,6 +56,9 @@ class WaitListContentTest extends GebReportingSpec{
 		checkNotification()
 	}
 
+	/**
+	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
+	 */
 	//FIXME IE Problem
 	@Ignore
 	def "Adding to waitlist from Product Details page"() {
@@ -86,6 +92,9 @@ class WaitListContentTest extends GebReportingSpec{
 		productCode <<["05527-0458"]
 	}
 	
+	/**
+	 * TC BB-629 Automated test case: BB-497 Order from wait list
+	 */
 	//FIXME IE Problem //FIXME Safari problem
 	@Ignore
 	def "Load Update In Stock impex"(){
@@ -105,6 +114,9 @@ class WaitListContentTest extends GebReportingSpec{
 		checkNotification()
 	}
 	
+	/**
+	 * TC BB-629 Automated test case: BB-497 Order from wait list
+	 */
 	//FIXME IE Problem //FIXME Safari problem
 	@Ignore
 	def "Go to Waitlist and check for requested and available quantity"(){

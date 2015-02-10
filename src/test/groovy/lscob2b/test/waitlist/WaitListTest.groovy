@@ -34,6 +34,9 @@ public class WaitListTest extends GebReportingSpec{
 		masterTemplate.waitListLink.click()
 	}
 
+	/**
+	 * TC BB-629 Automated test case: BB-497 Order from wait list
+	 */
 	@Ignore //FIXME IE Problem
 	def "Load Out Of Stock impex"(){
 		when: "go to HAC login"
@@ -53,6 +56,9 @@ public class WaitListTest extends GebReportingSpec{
 		checkNotification()
 	}
 	
+	/**
+	 * TC BB-510 Automated test: wait list should be accessible by user
+	 */
 	@Ignore //FIXME Safari Problem
 	def "Test WaitList link"() {
 		setup:
@@ -75,6 +81,9 @@ public class WaitListTest extends GebReportingSpec{
 		]
 	}
 
+	/**
+	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
+	 */
 	@Ignore //FIXME IE Problem
 	def "Adding to waitlist from QuickOrder page"() {
 		setup:
@@ -110,6 +119,9 @@ public class WaitListTest extends GebReportingSpec{
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 
+	/**
+	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
+	 */
 	@Ignore //FIXME IE Problem
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
@@ -144,6 +156,10 @@ public class WaitListTest extends GebReportingSpec{
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 
+	/**
+	 * TC BB-556 Automated test: User should be able to edit product quantity from wait list
+	 * @return
+	 */
 	@Ignore //FIXME IE Problem
 	def "Edit quantities of product in WaitList page"() {
 		setup:
@@ -180,6 +196,9 @@ public class WaitListTest extends GebReportingSpec{
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 
+	/**
+	 * BB-511 Automated test: User should be able to remove product from wait list
+	 */
 	@Ignore //FIXME IE Problem
 	def "Remove product from WaitList page"() {
 		setup:

@@ -68,7 +68,7 @@ if (sauceBrowser && sauceBrowser != "false") {
 			platform: platform, 
 			version: version, 
 			browserName: browserName, 
-			'max-duration': 5400, //1:30h
+			'max-duration': 7200, //2h
 			name: "" + platform + "-" + browserName + "-" + version, 
 			"record-video": true, 
 			"video-upload-on-pass": false,

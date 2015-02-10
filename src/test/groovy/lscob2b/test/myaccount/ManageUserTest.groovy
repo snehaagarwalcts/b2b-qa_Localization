@@ -25,6 +25,9 @@ class ManageUserTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 	
+	/**
+	 * Bug BB-523 Security Problem on "my-account""
+	 */
 	def "Check access to ManageUserPage for [b2badmingroup]"() {
 		setup:
 			login(user)
@@ -45,6 +48,9 @@ class ManageUserTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
 	}
 	
+	/**
+	 * Bug BB-523 Security Problem on "my-account""
+	 */
 	def "Check denied access to ManageUserPage for not [b2badmingroup]"() {
 		setup:
 			login(user)
@@ -69,6 +75,10 @@ class ManageUserTest extends GebReportingSpec {
 	}
 	
 	//FIXME Safari issue
+	/**
+	 * TC BB-507 Automated Test Case: The admin customer user for a B2B group should be 
+	 * able to assign a default delivery address for all customers of the group.
+	 */
 	def "Change default delivery address"() {
 		setup:
 			login(loginUser)

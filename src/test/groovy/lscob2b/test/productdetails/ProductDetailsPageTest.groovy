@@ -23,6 +23,9 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 	
+	/**
+	 * TC BB-450 Automated Test Case: Wholesale and recommended price should be displayed on PDP
+	 */
 	def "wholesale and recommended retail prices should be displayed"(){
 
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
@@ -50,6 +53,9 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
+	/**
+	 * TC BB-521 Automated test: User can add to cart from product details page
+	 */
 	//FIXME Safari issue
 	def "Add to cart from prdouct details page"(){
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
@@ -80,6 +86,9 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
+	/**
+	 * TC BB-559 Automated test: be able to place an order from Product details page
+	 */
 	//FIXME Safari issue
 	def "place an order from product details page"(){
 		
@@ -168,6 +177,9 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
 	}
 	
+	/**
+	 * TC BB-645 Automated test case: Cross-Selling & Up-Selling
+	 */
 	@Ignore
 	def "Check Up-Selling and Cross-Selling"() {
 		setup:

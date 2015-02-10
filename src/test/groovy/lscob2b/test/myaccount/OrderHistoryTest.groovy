@@ -62,8 +62,11 @@ class OrderHistoryTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 
+	/**
+	 * Bug BB-604 Security Issue on "my-account/orders"
+	 */
 	//FIXME IE problem
-	@Ignore
+	
 	def "Check access to OrderHistory for [b2bcustomergroup]"() {
 		setup:
 		login(user)
@@ -76,11 +79,15 @@ class OrderHistoryTest extends GebReportingSpec {
 		at OrderHistoryPage
 
 		where:
-		user = TestDataCatalog.getACustomerUser()
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
+	/**
+	 * Bug BB-604 Security Issue on "my-account/orders"
+	 */
    //FIXME IE problem
-	@Ignore
+	
 	def "Check denied access to OrderHistory for not [b2bcustomergroup]"() {
 		setup:
 		login(user)
@@ -163,6 +170,9 @@ class OrderHistoryTest extends GebReportingSpec {
 		"05527-0458" |	UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
+	/**
+	 * TC BB-509 Automated test: User Can reorder from history page
+	 */
 	//FIXME Safari issue
 	def "Test re-order functionality in history"() {
 		setup:
@@ -199,6 +209,9 @@ class OrderHistoryTest extends GebReportingSpec {
 
 	}
 
+	/**
+	 * TC BB-601 Automated Test: Order Search
+	 */
 	//FIXME Safari issue
 	def "Test search functionality in history"() {
 		setup:
