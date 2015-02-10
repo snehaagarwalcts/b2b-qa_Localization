@@ -17,5 +17,12 @@ class ImportContentModule extends Module {
 		importButton { form.find("input", value: "Import content") }
 		
 	}
+	
+	def void setText(txt) {
+		//HACK for CodeMirror JS
+		txt = txt.replaceAll("\n","\\n")
+		js.exec("CodeMirror.fromTextArea(document.getElementById('script'), {mode: 'text/x-impex', lineNumbers: true, autofocus: true, extraKeys: {'F11': function(cm) {setFullScreen(cm, !isFullScreen(cm)); }, 'Esc': function(cm) {if (isFullScreen(cm)) setFullScreen(cm, false); }, 'Ctrl-Space': 'autocomplete'} }).setValue('" + txt + "');")
+	}
+	
 		
 }

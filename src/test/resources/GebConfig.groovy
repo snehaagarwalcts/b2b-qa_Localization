@@ -1,11 +1,14 @@
 package test.resources
 
 import geb.driver.SauceLabsDriverFactory
+import geb.report.PageSourceReporter
+import geb.report.ScreenshotReporter
 import lscob2b.util.geb.DummyReporter
 
 import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.safari.SafariDriver
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.ie.InternetExplorerDriver
+import org.openqa.selenium.safari.SafariDriver
 
 
 def sysProps = System.getProperties()
@@ -87,6 +90,10 @@ if (sauceBrowser && sauceBrowser != "false") {
 		
 		driver = { new ChromeDriver() }
 		
+	} else if(browserName == "internet explorer") {
+		
+		driver = { new InternetExplorerDriver() }
+	
 	} else {
 		
 		driver = { new FirefoxDriver() }	//Default Driver!
@@ -104,7 +111,14 @@ autoClearCookies = true
 /**
  * REPORT
  */
-reporter = new DummyReporter() // Fastest Reporter :)
+def rep = sysProps.get "geb.reporter"
+if(rep == "screenshot") {
+	reporter = new ScreenshotReporter()
+} else if(rep == "pageshot") {
+	reporter = new PageSourceReporter()
+} else {
+	reporter = new DummyReporter() // Fastest Reporter :)
+}
 reportsDir = new File("target/geb-reports")
 reportOnTestFailureOnly = true
 

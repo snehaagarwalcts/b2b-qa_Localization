@@ -9,7 +9,16 @@
 		<selenium.version>2.43.1</selenium.version>
 		<spock.version>0.7-groovy-2.0</spock.version>
 		<geb.version>0.10.0</geb.version>
-		<skip.damage.control.report>false</skip.damage.control.report>
+		<!-- DEFAULT PROPERTIES -->
+		<!-- <test.parallel>1</test.parallel> -->
+		<!-- <test.env>local</test.env> -->
+		<!-- <test.platform>windows</test.platform> -->
+		<!-- <test.browser>firefox</test.browser> -->
+		<!-- <test.browser.version>34</test.browser.version> -->
+		<!-- <test.saucelabs>false</test.saucelabs> -->
+		<!-- <test.saucelabs.user></test.saucelabs.user> -->
+		<!-- <test.saucelabs.access-key></test.saucelabs.access-key> -->
+		<!-- <test.reporter></test.reporter> -->
 	</properties>
 	<build>
 		<plugins>
@@ -56,25 +65,28 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<plugin>
-				<groupId>com.github.damage-control.report</groupId>
-				<artifactId>damage-control-maven-plugin</artifactId>
-				<version>1.0.0</version>
-				<configuration>
-					<skip>${skip.damage.control.report}</skip>
-					<testResultsFolders>
-						<testResultsFolder>target/surefire-reports</testResultsFolder>
-					</testResultsFolders>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>site</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+
+			<!-- <plugin> -->
+			<!-- <groupId>com.github.damage-control.report</groupId> -->
+			<!-- <artifactId>damage-control-maven-plugin</artifactId> -->
+			<!-- <version>1.0.0</version> -->
+			<!-- <configuration> -->
+			<!-- <skip>${skip.damage.control.report}</skip> -->
+			<!-- <outputFolder>target/html-reports</outputFolder> -->
+			<!-- <testResultsFolders> -->
+			<!-- <testResultsFolder>target/surefire-reports</testResultsFolder> -->
+			<!-- <testResultsFolder>target/failsafe-reports</testResultsFolder> -->
+			<!-- </testResultsFolders> -->
+			<!-- </configuration> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <phase>post-integration-test</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>report</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -96,6 +108,7 @@
 						<geb.sauce.browser>${test.saucelabs}</geb.sauce.browser>
 						<geb.sauce.user>${test.saucelabs.user}</geb.sauce.user>
 						<geb.sauce.access.key>${test.saucelabs.access-key}</geb.sauce.access.key>
+						<geb.reporter>${test.reporter}</geb.reporter>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
@@ -211,6 +224,12 @@
 			<artifactId>selenium-support</artifactId>
 			<version>${selenium.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.athaydes</groupId>
+			<artifactId>spock-reports</artifactId>
+			<version>1.2.3</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -244,20 +263,55 @@
 			<properties>
 				<test.platform>windows</test.platform>
 				<test.browser>chrome</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
-				<test.browser.version>40</test.browser.version>
+				<test.browser.version>39</test.browser.version>
 			</properties>
 		</profile>
+
 		<!-- ENV PROFILE -->
 		<profile>
-			<id>INT000</id>
+			<id>integration000</id>
 			<properties>
 				<test.env>integration000</test.env>
 			</properties>
 		</profile>
 		<profile>
+			<id>integration001</id>
+			<properties>
+				<test.env>integration001</test.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>qa000</id>
+			<properties>
+				<test.env>qa000</test.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>qa001</id>
+			<properties>
+				<test.env>qa001</test.env>
+			</properties>
+		</profile>
+
+		<!-- SAUCE LABS -->
+		<profile>
 			<id>saucelabs</id>
 			<properties>
 				<test.saucelabs>true</test.saucelabs>
+			</properties>
+		</profile>
+
+		<!-- REPORTER -->
+		<profile>
+			<id>screenshot</id>
+			<properties>
+				<test.reporter>screenshot</test.reporter>
+			</properties>
+		</profile>
+		<profile>
+			<id>pageshot</id>
+			<properties>
+				<test.reporter>pageshot</test.reporter>
 			</properties>
 		</profile>
 
@@ -288,5 +342,13 @@
 		</profile>
 
 	</profiles>
+
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<name>JCenter Repo</name>
+			<url>http://jcenter.bintray.com</url>
+		</repository>
+	</repositories>
 
 </project>
