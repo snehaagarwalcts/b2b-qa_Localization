@@ -1,7 +1,10 @@
+
+
 package de.hybris.geb.page.hac.console 
 
 import geb.Page
 import de.hybris.geb.module.hac.MenuModule
+import de.hybris.geb.module.hac.console.ImportContentModule
 import de.hybris.geb.module.hac.console.ImportScriptModule
 
 class ImpexImportPage extends Page {
@@ -16,23 +19,32 @@ class ImpexImportPage extends Page {
 		
 		importScript { module ImportScriptModule }
 		
+		importContent { module ImportContentModule }
+		
 		notification { $("div#notification") }
 		
 		tabs { $("ul.ui-tabs-nav") }
 		
+		tabContent { tabs.find("li",0).find("a") }
+		
 		tabScript { tabs.find("li",1).find("a") }
- 		
+		
+	}
+	
+	def importTextScript(String impexText) {
+		tabContent.click()
+		
+		importContent.setText(impexText)
+		
+		importContent.importButton.click()
 	}
 
-	def importScript(String filePath) {
+	def importFileScript(String filePath) {
 		tabScript.click()
 		
 		importScript.file.value(filePath)
 		
 		importScript.buttonImport.click()
-		
-		return checkNotification()
-		
 	}
 	
 	def boolean checkNotification() {

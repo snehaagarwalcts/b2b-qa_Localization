@@ -6,8 +6,7 @@ import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import spock.lang.Ignore
-import spock.lang.IgnoreRest;
+import lscob2b.test.data.User
  
 
 class LoginTest extends GebReportingSpec { 
@@ -46,7 +45,7 @@ class LoginTest extends GebReportingSpec {
 		when: "at login page"
 			at LoginPage
 			
-		and: "do login "
+		and: "do login"
 			login(user)
 
 		then: "at home page"
@@ -66,6 +65,7 @@ class LoginTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
+//			new User(email:'simone.romei@levi.com', password:'12341234') | _
 	}
 	
 }
