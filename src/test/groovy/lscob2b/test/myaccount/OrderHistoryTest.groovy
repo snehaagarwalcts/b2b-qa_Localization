@@ -104,7 +104,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
-@Ignore
+
 	//FIXME Safari issue
 	
 	def "Test clear functionality"() {
@@ -129,7 +129,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	@Ignore
+	
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
 	
 	//FIXME Safari issue
@@ -170,7 +170,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-509 Automated test: User Can reorder from history page
 	 */
 	//FIXME Safari issue
-	@Ignore
+	
 	def "Test re-order functionality in history"() {
 		setup:
 		login(user)
@@ -210,7 +210,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-601 Automated Test: Order Search
 	 */
 	//FIXME Safari issue
-	@Ignore
+	
 	def "Test search functionality in history"() {
 		setup:
 		login(user)
