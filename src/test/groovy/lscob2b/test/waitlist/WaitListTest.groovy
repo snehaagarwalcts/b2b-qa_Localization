@@ -9,7 +9,6 @@ import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
-import spock.lang.IgnoreRest
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
 
@@ -37,7 +36,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
-	@Ignore //FIXME IE Problem
+	//FIXME IE Problem
 	def "Load Out Of Stock impex"(){
 		when: "go to HAC login"
 		browser.go(baseUrl +"../")
@@ -52,14 +51,16 @@ public class WaitListTest extends GebReportingSpec{
 
 		then:"At impex import page and import the impex"
 		at ImpexImportPage
-		importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
+		importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
+		//importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
 		checkNotification()
+		logOut.click()
 	}
 	
 	/**
 	 * TC BB-510 Automated test: wait list should be accessible by user
 	 */
-	@Ignore //FIXME Safari Problem
+	//FIXME Safari Problem
 	def "Test WaitList link"() {
 		setup:
 		login(user)
@@ -73,6 +74,7 @@ public class WaitListTest extends GebReportingSpec{
 		and: "Click on link"
 		masterTemplate.waitListLink.click()
 		at WaitListPage
+		masterTemplate.doLogout()
 
 		where:
 		user << [
@@ -84,7 +86,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
-	@Ignore //FIXME IE Problem
+	//FIXME IE Problem
 	def "Adding to waitlist from QuickOrder page"() {
 		setup:
 		loginAndGoToPage(user)
@@ -112,6 +114,7 @@ public class WaitListTest extends GebReportingSpec{
 
 		then: "Check updated quantity of product"
 		getProductQuantityRequested(productCode) == (currentQuantity+1)
+		masterTemplate.doLogout()
 
 		where:
 		productCode 	| user
@@ -122,7 +125,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
-	@Ignore //FIXME IE Problem
+	//FIXME IE Problem
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 		loginAndGoToPage(user)
@@ -149,6 +152,7 @@ public class WaitListTest extends GebReportingSpec{
 
 		then: "Check updated quantity of product"
 		getProductQuantityRequested(productCode) == (currentQuantity+1)
+		masterTemplate.doLogout()
 
 		where:
 		productCode 	| user
@@ -160,7 +164,7 @@ public class WaitListTest extends GebReportingSpec{
 	 * TC BB-556 Automated test: User should be able to edit product quantity from wait list
 	 * @return
 	 */
-	@Ignore //FIXME IE Problem
+	//FIXME IE Problem
 	def "Edit quantities of product in WaitList page"() {
 		setup:
 		login(user)
@@ -199,7 +203,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
-	@Ignore //FIXME IE Problem
+	//FIXME IE Problem
 	def "Remove product from WaitList page"() {
 		setup:
 		login(user)
@@ -237,7 +241,7 @@ public class WaitListTest extends GebReportingSpec{
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
-	@Ignore
+	
 	def "Open waitlist grid"() {
 		setup:
 		loginAndGoToPage(user)
@@ -260,6 +264,7 @@ public class WaitListTest extends GebReportingSpec{
 		popupBoxClose.click()
 		Thread.sleep(1000)
 		!addToWaitListForm.displayed
+		masterTemplate.doLogout()
 
 		where:
 		productCode 	| user

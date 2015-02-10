@@ -1,6 +1,7 @@
 package de.hybris.geb.module.hac.console
 
-import geb.Module;
+import geb.Module
+import groovy.json.StringEscapeUtils
 
 class ImportContentModule extends Module {
 
@@ -20,7 +21,7 @@ class ImportContentModule extends Module {
 	
 	def void setText(txt) {
 		//HACK for CodeMirror JS
-		txt = txt.replaceAll("\n","\\n")
+		txt = StringEscapeUtils.escapeJavaScript(txt)
 		js.exec("CodeMirror.fromTextArea(document.getElementById('script'), {mode: 'text/x-impex', lineNumbers: true, autofocus: true, extraKeys: {'F11': function(cm) {setFullScreen(cm, !isFullScreen(cm)); }, 'Esc': function(cm) {if (isFullScreen(cm)) setFullScreen(cm, false); }, 'Ctrl-Space': 'autocomplete'} }).setValue('" + txt + "');")
 	}
 	

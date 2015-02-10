@@ -61,11 +61,33 @@ class OrderHistoryTest extends GebReportingSpec {
 	def cleanup() {
 		masterTemplate.doLogout()
 	}
-
+	
 	/**
 	 * Bug BB-604 Security Issue on "my-account/orders"
 	 */
-	//FIXME IE problem
+		
+	def "Check denied access to OrderHistory for not [b2bcustomergroup]"() {
+		setup:
+		login(user)
+
+		when: "At HomePage"
+		at HomePage
+
+		and: "Go to my-account/orders"
+		browser.go(baseUrl + "my-account/orders")
+		
+		then:
+		at HomePage
+
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
+	}
+	
+	/**
+	 * Bug BB-604 Security Issue on "my-account/orders"
+	 */
 	
 	def "Check access to OrderHistory for [b2bcustomergroup]"() {
 		setup:
@@ -82,36 +104,9 @@ class OrderHistoryTest extends GebReportingSpec {
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
-
-	/**
-	 * Bug BB-604 Security Issue on "my-account/orders"
-	 */
-   //FIXME IE problem
-	
-	def "Check denied access to OrderHistory for not [b2bcustomergroup]"() {
-		setup:
-		login(user)
-
-		when: "At HomePage"
-		at HomePage
-
-		then: "Go to my-account/orders"
-		browser.go(baseUrl + "my-account/orders")
-		at HomePage
-
-		where:
-		user | _
-		TestDataCatalog.getUserNotInGroups([
-			TestDataCatalog.CUSTOMER_GROUP,
-			TestDataCatalog.ADMIN_GROUP
-		]) | _
-		TestDataCatalog.getUserNotInGroups([
-			TestDataCatalog.CUSTOMER_GROUP,
-			TestDataCatalog.FINANCE_GROUP
-		]) | _
-	}
-
+@Ignore
 	//FIXME Safari issue
+	
 	def "Test clear functionality"() {
 		setup:
 		login(user)
@@ -134,10 +129,11 @@ class OrderHistoryTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-
+	@Ignore
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
 	
 	//FIXME Safari issue
+	
 	def "Test order creation in history"() {
 		setup:
 		login(user)
@@ -174,6 +170,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-509 Automated test: User Can reorder from history page
 	 */
 	//FIXME Safari issue
+	@Ignore
 	def "Test re-order functionality in history"() {
 		setup:
 		login(user)
@@ -213,6 +210,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-601 Automated Test: Order Search
 	 */
 	//FIXME Safari issue
+	@Ignore
 	def "Test search functionality in history"() {
 		setup:
 		login(user)

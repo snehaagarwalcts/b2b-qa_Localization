@@ -29,6 +29,8 @@ class ImpexImportPage extends Page {
 		
 		tabScript { tabs.find("li",1).find("a") }
 		
+		logOut { $("form input",1)}
+		
 	}
 	
 	def importTextScript(String impexText) {

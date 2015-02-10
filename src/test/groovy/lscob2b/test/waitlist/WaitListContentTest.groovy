@@ -6,7 +6,6 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestHelper
-import spock.lang.Ignore
 import de.hybris.geb.page.hac.HomePage
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
@@ -37,7 +36,7 @@ class WaitListContentTest extends GebReportingSpec{
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
 	//FIXME IE Problem //FIXME Safari problem
-	@Ignore
+	
 	def "Load Out Of Stock impex"(){
 		when: "go to HAC login"
 		browser.go(baseUrl +"../")
@@ -52,15 +51,17 @@ class WaitListContentTest extends GebReportingSpec{
 
 		then:"At impex import page and import the impex"
 		at ImpexImportPage
-		importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
+		importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
+		//importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
 		checkNotification()
+		logOut.click()
 	}
 
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
 	//FIXME IE Problem
-	@Ignore
+
 	def "Adding to waitlist from Product Details page"() {
 		setup:
 			loginAndGoToPage(levisUser)
@@ -87,6 +88,7 @@ class WaitListContentTest extends GebReportingSpec{
 			
 		then: "Check updated quantity of product"
 			getProductQuantityRequested(productCode) == (currentQuantity+1)
+			masterTemplate.doLogout()
 
 		where:
 		productCode <<["05527-0458"]
@@ -96,7 +98,7 @@ class WaitListContentTest extends GebReportingSpec{
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
 	//FIXME IE Problem //FIXME Safari problem
-	@Ignore
+	
 	def "Load Update In Stock impex"(){
 		when: "go to HAC login"
 		browser.go(baseUrl +"../")
@@ -110,15 +112,17 @@ class WaitListContentTest extends GebReportingSpec{
 
 		then:"At impex import page and import the impex"
 		at ImpexImportPage
-		importScript(this.getClass().getResource('/impex/UpdateInStock.impex').toString())
+		importTextScript(getClass().getResource('/impex/UpdateInStock.impex').text)
+		//importScript(this.getClass().getResource('/impex/UpdateInStock.impex').toString())
 		checkNotification()
+		logOut.click()
 	}
 	
 	/**
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
 	//FIXME IE Problem //FIXME Safari problem
-	@Ignore
+	
 	def "Go to Waitlist and check for requested and available quantity"(){
 		setup:
 			loginAndGoToPage(levisUser)
@@ -132,6 +136,7 @@ class WaitListContentTest extends GebReportingSpec{
 			
 		and: "Check requested quantity = available"
 			getProductQuantityAvailable(productCode) == (currentQuantity)
+			masterTemplate.doLogout()
 	}
 	
 	//FIXME create a page helper
