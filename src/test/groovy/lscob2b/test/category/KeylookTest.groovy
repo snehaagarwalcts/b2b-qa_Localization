@@ -14,6 +14,9 @@ public class KeylookTest extends GebReportingSpec {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 	}
 	
+	/**
+	 * BB-648 Automated test case: Key Look page
+	 */
 	@Ignore //TODO Not testable until keylook is ready!!!
 	def "Test Key-Look page"() {
 		setup:

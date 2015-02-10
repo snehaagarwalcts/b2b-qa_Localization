@@ -10,6 +10,10 @@ class LoginFailureTest extends GebReportingSpec {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 	}
 	
+	/**
+	 * TC BB-751 Login Failure
+	 * @return
+	 */
     def "Login failure"() {
 		setup:
 			to LoginPage

@@ -15,6 +15,10 @@ class LanguageSelectorTest extends GebReportingSpec {
 		langSelector = 'en'
 	}
 	
+	/**
+	 * TC BB-339 Automated Test Case: When selecting a different language from the Login Page -> Language field,\
+	 * the system language changes to the selected value.
+	 */
 	def "Check languages are present" () {
 		setup: "Define languages"
 
@@ -34,6 +38,10 @@ class LanguageSelectorTest extends GebReportingSpec {
 		}
 	}
 
+	/**
+	 * TC BB-339 Automated Test Case: When selecting a different language from the Login Page -> Language field,\
+	 * the system language changes to the selected value.
+	 */
 	def "Change language on login page"() {
 		when: "Selecting a language"
 

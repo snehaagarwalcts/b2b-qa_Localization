@@ -11,6 +11,10 @@ class ContactUS extends GebReportingSpec {
 		clickContactUS()
 	}
 	
+	/**
+	 * TC BB-610 Automated test: BB-412 New customer requesting access - content test
+	 * @return
+	 */
 	def "Check the content of contact us page"(){
 		
 		when: "At contact us page"
@@ -20,6 +24,9 @@ class ContactUS extends GebReportingSpec {
 		checkRequiredContent()
 	}
 	
+	/**
+	 * TC BB-611 Automated Test: BB-412 New customer requesting access
+	 */
 	def "New customer requesting access"(){
 		
 		when: "At contact us page"
@@ -38,6 +45,9 @@ class ContactUS extends GebReportingSpec {
 		checkNoteMessageExists()
 	}
 	
+	/**
+	 * TC BB-612 Automated test: BB-412 New customer requesting access
+	 */
 	def "New customer tried to submit form without filling out all require information"(){
 		
 		when: "At contact us page fill out most of the information"

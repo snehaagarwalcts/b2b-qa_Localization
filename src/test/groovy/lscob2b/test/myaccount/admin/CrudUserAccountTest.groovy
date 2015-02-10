@@ -27,7 +27,9 @@ class CrudUserAccountTest extends GebReportingSpec {
 
 	@Shared
 	User createdUser
-	
+	/**
+	 * TC BB-482 Admin users should be able to create new customer accounts
+	 */
 	def "[C] Go to create new user page"(){
 		setup: 
 			masterTemplate.selectManageUsers()
@@ -42,7 +44,10 @@ class CrudUserAccountTest extends GebReportingSpec {
 			at CreateUserPage
 			
 	}
-
+	
+	/**
+	 * TC BB-482 Admin users should be able to create new customer accounts
+	 */
 	def "[C] Create new user "() {
 		setup:
 			createdUser = createTemporaryUser()
@@ -63,6 +68,10 @@ class CrudUserAccountTest extends GebReportingSpec {
 			waitFor { noteMessage.displayed }				
 	}
 	
+	/**
+	 * TC BB-484 Admin users should be able to update other user's accounts
+	 * @return
+	 */
 	def "[R] Read created user"() {
 		when: "At ViewUserDetail page" 	
 			at ViewUserDetailsPage
@@ -74,6 +83,10 @@ class CrudUserAccountTest extends GebReportingSpec {
 			createdUser.email == userDetails.getUser().email
 	}
 	
+	/**
+	 * TC BB-484 Admin users should be able to update other user's accounts
+	 * @return
+	 */
 	def "[U] Update created user"() {
 		when: "At ViewUserDetail page"
 			at ViewUserDetailsPage
@@ -103,7 +116,11 @@ class CrudUserAccountTest extends GebReportingSpec {
 			waitFor { noteMessage.displayed }
 			
 	}
-		
+	
+	/**
+	 * TC BB-484 Admin users should be able to update other user's accounts
+	 * @return
+	 */
 	def "[R] Read updated user"() {
 		when: "At ViewUserDetail page"
 			at ViewUserDetailsPage
@@ -115,6 +132,10 @@ class CrudUserAccountTest extends GebReportingSpec {
 			createdUser.email == userDetails.getUser().email
 	}
 	
+	/**
+	 * TC BB-484 Admin users should be able to update other user's accounts
+	 * @return
+	 */
 	def "[D] Disable updated user"() {
 		when: "At ViewUserDetail page"
 			at ViewUserDetailsPage
@@ -129,6 +150,9 @@ class CrudUserAccountTest extends GebReportingSpec {
 			waitFor { noteMessage.displayed }
 	}
 	
+	/**
+	 * TC BB-482 Admin users should be able to create new customer accounts
+	 */
 	def User createTemporaryUser() {
 		User user = new User();
 		user.email = UUID.randomUUID().toString() + "@test.tst"

@@ -24,6 +24,9 @@ class MultibrandUserTest extends GebReportingSpec {
 		masterTemplate.doLogout()
 	}
 	
+	/**
+	 * TC BB-512 Automated Test: Multibrand user should be able to switch between Levis and Dockers
+	 */
 	def "Check switch to dockers is present"() {
 		setup:
 			login (multibrandUser)
@@ -38,6 +41,9 @@ class MultibrandUserTest extends GebReportingSpec {
 			}
 	}
 
+	/**
+	 * TC BB-512 Automated Test: Multibrand user should be able to switch between Levis and Dockers
+	 */
 	def "Switch to Dockers theme"(){
 		setup:
 			login (multibrandUser)
@@ -65,6 +71,9 @@ class MultibrandUserTest extends GebReportingSpec {
 		
 	}
 
+	/**
+	 * TC BB-512 Automated Test: Multibrand user should be able to switch between Levis and Dockers
+	 */
 	def "Swtich to Levis theme"(){
 		setup:
 			login (multibrandUser)
@@ -97,6 +106,9 @@ class MultibrandUserTest extends GebReportingSpec {
 			}
 	}
 	
+	/**
+	 * TC BB-752 Automated Test: Check if switch to dockers/levis is present using dockers/levis users
+	 */
 	def "Check if switch to dockers is present using Levis customer"(){
 		setup:
 			login (TestDataCatalog.getALevisUser())
@@ -111,6 +123,9 @@ class MultibrandUserTest extends GebReportingSpec {
 			}
 	}
 	
+	/**
+	 * TC BB-752 Automated Test: Check if switch to dockers/levis is present using dockers/levis users
+	 */
 	def "Check if switch to dockers is present using Dockers customer"(){
 		setup:
 			login (TestDataCatalog.getADockersUser())
@@ -125,6 +140,9 @@ class MultibrandUserTest extends GebReportingSpec {
 			}
 	}
 	
+	/** 
+	 * TC BB-595 Automated test: BB-209 As a multibrand user I see only products from my active brand
+	 */
 	def "Check if correct products/catalogs are displayed on Levis Theme"(){
 		setup:
 			login (user)
@@ -152,6 +170,9 @@ class MultibrandUserTest extends GebReportingSpec {
 //			waitFor { checkMessageTextExists() }
 	}
 	
+	/**
+	 * TC BB-595 Automated test: BB-209 As a multibrand user I see only products from my active brand
+	 */
 	def "Check if correct products/catalogs are displayed on Dockers Theme"(){
 		setup:
 			login (user)

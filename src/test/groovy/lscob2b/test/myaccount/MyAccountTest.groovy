@@ -32,6 +32,10 @@ class MyAccountTest extends GebReportingSpec {
 		at MyAccountPage
 	}
 
+	/**
+	 * TC BB-341 Automated Test Case: Any User should see the "My Account" link in the 
+	 * right-side of the header section of the Application, that should redirect the user to the My Account Home Page.
+	 */
 	def "My account is accessible"() {
 		when: "logged in as any user"
 
@@ -49,6 +53,9 @@ class MyAccountTest extends GebReportingSpec {
 		user << [levisUser, dockersUser]    // TODO change for user roles
 	}
 
+	/**
+	 * TC BB-362 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "My Account" Page.
+	 */
 	def "Check breadcrumbs on My account page"() {
 		// tests the login itself without worrying about rights
 		when: "At My Account page"
@@ -148,6 +155,9 @@ class MyAccountTest extends GebReportingSpec {
 		
 	}
 
+	/**
+	 * TC BB-367 Automated Test Case: Validate the content of the My Account - "User Profile" Page for any user.
+	 */
 	def "Check the Profile page content"() {
 		setup:
 		loginAsUserAndGoToMyAccount(user)
@@ -165,6 +175,9 @@ class MyAccountTest extends GebReportingSpec {
 		user << [levisUser, dockersUser, multibrandUser]
 	}
 
+	/**
+	 * TC BB-368 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "User Profile" Page.
+	 */
 	def "Check Breadcrumb on Profile Page"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
@@ -194,6 +207,9 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser, dockersUser, multibrandUser]
 	}
 
+	/**
+	 * TC BB-426 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "Address Book" Page.
+	 */
 	def "Check Breadcrumb on Address Book Page"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)
@@ -223,6 +239,10 @@ class MyAccountTest extends GebReportingSpec {
 		user<<[levisUser, dockersUser, multibrandUser]
 	}
 
+	/**
+	 * TC BB-424 Automated Test Case: Validate the content of the My Account - "Manage Users" Page for b2badministrator user.
+	 * @return
+	 */
 	def "Check the ManageUsers page structure"(){
 		setup:
 			at LoginPage
@@ -300,6 +320,9 @@ class MyAccountTest extends GebReportingSpec {
 	 user << [levisUser]
 	 }*/
 
+	/**
+	 * BB-428 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "Order History" Page.
+	 */
 	def "Check Breadcrumb on Order History Page"(){
 		setup:
 		loginAsUserAndGoToMyAccount(user)

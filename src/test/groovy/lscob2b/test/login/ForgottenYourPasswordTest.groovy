@@ -15,6 +15,9 @@ class ForgottenYourPasswordTest extends GebReportingSpec {
         to LoginPage
     }
 	
+	 /**
+	  * TC BB-750 Forgotten your password
+	  */
     def "Open forgotten password dialog"() {
 
         when: "Click forgot password link"

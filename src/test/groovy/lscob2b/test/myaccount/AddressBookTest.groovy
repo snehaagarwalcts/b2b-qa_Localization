@@ -29,6 +29,9 @@ class AddressBookTest extends GebReportingSpec {
 		addressBookLink.click()
 	}
 	
+	/**
+	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
+	 */
 	def "Check Users Shipping Address"() {
 		setup:
 			loginAndGoToPage(user)
@@ -60,6 +63,9 @@ class AddressBookTest extends GebReportingSpec {
 			user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getAMultibrandUser(), TestDataCatalog.getADockersUser()]
 	}
 	
+	/**
+	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
+	 */
 	def "Check Users Billing Address"() {
 		setup:
 		loginAndGoToPage(user)
