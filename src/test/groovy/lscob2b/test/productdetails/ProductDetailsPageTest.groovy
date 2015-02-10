@@ -12,6 +12,7 @@ import lscob2b.test.data.Product
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
+import spock.lang.IgnoreRest
 
 class ProductDetailsPageTest extends GebReportingSpec {
 	
@@ -51,6 +52,35 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		where:
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+	}
+	
+	//FIXME Safari Problem	
+	def "user that does not hold customer rights tries to place an order from product details page"(){
+		Product product = TestDataCatalog.getAProductAvailableForUser(user)
+
+		setup: "Log in"
+
+		to LoginPage
+		login (user)
+		at HomePage
+		browser.go(baseUrl + "p/" + product.getCode())
+		at ProductDetailsPage
+		
+		when: "add product to cart"
+		addOrderQuantity('1')
+		sizingGrid.addToCart()
+		masterTemplate.doGoToCart()
+		
+		then: "check out"
+		checkOut.doCheckOut()
+		at CartPage
+		checkAlertMessage1()
+		checkAlertMessage2()
+		
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
 	}
 	
 	/**
@@ -144,37 +174,6 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		where:
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
-	}
-
-	//FIXME Safari Problem	
-	//FIXME IE problem
-	@Ignore
-	def "user that does not hold customer rights tries to place an order from product details page"(){
-		Product product = TestDataCatalog.getAProductAvailableForUser(user)
-
-		setup: "Log in"
-
-		to LoginPage
-		login (user)
-		at HomePage
-		browser.go(baseUrl + "p/" + product.getCode())
-		at ProductDetailsPage
-		
-		when: "add product to cart"
-		addOrderQuantity('1')
-		sizingGrid.addToCart()
-		masterTemplate.doGoToCart()
-		
-		then: "check out"
-		checkOut.doCheckOut()
-		at CartPage
-		checkAlertMessage1()
-		checkAlertMessage2()
-		
-		where:
-		user | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
 	}
 	
 	/**

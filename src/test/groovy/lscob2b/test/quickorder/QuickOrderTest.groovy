@@ -12,7 +12,6 @@ import lscob2b.test.data.TestHelper
 import spock.lang.IgnoreRest
 
 class QuickOrderTest extends GebReportingSpec {
-	//FIXME issue with this in IE
 	def setupSpec() {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 	}
