@@ -97,7 +97,7 @@ class QuickOrderTest extends GebReportingSpec {
 	 * TC BB-456 Automated Test Case: be able to add to cart from quick order page
 	 */
 	//FIXME Safari issue //FIXME Firefox issue
-	@Ignore
+	
 	def "Add to cart from Quick Order Page"(){
 		when: "Logging in and going to Quick Order page"
 		login(user)
@@ -131,7 +131,7 @@ class QuickOrderTest extends GebReportingSpec {
 	}
 
 	//FIXME Safari issue //FIXME Firefox issue
-	@Ignore
+	
 	def "Remove product from cart Page"(){
 		setup:
 		login(user)
@@ -152,7 +152,7 @@ class QuickOrderTest extends GebReportingSpec {
 
 		then: "Remove the product from the page and you should get a message cart is empty"
 		cartTemplate.doRemove()
-		waitFor(5){
+		waitFor(10){
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
 		}
 
@@ -194,7 +194,7 @@ class QuickOrderTest extends GebReportingSpec {
 	 * TC BB-438 Automated Test Case: Place an order from "Quick Order" Page.
 	 */
 	//FIXME Safari issue //FIXME Firefox
-	@Ignore
+	
 	def "Place an order from Quick Order Page"(){
 		setup:
 		login(user)
@@ -222,7 +222,7 @@ class QuickOrderTest extends GebReportingSpec {
 	}
 
 	//FIXME Safari issue //FIXME Firefox issue
-	@Ignore
+	
 	def "user that does not hold customer rights tries to place an order from quick order page"(){
 		setup: "Log in"
 		login(user)
@@ -256,7 +256,7 @@ class QuickOrderTest extends GebReportingSpec {
 	 */
 	
 	//FIXME Safari issue //FIXME Firefox issue
-	@Ignore
+	
 	def "Quick order with multiple product ID's"(){
 		setup:
 		login(user)
@@ -296,7 +296,7 @@ class QuickOrderTest extends GebReportingSpec {
 	 */
 	
 	//FIXME Safari issue //Firefox issue
-	@Ignore
+	
 	def "check content of check out page"(){
 		setup:
 		login(user)

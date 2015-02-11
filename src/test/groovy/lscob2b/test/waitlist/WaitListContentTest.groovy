@@ -37,7 +37,7 @@ class WaitListContentTest extends GebReportingSpec{
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
 	//FIXME IE Problem //FIXME Safari problem
-	
+	@Ignore
 	def "Load Out Of Stock impex"(){
 		when: "go to HAC login"
 		browser.go(baseUrl +"../")
@@ -62,7 +62,7 @@ class WaitListContentTest extends GebReportingSpec{
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
 	//FIXME IE Problem
-
+	@Ignore
 	def "Adding to waitlist from Product Details page"() {
 		setup:
 			loginAndGoToPage(levisUser)
@@ -99,7 +99,7 @@ class WaitListContentTest extends GebReportingSpec{
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
 	//FIXME IE Problem //FIXME Safari problem
-	
+	@Ignore
 	def "Load Update In Stock impex"(){
 		when: "go to HAC login"
 		browser.go(baseUrl +"../")
