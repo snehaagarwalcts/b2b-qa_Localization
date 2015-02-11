@@ -41,6 +41,10 @@ class MyAccountPage extends Page {
 		
 	}
 	
+	def boolean hasPageLink(String link) {
+		!($("div.customAccount").find("a", href:endsWith(link),0)).empty
+	}
+	
 	def checkProfileLinkExists(){
 		!profileLink.empty
 	}

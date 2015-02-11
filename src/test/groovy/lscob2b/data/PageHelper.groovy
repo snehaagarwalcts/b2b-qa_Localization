@@ -5,7 +5,10 @@ import de.hybris.geb.page.hac.console.ImpexImportPage
 class PageHelper  {
 
 	public static final String PAGE_LOGOUT = "en/logout"
-	public static final String PAGE_MANAGE_USERS = "my-account/manage-users"
+	public static final String PAGE_PROFILE = "my-account/profile"
+	public static final String PAGE_ADDRESS_BOOK = "my-account/address-book"
+	public static final String PAGE_ORDER_HISTORY = "my-account/orders"
+	public static final String PAGE_MANAGE_USERS = "my-account/manage-users/"
 	public static final String PAGE_VIEW_USER_DETAIL = "my-account/manage-users/details"
 	public static final String PAGE_EDIT_USER_DETAIL = "my-account/manage-users/edit"
 	

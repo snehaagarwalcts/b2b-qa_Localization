@@ -2,6 +2,7 @@ package lscob2b.modules
 
 import geb.Module
 import geb.navigator.Navigator
+
 import org.openqa.selenium.Keys
 
 /**
@@ -14,7 +15,7 @@ class MasterTemplate extends Module {
 		cartTemplate {module CartModule}
 
 		myAccountLink {
-			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"))
+			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"),0)
 		}
 		
 		manageUsersLink {
@@ -153,4 +154,25 @@ class MasterTemplate extends Module {
 			manageUsersLink.click()
 		}
 	}
+	
+	/* MY ACCOUNT */
+	
+	def getMyAccountSubLink(String link) {
+		myAccountLink.jquery.mouseover()
+		waitFor {
+			myAccountLink.parent().find("ul").displayed
+		}
+		myAccountLink.parent().find("a", href: endsWith(link))
+	}
+	
+	def getMyAccountSubLinks() {
+		myAccountLink.jquery.mouseover()
+		waitFor {
+			myAccountLink.parent().find("ul").displayed
+		}
+		myAccountLink.parent().find("ul").find("a")
+	}
+	
+	
+	
 }
