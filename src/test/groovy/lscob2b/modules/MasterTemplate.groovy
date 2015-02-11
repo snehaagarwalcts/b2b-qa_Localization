@@ -32,6 +32,8 @@ class MasterTemplate extends Module {
 		}
 		
 		breadCrumbHref { String href -> $('div#breadcrumb').find("a", href:endsWith(href),0) }
+		
+		breadCrumbActive { $('div#breadcrumb').find("li.active",0) }
 
 		logoAltTag {$('header h1 a img').attr('alt')}
 

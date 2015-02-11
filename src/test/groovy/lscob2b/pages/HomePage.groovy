@@ -8,7 +8,7 @@ import lscob2b.modules.MasterTemplate
  */
 class HomePage extends Page{
 
-    static url = "/"
+    static url = ""
 
     static at = {
 		waitFor { title == "LSCO B2B Site | Homepage" }

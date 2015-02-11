@@ -2,6 +2,7 @@ package lscob2b.test.myaccount
 
 import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
@@ -14,15 +15,8 @@ import lscob2b.pages.myaccount.admin.ManageUsersPage
 class MyAccountTest extends GebReportingSpec {
 
 	def setup() {
+		PageHelper.gotoPageLogout(browser, baseUrl)
 		to LoginPage
-	}
-
-	def cleanup() {
-		masterTemplate.doLogout()
-	}
-
-	def login(String username) {
-		doLogin(username, defaultPassword)
 	}
 
 	def loginAsUserAndGoToMyAccount(String user) {
@@ -35,52 +29,37 @@ class MyAccountTest extends GebReportingSpec {
 	/**
 	 * TC BB-341 Automated Test Case: Any User should see the "My Account" link in the 
 	 * right-side of the header section of the Application, that should redirect the user to the My Account Home Page.
-	 */
-	def "My account is accessible"() {
-		when: "logged in as any user"
-
-		login(user)
-
-		then: "My account link is available"
-		at HomePage
-
-		masterTemplate.clickMyAccount()
-
-		at MyAccountPage
-
-		where:
-
-		user << [levisUser, dockersUser]    // TODO change for user roles
-	}
-
-	/**
 	 * TC BB-362 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "My Account" Page.
 	 */
-	def "Check breadcrumbs on My account page"() {
-		// tests the login itself without worrying about rights
-		when: "At My Account page"
+	def "Test [MyAccount] page"() {
+		setup:
+			at LoginPage
+		
+		when: "at HomePage"
+			login(user)
 
-		login(user)
-		at HomePage
-		to MyAccountPage
-		at MyAccountPage
-
-		then: "There should be 2 breadcrumbs"
-		and: "1 should be home, the other should be 'my account'"
-		and: "The text should be correct"
-
-		masterTemplate.breadCrumbs.size() == 2
-
-		def homeBC = masterTemplate.getBreadCrumbByUrl("/")
-
-		homeBC
-		homeBC.text().toUpperCase() == 'HOME'
-
-		masterTemplate.isBreadCrumbActive("My Account")
-
+		then: "at homepage"	
+			at HomePage
+		
+		and: "check link my-account"
+			masterTemplate.myAccountLink.displayed		//TC BB-341
+			
+		when: "click to my-account"	
+			masterTemplate.myAccountLink.click()
+			
+		and: "at my-account page"
+			at MyAccountPage
+			
+		then: "check breadcrumb"		//TC BB-362
+			assert !masterTemplate.breadCrumbHref("/").empty
+			assert masterTemplate.breadCrumbActive.text() == "MY ACCOUNT"
+			
 		where:
-		user << [levisUser, dockersUser, multibrandUser]
-
+		user |_
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) |_
+		UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) |_
+		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) |_
+		
 	}
 
 	//Fix this test to check for what content is there
