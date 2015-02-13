@@ -11,4 +11,5 @@ class TestConstants {
 	static String administrator = "robert.moris@monsoon.com"
 	static String admin1 = "admin@unit-1"
 	static String nonAdmin = "plaincustomer@test.com"
+	static String termAndConditionUser = "term@condition-1"
 }

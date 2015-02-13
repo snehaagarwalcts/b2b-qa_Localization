@@ -9,7 +9,6 @@ import lscob2b.pages.cart.CartPage
 import lscob2b.pages.checkout.CheckOutPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.test.data.TestHelper
-import spock.lang.Ignore;
 import spock.lang.IgnoreRest
 
 class QuickOrderTest extends GebReportingSpec {
@@ -165,30 +164,36 @@ class QuickOrderTest extends GebReportingSpec {
 	/** 
 	 * TC BB-477 Automated Test Case: Remove product from Check Out page 
 	 */
-	/*//FIXME remove product from check out page instead of cart page
-	 * def "Remove product from checkout Page"(){
-	 setup:
-	 login(user)
-	 at HomePage
-	 masterTemplate.clickQuickOrder()
-	 at QuickOrderPage
-	 doSearch('00501-1615')
-	 //sizingGrid.waitForSizingGridLoadedCompletely()
-	 sizingGrid.addOrderQuantity('1')
-	 sizingGrid.addToCart()
-	 masterTemplate.doGoToCart()
-	 Thread.sleep(1000);
-	 when: "At Check out page"//FIXME This should be check out page not cart page.
-	 at CartPage
-	 Thread.sleep(1000);
-	 then: "Remove the product from the page and you should get a message cart is empty"
-	 cartTemplate.doRemove()
-	 waitFor(5){
-	 $('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
+		
+	 def "Remove product from checkout Page"(){
+	 
+		 setup:
+	 
+		 login(user)
+		 at HomePage
+		 masterTemplate.clickQuickOrder()
+		 at QuickOrderPage
+		 doSearch('00501-1615')
+		 //sizingGrid.waitForSizingGridLoadedCompletely()
+		 sizingGrid.addOrderQuantity('1')
+		 sizingGrid.addToCart()
+		 checkOut.doCheckOut()
+		 Thread.sleep(1000);
+	 
+		 when: "At Check out page"//FIXME This should be check out page not cart page.
+		 
+		 at CheckOutPage
+		 Thread.sleep(1000);
+		 
+		 then: "Remove the product from the page and you should get a message cart is empty"
+		 doRemoveOnCheckOutPage()
+		 waitFor(5){
+			 $('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
+		 }
+		 where:
+		 user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	 }
-	 where:
-	 user << [levisUser]
-	 }*/
 
 	/**
 	 * TC BB-438 Automated Test Case: Place an order from "Quick Order" Page.

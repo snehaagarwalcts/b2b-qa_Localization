@@ -1,7 +1,6 @@
 package lscob2b.test.myaccount
 
 import static lscob2b.TestConstants.*
-import spock.lang.IgnoreRest;
 import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
@@ -12,6 +11,7 @@ import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.myaccount.ProfilePage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
+import spock.lang.Ignore
 
 class MyAccountTest extends GebReportingSpec {
 
@@ -25,6 +25,8 @@ class MyAccountTest extends GebReportingSpec {
 	 * right-side of the header section of the Application, that should redirect the user to the My Account Home Page.
 	 * TC BB-362 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "My Account" Page.
 	 */
+	
+	@Ignore //IE does not work issue on master template line 162
 	def "Check [MyAccountPage] structure"() {
 		when: "at LoginPage"
 			at LoginPage	
