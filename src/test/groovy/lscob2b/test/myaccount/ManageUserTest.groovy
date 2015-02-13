@@ -9,7 +9,6 @@ import lscob2b.pages.myaccount.admin.EditUserDetailsPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
 import lscob2b.test.data.TestHelper
-import spock.lang.Ignore
  
 class ManageUserTest extends GebReportingSpec {
 
@@ -113,8 +112,54 @@ class ManageUserTest extends GebReportingSpec {
 						
 		where:
 			loginUser | targetUser
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
-			
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)	
 	}
+	
+	/**
+	 * US BB-501 BB-38 Remove default delivery address
+	 * TC BB-778 Remove default delivery address
+	 */
+	def "Remove default delivery address"() {
+		setup:
+			login(loginUser)
+			at HomePage
+			PageHelper.gotoPageViewUserDetail(browser, baseUrl, targetUser.email)
 		
+		when: "At UserDetail page"
+			at ViewUserDetailsPage
+			
+		and: "Edit current user"
+			def currentUser = userDetails.getUser()
+			userDetails.editUserButton.click()
+			
+		then: "At EditUserDetail page"
+			at EditUserDetailsPage
+		
+		when: "At EditUserDetail page"
+			at EditUserDetailsPage
+			
+		and: "Remove delivery address"
+			userDetails.removeDefaultDeliveryAddress()
+					
+		and: "Save User"
+			userDetails.saveButton.click()
+			
+		then: "At UserDetail page"
+			at ViewUserDetailsPage
+			
+			//This might be the issue
+		and: "Check updated delivery address"
+			currentUser.address != userDetails.getUser().address
+		
+		//TODO talk to Amit to understand the full test
+		/*and: "Click on Home"
+		masterTemplate.homeLink.click()
+		
+		then: "at homepage"
+		at HomePage*/
+						
+		where:
+			loginUser | targetUser
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
+	}
 }

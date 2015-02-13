@@ -13,6 +13,8 @@ class MasterTemplate extends Module {
 	static content = {
 
 		cartTemplate {module CartModule}
+		
+		homeLink { $("#breadcrumb li a", href: endsWith('/')) }
 
 		myAccountLink {
 			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"),0)
