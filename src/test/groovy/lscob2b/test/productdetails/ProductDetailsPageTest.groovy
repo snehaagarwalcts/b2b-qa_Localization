@@ -2,6 +2,8 @@ package lscob2b.test.productdetails;
 
 import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper;
+import lscob2b.data.ProductHelper;
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
@@ -54,33 +56,42 @@ class ProductDetailsPageTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
-	//FIXME Safari Problem	
+	//FIXME Safari Problem
 	def "user that does not hold customer rights tries to place an order from product details page"(){
-		Product product = TestDataCatalog.getAProductAvailableForUser(user)
-
 		setup: "Log in"
-
-		to LoginPage
-		login (user)
-		at HomePage
-		browser.go(baseUrl + "p/" + product.getCode())
-		at ProductDetailsPage
+			to LoginPage
+			login (user)
 		
-		when: "add product to cart"
-		addOrderQuantity('1')
-		sizingGrid.addToCart()
-		masterTemplate.doGoToCart()
+			at HomePage
+			PageHelper.gotoPageProductDetail(browser, baseUrl, productCode)
 		
-		then: "check out"
-		checkOut.doCheckOut()
-		at CartPage
-		checkAlertMessage1()
-		checkAlertMessage2()
+		when: "At ProductDetail page"
+			at ProductDetailsPage
+			
+		and: "Add to cart"	
+			addOrderQuantity('1')
+			sizingGrid.addToCart()
+			
+		and: "Go to cart page"	
+			masterTemplate.doGoToCart()
+		
+		then: "At cart page"
+			at CartPage
+			
+		when: "Click and force check-out"
+			linkCheckout.click()
+			
+		then: "At cart page again"
+			at CartPage
+		
+		and: "Check alert message"
+			waitFor { alertMessage1.displayed }
+			waitFor { alertMessage2.displayed }
 		
 		where:
-		user | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
+		user | productCode
+//		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
 	}
 	
 	/**

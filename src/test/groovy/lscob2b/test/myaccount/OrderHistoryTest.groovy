@@ -1,6 +1,8 @@
 package lscob2b.test.myaccount
 
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
+import lscob2b.data.ProductHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
@@ -10,15 +12,14 @@ import lscob2b.pages.myaccount.OrderDetailPage
 import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
-import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
-import spock.lang.IgnoreRest
-
+ 
 class OrderHistoryTest extends GebReportingSpec {
 
-	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+	def setup() {
+		PageHelper.gotoPageLogout(browser, baseUrl)
+		to LoginPage
 	}
 
 	def placeAnOrder(String productCode) {
@@ -44,37 +45,23 @@ class OrderHistoryTest extends GebReportingSpec {
 		return order.getOrder()
 	}
 
-	def goToOrderHistory() {
-		browser.go(baseUrl + "my-account/orders")
-		at OrderHistoryPage
-	}
-
 	def goToOrderDetail(orderNumber) {
 		browser.go(baseUrl + "my-account/order/" + orderNumber)
 		at OrderDetailPage
 	}
 
-	def setup() {
-		to LoginPage
-	}
-
-	def cleanup() {
-		masterTemplate.doLogout()
-	}
-	
 	/**
 	 * Bug BB-604 Security Issue on "my-account/orders"
 	 */
-		
 	def "Check denied access to OrderHistory for not [b2bcustomergroup]"() {
 		setup:
-		login(user)
+			login(user)
 
 		when: "At HomePage"
-		at HomePage
+			at HomePage
 
 		and: "Go to my-account/orders"
-		browser.go(baseUrl + "my-account/orders")
+			browser.go(baseUrl + "my-account/orders")
 		
 		then:
 		at HomePage
@@ -88,10 +75,9 @@ class OrderHistoryTest extends GebReportingSpec {
 	/**
 	 * Bug BB-604 Security Issue on "my-account/orders"
 	 */
-	
 	def "Check access to OrderHistory for [b2bcustomergroup]"() {
 		setup:
-		login(user)
+			login(user)
 
 		when: "At HomePage"
 		at HomePage
@@ -105,72 +91,75 @@ class OrderHistoryTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	//FIXME Safari issue
-	
 	def "Test clear functionality"() {
 		setup:
-		login(user)
-		goToOrderHistory()
+			at LoginPage	
+			login(user)
+			
+			at HomePage
+			PageHelper.gotoPage(browser,baseUrl,PageHelper.PAGE_ORDER_HISTORY)
+		
+		when: "at OrderHistory page"
+			at OrderHistoryPage
 
-		when: "At OrderHistory Page"
-		at OrderHistoryPage
+		and: "Click on all field"
+			switchOnForm()
 
-		then: "Click on all field"
-		switchOnForm()
+		and: "Click on clear button"
+			clearButton.click()
 
-		and: "Clear form"
-		clearButton.click()
-
-		and: "Check form status"
-		isFormClear()
+		then: "Check form cleared"
+			isFormClear()
 
 		where:
-		user | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+			user | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
 	
-	//TODO NOTE can't run last 3 tests as we shouldn't place an order
 	
-	//FIXME Safari issue
-	
+	@Ignore //TODO NOTE can't run last 3 tests as we shouldn't place an order	
 	def "Test order creation in history"() {
 		setup:
-		login(user)
-
+			login(user)
+			at LoginPage
+			
 		when: "At HomePage"
-		at HomePage
+			at HomePage
+			
+		and: "Create a test order"	
+			def currentOrder = placeAnOrder(productCode)
+		
+		and: "Go to order history"	
+			PageHelper.gotoPage(browser,baseUrl,PageHelper.PAGE_ORDER_HISTORY)
+			
+		then: "At OrderHistory page"
+			at OrderHistoryPage
 
-		then: "Create a test order"
-		def currentOrder = placeAnOrder(productCode)
-		goToOrderHistory()
+		when: "Check the test order in history"
+			searchByOrderNumber(currentOrder.number)
+			
+		then: "Check for unique result"	
+			checkUniqueResult()
 
-		when: "At OrderHistory page"
-		at OrderHistoryPage
+		when: "Go to order detail"
+			clickOnFirstOrder()
 
-		then: "Check order in history"
-		searchByOrderNumber(currentOrder.number)
-		checkUniqueResult()
+		then: "At OrderDetail page"
+			at OrderDetailPage
 
-		and: "Go to first order detail"
-		clickOnFirstOrder()
-
-		when: "At OrderDetail page"
-		at OrderDetailPage
-
-		then: "Compare Orders"
-		currentOrder.compare(order.getOrder())
+		and: "Compare Orders"
+			currentOrder.compare(order.getOrder())
 
 		where:
-		productCode | user | _
-		"05527-0458" |	UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+			productCode | user | _
+			ProductHelper.getOrderHistoryProduct(ProductHelper.BRAND_LEVIS) | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
 	/**
 	 * TC BB-509 Automated test: User Can reorder from history page
 	 */
-	//FIXME Safari issue
-	
+	@Ignore //TODO NOTE can't run last 3 tests as we shouldn't place an order
 	def "Test re-order functionality in history"() {
 		setup:
 		login(user)
@@ -202,82 +191,106 @@ class OrderHistoryTest extends GebReportingSpec {
 
 		where:
 		productCode | user | _
-		"05527-0458" |	UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+		ProductHelper.getOrderHistoryProduct(ProductHelper.BRAND_LEVIS) |	UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 
 	}
 
 	/**
 	 * TC BB-601 Automated Test: Order Search
 	 */
-	//FIXME Safari issue
-	
+	@Ignore //TODO NOTE can't run last 3 tests as we shouldn't place an order
 	def "Test search functionality in history"() {
 		setup:
-		login(user)
+			login(user)
 
 		when: "At HomePage"
-		at HomePage
+			at HomePage
 
-		then: "Create a test order"
-		def currentOrder = placeAnOrder(productCode)
-		goToOrderHistory()
+		and: "Create a test order"
+			def currentOrder = placeAnOrder(productCode)
+			
+		and:"Go to Order History"	
+			PageHelper.gotoPage(browser,baseUrl,PageHelper.PAGE_ORDER_HISTORY)
 
-		when: "At OrderHistory page"
-		at OrderHistoryPage
+		then: "At OrderHistory page"
+			at OrderHistoryPage
 
-		then: "Test search by: order number"
-		searchByOrderNumber(currentOrder.number)
-		checkUniqueResult()
-		clearForm()
+		when: "Test search by: order number"
+			clearForm()
+			searchByOrderNumber(currentOrder.number)
 
-		and: "Test search by: order number and order source b2b"
-		searchByOrderNumberAndOrderSource(currentOrder.number, true, false, false, false, false)
-		checkUniqueResult()
-		clearForm()
+		then: "Check unique result"				
+			checkUniqueResult()
 
-		and: "Test search by: order number and order source not b2b"
-		searchByOrderNumberAndOrderSource(currentOrder.number, false, true, true, true, true)
+		when: "Test search by: order number and order source b2b"
+			clearForm()
+			searchByOrderNumberAndOrderSource(currentOrder.number, true, false, false, false, false)
+			
+		then: "Check unique result"
+			checkUniqueResult()
+
+		when: "Test search by: order number and order source not b2b"
+			clearForm()
+			searchByOrderNumberAndOrderSource(currentOrder.number, false, true, true, true, true)
+		
+		then: "Check empty result"
+			checkEmptyResult()
+			
+		when: "Test search by: order number and order type at once"
+			clearForm()
+			searchByOrderNumberAndOrderType(currentOrder.number, true, false)
+			
+		then: "Check unique result"
+			checkUniqueResult()
+			
+		when: "Test search by: order number and order type pre book"
+			clearForm()
+			searchByOrderNumberAndOrderType(currentOrder.number, false, true)
+			
+		then: "Check empty result"
+			checkEmptyResult()
+
+		when: "Test search by: order number and order date last 30d"
+			clearForm()
+			searchByOrderNumberAndOrderDate(currentOrder.number, true, false, false)
+			
+		then: "Check unique result"
+			checkUniqueResult()
+
+		when: "Test search by: order number and order date last 90d"
+			clearForm()
+			searchByOrderNumberAndOrderDate(currentOrder.number, false, true, false)
+			
+		then: "Check unique result"
+			checkUniqueResult()
+			
+
+		when: "Test search by: order number and order date last year"
+			clearForm()
+			searchByOrderNumberAndOrderDate(currentOrder.number, false, false, true)
+		
+		then: "Check unique result"
+			checkUniqueResult()
+			
+
+		when: "Test search by: order number and order status submitted"
+			clearForm()
+			searchByOrderNumberAndOrderStatus(currentOrder.number, true, false, false)
+		
+		then: "Check unique result"
+			checkUniqueResult()
+		
+
+		when: "Test search by: order number and order status not submitted"
+			clearForm()
+			searchByOrderNumberAndOrderStatus(currentOrder.number, false, true, true)
+		
+		then: "Check empty result"
 		checkEmptyResult()
-		clearForm()
-
-		and: "Test search by: order number and order type at once"
-		searchByOrderNumberAndOrderType(currentOrder.number, true, false)
-		checkUniqueResult()
-		clearForm()
-
-		and: "Test search by: order number and order type pre book"
-		searchByOrderNumberAndOrderType(currentOrder.number, false, true)
-		checkEmptyResult()
-		clearForm()
-
-		and: "Test search by: order number and order date last 30d"
-		searchByOrderNumberAndOrderDate(currentOrder.number, true, false, false)
-		checkUniqueResult()
-		clearForm()
-
-		and: "Test search by: order number and order date last 90d"
-		searchByOrderNumberAndOrderDate(currentOrder.number, false, true, false)
-		checkUniqueResult()
-		clearForm()
-
-		and: "Test search by: order number and order date last year"
-		searchByOrderNumberAndOrderDate(currentOrder.number, false, false, true)
-		checkUniqueResult()
-		clearForm()
-
-		and: "Test search by: order number and order status submitted"
-		searchByOrderNumberAndOrderStatus(currentOrder.number, true, false, false)
-		checkUniqueResult()
-		clearForm()
-
-		and: "Test search by: order number and order status not submitted"
-		searchByOrderNumberAndOrderStatus(currentOrder.number, false, true, true)
-		checkEmptyResult()
-		clearForm()
 
 		where:
 		productCode | user | _
-		"05527-0458" |	UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+		ProductHelper.getOrderHistoryProduct(ProductHelper.BRAND_LEVIS) |	UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
 

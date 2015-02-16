@@ -11,8 +11,8 @@ class ProductHelper  {
 	 * Product for pdp check
 	 */
 	def static String getProduct(brand) {
-		if(brand == BRAND_LEVIS) "04511-1472"
-		if(brand == BRAND_DOCKERS) ""
+		if(brand == BRAND_LEVIS) return "04511-1472"
+		if(brand == BRAND_DOCKERS) return ""
 		null
 	}			
 	
@@ -27,5 +27,17 @@ class ProductHelper  {
 		null
 	}
 	
-		
+	def static getWaitlistProduct(brand) {
+		if(brand == BRAND_LEVIS) "05527-0458"
+		if(brand == BRAND_DOCKERS) ""
+		null
+	}	
+	
+	def static getOrderHistoryProduct(brand) {
+		if(brand == BRAND_LEVIS) "05527-0458"
+		if(brand == BRAND_DOCKERS) ""
+		null
+	}
+	
+	
 }

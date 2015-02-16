@@ -35,9 +35,7 @@ class SizingGridModule extends Module {
 	}
 
 	def addQuantityToFirstPossibleItemInWaitListGrid(Integer value) {
-		waitFor {
-			overlayWaitList.displayed
-		}
+		waitFor { overlayWaitList.displayed }
 		overlayWaitList.find("form#AddToWaitListForm input.sku-quantity", 0).value(value)
 	}
 

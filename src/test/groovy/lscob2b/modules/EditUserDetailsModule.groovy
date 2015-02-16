@@ -38,6 +38,7 @@ class EditUserDetailsModule extends Module{
 	}
 	
 	def changeDefaultDeliveryAddress() {
+		waitFor { selectDDA.displayed }
 		selectDDA.value(selectDDA.find("option",value:notContainsWord(selectDDA.value()),0).value())
 	}
 	

@@ -7,10 +7,9 @@ import lscob2b.pages.LoginPage
 import lscob2b.test.data.TestHelper
 import spock.lang.Stepwise
 
-@Stepwise
 class ForgottenYourPasswordTest extends GebReportingSpec {
 
-    def setupSpec() {
+    def setup() {
 		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
         to LoginPage
     }
@@ -19,42 +18,61 @@ class ForgottenYourPasswordTest extends GebReportingSpec {
 	  * TC BB-750 Forgotten your password
 	  */
     def "Open forgotten password dialog"() {
-
-        when: "Click forgot password link"
-
-        openForgottenPasswordDialog()
+		when: "At login page"
+			at LoginPage
+		
+        and: "Click forgot password link"
+			openForgottenPasswordDialog()
 
         then: "Dialog should be present"
-
-        forgottenPasswordDialog
-
+			forgottenPasswordDialog.displayed
+			
+		when: "Clicking close button, dialog should close"
+			closeForgottenPasswordDialog()
+		
+		then: "Dialog should not be visible"
+			!forgottenPasswordDialog.displayed
     }
 
-    def "Close forgotten password dialog"() {
+    def "Send forgotten password to an existing user"() {
+		when: "At login page"
+			at LoginPage
 
-        when: "Clicking close button, dialog should close"
+		and: "Open Dialog" 
+			openForgottenPasswordDialog()
+		
+        and: "Enter email and click send"
+        	sendForgottenPasswordEmail(user.email)
 
-        closeForgottenPasswordDialog()
-
-        then: "Dialog should not be visible"
-
-        !forgottenPasswordDialog.displayed
-
-    }
-
-    def "Send forgotten password email"() {
-
-        setup: "Open dialog"
-
-        openForgottenPasswordDialog()
-
-        when: "Enter email and click send"
-
-        sendForgottenPasswordEmail(levisUser)
-
-        then: "Confirmation message should be display"
+        then: "At login page"
 		  at LoginPage
-		  noteMessage.displayed
+		  
+		and: "Confirmation message should be display" 
+		  waitFor { noteMessage.displayed }
+		  
+		where: 
+			user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)  
     }
+	
+	def "Send forgotten password to a not existing user"() {
+		when: "At login page"
+			at LoginPage
+
+		and: "Open Dialog"
+			openForgottenPasswordDialog()
+		
+		and: "Enter email and click send"
+			sendForgottenPasswordEmail(user.email)
+
+		then: "At login page"
+		  at LoginPage
+		  
+		and: "Confirmation message should be display"
+		  waitFor { errorMessage.displayed }
+		  
+		where:
+			user = UserHelper.getInvalidUser()
+	}
+	
 
 }

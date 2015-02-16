@@ -1,6 +1,8 @@
 package lscob2b.test.waitlist
 
 import geb.spock.GebReportingSpec
+import lscob2b.data.ProductHelper;
+import lscob2b.data.UserHelper;
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.productdetails.ProductDetailsPage
@@ -9,22 +11,16 @@ import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.TestDataCatalog
 import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
+import spock.lang.IgnoreRest;
+import spock.lang.Stepwise;
 import de.hybris.geb.page.hac.console.ImpexImportPage
-
 
 public class WaitListTest extends GebReportingSpec{
 
-	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
-	}
-
 	def setup() {
+		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
 		to LoginPage
 	}
-
-	/*def cleanup() {
-		masterTemplate.doLogout()
-	}*/
 
 	def loginAndGoToPage(user) {
 		login(user)
@@ -37,30 +33,29 @@ public class WaitListTest extends GebReportingSpec{
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
 	//FIXME IE Problem
-	def "Load Out Of Stock impex"(){
-		when: "go to HAC login"
-		browser.go(baseUrl +"../")
-
-		then: "At HAC login"
-		at de.hybris.geb.page.hac.LoginPage
-
-		when: "at do login"
-		doLogin("admin", "nimda")
-		at de.hybris.geb.page.hac.HomePage
-		browser.go(baseUrl +"../"+"console/impex/import")
-
-		then:"At impex import page and import the impex"
-		at ImpexImportPage
-		importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
-		//importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
-		checkNotification()
-		logOut.click()
-	}
+//	def "Load Out Of Stock impex"(){
+//		when: "go to HAC login"
+//		browser.go(baseUrl +"../")
+//
+//		then: "At HAC login"
+//		at de.hybris.geb.page.hac.LoginPage
+//
+//		when: "at do login"
+//		doLogin("admin", "nimda")
+//		at de.hybris.geb.page.hac.HomePage
+//		browser.go(baseUrl +"../"+"console/impex/import")
+//
+//		then:"At impex import page and import the impex"
+//		at ImpexImportPage
+//		importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
+//		//importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
+//		checkNotification()
+//		logOut.click()
+//	}
 	
 	/**
 	 * TC BB-510 Automated test: wait list should be accessible by user
 	 */
-	//FIXME Safari Problem
 	def "Test WaitList link"() {
 		setup:
 		login(user)
@@ -126,38 +121,40 @@ public class WaitListTest extends GebReportingSpec{
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
 	//FIXME IE Problem
+	@Ignore
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 		loginAndGoToPage(user)
 
 		when: "At WaitList page"
-		at WaitListPage
+			at WaitListPage
 
-		then: "Check current quantity of product"
-		int currentQuantity = getProductQuantityRequested(productCode)
+		and: "Check current requested quantity for target product"
+			int currentQuantity = getProductQuantityRequested(productCode)
 
-		and: "Open waitlist grid at ProductDetail"
-		openSizingGridAtProductDetailsPage(productCode)
-		sizingGrid.clickNotifyMe()
+		and: "Open ProductDetailPage for target product"
+			openSizingGridAtProductDetailsPage(productCode)
+			
+		and: "Click NotifyMe"	
+			sizingGrid.clickNotifyMe()
 
-		and: "Add item to waitlist"
-		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-		sizingGrid.clickAddToWaitList()
+		and: "Add a requested quantity to WaitList"
+			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+			sizingGrid.clickAddToWaitList()
 
 		and: "Go to waitlist page"
-		masterTemplate.waitListLink.click()
+			masterTemplate.waitListLink.click()
 
-		when: "At WaitList page"
-		at WaitListPage
+		then: "At WaitList page"
+			at WaitListPage
 
 		then: "Check updated quantity of product"
-		getProductQuantityRequested(productCode) == (currentQuantity+1)
-		masterTemplate.doLogout()
+			getProductQuantityRequested(productCode) == (currentQuantity+1)
 
 		where:
 		productCode 	| user
-		"05527-0458"	| TestDataCatalog.getALevisUser()
-		//			"05527-0458"	| TestDataCatalog.getADockersUser()
+		ProductHelper.getWaitlistProduct(ProductHelper.BRAND_LEVIS)	| UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
+		//TODO test for dockers
 	}
 
 	/**
@@ -167,36 +164,38 @@ public class WaitListTest extends GebReportingSpec{
 	//FIXME IE Problem
 	def "Edit quantities of product in WaitList page"() {
 		setup:
-		login(user)
+			login(user)
 
 		when: "At HomePage"
-		at HomePage
+			at HomePage
 
-		then: "Add product to waitlist"
-		openSizingGridAtProductDetailsPage(productCode)
-		sizingGrid.clickNotifyMe()
-		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-		sizingGrid.clickAddToWaitList()
+		and: "Add product to waitlist"
+			openSizingGridAtProductDetailsPage(productCode)
+			sizingGrid.clickNotifyMe()
+			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
+			sizingGrid.clickAddToWaitList()
 
 		and: "Go to waitlist page"
-		masterTemplate.waitListLink.click()
+			masterTemplate.waitListLink.click()
 
-		when: "At WaitList page"
-		at WaitListPage
+		and: "At WaitList page"
+			at WaitListPage
 
+		and: "Get current quantity"	
+			int currentQuantity = getProductQuantityRequested(productCode)
+		
 		then: "Check product quantity"
-		int currentQuantity = getProductQuantityRequested(productCode)
-		currentQuantity > 0
+			currentQuantity > 0
 
 		and: "Edit product quantity"
-		editProductQuantityRequested(productCode,currentQuantity+1)
+			editProductQuantityRequested(productCode,currentQuantity+1)
 
 		and: "Check edited product quantity"
-		getProductQuantityRequested(productCode) == (currentQuantity+1)
+			getProductQuantityRequested(productCode) > currentQuantity
 
 		where:
-		productCode 	| user
-		"05527-0458"	| TestDataCatalog.getALevisUser()
+			productCode 	| user
+			"05527-0458"	| TestDataCatalog.getALevisUser()
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 
@@ -204,6 +203,7 @@ public class WaitListTest extends GebReportingSpec{
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
 	//FIXME IE Problem
+	@Ignore
 	def "Remove product from WaitList page"() {
 		setup:
 		login(user)
@@ -242,34 +242,34 @@ public class WaitListTest extends GebReportingSpec{
 	}
 	
 	
-	def "Open waitlist grid"() {
-		setup:
-		loginAndGoToPage(user)
-		//			println "User ${user.email}"
-
-		when: "At WaitList page"
-		at WaitListPage
-
-		then: "Check current quantity of product"
-		int currentQuantity = getProductQuantityRequested(productCode)
-
-		and: "Open waitlist grid at QuickOrderPage"
-		openSizingGridAtQuickOrderPage(productCode)
-		sizingGrid.clickNotifyMe()
-
-		and: "watilist should be displayed"
-		addToWaitListForm.displayed
-		
-		then: "click close so the waitlist is not displayed anymore"
-		popupBoxClose.click()
-		Thread.sleep(1000)
-		!addToWaitListForm.displayed
-		masterTemplate.doLogout()
-
-		where:
-		productCode 	| user
-		"05527-0458"	| TestDataCatalog.getALevisUser()
-	}
+//	def "Open waitlist grid"() {
+//		setup:
+//		loginAndGoToPage(user)
+//		//			println "User ${user.email}"
+//
+//		when: "At WaitList page"
+//		at WaitListPage
+//
+//		then: "Check current quantity of product"
+//		int currentQuantity = getProductQuantityRequested(productCode)
+//
+//		and: "Open waitlist grid at QuickOrderPage"
+//		openSizingGridAtQuickOrderPage(productCode)
+//		sizingGrid.clickNotifyMe()
+//
+//		and: "watilist should be displayed"
+//		addToWaitListForm.displayed
+//		
+//		then: "click close so the waitlist is not displayed anymore"
+//		popupBoxClose.click()
+//		Thread.sleep(1000)
+//		!addToWaitListForm.displayed
+//		masterTemplate.doLogout()
+//
+//		where:
+//		productCode 	| user
+//		"05527-0458"	| TestDataCatalog.getALevisUser()
+//	}
 	
 	//FIXME create a page helper
 	def openSizingGridAtQuickOrderPage(String productCode){

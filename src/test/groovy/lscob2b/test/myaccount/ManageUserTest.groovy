@@ -13,16 +13,9 @@ import spock.lang.Ignore
  
 class ManageUserTest extends GebReportingSpec {
 
-	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
-	}
-	
 	def setup() {
-		to LoginPage //FIXME Firefox issue
-	}
-	
-	def cleanup() {
-		masterTemplate.doLogout()
+		PageHelper.gotoPageLogout(browser, baseUrl)
+		to LoginPage 
 	}
 	
 	/**

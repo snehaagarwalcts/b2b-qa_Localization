@@ -7,17 +7,17 @@ class ViewUserDetailsModule extends Module {
 
 	static content = {
 		
-		container { $("div.b2BCustomerFormList") }
+		container(wait: true) { $("div.b2BCustomerFormList") }
 		
-		title { container.find("div.control-group",0).find("div.controls") }
+		title(wait: true) { container.find("div.control-group",0).find("div.controls") }
 		
-		firstName { container.find("div.control-group",1).find("div.controls") }
+		firstName(wait: true) { container.find("div.control-group",1).find("div.controls") }
 		
-		lastName { container.find("div.control-group",2).find("div.controls") }
+		lastName(wait: true) { container.find("div.control-group",2).find("div.controls") }
 		
-		email { container.find("div.control-group",3).find("div.controls") }
+		email(wait: true) { container.find("div.control-group",3).find("div.controls") }
 		
-		address { container.find("div.control-group",4).find("div.controls") }
+		address(wait: true) { container.find("div.control-group",4).find("div.controls") }
 		
 		editUserButton { $("a.button.edituser")}
 
@@ -29,6 +29,9 @@ class ViewUserDetailsModule extends Module {
 	}
 	
 	def User getUser() {
+		waitFor { 
+			container.displayed 
+		}
 		User user = new User()
 		user.title = title.text()
 		user.name = firstName.text()

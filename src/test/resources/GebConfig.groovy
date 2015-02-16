@@ -106,6 +106,21 @@ if (sauceBrowser && sauceBrowser != "false") {
  * CONFIGURATION
  */
 autoClearCookies = true
+//waiting {
+//    presets {
+//        slow {
+//            timeout = 20
+//            retryInterval = 1
+//        }
+//        quick {
+//            timeout = 1
+//        }
+//    }
+//}
+//waiting {
+//	timeout = 10
+//	retryInterval = 0.5
+//}
 
 
 /**

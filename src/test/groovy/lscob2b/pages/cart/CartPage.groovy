@@ -16,8 +16,8 @@ class CartPage extends Page{
 		
 		cartItems { $("div.cartItem").collect { module CartModule, it  } }
 		
-		
 		alertMessage1 { $(".alert-message h2") }
+		
 		alertMessage2 { $(".alert-message p") }
 		
 		linkCheckout { $("a.checkout") }
@@ -25,13 +25,6 @@ class CartPage extends Page{
 		editQuantities { $(".itemButtons a.btn-white") }
 	}
 	
-	def checkAlertMessage1(){
-		!alertMessage1.empty
-	}
-	
-	def checkAlertMessage2(){
-		!alertMessage2.empty
-	}
 	
 	def boolean removeProduct(productID) {
 		String replaced = productID.collectReplacements{ if(it == '-') { '' } else { null } }

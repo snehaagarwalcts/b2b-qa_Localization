@@ -67,6 +67,8 @@ class LoginPage extends Page {
 	}
 
 	def closeForgottenPasswordDialog() {
+		waitFor { closeForgottenPasswordButton.displayed }
+		
 		closeForgottenPasswordButton.click()
 
 		waitFor { !forgottenPasswordDialogVisible }

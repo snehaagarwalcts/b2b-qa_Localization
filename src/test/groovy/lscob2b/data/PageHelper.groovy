@@ -1,6 +1,5 @@
 package lscob2b.data
 
-import de.hybris.geb.page.hac.console.ImpexImportPage
 
 class PageHelper  {
 
@@ -11,6 +10,7 @@ class PageHelper  {
 	public static final String PAGE_MANAGE_USERS = "my-account/manage-users/"
 	public static final String PAGE_VIEW_USER_DETAIL = "my-account/manage-users/details"
 	public static final String PAGE_EDIT_USER_DETAIL = "my-account/manage-users/edit"
+	public static final String PAGE_PRODUCT_DETAIL = "p"
 	
 	static void gotoPage(browser, baseUrl, page) {
 		browser.go(baseUrl + page)
@@ -28,14 +28,8 @@ class PageHelper  {
 		browser.go(baseUrl + PAGE_EDIT_USER_DETAIL + "?user=" + email)
 	}
 	
-	static void loadImpexInHAC(browser, baseUrl, impexFile) {
-		browser.go(baseUrl +"../")
-		at de.hybris.geb.page.hac.LoginPage
-		doLogin("admin", "nimda")
-		at de.hybris.geb.page.hac.HomePage
-		browser.go(baseUrl +"../"+"console/impex/import")
-		at ImpexImportPage
-		importTextScript(getClass().getResource( impexFile ).text)
+	static void gotoPageProductDetail(browser, baseUrl, productCode) {
+		browser.go(baseUrl + PAGE_PRODUCT_DETAIL + "/" + productCode)
 	}
-	
+		
 }

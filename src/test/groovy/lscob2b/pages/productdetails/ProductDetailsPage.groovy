@@ -1,5 +1,7 @@
 
 
+
+
 package lscob2b.pages.productdetails
 
 import geb.Page
@@ -10,6 +12,7 @@ import lscob2b.modules.MasterTemplate
 import lscob2b.modules.PDPBuyStackModule
 import lscob2b.modules.SellModule
 import lscob2b.modules.SizingGridModule
+import lscob2b.modules.SizingModule
 
 class ProductDetailsPage extends Page {
 
@@ -23,7 +26,9 @@ class ProductDetailsPage extends Page {
 		
 		masterTemplate { module MasterTemplate }
 		
-		sizingGrid { module SizingGridModule}
+		sizingGrid { module SizingGridModule}		//TODO remove it
+		
+		sizingTable { module SizingModule, $("div.single_grid_three_dimensions") }
 		
 		checkOut { module CheckOutModule}
 		
@@ -37,7 +42,7 @@ class ProductDetailsPage extends Page {
 		
 		wholesalePriceText { $("div.wholesale-price > span").text()}
 		recommendedRetailPriceText { $("div.recommended-retail-price > span").text()}
-		orderQuantity{ $(".grid_three_dimensions").find("tr > td > .sku-quantity",0) }
+//		orderQuantity{ $(".grid_three_dimensions").find("tr > td > .sku-quantity",0) }
 		recommendedRetailPriceValue {
 			parsePrice(recommendedRetailPriceText)
 		}
@@ -64,6 +69,6 @@ class ProductDetailsPage extends Page {
 	}
 	
 	def addOrderQuantity(String quantity){
-		orderQuantity.value(quantity)
+		sizingTable.addLimitedStockQuantity(quantity.toInteger())
 	}
 }

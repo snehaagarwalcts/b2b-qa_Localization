@@ -1,13 +1,14 @@
 package lscob2b.test.login
 
 import static lscob2b.TestConstants.*
-import spock.lang.IgnoreRest;
 import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.User
+import spock.lang.IgnoreRest
+import spock.lang.Unroll;
  
 
 class LoginTest extends GebReportingSpec { 
@@ -40,7 +41,6 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-20 Mandatory login before you can access the site
 	 * TC BB-755 Automated Test Case: Test not authorized access 
 	 */
-	//TODO improve coverage of pages
 	def "Test not authorized access"() {
 		when: "try to access to HomePage"
 			PageHelper.gotoPage(browser, baseUrl, "/")	
@@ -53,6 +53,19 @@ class LoginTest extends GebReportingSpec {
 		
 		then: "at LoginPage"
 			at LoginPage
+			
+		when: "try to access to ProfilePage"
+			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_PROFILE)
+		
+		then: "at LoginPage"
+			at LoginPage
+			
+		when: "try to access to OrderHistoryPage"
+			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_ORDER_HISTORY)
+		
+		then: "at LoginPage"
+			at LoginPage
+			
 	}
 	
 
@@ -87,7 +100,6 @@ class LoginTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
-//			new User(email:'simone.romei@levi.com', password:'12341234') | _
 	}
 	
 }
