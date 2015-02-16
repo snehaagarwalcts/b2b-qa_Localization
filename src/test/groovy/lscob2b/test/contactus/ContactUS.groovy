@@ -34,11 +34,11 @@ class ContactUS extends GebReportingSpec {
 		
 		then: "fill out the form and request access"
 		def title = selectTitleOption(2)
-		fillOutFirstName('Dipen')
-		fillOutlastName('Shah')
-		fillOutEmail('dipen.shah@sap.com')
+		fillOutFirstName('Customer')
+		fillOutlastName('Unit')
+		fillOutEmail('cust@unit-5')
 		fillOutPhone('111-222-3333')
-		fillOutCompanyName('SAP')
+		fillOutCompanyName('Levis')
 		fillOutCustomerNumber('111-222-3333')
 		def country = selectCountryOption(18)
 		clickSendButton()
@@ -53,11 +53,11 @@ class ContactUS extends GebReportingSpec {
 		when: "At contact us page fill out most of the information"
 		at ContactUsPage
 		//def title = selectTitleOption(3)
-		//fillOutFirstName('Dipen')
-		fillOutlastName('Shah')
-		fillOutEmail('cust@unit-2')
+		//fillOutFirstName('Cust')
+		fillOutlastName('Unit')
+		fillOutEmail('cust@unit-5')
 		fillOutPhone('111-222-3333')
-		fillOutCompanyName('SAP')
+		fillOutCompanyName('Levis')
 		fillOutCustomerNumber('111-222-3333')
 		def country = selectCountryOption(18)
 		clickSendButton()
