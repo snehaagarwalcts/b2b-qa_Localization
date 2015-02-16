@@ -19,6 +19,7 @@ class UserHelper  {
 	public static final ROLE_ADMIN				= ["b2badmingroup"]
 	public static final ROLE_CUSTOMER			= ["b2bcustomergroup"]
 	public static final ROLE_FINANCE			= ["b2bfinancegroup"]
+	public static final ROLE_TERMSANDCONDITION			= ["b2bcustomergroup"]
 	
 	public static final B2BUNIT_LEVIS			= "automated-unit-1"
 	public static final B2BUNIT_DOCKERS			= "automated-unit-3"
@@ -36,6 +37,10 @@ class UserHelper  {
 	static User getInvalidUser() {
 		new User(email:'username', password:'password')
 	}
+	
+	static User getTermsAndConditionUser(){
+		new User(email: 'term@condition-1', password:'12341234')
+	} 
 	
 	static List<Address> getShippingAddress(User user) {
 		List<Address> addressList = new ArrayList<Address>()
