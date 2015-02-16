@@ -33,29 +33,32 @@ public class WaitListTest extends GebReportingSpec{
 	 * TC BB-629 Automated test case: BB-497 Order from wait list
 	 */
 	//FIXME IE Problem
-//	def "Load Out Of Stock impex"(){
-//		when: "go to HAC login"
-//		browser.go(baseUrl +"../")
-//
-//		then: "At HAC login"
-//		at de.hybris.geb.page.hac.LoginPage
-//
-//		when: "at do login"
-//		doLogin("admin", "nimda")
-//		at de.hybris.geb.page.hac.HomePage
-//		browser.go(baseUrl +"../"+"console/impex/import")
-//
-//		then:"At impex import page and import the impex"
-//		at ImpexImportPage
-//		importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
-//		//importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
-//		checkNotification()
-//		logOut.click()
-//	}
+	@Ignore
+	def "Load Out Of Stock impex"(){
+		when: "go to HAC login"
+		browser.go(baseUrl +"../")
+
+		then: "At HAC login"
+		at de.hybris.geb.page.hac.LoginPage
+
+		when: "at do login"
+		doLogin("admin", "nimda")
+		at de.hybris.geb.page.hac.HomePage
+		browser.go(baseUrl +"../"+"console/impex/import")
+
+		then:"At impex import page and import the impex"
+		at ImpexImportPage
+		importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
+		//importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
+		checkNotification()
+		logOut.click()
+	}
 	
 	/**
 	 * TC BB-510 Automated test: wait list should be accessible by user
 	 */
+	//FIXME Safari Problem
+	@Ignore
 	def "Test WaitList link"() {
 		setup:
 		login(user)
@@ -82,6 +85,7 @@ public class WaitListTest extends GebReportingSpec{
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
 	//FIXME IE Problem
+	@Ignore
 	def "Adding to waitlist from QuickOrder page"() {
 		setup:
 		loginAndGoToPage(user)
@@ -162,6 +166,7 @@ public class WaitListTest extends GebReportingSpec{
 	 * @return
 	 */
 	//FIXME IE Problem
+	@Ignore
 	def "Edit quantities of product in WaitList page"() {
 		setup:
 			login(user)
@@ -241,35 +246,35 @@ public class WaitListTest extends GebReportingSpec{
 		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 	
-	
-//	def "Open waitlist grid"() {
-//		setup:
-//		loginAndGoToPage(user)
-//		//			println "User ${user.email}"
-//
-//		when: "At WaitList page"
-//		at WaitListPage
-//
-//		then: "Check current quantity of product"
-//		int currentQuantity = getProductQuantityRequested(productCode)
-//
-//		and: "Open waitlist grid at QuickOrderPage"
-//		openSizingGridAtQuickOrderPage(productCode)
-//		sizingGrid.clickNotifyMe()
-//
-//		and: "watilist should be displayed"
-//		addToWaitListForm.displayed
-//		
-//		then: "click close so the waitlist is not displayed anymore"
-//		popupBoxClose.click()
-//		Thread.sleep(1000)
-//		!addToWaitListForm.displayed
-//		masterTemplate.doLogout()
-//
-//		where:
-//		productCode 	| user
-//		"05527-0458"	| TestDataCatalog.getALevisUser()
-//	}
+	@Ignore
+	def "Open waitlist grid"() {
+		setup:
+		loginAndGoToPage(user)
+		//			println "User ${user.email}"
+
+		when: "At WaitList page"
+		at WaitListPage
+
+		then: "Check current quantity of product"
+		int currentQuantity = getProductQuantityRequested(productCode)
+
+		and: "Open waitlist grid at QuickOrderPage"
+		openSizingGridAtQuickOrderPage(productCode)
+		sizingGrid.clickNotifyMe()
+
+		and: "watilist should be displayed"
+		addToWaitListForm.displayed
+		
+		then: "click close so the waitlist is not displayed anymore"
+		popupBoxClose.click()
+		Thread.sleep(1000)
+		!addToWaitListForm.displayed
+		masterTemplate.doLogout()
+
+		where:
+		productCode 	| user
+		"05527-0458"	| TestDataCatalog.getALevisUser()
+	}
 	
 	//FIXME create a page helper
 	def openSizingGridAtQuickOrderPage(String productCode){

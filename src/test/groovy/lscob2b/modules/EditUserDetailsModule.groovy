@@ -42,4 +42,9 @@ class EditUserDetailsModule extends Module{
 		selectDDA.value(selectDDA.find("option",value:notContainsWord(selectDDA.value()),0).value())
 	}
 	
+	//This is similar to changeDefaultDeliveryAddress
+	def removeDefaultDeliveryAddress() {
+		selectDDA.value(selectDDA.find("option",value:notContainsWord(selectDDA.value()),0).value())
+	}
+	
 }

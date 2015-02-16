@@ -11,7 +11,7 @@ import spock.lang.IgnoreRest
 import spock.lang.Unroll;
  
 
-class LoginTest extends GebReportingSpec { 
+class LoginTest extends GebReportingSpec {
 
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)
@@ -19,38 +19,38 @@ class LoginTest extends GebReportingSpec {
 
 	def "Test invalid login"() {
 		setup:
-			to LoginPage
-		
+		to LoginPage
+
 		when: "at login page"
-			at LoginPage
-			
+		at LoginPage
+
 		and: "do an invalid login"
-			login(user)
-			
+		login(user)
+
 		then: "at login page"
-			at LoginPage
-			
+		at LoginPage
+
 		and: "a message is displayed"
-			waitFor { errorMessage.displayed }
-					
+		waitFor { errorMessage.displayed }
+
 		where:
-			user = UserHelper.getInvalidUser()
+		user = UserHelper.getInvalidUser()
 	}
-	
+
 	/**
 	 * US BB-20 Mandatory login before you can access the site
 	 * TC BB-755 Automated Test Case: Test not authorized access 
 	 */
 	def "Test not authorized access"() {
 		when: "try to access to HomePage"
-			PageHelper.gotoPage(browser, baseUrl, "/")	
-		
+		PageHelper.gotoPage(browser, baseUrl, "/")
+
 		then: "at LoginPage"
-			at LoginPage
-			
+		at LoginPage
+
 		when: "try to access to ManageUser"
-			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_MANAGE_USERS)
-		
+		PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_MANAGE_USERS)
+
 		then: "at LoginPage"
 			at LoginPage
 			
@@ -67,7 +67,7 @@ class LoginTest extends GebReportingSpec {
 			at LoginPage
 			
 	}
-	
+
 
 	/**
 	 * US BB-17 User is identified as Levis, Dockers or Multibrand
@@ -75,17 +75,17 @@ class LoginTest extends GebReportingSpec {
 	 */
 	def "Test valid login"() {
 		setup:
-			to LoginPage
-		
+		to LoginPage
+
 		when: "at login page"
-			at LoginPage
-			
+		at LoginPage
+
 		and: "do login"
-			login(user)
+		login(user)
 
 		then: "at home page"
-			at HomePage
-		
+		at HomePage
+
 		where:
 			user | _
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | _
@@ -102,4 +102,76 @@ class LoginTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
 	
+	//TODO Run the impex before running the below 3 tests
+
+	/**
+	 * US BB-591 Confirm terms and conditions at first login 
+	 * TC BB-774 Test first time login and links exists
+	 */
+	@Ignore
+	def "Test first time login and links exsits"(){
+		setup:
+		to LoginPage
+
+		when: "at login page"
+		at LoginPage
+
+		and: "do login"
+		login(termAndConditionUser)
+
+		then: "at terms and coditions page check agree/disagree displayed"
+		at TermsAndConditionPage
+		agreeLinkExists()
+		disagreeLinkExists()
+	}
+	
+	/**
+	 * US BB-591 Confirm terms and conditions at first login
+	 * TC BB-775 Test first time login and diagree to terms and condition
+	 */
+	@Ignore
+	def "Test first time login and diagree to terms and condition and you should stay on terms and condition page"(){
+		setup:
+		to LoginPage
+
+		when: "at login page"
+		at LoginPage
+
+		and: "do login"
+		login(termAndConditionUser)
+
+		and: "at terms and conditions page"
+		at TermsAndConditionPage
+
+		and: "Disgree to terms and conditions"
+		disagreeLinkClick()
+
+		then:"at home page"
+		at TermsAndConditionPage
+	}
+
+	/**
+	 * US BB-591 Confirm terms and conditions at first login
+	 * TC BB-776 Test first time login and agree to terms and condition
+	 */
+	@Ignore
+	def "Test first time login and agree to terms and condition"(){
+		setup:
+		to LoginPage
+
+		when: "at login page"
+		at LoginPage
+
+		and: "do login"
+		login(termAndConditionUser)
+
+		and: "at terms and conditions page"
+		at TermsAndConditionPage
+
+		and: "Agree to terms and conditions"
+		agreeLinkClick()
+
+		then:"at home page"
+		at HomePage
+	}
 }

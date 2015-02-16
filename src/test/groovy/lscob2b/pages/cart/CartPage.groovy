@@ -23,6 +23,8 @@ class CartPage extends Page{
 		linkCheckout { $("a.checkout") }
 		
 		editQuantities { $(".itemButtons a.btn-white") }
+		
+		emptyCart { $("#main-container .blankSlate h2") }
 	}
 	
 	
@@ -33,5 +35,9 @@ class CartPage extends Page{
 	
 	def editQuantitiesButtonclick(){
 		editQuantities.click()
+	}
+	
+	def emptyCartMessageExists(){
+		!emptyCart.empty
 	}
 }
