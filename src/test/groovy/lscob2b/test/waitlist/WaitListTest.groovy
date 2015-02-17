@@ -1,7 +1,7 @@
 package lscob2b.test.waitlist
 
 import geb.spock.GebReportingSpec
-import lscob2b.data.PageHelper;
+import lscob2b.data.PageHelper
 import lscob2b.data.ProductHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
@@ -9,10 +9,9 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
-import lscob2b.test.data.User;
+import lscob2b.test.data.User
 import spock.lang.Ignore
-import spock.lang.Stepwise;
-import de.hybris.geb.page.hac.console.ImpexImportPage
+import spock.lang.Stepwise
 
 @Stepwise
 public class WaitListTest extends GebReportingSpec{
@@ -39,6 +38,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder
 	 */
+	@Ignore
 	def "Adding to WaitList from QuickOrder page"() {
 		setup:
 			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
@@ -78,6 +78,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
+	@Ignore
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
