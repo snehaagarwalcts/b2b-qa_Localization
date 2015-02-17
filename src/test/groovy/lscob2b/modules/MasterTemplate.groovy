@@ -55,8 +55,11 @@ class MasterTemplate extends Module {
 		
 		searchLink { $('a.search-icon') } //TODO Enable once working
 		
-		/* WaitList*/
+		/*Contact us after login*/
 		
+		contactUs { $('.yCmsComponent').find('a', href:endsWith('/contactus')) }
+		
+
 		waitListItem { $("li#waitlist-container") }
 		
 		waitListLink { waitListItem.find("a",class:"miniWaitlist miniWaitlistLink",0) }
@@ -89,6 +92,13 @@ class MasterTemplate extends Module {
 				
 		subCategoryLink { categoryName,subCategoryName -> subNav.find("a", href: endsWith(categoryName)).parent().parent().find("a",href: endsWith(subCategoryName)) }
 		 		
+	}
+	
+	def doContactUs(){
+		waitFor {
+			contactUs.displayed
+		}
+		contactUs.click()
 	}
 	
 	def doSearch(String productID){

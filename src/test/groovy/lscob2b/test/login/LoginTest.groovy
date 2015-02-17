@@ -7,7 +7,7 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.TermsAndConditionPage
 import spock.lang.Ignore
- 
+
 
 class LoginTest extends GebReportingSpec {
 
@@ -118,12 +118,15 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		and: "do login"
-		login(termAndConditionUser)
+		login(user)
 
 		then: "at terms and coditions page check agree/disagree displayed"
 		at TermsAndConditionPage
 		agreeLinkExists()
 		disagreeLinkExists()
+		
+		where:
+		user = UserHelper.getTermsAndConditionUser()
 	}
 	
 	/**
@@ -139,7 +142,7 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		and: "do login"
-		login(termAndConditionUser)
+		login(user)
 
 		and: "at terms and conditions page"
 		at TermsAndConditionPage
@@ -149,6 +152,9 @@ class LoginTest extends GebReportingSpec {
 
 		then:"at home page"
 		at TermsAndConditionPage
+		
+		where:
+		user = UserHelper.getTermsAndConditionUser()
 	}
 
 	/**
@@ -164,7 +170,7 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		and: "do login"
-		login(termAndConditionUser)
+		login(user)
 
 		and: "at terms and conditions page"
 		at TermsAndConditionPage
@@ -174,5 +180,8 @@ class LoginTest extends GebReportingSpec {
 
 		then:"at home page"
 		at HomePage
+		
+		where:
+		user = UserHelper.getTermsAndConditionUser()
 	}
 }
