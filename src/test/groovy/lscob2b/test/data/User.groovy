@@ -10,6 +10,8 @@ class User {
 	String name;
 	String surname;
 	String address;
+	String companyname;
+	String customernumber;
 	B2BUnit defaultB2BUnit;
 	List<String> groups;
 	

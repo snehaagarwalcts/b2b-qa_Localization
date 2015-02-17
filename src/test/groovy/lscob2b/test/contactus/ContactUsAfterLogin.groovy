@@ -7,8 +7,7 @@ import lscob2b.pages.ContactUsPage
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 
-class ContactUsAfterLogin extends GebReportingSpec 
-{
+class ContactUsAfterLogin extends GebReportingSpec {
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
@@ -17,33 +16,35 @@ class ContactUsAfterLogin extends GebReportingSpec
 	 * US BB-585 Contact us after login
 	 * TC BB-784 Contact us after login
 	 */
-	def "Make sure requried fields are pre"(){
+	def "Make sure requried fields are prepoulated"(){
 		setup:
 		to LoginPage
 		at LoginPage
 		login(user)
-		
+
 		when: "At HomePage"
 		at HomePage
-		
+
 		then: "Click on contact us"
 		masterTemplate.doContactUs()
-		
+
 		and: "at Contact Us page"
 		at ContactUsPage
-		
-		//TODO make title, first name, last name, etc come from user helper
+
 		then: "Compare user data"
 		//titleText == "Ms." //user.title
-		firstName == "Levis"//user.name
-		lastName == "SuperUser"//user.name
+		firstName == user.name
+		lastName == user.surname
 		emailText == user.email
-		companyName == "Automated-Unit-1 Co.Ltd"//user.companyName
-		customerNumber == "automated-unit-1"//user.customerNumber
+		companyName == user.companyname
+		customerNumber == user.customernumber
 		//country == "United Kingdom"//user.country
 
 		where:
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
 	}
 }
