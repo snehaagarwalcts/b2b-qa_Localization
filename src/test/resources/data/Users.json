@@ -1,7 +1,7 @@
 {
 	"super@unit-1":{
 		"email":"super@unit-1",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Ms.",
 		"name":"Levis SuperUser",
 		"groups":["automated-unit-1","b2badmingroup","b2bcustomergroup","b2bfinancegroup"],
@@ -9,7 +9,7 @@
 	},
 	"admin@unit-1":{
 		"email":"admin@unit-1",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Mr.",
 		"name":"Levis Admin",
 		"groups":["automated-unit-1","b2badmingroup"],
@@ -17,7 +17,7 @@
 	},
 	"cust@unit-1":{
 		"email":"cust@unit-1",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Ms.",
 		"name":"Levis Customer",
 		"groups":["automated-unit-1","b2bcustomergroup"],
@@ -25,7 +25,7 @@
 	},
 	"finance@unit-1":{
 		"email":"finance@unit-1",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Ms.",
 		"name":"Levis Finance",
 		"groups":["automated-unit-1","b2bfinancegroup"],
@@ -33,7 +33,7 @@
 	},
 	"super@unit-2":{
 		"email":"super@unit-2",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Mr.",
 		"name":"Multibrand SuperUser",
 		"groups":["automated-unit-2","b2badmingroup","b2bcustomergroup","b2bfinancegroup"],
@@ -41,7 +41,7 @@
 	},
 	"admin@unit-2":{
 		"email":"admin@unit-2",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Mr.",
 		"name":"Multibrand Admin",
 		"groups":["automated-unit-2","b2badmingroup"],
@@ -49,7 +49,7 @@
 	},
 	"cust@unit-2":{
 		"email":"cust@unit-2",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Ms.",
 		"name":"Multibrand Customer",
 		"groups":["automated-unit-2","b2bcustomergroup"],
@@ -57,7 +57,7 @@
 	},
 	"finance@unit-2":{
 		"email":"finance@unit-2",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Ms.",
 		"name":"Multibrand Finance",
 		"groups":["automated-unit-2","b2bfinancegroup"],
@@ -65,7 +65,7 @@
 	},
 	"super@unit-3":{
 		"email":"super@unit-3",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Mr.",
 		"name":"Docker SuperUser",
 		"groups":["automated-unit-3","b2badmingroup","b2bcustomergroup","b2bfinancegroup"],
@@ -73,7 +73,7 @@
 	},
 	"admin@unit-3":{
 		"email":"admin@unit-2",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Mr.",
 		"name":"Docker Admin",
 		"groups":["automated-unit-3","b2badmingroup"],
@@ -81,7 +81,7 @@
 	},
 	"cust@unit-3":{
 		"email":"cust@unit-3",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Ms.",
 		"name":"Docker Customer",
 		"groups":["automated-unit-3","b2bcustomergroup"],
@@ -89,7 +89,7 @@
 	},
 	"finance@unit-3":{
 		"email":"finance@unit-2",
-		"password":"12341234",
+		"password":"Levis2015#",
 		"title":"Ms.",
 		"name":"Docker Finance",
 		"groups":["automated-unit-3","b2bfinancegroup"],

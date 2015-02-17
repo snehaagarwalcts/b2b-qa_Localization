@@ -39,7 +39,7 @@ class UserHelper  {
 	}
 	
 	static User getTermsAndConditionUser(){
-		new User(email: 'term@condition-1', password:'12341234')
+		new User(email: 'term@condition-1', password:'Levis2015#')
 	} 
 	
 	static List<Address> getShippingAddress(User user) {
