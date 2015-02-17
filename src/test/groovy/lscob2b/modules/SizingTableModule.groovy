@@ -3,7 +3,7 @@ package lscob2b.modules
 import geb.Module
 import geb.navigator.Navigator
 
-class SizingModule extends Module {
+class SizingTableModule extends Module {
 
 	//ROOT ELEMENT IS div.single_grid_three_dimensions
 	
@@ -15,8 +15,11 @@ class SizingModule extends Module {
 
 	
 	def void addLimitedStockQuantity(int quantity) {
-		waitFor { table.displayed }
 		table.find("td.Yellow",0).find("input.sku-quantity").value(quantity)
+	}
+	
+	def void addOutOfStockStockQuantity(int quantity) {
+		table.find("td.Red",0).find("input.sku-quantity").value(quantity)
 	}
 	
 }

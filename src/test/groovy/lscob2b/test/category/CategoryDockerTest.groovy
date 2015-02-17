@@ -1,6 +1,5 @@
 package lscob2b.test.category
 
-import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper

@@ -1,12 +1,13 @@
 package lscob2b.pages.quickorder
 
 import geb.Page
-import geb.navigator.Navigator;
+import geb.navigator.Navigator
 import lscob2b.modules.MasterTemplate
-import lscob2b.modules.SizingGridModule;
-import lscob2b.modules.CheckOutModule
+import lscob2b.modules.SizingGridModule
+import lscob2b.modules.SizingTableModule;
 
 class QuickOrderPage extends Page{
+	
 	static url = "/search/advanced"
 
 	static at = { waitFor { title == "Quick Order | LSCO B2B Site" } }
@@ -14,88 +15,89 @@ class QuickOrderPage extends Page{
 	static content = { 
 		
 		masterTemplate { module MasterTemplate } 
-		sizingGrid { module SizingGridModule}
-		checkOut { module CheckOutModule}
 		
 		productSizingGrids { $("div.cartItem").collect { module SizingGridModule, it  } }
 		
-		//Quick order page content
-		keywordSearch { $("div label.control-label") }
-		add { $(".add-product-ids button") }
-		searchButton { $("div.searchButton button") }
-		prdouctIdsOnly { $("div.idCheckbox div label") }
-		quantity { $("div.cartTotals div.quantity span.label")}
-		total { $("div.cartTotals div.total span.label") }
-		cartButtons { $("div.cartButtons").find('a', href: endsWith('/')) }
-		editQuantities { $("div.itemButtons a.toggle",0) }
-		editQuantities1 { $("div.itemButtons a.toggle",1) }
-		//checkOut { $("div.cartButtons").find('a', href: endsWith('/cart/checkout')).text() }
+		//FORM
 		
-		//To place an order
-		searchInput { $("#js-product-ids") }
-		searchLink { $("div.searchButton button") }
-		prodcutIDs { $("div.idCheckbox div label") }
+		searchForm { $("form#advancedSearchForm") }
+		
+		searchInput { searchForm.find("input",name:"keywords") }
+		
+		searchLink { searchForm.find("button.adv_search_button") }
+		
+		checkboxProductIDs { searchForm.find("input", name:"onlyProductIds") }
+
+		divCheckboxProductIDs { checkboxProductIDs.parent() }
+		
+		buttonAdd { searchForm.find("button#js-add-product-ids") }
+		
+		//PAGE
+		
+		spanQuantity { $("span#total-items-count") }
+		
+		spanPrice { $("span#total-price") }
+				
 		checkOutLink { $("a.checkout") }
 		
-		addToWaitListForm (required: false) { $("#AddToWaitListForm",1) }
-		popupBoxClose { $("#popupBoxClose") }
+		//OverLay
+		
+		overlayWaitList { $("div.popup_box") }
+		
+		overlayTable { overlayWaitList.find("table.grid_three_dimensions") }
+		
+		overlayButtonAdd { overlayWaitList.find("a#add_to_waitlist_button") }
+
 	}
 	
-	def doSearch(String productID){
-		searchInput = productID
-		prodcutIDs.click()
+	def doSearch(String toSearch, boolean onlyProductIds){
+		searchInput = toSearch
+		if(checkboxProductIDs.value() != onlyProductIds) {
+			divCheckboxProductIDs.click()
+		}
 		searchLink.click()
 	}
 	
 	def doMultipleSearch(String productID1, String productID2) {
 		searchInput.value(productID1 + "," + productID2)
-		prodcutIDs.click()
+		if(checkboxProductIDs.value() != 'true') {
+			divCheckboxProductIDs.click()
+		}
 		searchLink.click()
 	}
 	
-	def int getResultSize() {
-		$("div.cartItem").size()
+	
+	def addLimitedStockQuantityToCart(int index, int quantity) {
+		productSizingGrids[index].addLimitedStockQuantityToCart(quantity)
 	}
 	
-	def checkKeywordSearchLinkExists(){
-		!keywordSearch.empty
+	def addOutOfStockQuantityToWaitList(int index, int quantity) {
+		waitFor { productSizingGrids[index].displayed }
+		waitFor { productSizingGrids[index].buttonNotifyMe.displayed }
+		
+		productSizingGrids[index].buttonNotifyMe.click()
+		
+		waitFor { overlayWaitList.displayed }
+		
+		waitFor { overlayTable.displayed }
+		
+		overlayTable.find("td.Red",0).find("input.sku-quantity").value(quantity)
+		
+		overlayButtonAdd.click()
+		
 	}
 	
-	def checkAddLinkExists(){
-		!add.empty
-	}
-	
-	def checkSearchButtonLinkExists(){
-		!searchButton.empty
-	}
-	
-	def checkPrdouctIdsOnlyLinkExists(){
-		!prdouctIdsOnly.empty
-	}
-
-	def checkQuantityLinkExists(){
-		!quantity.empty
-	}
-	
-	def checkTotalLinkExists(){
-		!total.empty
-	}
-
-	def checkCartButtonsLinkExists(){
-		!cartButtons.empty
-	}
-	
-	def checkCheckOuLinkExists(){
-		!checkOutLink.empty
-	}
-	
-	def gotoCartPage() {
+	def int getResultCount() {
 		waitFor {
-			js.exec("return document.readyState").equals("complete")
+			!productSizingGrids.empty
 		}
-		checkOutLink.click()
+		productSizingGrids.size()
 	}
 	
-	
+	def boolean checkResultSize(int size) {
+		waitFor {
+			productSizingGrids.size() == size
+		}
+	}
 	
 }

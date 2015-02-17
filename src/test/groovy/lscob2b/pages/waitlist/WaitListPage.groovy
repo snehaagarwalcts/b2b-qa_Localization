@@ -1,6 +1,5 @@
 package lscob2b.pages.waitlist
 
-import static lscob2b.TestConstants.*
 import geb.Page
 import geb.navigator.Navigator
 import lscob2b.modules.MasterTemplate
@@ -14,8 +13,15 @@ class WaitListPage extends Page {
 
 	static content = {
 		masterTemplate {module MasterTemplate}
+		
+		emptyList { $("div.blankSlate") }
+		
+		continueToShoppingLink { $("div.cartButtons").find("a",class:"button-large btn-txt-red") }
+		
 		itemLink { $(".details>.itemName>a", href: endsWith(it)) }
+		
 		quantityRequested { $(".details #05527-0458\\.styleQty", id: contains(it)) }
+		
 		quantityAvailable { $(".details #05527-0458\\.styleStock", id: contains(it)) }
 		
 		cartItems(required: false) { $("div.cartItems") }

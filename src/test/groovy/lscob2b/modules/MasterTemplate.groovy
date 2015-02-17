@@ -50,11 +50,26 @@ class MasterTemplate extends Module {
 		
 		switchBrandLink {$("a#switchTheme")}
 		
-		waitListLink { $("a.miniWaitlistLink") }
 		
 		searchInput { $("#input-search") }
 		
 		searchLink { $('a.search-icon') } //TODO Enable once working
+		
+		/* WaitList*/
+		
+		waitListItem { $("li#waitlist-container") }
+		
+		waitListLink { waitListItem.find("a",class:"miniWaitlist miniWaitlistLink",0) }
+		
+		waitListItemCount { waitListItem.find("span.count") }
+		
+		/* Cart */
+		
+		cartItem { $("li#cart-container") }
+		
+		cartItemLink { cartItem.find("a",0) }
+		
+		cartItemCount { cartItem.find("span.count") }
 		
 		/* SwitchTo Link */
 		

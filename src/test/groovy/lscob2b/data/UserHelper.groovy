@@ -42,7 +42,7 @@ class UserHelper  {
 		
 		def jsonData = new JsonSlurper().parseText(new File(DATA_ADDRESS).text)
 
-		jsonData.get(user.defaultB2BUnit).shipping.each {
+		jsonData.get(user.defaultB2BUnit.uid).shipping.each {
 			Address address = new Address()
 			address.country = it.country
 			address.region = it.region
@@ -63,7 +63,7 @@ class UserHelper  {
 		
 		def jsonData = new JsonSlurper().parseText(new File(DATA_ADDRESS).text)
 
-		jsonData.get(user.defaultB2BUnit).billing.each {
+		jsonData.get(user.defaultB2BUnit.uid).billing.each {
 			Address address = new Address()
 			address.country = it.country
 			address.region = it.region

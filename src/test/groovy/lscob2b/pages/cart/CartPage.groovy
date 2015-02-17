@@ -25,6 +25,11 @@ class CartPage extends Page{
 		editQuantities { $(".itemButtons a.btn-white") }
 		
 		emptyCart { $("#main-container .blankSlate h2") }
+		
+		alertContainer { $("div.alert-container") }
+		
+		alertMessage { alertContainer.find("div.alert-message") }
+		
 	}
 	
 	

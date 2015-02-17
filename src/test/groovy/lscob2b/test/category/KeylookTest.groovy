@@ -1,17 +1,16 @@
 package lscob2b.test.category;
 
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
 import lscob2b.pages.LoginPage
 import lscob2b.pages.category.KeyLookPage
-import lscob2b.test.data.TestDataCatalog
-import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
 
 
 public class KeylookTest extends GebReportingSpec {
 
 	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+		PageHelper.gotoPageLogout(browser,baseUrl)
 	}
 	
 	/**

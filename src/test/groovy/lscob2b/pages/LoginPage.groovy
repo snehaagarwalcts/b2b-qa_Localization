@@ -1,9 +1,7 @@
 package lscob2b.pages
 
 import geb.Page
-import lscob2b.modules.MasterTemplate
-import lscob2b.test.data.User;
-import static lscob2b.TestConstants.*
+import lscob2b.test.data.User
 
 class LoginPage extends Page {
 
@@ -18,7 +16,6 @@ class LoginPage extends Page {
 		loginButton { $("#loginForm button") }
 
 		// some error messages
-		//globalMessages { $("#globalMessages") }
 		errorMessage { $("div.alert-message") }
 		errorMessageText { errorMessage.text().trim() }
 

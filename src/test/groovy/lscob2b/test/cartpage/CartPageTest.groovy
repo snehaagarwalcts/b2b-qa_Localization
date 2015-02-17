@@ -1,15 +1,15 @@
 package lscob2b.test.cartpage
 
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.cart.CartPage
-import lscob2b.test.data.TestHelper
 
 class CartPageTest extends GebReportingSpec {
 	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+		PageHelper.gotoPageLogout(browser,baseUrl)
 	}
 
 	def setup() {

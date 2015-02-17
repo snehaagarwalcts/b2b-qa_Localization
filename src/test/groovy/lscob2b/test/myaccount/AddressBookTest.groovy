@@ -1,12 +1,12 @@
 package lscob2b.test.myaccount
 
-import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.AddressBookPage
 import lscob2b.pages.myaccount.MyAccountPage
-import lscob2b.test.data.TestDataCatalog
+import lscob2b.test.data.Address
 
 
 class AddressBookTest extends GebReportingSpec {
@@ -35,7 +35,7 @@ class AddressBookTest extends GebReportingSpec {
 	def "Check Users Shipping Address"() {
 		setup:
 			loginAndGoToPage(user)
-			def shippingData = TestDataCatalog.getShippingAddress(user)
+			def List<Address> shippingData = UserHelper.getShippingAddress(user)
 		
 		when: "At Address Book page"
 			at AddressBookPage
@@ -60,7 +60,10 @@ class AddressBookTest extends GebReportingSpec {
 		}
 		
 		where:
-			user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getAMultibrandUser(), TestDataCatalog.getADockersUser()]
+			user | _
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) | _
+			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
 	/**
@@ -69,7 +72,7 @@ class AddressBookTest extends GebReportingSpec {
 	def "Check Users Billing Address"() {
 		setup:
 		loginAndGoToPage(user)
-		def billingData = TestDataCatalog.getBillingAddress(user)
+		def List<Address> billingData = UserHelper.getBillingAddress(user)
 		
 		when: "At Address Book page"
 		at AddressBookPage
@@ -97,7 +100,10 @@ class AddressBookTest extends GebReportingSpec {
 		}
 		
 		where:
-		user << [TestDataCatalog.getALevisUser(), TestDataCatalog.getAMultibrandUser(), TestDataCatalog.getADockersUser()]
+			user | _
+				UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
+				UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) | _
+				UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
 }

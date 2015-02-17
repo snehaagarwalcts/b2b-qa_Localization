@@ -1,15 +1,14 @@
 package lscob2b.test.category
 
-import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
+import spock.lang.Ignore
 
 class CategoryLevisTest extends GebReportingSpec {
 
-	//TODO fix the mouse over on Firefox Windows 7
 	def setupSpec(){
 		PageHelper.gotoPageLogout(browser, baseUrl)
 		

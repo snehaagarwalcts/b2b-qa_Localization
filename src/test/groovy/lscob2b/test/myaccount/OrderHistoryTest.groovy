@@ -12,7 +12,6 @@ import lscob2b.pages.myaccount.OrderDetailPage
 import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
-import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
  
 class OrderHistoryTest extends GebReportingSpec {

@@ -1,14 +1,14 @@
 package lscob2b.test.myaccount.admin;
 
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
+import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.admin.CreateUserPage
 import lscob2b.pages.myaccount.admin.EditUserDetailsPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
-import lscob2b.test.data.TestDataCatalog
-import lscob2b.test.data.TestHelper
 import lscob2b.test.data.User
 import spock.lang.Shared
 import spock.lang.Stepwise
@@ -18,15 +18,16 @@ import spock.lang.Stepwise
 class CrudUserAccountTest extends GebReportingSpec {
 
 	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+		PageHelper.gotoPageLogout(browser,baseUrl)
 		
 		to LoginPage
-		login (TestDataCatalog.getAnAdminUser())
+		login (UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN))
 		at HomePage
 	}
 
 	@Shared
 	User createdUser
+	
 	/**
 	 * TC BB-482 Admin users should be able to create new customer accounts
 	 */

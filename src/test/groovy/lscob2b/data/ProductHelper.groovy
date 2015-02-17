@@ -11,7 +11,7 @@ class ProductHelper  {
 	 * Product for pdp check
 	 */
 	def static String getProduct(brand) {
-		if(brand == BRAND_LEVIS) return "04511-1472"
+		if(brand == BRAND_LEVIS) return "00501-0039"
 		if(brand == BRAND_DOCKERS) return ""
 		null
 	}			
@@ -20,15 +20,25 @@ class ProductHelper  {
 		if(brand == BRAND_LEVIS) {
 			return [
 				code: '00501-0039',
-				upSelling: ["00501-1964", "00501-1711", "00501-1764", "00501-1860"],
+				upSelling: ["00501-0114", "00501-0101", "00501-0162", "00501-0165"],
 				crossSelling:["00501-0101", "00501-0113", "00501-0114", "00501-1307", "00501-1622"]
 			]
 		}	
 		null
 	}
 	
+	def static getProductColor(brand) {
+		if(brand == BRAND_LEVIS) {
+			return [
+				code: '00501-0039',
+				related: ["00501-0039","00501-0101"]
+			]
+		}
+		null
+	}
+	
 	def static getWaitlistProduct(brand) {
-		if(brand == BRAND_LEVIS) "05527-0458"
+		if(brand == BRAND_LEVIS) return "05527-0458"
 		if(brand == BRAND_DOCKERS) ""
 		null
 	}	
@@ -38,6 +48,13 @@ class ProductHelper  {
 		if(brand == BRAND_DOCKERS) ""
 		null
 	}
+	
+	def static String[] getQuickOrderProduct(brand) {
+		if(brand == BRAND_LEVIS) return [ "00501-0039", "00501-0113" ]
+		if(brand == BRAND_DOCKERS) ""
+		null
+	}
+	
 	
 	
 }

@@ -1,6 +1,7 @@
 package lscob2b.pages.checkout
 
 import geb.Page
+import lscob2b.modules.CartModule;
 import lscob2b.modules.MasterTemplate
 
 class CheckOutPage extends Page{
@@ -10,9 +11,12 @@ class CheckOutPage extends Page{
 	static at = { waitFor { title == "Checkout | LSCO B2B Site" } }
  
 	static content = {
+		
 		masterTemplate {module MasterTemplate}
 		
 		placeOrderLink { $("div.cartButtons a.placeOrderButton") }
+		
+		cartItems { $("div.cartItem").collect { module CartModule, it  } }
 		
 		//Checkout page labels
 		total { $('.total span') }
@@ -37,9 +41,5 @@ class CheckOutPage extends Page{
 	def checkIncludingExists(){
 		!including.empty
 	}
-	
-	def doRemoveOnCheckOutPage(){
-		remove.click()
-		removeConfirm.click()
-	}
+		
 }

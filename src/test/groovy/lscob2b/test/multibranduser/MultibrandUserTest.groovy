@@ -1,19 +1,15 @@
 package lscob2b.test.multibranduser
 
-import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.test.data.TestDataCatalog
-import lscob2b.test.data.TestHelper
-import spock.lang.Ignore
-import spock.lang.IgnoreRest;
 
 class MultibrandUserTest extends GebReportingSpec {
 
 	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+		PageHelper.gotoPageLogout(browser,baseUrl)
 	}
 
 	def setup() {
@@ -143,7 +139,7 @@ class MultibrandUserTest extends GebReportingSpec {
 	 */
 	def "Check if switch to dockers is present using Dockers customer"(){
 		setup:
-		login (TestDataCatalog.getADockersUser())
+		login (user)
 
 		when: "at home"
 		at HomePage

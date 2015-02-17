@@ -12,7 +12,7 @@ import lscob2b.modules.MasterTemplate
 import lscob2b.modules.PDPBuyStackModule
 import lscob2b.modules.SellModule
 import lscob2b.modules.SizingGridModule
-import lscob2b.modules.SizingModule
+import lscob2b.modules.SizingTableModule
 
 class ProductDetailsPage extends Page {
 
@@ -28,7 +28,7 @@ class ProductDetailsPage extends Page {
 		
 		sizingGrid { module SizingGridModule}		//TODO remove it
 		
-		sizingTable { module SizingModule, $("div.single_grid_three_dimensions") }
+		sizingTable { module SizingTableModule, $("div.single_grid_three_dimensions") }
 		
 		checkOut { module CheckOutModule}
 		
@@ -49,6 +49,15 @@ class ProductDetailsPage extends Page {
 		wholesalePriceValue {
 			parsePrice(wholesalePriceText)
 		}
+		
+		//OverLay
+		
+		overlayWaitList { $("div.popup_box") }
+		
+		overlayTable { overlayWaitList.find("table.grid_three_dimensions") }
+		
+		overlayButtonAdd { overlayWaitList.find("a#add_to_waitlist_button") }
+		
 	}
 
 	def recommendedRetailPriceExist(){
@@ -71,4 +80,25 @@ class ProductDetailsPage extends Page {
 	def addOrderQuantity(String quantity){
 		sizingTable.addLimitedStockQuantity(quantity.toInteger())
 	}
+	
+	def findLinkColor(String href) {
+		$("ul.color-swatches").find("a",href:endsWith(href),0)
+	}
+	
+	def addOutOfStockQuantityToWaitList(int quantity) {
+		waitFor { sizingGrid.displayed }
+		waitFor { sizingGrid.buttonNotifyMe.displayed }
+		
+		sizingGrid.buttonNotifyMe.click()
+		
+		waitFor { overlayWaitList.displayed }
+		
+		waitFor { overlayTable.displayed }
+		
+		overlayTable.find("td.Red",0).find("input.sku-quantity").value(quantity)
+		
+		overlayButtonAdd.click()
+		
+	}
+	
 }

@@ -8,7 +8,7 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.admin.EditUserDetailsPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
-import lscob2b.test.data.TestHelper
+import spock.lang.IgnoreIf
  
 class ManageUserTest extends GebReportingSpec {
 
@@ -112,6 +112,7 @@ class ManageUserTest extends GebReportingSpec {
 	 * US BB-501 BB-38 Remove default delivery address
 	 * TC BB-778 Remove default delivery address
 	 */
+	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
 	def "Remove default delivery address"() {
 		setup:
 			login(loginUser)

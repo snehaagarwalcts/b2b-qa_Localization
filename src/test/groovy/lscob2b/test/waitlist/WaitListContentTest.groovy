@@ -1,11 +1,10 @@
 package lscob2b.test.waitlist
 
-import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper;
 import lscob2b.pages.LoginPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.pages.waitlist.WaitListPage
-import lscob2b.test.data.TestHelper
 import spock.lang.Ignore
 import de.hybris.geb.page.hac.HomePage
 import de.hybris.geb.page.hac.console.ImpexImportPage
@@ -13,7 +12,7 @@ import de.hybris.geb.page.hac.console.ImpexImportPage
 class WaitListContentTest extends GebReportingSpec{
 
 	def setupSpec() {
-		browser.go(baseUrl + TestHelper.PAGE_LOGOUT)
+		PageHelper.gotoPageLogout(browser,baseUrl)
 	}
 
 	def setup() {

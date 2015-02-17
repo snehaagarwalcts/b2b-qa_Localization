@@ -11,6 +11,7 @@ class PageHelper  {
 	public static final String PAGE_VIEW_USER_DETAIL = "my-account/manage-users/details"
 	public static final String PAGE_EDIT_USER_DETAIL = "my-account/manage-users/edit"
 	public static final String PAGE_PRODUCT_DETAIL = "p"
+	public static final String PAGE_QUICKORDER = "search/advanced"
 	
 	static void gotoPage(browser, baseUrl, page) {
 		browser.go(baseUrl + page)

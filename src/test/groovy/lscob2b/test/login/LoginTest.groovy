@@ -1,14 +1,12 @@
 package lscob2b.test.login
 
-import static lscob2b.TestConstants.*
 import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.test.data.User
-import spock.lang.IgnoreRest
-import spock.lang.Unroll;
+import lscob2b.pages.TermsAndConditionPage
+import spock.lang.Ignore
  
 
 class LoginTest extends GebReportingSpec {
@@ -17,6 +15,9 @@ class LoginTest extends GebReportingSpec {
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 
+	/**
+	 * TC BB-751 Login Failure
+	 */
 	def "Test invalid login"() {
 		setup:
 		to LoginPage
