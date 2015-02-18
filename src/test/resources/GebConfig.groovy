@@ -92,7 +92,8 @@ if (sauceBrowser && sauceBrowser != "false") {
 		driver = { new SafariDriver() }
 		
 	} else if(browserName == "chrome") {
-		
+		//See https://sites.google.com/a/chromium.org/chromedriver/getting-started
+		System.setProperty("webdriver.chrome.driver", "/Users/i312480/Downloads/chromedriver")
 		driver = { new ChromeDriver() }
 		
 	} else if(browserName == "internet explorer") {
