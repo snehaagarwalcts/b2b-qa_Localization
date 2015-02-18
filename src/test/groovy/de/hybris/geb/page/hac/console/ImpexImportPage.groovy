@@ -11,7 +11,7 @@ class ImpexImportPage extends Page {
 
 	static url = "/console/impex/import"
 	
-	static at = { title == "hybris administration console | ImpEx Import" }
+	static at = { waitFor { title == "hybris administration console | ImpEx Import" } }
 	
 	static content = {
 		
@@ -38,6 +38,9 @@ class ImpexImportPage extends Page {
 		
 		importContent.setText(impexText)
 		
+		importContent.hideTextArea()
+		
+		waitFor { importContent.importButton.displayed }
 		importContent.importButton.click()
 	}
 

@@ -25,5 +25,12 @@ class ImportContentModule extends Module {
 		js.exec("CodeMirror.fromTextArea(document.getElementById('script'), {mode: 'text/x-impex', lineNumbers: true, autofocus: true, extraKeys: {'F11': function(cm) {setFullScreen(cm, !isFullScreen(cm)); }, 'Esc': function(cm) {if (isFullScreen(cm)) setFullScreen(cm, false); }, 'Ctrl-Space': 'autocomplete'} }).setValue('" + txt + "');")
 	}
 	
+	/**
+	 * This is an hack for IE&Chrome (the js from setText cover the import button)
+	 */
+	def void hideTextArea() {
+		js.exec("document.getElementById('textarea-container').style.display='none'")
+	}
+	
 		
 }
