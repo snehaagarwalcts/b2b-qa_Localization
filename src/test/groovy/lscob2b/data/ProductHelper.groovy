@@ -44,7 +44,7 @@ class ProductHelper  {
 	}	
 	
 	def static getOrderHistoryProduct(brand) {
-		if(brand == BRAND_LEVIS) "05527-0458"
+		if(brand == BRAND_LEVIS) "00501-0039"
 		if(brand == BRAND_DOCKERS) ""
 		null
 	}

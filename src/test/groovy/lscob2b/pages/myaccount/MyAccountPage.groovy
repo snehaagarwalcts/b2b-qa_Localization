@@ -39,12 +39,17 @@ class MyAccountPage extends Page {
 		//orderHistory { $("div.orderHistory div.headline a") }
 		viewOrderHistory { $("div.orderHistory ul  a")}
 		
+		//Accont Balance
+		accountBalanceLink(required: false) { $("div.headline").find('a', href: endsWith('/balance')) }
 	}
 	
 	def boolean hasPageLink(String link) {
 		!($("div.customAccount").find("a", href:endsWith(link),0)).empty
 	}
 	
+	def checkAccountBalanceLinkExists(){
+		!accountBalanceLink.empty
+	}
 	def checkProfileLinkExists(){
 		!profileLink.empty
 	}

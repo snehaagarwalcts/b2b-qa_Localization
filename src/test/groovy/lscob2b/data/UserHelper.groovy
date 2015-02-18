@@ -39,7 +39,7 @@ class UserHelper  {
 	}
 	
 	static User getTermsAndConditionUser(){
-		new User(email: 'term@condition-1', password:'12341234')
+		new User(email: 'term@condition-1', password:'Levis2015#')
 	} 
 	
 	static List<Address> getShippingAddress(User user) {
@@ -102,6 +102,9 @@ class UserHelper  {
 			user.setEmail(it.email)
 			user.setPassword(it.password)
 			user.setName(it.name)
+			user.setSurname(it.surname)
+			user.setCompanyname(it.companyname)
+			user.setCustomernumber(it.customernumber)
 			user.setDefaultB2BUnit(b2bUnits.(it.defaultB2BUnit))
 			user.setTitle(it.title)
 			user.setGroups(it.groups)
