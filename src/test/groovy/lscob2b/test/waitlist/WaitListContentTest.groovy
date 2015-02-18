@@ -9,6 +9,7 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.User
+import spock.lang.IgnoreIf
 import spock.lang.Stepwise
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
@@ -30,7 +31,38 @@ class WaitListContentTest extends GebReportingSpec{
 		
 		at HomePage
 	}
+	
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	def "Load out of Stock by impex [OutOfStock.impex]"() {
+		setup:
+			browser.go(browser.config.rawConfig.hacUrl)
+			at de.hybris.geb.page.hac.LoginPage
+		
+			doLogin(browser.config.rawConfig.hacUsername, browser.config.rawConfig.hacPassword)
+			at de.hybris.geb.page.hac.HomePage
+			
+		when: "at HAC home page"
+			at de.hybris.geb.page.hac.HomePage
+			
+		and: "go to Console>ImpexImport page"
+			browser.go(browser.config.rawConfig.hacUrl + "console/impex/import")
+		
+		and: "at ImpexImport page"
+			at ImpexImportPage
+		
+		and: "load impex in HAC"
+			importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
+			
+		then: "check import result"
+			checkNotification()
+			
+		cleanup: "logout"
+			browser.go(browser.config.rawConfig.hacUrl)
+			at de.hybris.geb.page.hac.HomePage
+			menu.logout.click()
+	}
 
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Add to WaitList a product from quickorder page"() {
 		setup:
 			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
@@ -61,9 +93,9 @@ class WaitListContentTest extends GebReportingSpec{
 		
 		then: "check waitlist count"
 			updateWL == (currentWL+1)
-
 	}
 	
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Check [OutOfStock] Requested Quantity / Available Quantity"() {
 		setup:
 			to WaitListPage
@@ -78,7 +110,7 @@ class WaitListContentTest extends GebReportingSpec{
 			quantityAvailable.text().toInteger() == 0
 	}
 	
-	
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Update Stock status by impex [UpdateInStock.impex]"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
@@ -108,6 +140,7 @@ class WaitListContentTest extends GebReportingSpec{
 			menu.logout.click()
 	}
 	
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	//TODO check the impex and update availability!!!
 	def "Check [InStock] Requested Quantity / Available Quantity"() {
 		setup:
@@ -120,12 +153,13 @@ class WaitListContentTest extends GebReportingSpec{
 			quantityRequested.text().toInteger() == 1
 			
 		and: "check available quantity"
-			quantityAvailable.text().toInteger() == 0
+			quantityAvailable.text().toInteger() == 1
 	}
 	
 	/**
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Remove product from WaitList page"() {
 		when: "At WaitList page"
 			at WaitListPage
