@@ -38,7 +38,7 @@ class ProductHelper  {
 	}
 	
 	def static getWaitlistProduct(brand) {
-		if(brand == BRAND_LEVIS) return "05527-0458"
+		if(brand == BRAND_LEVIS) return "00501-0039"
 		if(brand == BRAND_DOCKERS) ""
 		null
 	}	

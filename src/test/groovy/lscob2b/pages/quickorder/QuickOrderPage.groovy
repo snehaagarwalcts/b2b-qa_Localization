@@ -79,8 +79,6 @@ class QuickOrderPage extends Page{
 		
 		waitFor { overlayWaitList.displayed }
 		
-		waitFor { overlayTable.displayed }
-		
 		overlayTable.find("td.Red",0).find("input.sku-quantity").value(quantity)
 		
 		overlayButtonAdd.click()

@@ -22,4 +22,8 @@ class SizingTableModule extends Module {
 		table.find("td.Red",0).find("input.sku-quantity").value(quantity)
 	}
 	
+	def int getOutOfStockQuantity() {
+		table.find("td.Red",0).find("input.sku-quantity").value().toInteger()
+	}
+	
 }

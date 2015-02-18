@@ -17,7 +17,6 @@ class QuickOrderSecurityTest extends GebReportingSpec {
 		to LoginPage 
 	}
 	
-	@Ignore
 	def "User that does not hold customer rights tries to place an order from quick order page"() {
 		setup: "Log in"
 			at LoginPage	

@@ -36,8 +36,13 @@ if(browserName == null || browserName == "") {
  * Target Configuration
  */
 
-/* Default URL */
+/* Default Target URL */
 baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"
+
+/* HAC Configuration (required for impex runtime loading) */
+hacUrl = "http://lscob2b.local:9001/"
+hacUsername = "admin"
+hacPassword = "nimda"
 
 // when system property 'geb.env' is set to 'integration000'
 environments {
@@ -117,10 +122,10 @@ autoClearCookies = true
 //        }
 //    }
 //}
-//waiting {
-//	timeout = 10
-//	retryInterval = 0.5
-//}
+waiting {
+	timeout = 10
+	retryInterval = 0.5
+}
 
 
 /**

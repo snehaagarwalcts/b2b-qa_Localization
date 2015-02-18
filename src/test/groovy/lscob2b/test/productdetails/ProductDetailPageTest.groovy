@@ -7,7 +7,6 @@ import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.productdetails.ProductDetailsPage
-import spock.lang.IgnoreIf
 
 class ProductDetailPageTest extends GebReportingSpec {
 	
@@ -58,14 +57,16 @@ class ProductDetailPageTest extends GebReportingSpec {
 	/**
 	 * TC BB-645 Automated test case: Cross-Selling & Up-Selling
 	 */
-	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
 	def "Check Up-Selling and Cross-Selling"() {
 		setup:
 			to LoginPage
 			login(user)
-			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
+			at HomePage
 						
-		when: "At ProductDetail page"
+		when: "Go to product detail page"
+			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
+		
+		and: "At ProductDetail page"
 			at ProductDetailsPage
 			
 		then: "Check Up-Selling product"
@@ -85,14 +86,17 @@ class ProductDetailPageTest extends GebReportingSpec {
 			//UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | "00501-0039" | ["00501-0114"] | ["00501-0101"]
 	}
 	
-	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
+//	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
 	def "Check Color Switch"() {
 		setup:
 			to LoginPage
 			login(user)
-			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
+			at HomePage
 	
-		when: "At ProductDetail page"
+		when: "Go to product detail page"
+			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
+		
+		and: "At ProductDetail page"
 			at ProductDetailsPage
 		
 		then: "Check color links"

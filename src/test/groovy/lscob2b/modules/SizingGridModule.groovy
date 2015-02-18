@@ -17,39 +17,11 @@ class SizingGridModule extends Module {
 	}
 
 	def addLimitedStockQuantityToCart(int quantity) {
+		waitFor { tableSize.displayed }
+		waitFor { buttonAddToCart.displayed }
 		tableSize.addLimitedStockQuantity(quantity)
 		buttonAddToCart.click()
 	}
 	
-	
-//	def clickAddToWaitList(){
-//		waitFor {
-//			linkAddToWaitList.displayed
-//		}
-//		linkAddToWaitList.click()
-//	}
-//
-//	def addToCart(){
-//		addToCartLink.click()
-//	}
-//
-//	def addOrderQuantity(String quantity){
-//		$("form.add_to_cart_order_form input.sku-quantity",0).value(quantity)
-//	}
-//
-//	def addQuantityToFirstPossibleItemInWaitListGrid(Integer value) {
-//		waitFor { overlayWaitList.displayed }
-//		overlayWaitList.find("form#AddToWaitListForm input.sku-quantity", 0).value(value)
-//	}
-//
-//	def void clickNotifyMe() {
-//		//Wait Quantity
-//		waitFor {
-//			linkNotifyMe.displayed
-//		}
-//		//Click Notify
-//		linkNotifyMe.click();
-//		
-//	}
 	
 }

@@ -1,148 +1,148 @@
 package lscob2b.test.waitlist
 
 import geb.spock.GebReportingSpec
-import lscob2b.data.PageHelper;
+import lscob2b.data.PageHelper
+import lscob2b.data.ProductHelper
+import lscob2b.data.UserHelper
+import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.productdetails.ProductDetailsPage
+import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
-import spock.lang.Ignore
-import de.hybris.geb.page.hac.HomePage
+import lscob2b.test.data.User
+import spock.lang.Stepwise
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
+/**
+ * TC BB-629 Automated test case: BB-497 Order from wait list
+ */
+@Stepwise
 class WaitListContentTest extends GebReportingSpec{
 
+	def static User user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
+	
+	def static String productCode = ProductHelper.getWaitlistProduct(ProductHelper.BRAND_LEVIS)
+	
 	def setupSpec() {
 		PageHelper.gotoPageLogout(browser,baseUrl)
-	}
-
-	def setup() {
-		to lscob2b.pages.LoginPage
-	}
-
-	def loginAndGoToPage(user) {
+		
+		to LoginPage
 		login(user)
-
-		at lscob2b.pages.HomePage
-		masterTemplate.waitListLink.click()
+		
+		at HomePage
 	}
 
-	/*def cleanup() {
-	 masterTemplate.doLogout()
-	 }*/
-
-	//TODO change HAC import of impex
-	
-	/**
-	 * TC BB-629 Automated test case: BB-497 Order from wait list
-	 */
-	//FIXME IE Problem //FIXME Safari problem
-	
-	@Ignore
-	def "Load Out Of Stock impex"(){
-		when: "go to HAC login"
-		browser.go(baseUrl +"../")
-
-		then: "At HAC login"
-		at de.hybris.geb.page.hac.LoginPage
-
-		when: "at do login"
-		doLogin("admin", "nimda")
-		at de.hybris.geb.page.hac.HomePage
-		browser.go(baseUrl +"../"+"console/impex/import")
-
-		then:"At impex import page and import the impex"
-		at ImpexImportPage
-		importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
-		//importScript(this.getClass().getResource('/impex/OutOfStock.impex').toString())
-		checkNotification()
-		logOut.click()
-	}
-
-	/**
-	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
-	 */
-	//FIXME IE Problem
-	@Ignore
-	def "Adding to waitlist from Product Details page"() {
+	def "Add to WaitList a product from quickorder page"() {
 		setup:
-			loginAndGoToPage(levisUser)
-			
-			when: "At WaitList page"
+			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
+
+		when: "At QuickOrder page"
+			at QuickOrderPage
+
+		and: "Search for product by id"
+			doSearch(productCode,true)
+
+		then: "at QuickOrder page"
+			at QuickOrderPage
+
+		and: "check unique result"
+			checkResultSize(1)
+
+		when: "at QuickOrder page"
+			at QuickOrderPage
+		
+		and: "get current waitlist item count"
+			def int currentWL = masterTemplate.waitListItemCount.text().toInteger()
+	
+		and: "add item to waitlist"
+			addOutOfStockQuantityToWaitList(0,1)
+		
+		and: "get updated waitlist item count"
+			def int updateWL = masterTemplate.waitListItemCount.text().toInteger()
+		
+		then: "check waitlist count"
+			updateWL == (currentWL+1)
+
+	}
+	
+	def "Check [OutOfStock] Requested Quantity / Available Quantity"() {
+		setup:
+			to WaitListPage
+		
+		when: "at wait list page"
 			at WaitListPage
-		
-		then: "Check current quantity of product"
-			int currentQuantity = getProductQuantityRequested(productCode)
-		
-		and: "Open waitlist grid at ProductDetail"
-			openSizingGridAtProductDetailsPage(productCode)
-			sizingGrid.clickNotifyMe()
 			
-		and: "Add item to waitlist"
-			sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-			sizingGrid.clickAddToWaitList()
-		
-		and: "Go to waitlist page"
-			masterTemplate.waitListLink.click()
+		then: "check requested quantity"
+			quantityRequested.text().toInteger() == 1
 			
+		and: "check available quantity"
+			quantityAvailable.text().toInteger() == 0
+	}
+	
+	
+	def "Update Stock status by impex [UpdateInStock.impex]"() {
+		setup:
+			browser.go(browser.config.rawConfig.hacUrl)
+			at de.hybris.geb.page.hac.LoginPage
+		
+			doLogin(browser.config.rawConfig.hacUsername, browser.config.rawConfig.hacPassword)
+			at de.hybris.geb.page.hac.HomePage
+			
+		when: "at HAC home page"
+			at de.hybris.geb.page.hac.HomePage
+			
+		and: "go to Console>ImpexImport page"
+			browser.go(browser.config.rawConfig.hacUrl + "console/impex/import")
+		
+		and: "at ImpexImport page"
+			at ImpexImportPage
+		
+		and: "load impex in HAC"
+			importTextScript(getClass().getResource('/impex/UpdateInStock.impex').text)
+			
+		then: "check import result"
+			checkNotification()
+			
+		cleanup: "logout"
+			browser.go(browser.config.rawConfig.hacUrl)
+			at de.hybris.geb.page.hac.HomePage
+			menu.logout.click()
+	}
+	
+	//TODO check the impex and update availability!!!
+	def "Check [InStock] Requested Quantity / Available Quantity"() {
+		setup:
+			to WaitListPage
+		
+		when: "at wait list page"
+			at WaitListPage
+			
+		then: "check requested quantity"
+			quantityRequested.text().toInteger() == 1
+			
+		and: "check available quantity"
+			quantityAvailable.text().toInteger() == 0
+	}
+	
+	/**
+	 * BB-511 Automated test: User should be able to remove product from wait list
+	 */
+	def "Remove product from WaitList page"() {
 		when: "At WaitList page"
 			at WaitListPage
 			
-		then: "Check updated quantity of product"
-			getProductQuantityRequested(productCode) == (currentQuantity+1)
-			masterTemplate.doLogout()
-
-		where:
-		productCode <<["05527-0458"]
-	}
-	
-	/**
-	 * TC BB-629 Automated test case: BB-497 Order from wait list
-	 */
-	//FIXME IE Problem //FIXME Safari problem
-	@Ignore
-	def "Load Update In Stock impex"(){
-		when: "go to HAC login"
-		browser.go(baseUrl +"../")
-
-		then: "At HAC login"
-		at de.hybris.geb.page.hac.LoginPage
-
-		when: "at do login"
-		doLogin("admin", "nimda")
-		browser.go(baseUrl +"../"+"console/impex/import")
-
-		then:"At impex import page and import the impex"
-		at ImpexImportPage
-		importTextScript(getClass().getResource('/impex/UpdateInStock.impex').text)
-		//importScript(this.getClass().getResource('/impex/UpdateInStock.impex').toString())
-		checkNotification()
-		logOut.click()
-	}
-	
-	/**
-	 * TC BB-629 Automated test case: BB-497 Order from wait list
-	 */
-	//FIXME IE Problem //FIXME Safari problem //FIXME Firefox problem
-	@Ignore
-	def "Go to Waitlist and check for requested and available quantity"(){
-		setup:
-			loginAndGoToPage(levisUser)
+		then: "get current product count"
+			items.size() == 1
 			
-		when: "At WaitList page"
-			at WaitListPage
+		when: "Remove product from waitlist"
+			items[0].buttonRemove.click()
 		
-		then: "Check current quantity of product"
-			int currentQuantity = getProductQuantityRequested(productCode)
-			
-			
-		and: "Check requested quantity = available"
-			getProductQuantityAvailable(productCode) == (currentQuantity)
-			masterTemplate.doLogout()
+		and: "at WaitList page"
+			at WaitListPage
+				
+		then: "check product count"
+			waitFor { emptyList.displayed }
+				
 	}
 	
-	//FIXME create a page helper
-		def openSizingGridAtProductDetailsPage(String productCode){
-		browser.go(baseUrl + "p/" + productCode)
-		at ProductDetailsPage
-	}
+	
 }

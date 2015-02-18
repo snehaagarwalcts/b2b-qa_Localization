@@ -17,7 +17,7 @@ class ProductDetailSecurityTest extends GebReportingSpec {
 		to LoginPage 
 	}
 	
-	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
+//	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
 	def "User that does not hold customer rights tries to place an order from product detail page"() {
 		setup:		
 			at LoginPage	
@@ -46,6 +46,7 @@ class ProductDetailSecurityTest extends GebReportingSpec {
 			at CartPage
 		
 		and: "check error message"
+			waitFor { alertMessage.displayed }
 			alertMessage.displayed
 
 		where:

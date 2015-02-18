@@ -109,7 +109,6 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login 
 	 * TC BB-774 Test first time login and links exists
 	 */
-	@Ignore
 	def "Test first time login and links exsits"(){
 		setup:
 		to LoginPage
@@ -122,8 +121,8 @@ class LoginTest extends GebReportingSpec {
 
 		then: "at terms and coditions page check agree/disagree displayed"
 		at TermsAndConditionPage
-		agreeLinkExists()
-		disagreeLinkExists()
+			agreeLinkExists()
+			disagreeLinkExists()
 		
 		where:
 		user = UserHelper.getTermsAndConditionUser()
@@ -133,7 +132,6 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login
 	 * TC BB-775 Test first time login and diagree to terms and condition
 	 */
-	@Ignore
 	def "Test first time login and diagree to terms and condition and you should stay on terms and condition page"(){
 		setup:
 		to LoginPage
@@ -161,7 +159,6 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login
 	 * TC BB-776 Test first time login and agree to terms and condition
 	 */
-	@Ignore
 	def "Test first time login and agree to terms and condition"(){
 		setup:
 		to LoginPage

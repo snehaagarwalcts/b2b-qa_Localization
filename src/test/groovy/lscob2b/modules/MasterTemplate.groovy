@@ -60,6 +60,8 @@ class MasterTemplate extends Module {
 		contactUs { $('.yCmsComponent').find('a', href:endsWith('/contactus')) }
 		
 
+		/* WaitList */
+		
 		waitListItem { $("li#waitlist-container") }
 		
 		waitListLink { waitListItem.find("a",class:"miniWaitlist miniWaitlistLink",0) }

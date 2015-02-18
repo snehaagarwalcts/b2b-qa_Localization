@@ -7,7 +7,7 @@ class HomePage extends Page {
 
 	static url = "/"
 	
-	static at = { title == "hybris administration console | Home" }
+	static at = { waitFor { title == "hybris administration console | Home" } }
 	
 	static content = {
 		

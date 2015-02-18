@@ -38,7 +38,6 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder
 	 */
-	@Ignore
 	def "Adding to WaitList from QuickOrder page"() {
 		setup:
 			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
@@ -78,7 +77,6 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
-	@Ignore
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
@@ -106,129 +104,51 @@ public class WaitListTest extends GebReportingSpec{
 
 	/**
 	 * TC BB-556 Automated test: User should be able to edit product quantity from wait list
-	 * @return
 	 */
-	//FIXME IE Problem
-	@Ignore
 	def "Edit quantities of product in WaitList page"() {
-		setup:
-		login(user)
 
-		when: "At HomePage"
-		at HomePage
+		setup: "Go to waitlist page"
+			masterTemplate.waitListLink.click()
+		
+		when: "At WaitList page"
+			at WaitListPage
+			
+		then: "Check product in WaitList"
+			items.size() > 0
+			
+		when: "Get current product quantiy"
+			def int currentQuantity = quantityRequested.text().toInteger() 
+		
+		and: "Update OutOfStock Quantity" 
+			items[0].editOutOfStockQuantity(1)
+			
+		and: "Get updated product quantity"
+			def int updatedQuantity = quantityRequested.text().toInteger()
+			
+		then:
+			updatedQuantity == (currentQuantity+1)  
 
-		and: "Add product to waitlist"
-		openSizingGridAtProductDetailsPage(productCode)
-		sizingGrid.clickNotifyMe()
-		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-		sizingGrid.clickAddToWaitList()
-
-		and: "Go to waitlist page"
-		masterTemplate.waitListLink.click()
-
-		and: "At WaitList page"
-		at WaitListPage
-
-		and: "Get current quantity"
-		int currentQuantity = getProductQuantityRequested(productCode)
-
-		then: "Check product quantity"
-		currentQuantity > 0
-
-		and: "Edit product quantity"
-		editProductQuantityRequested(productCode,currentQuantity+1)
-
-		and: "Check edited product quantity"
-		getProductQuantityRequested(productCode) > currentQuantity
-
-		where:
-		productCode 	| user
-		"05527-0458"	| TestDataCatalog.getALevisUser()
-		//			"05527-0458"	| TestDataCatalog.getADockersUser()
 	}
 
 	/**
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
-	//FIXME IE Problem
-	@Ignore
 	def "Remove product from WaitList page"() {
-		setup:
-		login(user)
-
-		when: "At HomePage"
-		at HomePage
-
-		then: "Add product to waitlist"
-		openSizingGridAtProductDetailsPage(productCode)
-		sizingGrid.clickNotifyMe()
-		sizingGrid.addQuantityToFirstPossibleItemInWaitListGrid(1)
-		sizingGrid.clickAddToWaitList()
-
-		and: "Go to waitlist page"
-		masterTemplate.waitListLink.click()
-
 		when: "At WaitList page"
-		at WaitListPage
-
-		then: "Check product quantity"
-		getProductQuantityRequested(productCode) > 0
-
-		and: "Remove product from waitlist"
-		removeProduct(productCode)
-
-		when: "At WaitList page"
-		at WaitListPage
-
-		then: "Check absence of product"
-		getProductQuantityRequested(productCode) == 0
-
-		where:
-		productCode 	| user
-		"05527-0458"	| TestDataCatalog.getALevisUser()
-		//			"05527-0458"	| TestDataCatalog.getADockersUser()
+			at WaitListPage
+			
+		then: "get current product count"
+			items.size() == 1	
+			
+		when: "Remove product from waitlist"
+			items[0].buttonRemove.click()
+		
+		and: "at WaitList page"
+			at WaitListPage
+				
+		then: "check product count"
+			waitFor { emptyList.displayed }
+				
 	}
 
-	@Ignore
-	def "Open waitlist grid"() {
-		setup:
-		loginAndGoToPage(user)
-		//			println "User ${user.email}"
-
-		when: "At WaitList page"
-		at WaitListPage
-
-		then: "Check current quantity of product"
-		int currentQuantity = getProductQuantityRequested(productCode)
-
-		and: "Open waitlist grid at QuickOrderPage"
-		openSizingGridAtQuickOrderPage(productCode)
-		sizingGrid.clickNotifyMe()
-
-		and: "watilist should be displayed"
-		addToWaitListForm.displayed
-
-		then: "click close so the waitlist is not displayed anymore"
-		popupBoxClose.click()
-		Thread.sleep(1000)
-		!addToWaitListForm.displayed
-		masterTemplate.doLogout()
-
-		where:
-		productCode 	| user
-		"05527-0458"	| TestDataCatalog.getALevisUser()
-	}
-
-	//FIXME create a page helper
-	def openSizingGridAtQuickOrderPage(String productCode){
-		browser.go(baseUrl + "search/advanced")
-		at QuickOrderPage
-		doSearch(productCode)
-	}
-
-	//FIXME create a page helper
-	def openSizingGridAtProductDetailsPage(String productCode){
-		browser.go(baseUrl + "p/" + productCode)
-		at ProductDetailsPage
-	}
 }
