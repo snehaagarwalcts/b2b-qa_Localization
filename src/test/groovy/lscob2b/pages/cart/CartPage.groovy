@@ -2,7 +2,6 @@ package lscob2b.pages.cart
 
 import geb.Page
 import lscob2b.modules.MasterTemplate
-import lscob2b.modules.CartModule
 
 class CartPage extends Page{
 
@@ -12,23 +11,35 @@ class CartPage extends Page{
 
 	static content = {
 		masterTemplate {module MasterTemplate}
-		cartTemplate {module CartModule} 	//TODO to remove use cartItems
-		
-		cartItems { $("div.cartItem").collect { module CartModule, it  } }
+				
+		//cartItems { $("div.cartItem").collect { module CartModule, it  } }
 		
 		alertMessage1 { $(".alert-message h2") }
 		
 		alertMessage2 { $(".alert-message p") }
 		
-		linkCheckout { $("a.checkout") }
+		continueShopping { $(".cartButtons").find('a', href: endsWith('/')) }
 		
-		editQuantities { $(".itemButtons a.btn-white") }
+		linkCheckout(required: false) { $("a.checkout") }
 		
+		editQuantities(required: false) { $(".itemButtons a.btn-white") }
+		
+		//Cart items
+		itemName { $("div.itemName") }
+		itemStyle { $("div.itemAttributes .itemStyle span") }
+		itemColor { $("div.itemAttributes .itemColor span") }
+		itemPrice { $("div.itemAttributes .itemPrice span") }
+		itemQuantity { $("div.itemSummary .quantity span.label")}
+		itemTotal { $("div.itemSummary .total span.label") }
+		
+		//Empty Cart messages
 		emptyCart { $("#main-container .blankSlate h2") }
-		
 		alertContainer { $("div.alert-container") }
-		
 		alertMessage { alertContainer.find("div.alert-message") }
+		
+		//Remove product from cart
+		removeProductLink(required: false) { $(".itemButtons a.btn-warning") }
+		removeProducts { $(".dialogueButtons #RemoveProduct_0") }
 		
 	}
 	
@@ -36,6 +47,51 @@ class CartPage extends Page{
 	def boolean removeProduct(productID) {
 		String replaced = productID.collectReplacements{ if(it == '-') { '' } else { null } }
 		println(replaced)
+	}
+	
+	def doRemove(){
+		removeProductLink.click()
+		removeProducts.click()
+	}
+	
+	def checkItemNameExists(){
+		!itemName.empty
+	}
+	
+	def checkItemStyleExists(){
+		!itemStyle.empty
+	}
+	
+	def checkItemColorExists(){
+		!itemColor.empty
+	}
+
+	def checkItemPriceExists(){
+		!itemPrice.empty
+	}
+	
+	def checkItemQuantityExists(){
+		!itemQuantity.empty
+	}
+
+	def checkItemTotalExists(){
+		!itemTotal.empty
+	}
+	
+	def checkContinueShoppingButtonExists(){
+		!continueShopping.empty
+	}
+	
+	def checkCheckoutButtonExists(){
+		!linkCheckout.empty
+	}
+	
+	def checkEditQuantitiesButtonExists(){
+		!editQuantities.empty
+	}
+	
+	def checkRemoveProductButtonExists(){
+		!removeProductLink.empty
 	}
 	
 	def editQuantitiesButtonclick(){

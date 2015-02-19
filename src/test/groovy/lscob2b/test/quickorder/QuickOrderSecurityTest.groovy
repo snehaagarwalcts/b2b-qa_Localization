@@ -8,7 +8,6 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.quickorder.QuickOrderPage
-import spock.lang.Ignore
 
 class QuickOrderSecurityTest extends GebReportingSpec {
 	

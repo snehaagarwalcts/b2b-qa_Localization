@@ -46,67 +46,58 @@ hacPassword = "nimda"
 
 // when system property 'geb.env' is set to 'integration000'
 environments {
-	local {
-		baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"
-	}
-	integration000 {
-		baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
-	}
-	integration001 {
-		baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
-	}
-	qa000 {
-		baseUrl = "http://b2bqa-000-web-000.lsco-b2b.com/"
-	}
-	qa001 {
-		 baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/"
-	}
+	local { baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/" }
+	integration000 { baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/" }
+	integration001 { baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/" }
+	qa000 { baseUrl = "http://b2bqa-000-web-000.lsco-b2b.com/" }
+	qa001 { baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/" }
 }
 
 /**
  * Browser Configuration
  */
-def sauceBrowser = sysProps.get "geb.sauce.browser" 
+def sauceBrowser = sysProps.get "geb.sauce.browser"
 if (sauceBrowser && sauceBrowser != "false") {
 	driver = {
 		def env = System.getenv()
 		def username = sysProps.get "geb.sauce.user"
 		def accessKey = sysProps.get  "geb.sauce.access.key"
 		def capabilities = [
-			platform: platform, 
-			version: version, 
-			browserName: browserName, 
+			platform: platform,
+			version: version,
+			browserName: browserName,
 			'max-duration': 7200, //2h
-			name: "" + platform + "-" + browserName + "-" + version, 
-			"record-video": true, 
+			name: "" + platform + "-" + browserName + "-" + version,
+			"record-video": true,
 			"video-upload-on-pass": false,
 			"record-screenshots": false
-		] 
+		]
 		new SauceLabsDriverFactory().create("", username, accessKey, capabilities)
 	}
 } else {
 
 	//Create Driver
 	if(browserName == "safari") {
-		
+
 		driver = { new SafariDriver() }
-		
+
 	} else if(browserName == "chrome") {
 		//See https://sites.google.com/a/chromium.org/chromedriver/getting-started
-		System.setProperty("webdriver.chrome.driver", "/Users/i312480/Downloads/chromedriver")
+		System.setProperty("webdriver.chrome.driver", "/Users/i844489/Downloads/WebDrivers/chromedriver.exe")
 		driver = { new ChromeDriver() }
-		
+
 	} else if(browserName == "internet explorer") {
-		
+
+		System.setProperty("webdriver.ie.driver", "/Users/i844489/Downloads/WebDrivers/IEDriverServer.exe")
 		driver = { new InternetExplorerDriver() }
-	
+
 	} else {
-		
+
 		driver = { new FirefoxDriver() }	//Default Driver!
-		
-	}	
-	
-} 
+
+	}
+
+}
 
 /**
  * CONFIGURATION
