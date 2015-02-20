@@ -6,7 +6,7 @@ import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.TermsAndConditionPage
-import spock.lang.Ignore
+import de.hybris.geb.page.hac.console.ImpexImportPage
 
 
 class LoginTest extends GebReportingSpec {
