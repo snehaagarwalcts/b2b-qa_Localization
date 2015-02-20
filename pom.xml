@@ -243,6 +243,14 @@
 			</properties>
 		</profile>
 		<profile>
+			<id>ie11</id>
+			<properties>
+				<test.platform>windows 7</test.platform>
+				<test.browser>internet explorer</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
+				<test.browser.version>11</test.browser.version>
+			</properties>
+		</profile>
+		<profile>
 			<id>ie8</id>
 			<properties>
 				<test.platform>windows</test.platform>

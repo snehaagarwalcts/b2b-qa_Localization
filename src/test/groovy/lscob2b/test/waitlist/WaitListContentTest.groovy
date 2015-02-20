@@ -9,6 +9,7 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.User
+import spock.lang.Shared
 import spock.lang.Stepwise
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
@@ -21,6 +22,13 @@ class WaitListContentTest extends GebReportingSpec{
 	def static User user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
 	
 	def static String productCode = ProductHelper.getWaitlistProduct(ProductHelper.BRAND_LEVIS)
+	
+	@Shared 
+	int requestedQuantity = 0;
+	
+	@Shared
+	int availabledQuantity = 0;
+	
 	
 	def setupSpec() {
 		PageHelper.gotoPageLogout(browser,baseUrl)
@@ -71,11 +79,15 @@ class WaitListContentTest extends GebReportingSpec{
 		when: "at wait list page"
 			at WaitListPage
 			
+		and: "get waitlist requested/available quantity"
+			requestedQuantity = quantityRequested.text().toInteger() 
+			availabledQuantity = quantityAvailable.text().toInteger()
+			
 		then: "check requested quantity"
-			quantityRequested.text().toInteger() == 1
+			requestedQuantity > 0
 			
 		and: "check available quantity"
-			quantityAvailable.text().toInteger() == 0
+			availabledQuantity == 0	
 	}
 	
 	
@@ -108,7 +120,6 @@ class WaitListContentTest extends GebReportingSpec{
 			menu.logout.click()
 	}
 	
-	//TODO check the impex and update availability!!!
 	def "Check [InStock] Requested Quantity / Available Quantity"() {
 		setup:
 			to WaitListPage
@@ -117,10 +128,10 @@ class WaitListContentTest extends GebReportingSpec{
 			at WaitListPage
 			
 		then: "check requested quantity"
-			quantityRequested.text().toInteger() == 1
+			quantityRequested.text().toInteger() == requestedQuantity
 			
 		and: "check available quantity"
-			quantityAvailable.text().toInteger() == 0
+			quantityAvailable.text().toInteger() == availabledQuantity
 	}
 	
 	/**

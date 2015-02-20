@@ -48,18 +48,33 @@ hacPassword = "nimda"
 environments {
 	local {
 		baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"
+		hacUrl = "http://lscob2b.local:9001/"
+		hacUsername = "admin"
+		hacPassword = "nimda"
 	}
 	integration000 {
 		baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
+		hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"
+		hacUsername = "admin"
+		hacPassword = "nimda"
 	}
 	integration001 {
 		baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
+		hacUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/"	
+		hacUsername = "admin"
+		hacPassword = "nimda"
 	}
 	qa000 {
 		baseUrl = "http://b2bqa-000-web-000.lsco-b2b.com/"
+		hacUrl = "http://b2bqa-000-web-000.lsco-b2b.com/" 	//TODO check url
+		hacUsername = "admin"
+		hacPassword = "nimda"
 	}
 	qa001 {
 		 baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/"
+		 hacUrl = "http://b2bqa-001-web-000.lsco-b2b.com"	//TODO check url
+		 hacUsername = "admin"
+		 hacPassword = "nimda"
 	}
 }
 

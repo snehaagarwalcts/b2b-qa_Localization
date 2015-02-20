@@ -38,8 +38,6 @@ class ImpexImportPage extends Page {
 		
 		importContent.setText(impexText)
 		
-		importContent.hideTextArea()
-		
 		waitFor { importContent.importButton.displayed }
 		importContent.importButton.click()
 	}
