@@ -1,7 +1,6 @@
 package lscob2b.pages.checkout
 
 import geb.Page
-import lscob2b.modules.CartModule;
 import lscob2b.modules.MasterTemplate
 
 class CheckOutPage extends Page{

@@ -81,47 +81,48 @@ environments {
 /**
  * Browser Configuration
  */
-def sauceBrowser = sysProps.get "geb.sauce.browser" 
+def sauceBrowser = sysProps.get "geb.sauce.browser"
 if (sauceBrowser && sauceBrowser != "false") {
 	driver = {
 		def env = System.getenv()
 		def username = sysProps.get "geb.sauce.user"
 		def accessKey = sysProps.get  "geb.sauce.access.key"
 		def capabilities = [
-			platform: platform, 
-			version: version, 
-			browserName: browserName, 
+			platform: platform,
+			version: version,
+			browserName: browserName,
 			'max-duration': 7200, //2h
-			name: "" + platform + "-" + browserName + "-" + version, 
-			"record-video": true, 
+			name: "" + platform + "-" + browserName + "-" + version,
+			"record-video": true,
 			"video-upload-on-pass": false,
 			"record-screenshots": false
-		] 
+		]
 		new SauceLabsDriverFactory().create("", username, accessKey, capabilities)
 	}
 } else {
 
 	//Create Driver
 	if(browserName == "safari") {
-		
+
 		driver = { new SafariDriver() }
-		
+
 	} else if(browserName == "chrome") {
 		//See https://sites.google.com/a/chromium.org/chromedriver/getting-started
-		System.setProperty("webdriver.chrome.driver", "/Users/i312480/Downloads/chromedriver")
+		System.setProperty("webdriver.chrome.driver", "/Users/i844489/Downloads/WebDrivers/chromedriver.exe")
 		driver = { new ChromeDriver() }
-		
+
 	} else if(browserName == "internet explorer") {
-		
+
+		System.setProperty("webdriver.ie.driver", "/Users/i844489/Downloads/WebDrivers/IEDriverServer.exe")
 		driver = { new InternetExplorerDriver() }
-	
+
 	} else {
-		
+
 		driver = { new FirefoxDriver() }	//Default Driver!
-		
-	}	
-	
-} 
+
+	}
+
+}
 
 /**
  * CONFIGURATION

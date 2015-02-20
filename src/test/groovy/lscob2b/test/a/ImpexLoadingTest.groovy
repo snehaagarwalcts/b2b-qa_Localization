@@ -1,6 +1,7 @@
 package lscob2b.test.a
 
 import geb.spock.GebReportingSpec
+import spock.lang.IgnoreIf
 import spock.lang.Stepwise
 import de.hybris.geb.page.hac.HomePage
 import de.hybris.geb.page.hac.LoginPage
@@ -10,6 +11,7 @@ import de.hybris.geb.page.hac.console.ImpexImportPage
 @Stepwise
 class ImpexLoadingTest extends GebReportingSpec {
 
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "login at HAC"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
@@ -24,6 +26,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			at HomePage	
 	}
 	
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "load impex [/impex/Users.impex]"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
@@ -44,6 +47,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			checkNotification()
 	}
 	
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "logout from HAC"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)

@@ -10,7 +10,7 @@ import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.User
-import spock.lang.Ignore
+import spock.lang.IgnoreIf
 import spock.lang.Stepwise
 
 @Stepwise
@@ -38,6 +38,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Adding to WaitList from QuickOrder page"() {
 		setup:
 			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
@@ -77,6 +78,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
@@ -105,6 +107,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-556 Automated test: User should be able to edit product quantity from wait list
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Edit quantities of product in WaitList page"() {
 
 		setup: "Go to waitlist page"
@@ -133,6 +136,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Remove product from WaitList page"() {
 		when: "At WaitList page"
 			at WaitListPage

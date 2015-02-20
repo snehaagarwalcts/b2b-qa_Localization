@@ -5,8 +5,6 @@
 package lscob2b.pages.productdetails
 
 import geb.Page
-import geb.navigator.Navigator
-import lscob2b.modules.CartModule
 import lscob2b.modules.CheckOutModule
 import lscob2b.modules.MasterTemplate
 import lscob2b.modules.PDPBuyStackModule
@@ -31,8 +29,6 @@ class ProductDetailsPage extends Page {
 		sizingTable { module SizingTableModule, $("div.single_grid_three_dimensions") }
 		
 		checkOut { module CheckOutModule}
-		
-		cartTemplate {module CartModule}
 		
 		upSelling(required: false) { module SellModule, $("div.up-sell") }
 		

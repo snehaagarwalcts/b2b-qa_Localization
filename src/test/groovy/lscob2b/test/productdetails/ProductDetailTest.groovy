@@ -10,9 +10,9 @@ import lscob2b.pages.cart.CartPage
 import lscob2b.pages.checkout.CheckOutPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import lscob2b.test.data.Product
-import lscob2b.test.data.User;
+import lscob2b.test.data.User
 import spock.lang.Ignore
-import spock.lang.Stepwise;
+import spock.lang.Stepwise
 
 
 @Stepwise
@@ -71,12 +71,12 @@ class ProductDetailTest extends GebReportingSpec {
 			at CartPage
 			
 		and: "check product has been added to cart"		
-			cartTemplate.checkItemNameExists()
-			cartTemplate.checkItemStyleExists()
-			cartTemplate.checkItemColorExists()
-			cartTemplate.checkItemPriceExists()
-			cartTemplate.checkItemQuantityExists()
-			cartTemplate.checkItemTotalExists()
+			checkItemNameExists()
+			checkItemStyleExists()
+			checkItemColorExists()
+			checkItemPriceExists()
+			checkItemQuantityExists()
+			checkItemTotalExists()
 		
 	}
 	

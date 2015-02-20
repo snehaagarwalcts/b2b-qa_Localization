@@ -8,7 +8,6 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.productdetails.ProductDetailsPage
-import spock.lang.IgnoreIf
 
 class ProductDetailSecurityTest extends GebReportingSpec {
 	

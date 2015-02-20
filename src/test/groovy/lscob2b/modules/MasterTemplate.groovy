@@ -11,8 +11,6 @@ import org.openqa.selenium.Keys
 class MasterTemplate extends Module {
 
 	static content = {
-
-		cartTemplate {module CartModule}
 		
 		homeLink { $("#breadcrumb li a", href: endsWith('/')) }
 

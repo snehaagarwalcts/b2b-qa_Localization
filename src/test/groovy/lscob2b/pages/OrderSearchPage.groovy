@@ -1,12 +1,9 @@
 package lscob2b.pages
 
-import lscob2b.modules.MasterTemplate;
-import lscob2b.modules.SizingGridModule;
+import geb.Page
 import lscob2b.modules.CheckOutModule
-import lscob2b.modules.CartModule
-import geb.Page;
-import geb.navigator.Navigator;
-import groovy.lang.MetaClass;
+import lscob2b.modules.MasterTemplate
+import lscob2b.modules.SizingGridModule
 
 
 
@@ -22,8 +19,7 @@ class OrderSearchPage extends Page {
 		masterTemplate { module MasterTemplate }
 		sizingGrid { module SizingGridModule}
 		checkOut { module CheckOutModule}
-		cartTemplate {module CartModule}
-		
+				
 		messageText { $('div.title_holder h2') }
 		
 		/**/

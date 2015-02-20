@@ -108,7 +108,8 @@ class QuickOrderTest extends GebReportingSpec {
 	 * TC BB-477 Automated Test Case: Remove product from Check Out page
 	 */
 	//FIXME Remove Product from checkout
-	def "Remove product from cart page"() {
+	//What is the issue here?
+	def "Remove product from checkout page"() {
 		when: "at QuickOrder page"
 			at QuickOrderPage
 			
