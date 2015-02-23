@@ -25,7 +25,7 @@ class ImportContentModule extends Module {
 	def void setText(txt) {
 		
 		//HACK cross-browser see https://code.google.com/p/selenium/issues/detail?id=7135 
-		if(System.getProperty("geb.browser") != null && System.getProperty("geb.browser").startsWith("ie")) {
+		if(System.getProperty("geb.browser") != null && System.getProperty("geb.browser").startsWith("internet")) {
 			WebElement textArea = $("div#textarea-container").firstElement()
 			Actions builder = new Actions(driver);
 			builder.click(textArea).sendKeys(txt).perform()
