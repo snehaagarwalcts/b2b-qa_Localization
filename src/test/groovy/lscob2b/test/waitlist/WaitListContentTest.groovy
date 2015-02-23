@@ -32,7 +32,7 @@ class WaitListContentTest extends GebReportingSpec{
 		at HomePage
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Load out of Stock by impex [OutOfStock.impex]"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
@@ -62,7 +62,7 @@ class WaitListContentTest extends GebReportingSpec{
 			menu.logout.click()
 	}
 
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Add to WaitList a product from quickorder page"() {
 		setup:
 			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
@@ -95,7 +95,7 @@ class WaitListContentTest extends GebReportingSpec{
 			updateWL == (currentWL+1)
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Check [OutOfStock] Requested Quantity / Available Quantity"() {
 		setup:
 			to WaitListPage
@@ -110,7 +110,7 @@ class WaitListContentTest extends GebReportingSpec{
 			quantityAvailable.text().toInteger() == 0
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Update Stock status by impex [UpdateInStock.impex]"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
@@ -140,7 +140,7 @@ class WaitListContentTest extends GebReportingSpec{
 			menu.logout.click()
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	//TODO check the impex and update availability!!!
 	def "Check [InStock] Requested Quantity / Available Quantity"() {
 		setup:
@@ -159,7 +159,7 @@ class WaitListContentTest extends GebReportingSpec{
 	/**
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Remove product from WaitList page"() {
 		when: "At WaitList page"
 			at WaitListPage

@@ -38,7 +38,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Adding to WaitList from QuickOrder page"() {
 		setup:
 			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
@@ -78,7 +78,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
@@ -107,7 +107,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-556 Automated test: User should be able to edit product quantity from wait list
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Edit quantities of product in WaitList page"() {
 
 		setup: "Go to waitlist page"
@@ -136,7 +136,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Remove product from WaitList page"() {
 		when: "At WaitList page"
 			at WaitListPage

@@ -112,7 +112,7 @@ class ManageUserTest extends GebReportingSpec {
 	 * US BB-501 BB-38 Remove default delivery address
 	 * TC BB-778 Remove default delivery address
 	 */
-	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
+	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "internet explorer" || System.getProperty("geb.browser") == "chrome"})
 	def "Remove default delivery address"() {
 		setup:
 			login(loginUser)

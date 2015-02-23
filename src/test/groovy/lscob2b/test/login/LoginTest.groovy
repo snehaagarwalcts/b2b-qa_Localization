@@ -6,7 +6,7 @@ import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.TermsAndConditionPage
-import de.hybris.geb.page.hac.console.ImpexImportPage
+import spock.lang.IgnoreIf
 
 
 class LoginTest extends GebReportingSpec {
@@ -103,40 +103,11 @@ class LoginTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
 	
-	//TODO Run the impex before running the below 3 tests
-
-	def "import user term@condition-1 by impex [Users.impex]"() {
-		setup:
-			browser.go(browser.config.rawConfig.hacUrl)
-			at de.hybris.geb.page.hac.LoginPage
-		
-			doLogin(browser.config.rawConfig.hacUsername, browser.config.rawConfig.hacPassword)
-			at de.hybris.geb.page.hac.HomePage
-			
-		when: "at HAC home page"
-			at de.hybris.geb.page.hac.HomePage
-			
-		and: "go to Console>ImpexImport page"
-			browser.go(browser.config.rawConfig.hacUrl + "console/impex/import")
-		
-		and: "at ImpexImport page"
-			at ImpexImportPage
-		
-		and: "load impex in HAC"
-			importTextScript(getClass().getResource('/impex/Users.impex').text)
-			
-		then: "check import result"
-			checkNotification()
-			
-		cleanup: "logout"
-			browser.go(browser.config.rawConfig.hacUrl)
-			at de.hybris.geb.page.hac.HomePage
-			menu.logout.click()
-	}
 	/**
 	 * US BB-591 Confirm terms and conditions at first login 
 	 * TC BB-774 Test first time login and links exists
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test first time login and links exsits"(){
 		setup:
 		to LoginPage
@@ -160,6 +131,7 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login
 	 * TC BB-775 Test first time login and diagree to terms and condition
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test first time login and diagree to terms and condition and you should stay on terms and condition page"(){
 		setup:
 		to LoginPage

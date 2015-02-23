@@ -11,7 +11,7 @@ import de.hybris.geb.page.hac.console.ImpexImportPage
 @Stepwise
 class ImpexLoadingTest extends GebReportingSpec {
 
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "login at HAC"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
@@ -26,7 +26,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			at HomePage	
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "load impex [/impex/Users.impex]"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
@@ -47,7 +47,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			checkNotification()
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "logout from HAC"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)
