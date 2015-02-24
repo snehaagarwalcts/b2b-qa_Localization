@@ -5,6 +5,38 @@ $passwordEncoding=md5
 $defaultPassword=Levis2015#
 $setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
 
+#customer-segments.impex
+INSERT_UPDATE CustomerSegment;uid[unique=true];displayName[lang=en];locName[lang=en]
+;NOR701;"North Traditional";"North Traditional"
+
+INSERT_UPDATE B2BUnit;uid[unique=true];name;locName[lang=en];country(isocode);userPriceGroup(code);groups(uid);reportingOrganization(uid);orderBlock(code);paymentTerms(code);active
+;automated-unit-1;"Automated-Unit-1 Co.Ltd";"Automated-Unit-1 Co.Ltd";GB;GB01;010;010;;Z103;true
+;automated-unit-2;"Automated-Unit-2 Co.Ltd";"Automated-Unit-2 Co.Ltd";GB;GB01;120;120;;Z107;true
+;automated-unit-3;"Automated-Unit-3 Ltd";"Automated-Unit-3 Ltd";IE;IE01;020;020;;Z103;true
+;automated-unit-4-blockeduser;"Automated-Unit-4 Co.Ltd";"Automated-Unit-4 Co.Ltd";GB;GB01;010;010;01;Z107;true
+;automated-unit-5-blockeduser;"Automated-Unit-5 Co.Ltd";"Automated-Unit-5 Co.Ltd";GB;GB01;010;010;02;Z107;true
+;automated-unit-6-blockeduser;"Automated-Unit-6 Co.Ltd";"Automated-Unit-6 Co.Ltd";GB;GB01;010;010;03;Z107;true
+;automated-unit-7-blockeduser;"Automated-Unit-7 Co.Ltd";"Automated-Unit-7 Co.Ltd";GB;GB01;010;010;99;Z107;true
+;automated-unit-8-blockeduser;"Automated-Unit-8 Co.Ltd";"Automated-Unit-8 Co.Ltd";GB;GB01;010;010;Z1;Z107;true
+;automated-unit-9-blockeduser;"Automated-Unit-9 Co.Ltd";"Automated-Unit-9 Co.Ltd";GB;GB01;010;010;Z2;Z107;true
+;automated-unit-10-blockeduser;"Automated-Unit-10 Co.Ltd";"Automated-Unit-10 Co.Ltd";GB;GB01;010;010;Z2;Z107;true
+;automated-unit-11-blockeduser;"Automated-Unit-11 Co.Ltd";"Automated-Unit-11 Co.Ltd";GB;GB01;010;010;Z3;Z107;true
+;automated-unit-12-blockeduser;"Automated-Unit-12 Co.Ltd";"Automated-Unit-12 Co.Ltd";GB;GB01;010;010;Z4;Z107;true
+;automated-unit-13-blockeduser;"Automated-Unit-13 Co.Ltd";"Automated-Unit-13 Co.Ltd";GB;GB01;010;010;Z5;Z107;true
+;automated-unit-14-blockeduser;"Automated-Unit-14 Co.Ltd";"Automated-Unit-14 Co.Ltd";GB;GB01;010;010;Z6;Z107;true
+;automated-unit-15-CreditCardOnly;"Automated-Unit-15 Co.Ltd";"Automated-Unit-15 Co.Ltd";GB;GB01;010;010;;ZCC0;true
+
+INSERT_UPDATE Address;publicKey[unique=true];postalcode;streetname;town;region(isocode);country(isocode);owner(B2BUnit.uid);firstname;lastname;billingAddress;shippingAddress
+;automated-unit-1-SA1;CO1 1LS;"1a & 1b, Eld Lane,";"Colchester.";GB-CO;GB;automated-unit-1;"Denim City Jean Co.Ltd";;false;true
+;automated-unit-1-SA2;CO2 2LS;"2a & 2b, Eld Lane,";"Colchester2.";GB-CO;GB;automated-unit-1;"Denim City Jean Co.Ltd";;false;true
+;automated-unit-1-BA1;CO1 1LS;"1a & 1b, Eld Lane,";"Colchester.";GB-CO;GB;automated-unit-1;"Denim City Jean Co.Ltd";;true;false
+;automated-unit-2-SA1;NR3 4LB;"103 Magdalen Road";"Norwich";GB-NR;GB;automated-unit-2;"J & B Menswear Ltd";;false;true
+;automated-unit-2-SA2;NR4 5LB;"104 Tobleron Road";"B.Isle";GB-NR;GB;automated-unit-2;"J & B Womenswear Ltd";;false;true
+;automated-unit-2-BA1;NR3 4LB;"103 Magdalen Road";"Norwich";GB-NR;GB;automated-unit-2;"J & B Menswear Ltd";;true;false
+;automated-unit-3-SA1;IRELAN;"35 Cook Street";"Cork";;IE;automated-unit-3;"Denim Store Ltd ***";;false;true
+;automated-unit-3-SA2;IRELAN;"36 Carpenter Street";"Burg";;IE;automated-unit-3;"Apparel Store Ltd ***";;false;true
+;automated-unit-3-BA1;IRELAN;"35 Cook Street";"Cork";;IE;automated-unit-3;"Denim Store Ltd ***";;true;false
+
 INSERT_UPDATE B2BCustomer;uid[unique=true];agree;originalUid;email;title(code);name;firstName;lastName;customerID;groups(uid);defaultB2BUnit(uid);active;sendEmailEnabled[default=false];$setPassword
 ;super@unit-1;true;super@unit-1;super@unit-1;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-1,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-1;true
 ;admin@unit-1;true;admin@unit-1;admin@unit-1;Mr.;"Levis Admin";"Levis";"Admin";0000010002;automated-unit-1,b2badmingroup;automated-unit-1;true
@@ -22,7 +54,24 @@ INSERT_UPDATE B2BCustomer;uid[unique=true];agree;originalUid;email;title(code);n
 ;cust@unit-3;true;cust@unit-3;cust@unit-3;Ms.;"Docker Customer";"Docker";"Customer";0000010013;automated-unit-3,b2bcustomergroup;automated-unit-3;true
 ;finance@unit-3;true;finance@unit-3;finance@unit-3;Mr.;"Docker Finance";"Docker";"Finance";0000010014;automated-unit-3,b2bfinancegroup;automated-unit-3;true
 
-INSERT_UPDATE B2BCustomer;uid[unique=true,allownull=true];$setPassword;active[allownull=true];email[allownull=true];name;firstName;lastName;groups(uid);sessionCurrency(isocode);defaultB2BUnit(uid);customerId[unique=true];sendEmailEnabled[default=false];agree;
-;robert.moris@monsoon.com;;true;robert.moris@monsoon.com;Robert Moris;Robert;Moris;monsoon,b2badmingroup,b2bcustomergroup,b2bfinancegroup;GBP;monsoon;LSCO_B2B_HYB_SAMPLE_01;true
-;deno.rota@fashion-world.com;;true;deno.rota@fashion-world.com;Deno Rota;Deno;Rota;fashionworld,b2badmingroup,b2bcustomergroup,b2bfinancegroup;EUR;fashionworld;LSCO_B2B_HYB_SAMPLE_02;true
-;joseph.hall@city-apparel.com;;true;joseph.hall@city-apparel.com;Joseph Hall;Joseph;Hall;cityapparels,b2badmingroup,b2bcustomergroup,b2bfinancegroup;SEK;cityapparels;LSCO_B2B_HYB_SAMPLE_03;true
+
+INSERT_UPDATE B2BCustomer;uid[unique=true];agree;originalUid;email;title(code);name;firstName;lastName;customerID;groups(uid);defaultB2BUnit(uid);active;sendEmailEnabled[default=false];$setPassword
+;super@unit-4;true;super@unit-4;super@unit-4;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-4-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-4-blockeduser;true
+;super@unit-5;true;super@unit-5;super@unit-5;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-5-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-5-blockeduser;true
+;super@unit-6;true;super@unit-6;super@unit-6;Mr.;"Docker SuperUser";"Docker";"SuperUser";0000010011;automated-unit-6-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-6-blockeduser;true
+;super@unit-7;true;super@unit-7;super@unit-7;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-7-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-7-blockeduser;true
+;super@unit-8;true;super@unit-8;super@unit-8;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-8-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-8-blockeduser;true
+;super@unit-9;true;super@unit-9;super@unit-9;Mr.;"Docker SuperUser";"Docker";"SuperUser";0000010011;automated-unit-9-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-9-blockeduser;true
+;super@unit-10;true;super@unit-10;super@unit-10;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-10-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-10-blockeduser;true
+;super@unit-11;true;super@unit-11;super@unit-11;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-11-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-11-blockeduser;true
+;super@unit-12;true;super@unit-12;super@unit-12;Mr.;"Docker SuperUser";"Docker";"SuperUser";0000010011;automated-unit-12-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-12-blockeduser;true
+;super@unit-13;true;super@unit-13;super@unit-13;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-13-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-13-blockeduser;true
+;super@unit-14;true;super@unit-14;super@unit-14;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-14-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-14-blockeduser;true
+;super@unit-15;true;super@unit-15;super@unit-15;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010014;automated-unit-15-CreditCardOnly,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-15-CreditCardOnly;true
+
+#b2bunit-segment-relation.impex
+UPDATE B2BUnit;uid[unique=true];customerSegment(uid)
+;automated-unit-1;NOR701
+;automated-unit-2;NOR701
+;automated-unit-3;NOR701
+;automated-unit-15-CreditCardOnly;NOR701

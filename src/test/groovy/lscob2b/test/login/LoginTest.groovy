@@ -7,6 +7,7 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.TermsAndConditionPage
 import spock.lang.IgnoreIf
+import spock.lang.IgnoreRest
 
 
 class LoginTest extends GebReportingSpec {
@@ -101,6 +102,40 @@ class LoginTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
+	}
+	
+	/**
+	 * US BB-586 Message for blocked customers when trying to log on 
+	 * TC BB-832 Message for blocked customers when trying to log on 
+	 */
+	def "Test blocked B2B unit login"() {
+		setup:
+		to LoginPage
+
+		when: "at login page"
+		at LoginPage
+
+		and: "do login"
+		login(user)
+
+		and: "We should still be at Login page"
+		at LoginPage
+
+		then: "We should see a error message"
+		errorMessage.displayed
+		
+		where:
+			user | _
+			UserHelper.getBlcokedUserWithCode01() | _
+			UserHelper.getBlcokedUserWithCode02() | _
+			UserHelper.getBlcokedUserWithCode03() | _
+			UserHelper.getBlcokedUserWithCode99() | _
+			UserHelper.getBlcokedUserWithCodeZ1() | _
+			UserHelper.getBlcokedUserWithCodeZ2() | _
+			UserHelper.getBlcokedUserWithCodeZ3() | _
+			UserHelper.getBlcokedUserWithCodeZ4() | _
+			UserHelper.getBlcokedUserWithCodeZ5() | _
+			UserHelper.getBlcokedUserWithCodeZ6() | _
 	}
 	
 	/**

@@ -42,6 +42,46 @@ class UserHelper  {
 		new User(email: 'term@condition-1', password:'Levis2015#')
 	} 
 	
+	static User getBlcokedUserWithCode01(){
+		new User (email:'super@unit-4', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCode02(){
+		new User (email:'super@unit-5', password:'Levis2015#')
+	}
+
+	static User getBlcokedUserWithCode03(){
+		new User (email:'super@unit-6', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCode99(){
+		new User (email:'super@unit-7', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCodeZ1(){
+		new User (email:'super@unit-8', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCodeZ2(){
+		new User (email:'super@unit-9', password:'Levis2015#')
+	}
+
+	static User getBlcokedUserWithCodeZ3(){
+		new User (email:'super@unit-10', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCodeZ4(){
+		new User (email:'super@unit-11', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCodeZ5(){
+		new User (email:'super@unit-12', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCodeZ6(){
+		new User (email:'super@unit-13', password:'Levis2015#')
+	}
+	
 	static List<Address> getShippingAddress(User user) {
 		List<Address> addressList = new ArrayList<Address>()
 		
