@@ -8,6 +8,7 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.productdetails.ProductDetailsPage
+import spock.lang.IgnoreIf
 
 class CartPageTest extends GebReportingSpec {
 	def setupSpec() {
@@ -49,6 +50,7 @@ class CartPageTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | _
 	}
 
+	@IgnoreIf({System.getProperty("geb.browser") == "chrome"})
 	def "Check the common content of Cart Page with products in cart"(){
 		setup:
 		at LoginPage

@@ -8,6 +8,7 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.cart.CartPage
 import lscob2b.pages.quickorder.QuickOrderPage
+import spock.lang.IgnoreIf
 
 class QuickOrderSecurityTest extends GebReportingSpec {
 	
@@ -16,6 +17,7 @@ class QuickOrderSecurityTest extends GebReportingSpec {
 		to LoginPage 
 	}
 	
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "User that does not hold customer rights tries to place an order from quick order page"() {
 		setup: "Log in"
 			at LoginPage	

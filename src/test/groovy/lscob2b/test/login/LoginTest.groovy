@@ -159,6 +159,7 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login
 	 * TC BB-776 Test first time login and agree to terms and condition
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test first time login and agree to terms and condition"(){
 		setup:
 		to LoginPage

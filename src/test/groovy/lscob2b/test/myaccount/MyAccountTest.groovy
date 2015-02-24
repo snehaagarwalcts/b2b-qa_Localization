@@ -10,7 +10,7 @@ import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.myaccount.ProfilePage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
-import spock.lang.Ignore
+import spock.lang.IgnoreIf
 
 class MyAccountTest extends GebReportingSpec {
 
@@ -24,6 +24,7 @@ class MyAccountTest extends GebReportingSpec {
 	 * right-side of the header section of the Application, that should redirect the user to the My Account Home Page.
 	 * TC BB-362 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "My Account" Page.
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "firefox"})
 	def "Check [MyAccountPage] structure"() {
 		when: "at LoginPage"
 			at LoginPage	

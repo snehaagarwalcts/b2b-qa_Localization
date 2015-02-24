@@ -7,6 +7,7 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.AddressBookPage
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.test.data.Address
+import spock.lang.IgnoreIf
 
 
 class AddressBookTest extends GebReportingSpec {
@@ -32,6 +33,7 @@ class AddressBookTest extends GebReportingSpec {
 	/**
 	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Check Users Shipping Address"() {
 		setup:
 			loginAndGoToPage(user)

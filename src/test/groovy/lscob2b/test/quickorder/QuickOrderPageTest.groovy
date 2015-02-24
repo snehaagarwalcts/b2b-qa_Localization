@@ -6,6 +6,7 @@ import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.quickorder.QuickOrderPage
+import spock.lang.IgnoreIf
 
 class QuickOrderPageTest extends GebReportingSpec {
 	
@@ -20,6 +21,7 @@ class QuickOrderPageTest extends GebReportingSpec {
 	 * that should redirect the user to the Quick Order Page.
 	 * TC BB-437 Automated Test Case: validate the content of the "Quick Order" Page for any user
 	 */
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test page structure of [QuickOrderPage]"() {
 		when: "at login page"
 			at LoginPage
