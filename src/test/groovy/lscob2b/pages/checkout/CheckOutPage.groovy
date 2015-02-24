@@ -23,6 +23,10 @@ class CheckOutPage extends Page{
 		including { $('#ajaxCart .including') } //For this to work order simulation has to be turned on
 		remove { $("#RemoveProduct_0",0) }
 		removeConfirm { $("#RemoveProduct_0",1) }
+		
+		//Payment Terms
+		creditCardPayment(required: false) { $('#PaymentTypeSelection_CARD') }
+		invoicePayment(required: false) { $('#PaymentTypeSelection_ACCOUNT') }
 	}
 
 	def doPlaceOrder(){
@@ -39,6 +43,14 @@ class CheckOutPage extends Page{
 	
 	def checkIncludingExists(){
 		!including.empty
+	}
+	
+	def checkCreditCardPaymentButtonExists(){
+		!creditCardPayment.empty
+	}
+	
+	def checkInvoicePaymentButtonExists(){
+		!invoicePayment.empty
 	}
 		
 }
