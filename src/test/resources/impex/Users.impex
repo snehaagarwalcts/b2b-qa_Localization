@@ -19,12 +19,12 @@ INSERT_UPDATE B2BUnit;uid[unique=true];name;locName[lang=en];country(isocode);us
 ;automated-unit-7-blockeduser;"Automated-Unit-7 Co.Ltd";"Automated-Unit-7 Co.Ltd";GB;GB01;010;010;99;Z107;true
 ;automated-unit-8-blockeduser;"Automated-Unit-8 Co.Ltd";"Automated-Unit-8 Co.Ltd";GB;GB01;010;010;Z1;Z107;true
 ;automated-unit-9-blockeduser;"Automated-Unit-9 Co.Ltd";"Automated-Unit-9 Co.Ltd";GB;GB01;010;010;Z2;Z107;true
-;automated-unit-10-blockeduser;"Automated-Unit-10 Co.Ltd";"Automated-Unit-10 Co.Ltd";GB;GB01;010;010;Z2;Z107;true
 ;automated-unit-11-blockeduser;"Automated-Unit-11 Co.Ltd";"Automated-Unit-11 Co.Ltd";GB;GB01;010;010;Z3;Z107;true
 ;automated-unit-12-blockeduser;"Automated-Unit-12 Co.Ltd";"Automated-Unit-12 Co.Ltd";GB;GB01;010;010;Z4;Z107;true
 ;automated-unit-13-blockeduser;"Automated-Unit-13 Co.Ltd";"Automated-Unit-13 Co.Ltd";GB;GB01;010;010;Z5;Z107;true
 ;automated-unit-14-blockeduser;"Automated-Unit-14 Co.Ltd";"Automated-Unit-14 Co.Ltd";GB;GB01;010;010;Z6;Z107;true
 ;automated-unit-15-CreditCardOnly;"Automated-Unit-15 Co.Ltd";"Automated-Unit-15 Co.Ltd";GB;GB01;010;010;;ZCC0;true
+;automated-unit-10-CreditCardDefault;"Automated-Unit-10 Co.Ltd";"Automated-Unit-10 Co.Ltd";GB;GB01;010;010;;ZCC1;true
 
 INSERT_UPDATE Address;publicKey[unique=true];postalcode;streetname;town;region(isocode);country(isocode);owner(B2BUnit.uid);firstname;lastname;billingAddress;shippingAddress
 ;automated-unit-1-SA1;CO1 1LS;"1a & 1b, Eld Lane,";"Colchester.";GB-CO;GB;automated-unit-1;"Denim City Jean Co.Ltd";;false;true
@@ -68,6 +68,7 @@ INSERT_UPDATE B2BCustomer;uid[unique=true];agree;originalUid;email;title(code);n
 ;super@unit-13;true;super@unit-13;super@unit-13;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-13-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-13-blockeduser;true
 ;super@unit-14;true;super@unit-14;super@unit-14;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-14-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-14-blockeduser;true
 ;super@unit-15;true;super@unit-15;super@unit-15;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010014;automated-unit-15-CreditCardOnly,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-15-CreditCardOnly;true
+;super@unit-10;true;super@unit-10;super@unit-10;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-10-CreditCardDefault,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-10-CreditCardDefault;true
 
 #b2bunit-segment-relation.impex
 UPDATE B2BUnit;uid[unique=true];customerSegment(uid)
@@ -75,3 +76,4 @@ UPDATE B2BUnit;uid[unique=true];customerSegment(uid)
 ;automated-unit-2;NOR701
 ;automated-unit-3;NOR701
 ;automated-unit-15-CreditCardOnly;NOR701
+;automated-unit-10-CreditCardDefault;NOR701

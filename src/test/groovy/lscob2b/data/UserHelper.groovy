@@ -67,23 +67,27 @@ class UserHelper  {
 	}
 
 	static User getBlcokedUserWithCodeZ3(){
-		new User (email:'super@unit-10', password:'Levis2015#')
-	}
-	
-	static User getBlcokedUserWithCodeZ4(){
 		new User (email:'super@unit-11', password:'Levis2015#')
 	}
 	
-	static User getBlcokedUserWithCodeZ5(){
+	static User getBlcokedUserWithCodeZ4(){
 		new User (email:'super@unit-12', password:'Levis2015#')
 	}
 	
-	static User getBlcokedUserWithCodeZ6(){
+	static User getBlcokedUserWithCodeZ5(){
 		new User (email:'super@unit-13', password:'Levis2015#')
+	}
+	
+	static User getBlcokedUserWithCodeZ6(){
+		new User (email:'super@unit-14', password:'Levis2015#')
 	}
 	
 	static User getCreditCardOnlyUser(){
 		new User (email:'super@unit-15', password:'Levis2015#')
+	}
+	
+	static User getDefaultCreditCardUser(){
+		new User (email:'super@unit-10', password:'Levis2015#')
 	}
 	
 	static List<Address> getShippingAddress(User user) {
