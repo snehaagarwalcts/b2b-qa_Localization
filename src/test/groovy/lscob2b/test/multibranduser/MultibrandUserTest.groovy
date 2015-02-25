@@ -77,7 +77,7 @@ class MultibrandUserTest extends GebReportingSpec {
 	/**
 	 * TC BB-512 Automated Test: Multibrand user should be able to switch between Levis and Dockers
 	 */
-	def "Swtich to Levis theme"(){
+	def "Switch to Levis theme"(){
 		setup:
 		login (user)
 
@@ -116,7 +116,7 @@ class MultibrandUserTest extends GebReportingSpec {
 	/**
 	 * TC BB-752 Automated Test: Check if switch to dockers/levis is present using dockers/levis users
 	 */
-	def "Check if switch to dockers is present using Levis customer"(){
+	def "Check if switch to dockers is not present using Levis customer"(){
 		setup:
 		login (user)
 
@@ -137,7 +137,7 @@ class MultibrandUserTest extends GebReportingSpec {
 	/**
 	 * TC BB-752 Automated Test: Check if switch to dockers/levis is present using dockers/levis users
 	 */
-	def "Check if switch to dockers is present using Dockers customer"(){
+	def "Check if switch to levis is not present using Dockers customer"(){
 		setup:
 		login (user)
 

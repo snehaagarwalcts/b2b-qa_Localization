@@ -26,7 +26,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			at HomePage	
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
+	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer" && System.getProperty("geb.version") == "8"})
 	def "load impex [/impex/Users.impex]"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)

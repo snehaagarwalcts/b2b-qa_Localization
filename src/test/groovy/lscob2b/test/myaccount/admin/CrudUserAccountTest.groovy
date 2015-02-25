@@ -49,7 +49,7 @@ class CrudUserAccountTest extends GebReportingSpec {
 	/**
 	 * TC BB-482 Admin users should be able to create new customer accounts
 	 */
-	def "[C] Create new user "() {
+	def "[C] Create new user"() {
 		setup:
 			createdUser = createTemporaryUser()
 		
@@ -151,9 +151,6 @@ class CrudUserAccountTest extends GebReportingSpec {
 			waitFor { noteMessage.displayed }
 	}
 	
-	/**
-	 * TC BB-482 Admin users should be able to create new customer accounts
-	 */
 	def User createTemporaryUser() {
 		User user = new User();
 		user.email = UUID.randomUUID().toString() + "@test.tst"

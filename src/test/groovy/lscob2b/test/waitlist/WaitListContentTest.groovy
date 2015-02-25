@@ -156,9 +156,6 @@ class WaitListContentTest extends GebReportingSpec{
 			quantityAvailable.text().toInteger() == 1
 	}
 	
-	/**
-	 * BB-511 Automated test: User should be able to remove product from wait list
-	 */
 	@IgnoreIf({System.getProperty("geb.browser") == "ie8"})
 	def "Remove product from WaitList page"() {
 		when: "At WaitList page"

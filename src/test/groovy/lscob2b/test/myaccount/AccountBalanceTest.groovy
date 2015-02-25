@@ -27,7 +27,7 @@ class AccountBalanceTest extends GebReportingSpec {
 		accountBalanceLink.click()
 	}
 	
-	def "check the content of the Account balance page"(){
+	def "Check the content of the Account balance page"(){
 		setup: 
 		loginAndGoToPage(user)
 		

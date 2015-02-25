@@ -32,7 +32,7 @@ class AddressBookTest extends GebReportingSpec {
 	/**
 	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
 	 */
-	def "Check Users Shipping Address"() {
+	def "Check Users Shipping Address on AddressBook page"() {
 		setup:
 			loginAndGoToPage(user)
 			def List<Address> shippingData = UserHelper.getShippingAddress(user)
@@ -69,7 +69,7 @@ class AddressBookTest extends GebReportingSpec {
 	/**
 	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
 	 */
-	def "Check Users Billing Address"() {
+	def "Check Users Billing Address on AddressBook page"() {
 		setup:
 		loginAndGoToPage(user)
 		def List<Address> billingData = UserHelper.getBillingAddress(user)
