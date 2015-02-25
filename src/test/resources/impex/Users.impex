@@ -68,6 +68,7 @@ INSERT_UPDATE B2BCustomer;uid[unique=true];agree;originalUid;email;title(code);n
 ;super@unit-13;true;super@unit-13;super@unit-13;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-13-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-13-blockeduser;true
 ;super@unit-14;true;super@unit-14;super@unit-14;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-14-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-14-blockeduser;true
 ;super@unit-15;true;super@unit-15;super@unit-15;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010014;automated-unit-15-CreditCardOnly,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-15-CreditCardOnly;true
+;super@unit-16;true;super@unit-16;super@unit-16;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-10-CreditCardDefault,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-10-CreditCardDefault;false
 
 #b2bunit-segment-relation.impex
 UPDATE B2BUnit;uid[unique=true];customerSegment(uid)
