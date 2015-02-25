@@ -84,7 +84,7 @@ class ProductDetailTest extends GebReportingSpec {
 	 * TC BB-559 Automated test: be able to place an order from Product details page
 	 */
 	@Ignore //FIXME not possible to place an order
-	def "place an order from product details page"(){
+	def "Place an order from product details page"(){
 		
 		Product product = TestDataCatalog.getAProductAvailableForUser(user)
 

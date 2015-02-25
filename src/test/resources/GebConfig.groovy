@@ -66,13 +66,13 @@ environments {
 	}
 	qa000 {
 		baseUrl = "http://b2bqa-000-web-000.lsco-b2b.com/"
-		hacUrl = "http://b2bqa-000-web-000.lsco-b2b.com/" 	//TODO check url
+		hacUrl = "ttp://b2bqa-000-cron-000.lsco-b2b.com:9001/hac"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}
 	qa001 {
 		 baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/"
-		 hacUrl = "http://b2bqa-001-web-000.lsco-b2b.com"	//TODO check url
+		 hacUrl = "http://b2bqa-001-cron-000.lsco-b2b.com:9001/hac"
 		 hacUsername = "admin"
 		 hacPassword = "nimda"
 	}

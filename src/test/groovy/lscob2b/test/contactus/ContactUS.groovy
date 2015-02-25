@@ -48,7 +48,7 @@ class ContactUS extends GebReportingSpec {
 	/**
 	 * TC BB-612 Automated test: BB-412 New customer requesting access
 	 */
-	def "New customer tried to submit form without filling out all require information"(){
+	def "New customer tried to submit form without filling out all required information"(){
 		
 		when: "At contact us page fill out most of the information"
 		at ContactUsPage

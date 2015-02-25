@@ -62,13 +62,12 @@ INSERT_UPDATE B2BCustomer;uid[unique=true];agree;originalUid;email;title(code);n
 ;super@unit-7;true;super@unit-7;super@unit-7;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-7-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-7-blockeduser;true
 ;super@unit-8;true;super@unit-8;super@unit-8;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-8-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-8-blockeduser;true
 ;super@unit-9;true;super@unit-9;super@unit-9;Mr.;"Docker SuperUser";"Docker";"SuperUser";0000010011;automated-unit-9-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-9-blockeduser;true
-;super@unit-10;true;super@unit-10;super@unit-10;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-10-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-10-blockeduser;true
+;super@unit-10;true;super@unit-10;super@unit-10;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-10-CreditCardDefault,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-10-CreditCardDefault;true
 ;super@unit-11;true;super@unit-11;super@unit-11;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-11-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-11-blockeduser;true
 ;super@unit-12;true;super@unit-12;super@unit-12;Mr.;"Docker SuperUser";"Docker";"SuperUser";0000010011;automated-unit-12-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-12-blockeduser;true
 ;super@unit-13;true;super@unit-13;super@unit-13;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-13-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-13-blockeduser;true
 ;super@unit-14;true;super@unit-14;super@unit-14;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010011;automated-unit-14-blockeduser,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-14-blockeduser;true
 ;super@unit-15;true;super@unit-15;super@unit-15;Mr.;"Multibrand SuperUser";"Multibrand";"SuperUser";0000010014;automated-unit-15-CreditCardOnly,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-15-CreditCardOnly;true
-;super@unit-10;true;super@unit-10;super@unit-10;Ms.;"Levis SuperUser";"Levis";"SuperUser";0000010001;automated-unit-10-CreditCardDefault,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-10-CreditCardDefault;true
 
 #b2bunit-segment-relation.impex
 UPDATE B2BUnit;uid[unique=true];customerSegment(uid)
