@@ -91,9 +91,19 @@ class MasterTemplate extends Module {
 		categoryLink { categoryName ->  subNav.find("a", href: endsWith(categoryName)) }
 				
 		subCategoryLink { categoryName,subCategoryName -> subNav.find("a", href: endsWith(categoryName)).parent().parent().find("a",href: endsWith(subCategoryName)) }
-		 		
+		
+		/*Help*/
+		helpLink { $('.yCmsComponent').find("a", href: endsWith('/help')) }
+		 	
 	}
 	
+	def gotoHelpPage(){
+		helpLink.click()
+	}
+	
+	def checkHelpLinkExists(){
+		!helpLink.empty
+	}
 	def doContactUs(){
 		waitFor {
 			contactUs.displayed

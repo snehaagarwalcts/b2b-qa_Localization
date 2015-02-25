@@ -139,6 +139,31 @@ class LoginTest extends GebReportingSpec {
 	}
 	
 	/**
+	 * US BB-586 Message for blocked customers when trying to log on
+	 * TC BB-845 Message for blocked customer when trying to log on
+	 */
+	def "Test blocked B2B customer login"() {
+		setup:
+		to LoginPage
+
+		when: "at login page"
+		at LoginPage
+
+		and: "do login"
+		login(user)
+
+		and: "We should still be at Login page"
+		at LoginPage
+
+		then: "We should see a error message"
+		errorMessage.displayed
+		
+		where:
+			user | _
+			UserHelper.getDefaultCreditCardAndBlockedUser() | _
+	}
+	
+	/**
 	 * US BB-591 Confirm terms and conditions at first login 
 	 * TC BB-774 Test first time login and links exists
 	 */
@@ -164,7 +189,7 @@ class LoginTest extends GebReportingSpec {
 	
 	/**
 	 * US BB-591 Confirm terms and conditions at first login
-	 * TC BB-775 Test first time login and diagree to terms and condition
+	 * TC BB-775 Test first time login and disagree to terms and condition
 	 */
 	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test first time login and disagree to terms and condition and you should stay on terms and condition page"(){

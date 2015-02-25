@@ -90,6 +90,10 @@ class UserHelper  {
 		new User (email:'super@unit-10', password:'Levis2015#')
 	}
 	
+	static User getDefaultCreditCardAndBlockedUser(){
+		new User (email:'super@unit-16', password:'Levis2015#')
+	}
+	
 	static List<Address> getShippingAddress(User user) {
 		List<Address> addressList = new ArrayList<Address>()
 		
