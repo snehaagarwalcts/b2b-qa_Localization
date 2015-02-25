@@ -5,9 +5,10 @@ import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.quickorder.QuickOrderPage
-import lscob2b.pages.waitlist.WaitListPage;
+import lscob2b.pages.waitlist.WaitListPage
+import spock.lang.IgnoreIf
 
+@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 class WaitListPageTest extends GebReportingSpec {
 	
 	def setup() {

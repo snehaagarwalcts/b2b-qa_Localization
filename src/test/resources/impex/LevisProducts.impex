@@ -1,7 +1,30 @@
 #########################################################################
+$brandLevis=Levis
+$season=151
+$year=2015
+$catalogLevis=$brandLevis$season$yearProductCatalog
+$catalogVersionLevis=catalogVersion(catalog(id[default='$catalogLevis']),version[default='Staged'])[unique=true,default='$catalogLevis:Staged']
+
+INSERT_UPDATE SeasonalBrandAssortment;code[unique=true];name[lang=en];allowedPrincipals(uid);$catalogVersionLevis
+;Levis_151_NOR701;"Levis 151 North Traditional";NOR701,solr-index-user
+
+#########################################################################
+
 $brand=Levis
 $season=151
 $year=2015
+
+#########################################################################
+
+$catalog=$brand$season$yearProductCatalog
+
+$catalogVersion=catalogVersion(catalog(id[default='$catalog']),version[default='Staged'])[unique=true,default='$catalog:Staged']
+$supercategories=supercategories(code, $catalogVersion)[mode=append]
+
+
+UPDATE ApparelStyleVariantProduct;code[unique=true];$supercategories;$catalogVersion[unique=true]
+;00501-0039;Levis_151_NOR701,Levis_151_CEN701,Levis_151_SOU701,Levis_151_EME701,Levis_151_CEN702,Levis_151_SOU702,Levis_151_EME702,Levis_151_NOR703,Levis_151_CEN703,Levis_151_SOU703,Levis_151_EME703,Levis_151_NOR704,Levis_151_CEN704,Levis_151_SOU704,Levis_151_EME704
+
 #########################################################################
 $catalog=$brand$season$yearProductCatalog
 
@@ -15,10 +38,6 @@ INSERT_UPDATE Product;code[unique=true];$catalogVersion;$supercategories[mode=ap
 ;00501;Levis1512015ProductCatalog:Staged;Levis_151_Male_Bottoms_Long Bottoms				;pieces;ApparelStyleVariantProduct;approved
 
 #########################################################################
-$brand=Levis
-$season=151
-$year=2015
-#########################################################################
 $catalog=$brand$season$yearProductCatalog
 
 $catalogVersion=catalogVersion(catalog(id[default='$catalog']),version[default='Staged'])[unique=true,default='$catalog:Staged']
@@ -31,11 +50,6 @@ UPDATE Product;$catalogVersion;code[unique=true];name[lang=$lang]
 ;;00501;501 Levis Original Fit
 
 ############################################################################################
-$brand=Levis
-$season=151
-$year=2015
-############################################################################################
-$catalog=$brand$season$yearProductCatalog
 $classificationCatalog=lscob2bClassification
 
 
@@ -53,10 +67,6 @@ UPDATE Product;code[unique=true];$catalogVersion;$classes;$region;$consolidatedS
 ;00501;Levis1512015ProductCatalog:Staged;base;LSE;501
 
 #########################################################################
-$brand=Levis
-$season=151
-$year=2015
-#########################################################################
 $catalog=$brand$season$yearProductCatalog
 
 $catalogVersion=catalogVersion(catalog(id[default='$catalog']),version[default='Staged'])[unique=true,default='$catalog:Staged']
@@ -68,10 +78,6 @@ $lang=en
 UPDATE Product;$catalogVersion;code[unique=true];name[lang=$lang]
 ;;00501;501 Levis Original Fit
 
-############################################################################################
-$brand=Levis
-$season=151
-$year=2015
 ############################################################################################
 $catalog=$brand$season$yearProductCatalog
 $classificationCatalog=lscob2bClassification
