@@ -27,6 +27,7 @@ class CheckOutPage extends Page{
 		//Payment Terms
 		creditCardPayment(required: false) { $('#PaymentTypeSelection_CARD') }
 		invoicePayment(required: false) { $('#PaymentTypeSelection_ACCOUNT') }
+		creditCardDefault { $('#PaymentTypeSelection_CARD').attr('checked')}
 	}
 
 	def doPlaceOrder(){
