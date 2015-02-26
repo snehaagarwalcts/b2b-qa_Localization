@@ -51,7 +51,7 @@ class MasterTemplate extends Module {
 		
 		searchInput { $("#input-search") }
 		
-		searchLink { $('a.search-icon') } //TODO Enable once working
+		searchLink { $('a.search-icon') } 
 		
 		/*Contact us after login*/
 		

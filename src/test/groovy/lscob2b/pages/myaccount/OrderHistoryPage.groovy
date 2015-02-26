@@ -68,7 +68,6 @@ class OrderHistoryPage extends Page{
 	}
 
 	def clearForm() {
-//		clearButton.click() //FIXME not work
 		if(checkboxOrderSourceB2B.value() != false) checkboxOrderSourceB2B.parent().click()
 		if(checkboxOrderSourceEDI.value() != false) checkboxOrderSourceEDI.parent().click()
 		if(checkboxOrderSourceSAP.value() != false) checkboxOrderSourceSAP.parent().click()

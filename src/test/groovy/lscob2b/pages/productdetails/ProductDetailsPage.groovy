@@ -24,7 +24,7 @@ class ProductDetailsPage extends Page {
 		
 		masterTemplate { module MasterTemplate }
 		
-		sizingGrid { module SizingGridModule}		//TODO remove it
+		sizingGrid { module SizingGridModule}		//TODO remove it [CHECK SIMONE]
 		
 		sizingTable { module SizingTableModule, $("div.single_grid_three_dimensions") }
 		

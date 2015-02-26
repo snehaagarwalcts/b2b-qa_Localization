@@ -76,7 +76,6 @@ class ProductDetailPageTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS) | ProductHelper.getUpSellings(ProductHelper.BRAND_LEVIS) | ProductHelper.getCrossSellings(ProductHelper.BRAND_LEVIS)
 	}
 	
-//	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
 	def "Check Color Switch"() {
 		setup:
 			to LoginPage

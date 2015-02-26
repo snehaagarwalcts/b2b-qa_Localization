@@ -77,8 +77,8 @@ class ImpexLoadingTest extends GebReportingSpec {
 		and: "logout from HAC"	
 			menu.logout()
 			
-		and: "go to HAC home page"	
-			browser.go(browser.config.rawConfig.hacUrl)
+//		and: "go to HAC home page"	
+//			browser.go(browser.config.rawConfig.hacUrl)
 			
 		then: "at login page"
 			at LoginPage	

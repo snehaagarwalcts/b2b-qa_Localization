@@ -66,7 +66,6 @@ class ManageUserTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
 	
-	//FIXME Safari issue
 	/**
 	 * TC BB-507 Automated Test Case: The admin customer user for a B2B group should be 
 	 * able to assign a default delivery address for all customers of the group.

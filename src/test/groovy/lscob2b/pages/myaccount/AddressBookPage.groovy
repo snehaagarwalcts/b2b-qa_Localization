@@ -21,7 +21,6 @@ class AddressBookPage extends Page{
 		
 		addressBilling { $("div.addressItems",1).find("div.addressItem") }
 		
-		//Address book page content //TODO add more content as page gets developed
 		addressBookData { $("div strong")*.text() }
 
 		addressItem { $("div.addressItem ul").text() }
@@ -31,7 +30,7 @@ class AddressBookPage extends Page{
 	//Getting Address Shipping Information
 	
 	def getShippingFirstname(index) {
-		addressShipping[index].find("ul li",0).text().trim()	//FIXME Remove space?
+		addressShipping[index].find("ul li",0).text().trim()	
 	}
 	
 	def getShippingStreetname(index) {
@@ -62,7 +61,7 @@ class AddressBookPage extends Page{
 	//Getting Address Billing Information
 	
 	def getBillingFirstname(index) {
-		addressBilling[index].find("ul li",0).text().trim()	//FIXME Remove space?
+		addressBilling[index].find("ul li",0).text().trim()
 	}
 
 	def getBillingStreetname(index) {

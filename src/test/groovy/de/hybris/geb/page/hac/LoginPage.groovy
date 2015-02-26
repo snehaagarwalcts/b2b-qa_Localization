@@ -6,7 +6,7 @@ class LoginPage extends Page {
 
 	static url = ""
 	
-	static at = { title == "hybris administration console | Login" }
+	static at = { waitFor { title == "hybris administration console | Login" } }
 	
 	static content = {
 		

@@ -42,7 +42,7 @@ public class KeylookTest extends GebReportingSpec {
 			
 		where:
 			user | link
-			TestDataCatalog.getALevisUser() | "en/keylook/levisKeyLook1" //FIXME use DataCatalog
+			TestDataCatalog.getALevisUser() | "en/keylook/levisKeyLook1" 
 	}
 		
 	

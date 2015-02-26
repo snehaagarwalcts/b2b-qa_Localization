@@ -8,7 +8,6 @@ import lscob2b.pages.LoginPage
 
 class CategoryDockerTest extends GebReportingSpec {
 
-	//TODO fix the mouse over on Firefox Windows 7
 	def setupSpec(){
 		PageHelper.gotoPageLogout(browser, baseUrl)
 		
@@ -25,13 +24,13 @@ class CategoryDockerTest extends GebReportingSpec {
 			at HomePage
 			
 		and: "mouse over category"
-			masterTemplate.categoryLink(category).jquery.mouseover()
+			masterTemplate.categoryLink(category).jquery.mouseover() //TODO fix the mouse over on Firefox Windows 7
 			
 		then: "check all subcategories"
 			masterTemplate.subCategoryLink(category, subCategory).displayed
 			
 		where:
-			[category, subCategory] << new File("src/test/resources/data/DockersCategories.txt").readLines()*.tokenize() //TODO check category
+			[category, subCategory] << new File("src/test/resources/data/DockersCategories.txt").readLines()*.tokenize() //TODO Update Category
 	}
 	
 }

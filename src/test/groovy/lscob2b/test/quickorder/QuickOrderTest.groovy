@@ -67,7 +67,7 @@ class QuickOrderTest extends GebReportingSpec {
 
 	/**
 	 * TC BB-456 Automated Test Case: be able to add to cart from quick order page
-	 * TC BB-438 Automated Test Case: Place an order from "Quick Order" Page. //FIXME Not testable!!!
+	 * TC BB-438 Automated Test Case: Place an order from "Quick Order" Page.
 	 */
 	def "Add to cart from quick-order page"() {
 		when: "at QuickOrder page"
@@ -107,8 +107,7 @@ class QuickOrderTest extends GebReportingSpec {
 	/**
 	 * TC BB-477 Automated Test Case: Remove product from Check Out page
 	 */
-	//FIXME Remove Product from checkout
-	//What is the issue here?
+	//TODO [simone] add remove steps
 	def "Remove product from checkout page"() {
 		when: "at QuickOrder page"
 			at QuickOrderPage

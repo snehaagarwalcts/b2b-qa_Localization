@@ -34,7 +34,7 @@ class AccountBalanceTest extends GebReportingSpec {
 		when: "At Account Balance page"
 		at AccountBalancePage
 		
-		then: "You Should see the text"		//TODO check also if balance has a value > 0
+		then: "You Should see the text"		//TODO Dipen check also if balance has value > 0
 		checkAccountBalanceExists()		
 		checkTotalBalanceExists()
 		checkTotalOverdueExists()

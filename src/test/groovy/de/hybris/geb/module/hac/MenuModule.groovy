@@ -1,6 +1,6 @@
 package de.hybris.geb.module.hac
 
-import geb.Module;
+import geb.Module
 
 class MenuModule extends Module {
 
@@ -21,11 +21,13 @@ class MenuModule extends Module {
 		
 	def logout() {
 		//Different version of logout button on each environment
-		if(!$("div#loginInfo").empty) {
-			$("div#loginInfo").click()
-		}
-		if(!$("input", value:"logout").empty) {
+		if(System.getProperty("geb.env") == null || System.getProperty("geb.env").equals("local")) {
+//			waitFor { !$("input", value:"logout").emtpy }
 			$("input", value:"logout").click()
+		} else {
+//			waitFor { !$("div#loginInfo").empty }
+//			$("div#loginInfo").click()
+			browser.go(browser.config.rawConfig.hacUrl + "/j_spring_security_logout")
 		}
 	}
 }
