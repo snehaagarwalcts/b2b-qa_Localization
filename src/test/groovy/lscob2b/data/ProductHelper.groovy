@@ -28,24 +28,12 @@ class ProductHelper  {
 		products.get(brand).get("baseProduct").get("code")
 	}			
 	
-	def static List<String> getCrossSelling(brand) {
+	def static List<String> getCrossSellings(brand) {
 		products.get(brand).get("crossSelling")
 	}
 	
-	def static List<String> getUpSelling(brand) {
+	def static List<String> getUpSellings(brand) {
 		products.get(brand).get("upSelling")
-	}
-	
-	//TODO remove me and use getCrossSelling/getUpSelling
-	def static getUpCrossSelling(brand) {
-		if(brand == BRAND_LEVIS) {
-			return [
-				code: '00501-0039',
-				upSelling: ["00501-0089","00501-0114", "00501-0101", "00501-0113", "00501-0162", "00501-0165"],
-				crossSelling:["00501-0113", "00501-0165", "00501-1114", "00501-0162"]
-			]
-		}	
-		null
 	}
 	
 	def static getProductColor(brand) {

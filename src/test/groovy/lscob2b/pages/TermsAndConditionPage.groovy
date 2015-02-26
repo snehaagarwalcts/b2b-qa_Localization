@@ -15,10 +15,12 @@ class TermsAndConditionPage extends Page{
 	}
 	
 	def agreeLinkExists(){
+		waitFor { agree.displayed }
 		!agree.empty
 	}
 	
 	def disagreeLinkExists(){
+		waitFor { disagree.displayed }
 		!disagree.empty
 	}
 	

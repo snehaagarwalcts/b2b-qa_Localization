@@ -44,14 +44,6 @@ class ProductDetailPageTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
-//			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_SUPER) | _
-//			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_ADMIN) | _
-//			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) | _
-//			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_FINANCE) | _
-//			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_SUPER) | _
-//			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
-//			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
-//			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
 
 	/**
@@ -73,8 +65,7 @@ class ProductDetailPageTest extends GebReportingSpec {
 			for(pc in upSellingPCs) { 
 				assert !upSelling.itemLink(pc).empty
 			}
-		
-		//TODO remove comment when product are fixed
+		//TODO update product.json with right product for cross-selling!	
 //		and: "Check Cross-Selling product"
 //			for(pc in crossSellingPCs) {
 //				assert !crossSelling.itemLink(pc).empty
@@ -82,8 +73,7 @@ class ProductDetailPageTest extends GebReportingSpec {
 			
 		where:
 			user | productCode | upSellingPCs | crossSellingPCs
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | ProductHelper.getUpCrossSelling(ProductHelper.BRAND_LEVIS)["code"] | ProductHelper.getUpCrossSelling(ProductHelper.BRAND_LEVIS)["upSelling"] | ProductHelper.getUpCrossSelling(ProductHelper.BRAND_LEVIS)["crossSelling"]
-			//UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | "00501-0039" | ["00501-0114"] | ["00501-0101"]
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS) | ProductHelper.getUpSellings(ProductHelper.BRAND_LEVIS) | ProductHelper.getCrossSellings(ProductHelper.BRAND_LEVIS)
 	}
 	
 //	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})

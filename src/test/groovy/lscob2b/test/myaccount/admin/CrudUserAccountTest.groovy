@@ -10,6 +10,7 @@ import lscob2b.pages.myaccount.admin.EditUserDetailsPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
 import lscob2b.test.data.User
+import spock.lang.Ignore
 import spock.lang.IgnoreIf
 import spock.lang.Shared
 import spock.lang.Stepwise
@@ -32,10 +33,9 @@ class CrudUserAccountTest extends GebReportingSpec {
 	/**
 	 * TC BB-482 Admin users should be able to create new customer accounts
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "firefox" || System.getProperty("geb.browser") == "internet explorer"})
 	def "[C] Go to create new user page"(){
 		setup: 
-			masterTemplate.selectManageUsers()
+			PageHelper.gotoPage(browser,baseUrl, PageHelper.PAGE_MANAGE_USERS)
 
 		when: "At ManageUsers page"
 			at ManageUsersPage
@@ -51,7 +51,6 @@ class CrudUserAccountTest extends GebReportingSpec {
 	/**
 	 * TC BB-482 Admin users should be able to create new customer accounts
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "firefox" || System.getProperty("geb.browser") == "internet explorer"})
 	def "[C] Create new user "() {
 		setup:
 			createdUser = createTemporaryUser()
@@ -76,7 +75,6 @@ class CrudUserAccountTest extends GebReportingSpec {
 	 * TC BB-484 Admin users should be able to update other user's accounts
 	 * @return
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "firefox" || System.getProperty("geb.browser") == "internet explorer"})
 	def "[R] Read created user"() {
 		when: "At ViewUserDetail page" 	
 			at ViewUserDetailsPage
@@ -90,9 +88,7 @@ class CrudUserAccountTest extends GebReportingSpec {
 	
 	/**
 	 * TC BB-484 Admin users should be able to update other user's accounts
-	 * @return
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "firefox" || System.getProperty("geb.browser") == "internet explorer"})
 	def "[U] Update created user"() {
 		when: "At ViewUserDetail page"
 			at ViewUserDetailsPage
@@ -127,7 +123,6 @@ class CrudUserAccountTest extends GebReportingSpec {
 	 * TC BB-484 Admin users should be able to update other user's accounts
 	 * @return
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "firefox" || System.getProperty("geb.browser") == "internet explorer"})
 	def "[R] Read updated user"() {
 		when: "At ViewUserDetail page"
 			at ViewUserDetailsPage
@@ -143,7 +138,6 @@ class CrudUserAccountTest extends GebReportingSpec {
 	 * TC BB-484 Admin users should be able to update other user's accounts
 	 * @return
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "firefox" || System.getProperty("geb.browser") == "internet explorer"})
 	def "[D] Disable updated user"() {
 		when: "At ViewUserDetail page"
 			at ViewUserDetailsPage

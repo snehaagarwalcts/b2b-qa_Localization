@@ -4,7 +4,6 @@ import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.ProductHelper
 import lscob2b.data.UserHelper
-import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.checkout.CheckOutPage
 import lscob2b.pages.quickorder.QuickOrderPage
@@ -16,16 +15,17 @@ class CheckOutPageTest extends GebReportingSpec {
 
 	//def static String targetProductString = "Levis 501"
 
-	def setupSpec() {
+	def setup() {
 		PageHelper.gotoPageLogout(browser,baseUrl)
 		to LoginPage
 
-		at LoginPage
-		login(user)
-		at HomePage
-
-		masterTemplate.clickQuickOrder()
-		at QuickOrderPage
+		//FIXME Dipen - use where terms not static variable. the test is not stepwise!
+//		at LoginPage
+//		login(user)
+//		at HomePage
+//
+//		masterTemplate.clickQuickOrder()
+//		at QuickOrderPage
 	}
 
 	/**
@@ -33,7 +33,7 @@ class CheckOutPageTest extends GebReportingSpec {
 	 * TC BB-834 A customer which on credit card payment cannot choose Invoice
 	 * 
 	 */
-	@Ignore //TODO Dipen - Too much element in setup! please clean it (use where terms)
+	@Ignore //FIXME Dipen - Too much element in setup! please clean it 
 	def "B2B unit with payment term code ZCC0 should only display credit card as payment option"() {
 		setup:
 			doSearch(targetProductCode, true)

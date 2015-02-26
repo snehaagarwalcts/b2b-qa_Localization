@@ -112,7 +112,7 @@ class ManageUserTest extends GebReportingSpec {
 	 * US BB-501 BB-38 Remove default delivery address
 	 * TC BB-778 Remove default delivery address
 	 */
-	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "internet explorer" || System.getProperty("geb.browser") == "chrome"})
+	//FIXME Dipen - Is it the test complete or not?
 	def "Remove default delivery address"() {
 		setup:
 			login(loginUser)
@@ -141,17 +141,9 @@ class ManageUserTest extends GebReportingSpec {
 		then: "At UserDetail page"
 			at ViewUserDetailsPage
 			
-			//This might be the issue
 		and: "Check updated delivery address"
 			currentUser.address != userDetails.getUser().address
 		
-		//TODO talk to Amit to understand the full test
-		/*and: "Click on Home"
-		masterTemplate.homeLink.click()
-		
-		then: "at homepage"
-		at HomePage*/
-						
 		where:
 			loginUser | targetUser
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)

@@ -16,7 +16,7 @@ public class KeylookTest extends GebReportingSpec {
 	/**
 	 * BB-648 Automated test case: Key Look page
 	 */
-	@Ignore //TODO Not testable until keylook is ready!!!
+	@Ignore //TODO Not testable until keylook data is ready!!!
 	def "Test Key-Look page"() {
 		setup:
 			to LoginPage

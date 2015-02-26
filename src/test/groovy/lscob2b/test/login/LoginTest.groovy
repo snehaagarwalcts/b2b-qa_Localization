@@ -122,7 +122,7 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		then: "We should see a error message"
-		errorMessage.displayed
+		waitFor { errorMessage.displayed }
 		
 		where:
 			user | _
@@ -156,7 +156,7 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		then: "We should see a error message"
-		errorMessage.displayed
+			waitFor { errorMessage.displayed }
 		
 		where:
 			user | _

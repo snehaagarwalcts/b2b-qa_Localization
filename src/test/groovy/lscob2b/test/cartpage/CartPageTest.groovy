@@ -52,7 +52,7 @@ class CartPageTest extends GebReportingSpec {
 
 	@IgnoreIf({System.getProperty("geb.browser") == "chrome"})
 	def "Check the common content of Cart Page with products in cart"(){
-		setup:
+		setup:	//FIXME Dipen - To much element in setup
 		at LoginPage
 		login(user)
 		at HomePage

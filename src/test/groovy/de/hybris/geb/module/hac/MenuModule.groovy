@@ -6,10 +6,6 @@ class MenuModule extends Module {
 
 	static content = {
 
-		//Logout
-		
-		logout { $("div#loginInfo") }
-		
 		//Console Menu
 		
 		console { $("a#console") }
@@ -23,5 +19,13 @@ class MenuModule extends Module {
 		consoleImpexImport.click()
 	}
 		
-	
+	def logout() {
+		//Different version of logout button on each environment
+		if(!$("div#loginInfo").empty) {
+			$("div#loginInfo").click()
+		}
+		if(!$("input", value:"logout").empty) {
+			$("input", value:"logout").click()
+		}
+	}
 }

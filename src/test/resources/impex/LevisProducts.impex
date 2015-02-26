@@ -171,3 +171,34 @@ $supercategories=supercategories(code, $catalogVersion)[mode=append]
 
 UPDATE ApparelStyleVariantProduct;code[unique=true];$supercategories;$catalogVersion[unique=true]
 ;00501-0039;Levis_151_NOR701
+
+
+
+##################################################################################################################################################
+# /lscob2binitialdata/resources/lscob2binitialdata/import/sampledata/productCatalogs/levis/product-style-references.impex
+##################################################################################################################################################
+
+$brand=Levis
+$season=151
+$year=2015
+$catalog=$brand$season$yearProductCatalog
+$catalogVersion=catalogVersion(catalog(id[default='$catalog']),version[default='Staged'])[unique=true,default='$catalog:Staged']
+$source=source(code, $catalogVersion)[unique=true]
+$target=target(code, $catalogVersion)[unique=true]
+
+
+INSERT_UPDATE ProductReference;$source;$target;referenceType(code)[unique=true];preSelected[default=false];active[default=true]
+;00501-0039;00501-0089;UPSELLING
+;00501-0039;00501-0114;UPSELLING
+;00501-0039;00501-0101;UPSELLING
+;00501-0039;00501-0113;UPSELLING
+;00501-0039;00501-0162;UPSELLING
+;00501-0039;00501-0165;UPSELLING
+
+;00501-0039;15494-0004;CROSSELLING
+;00501-0039;15494-0005;CROSSELLING
+;00501-0039;15494-0006;CROSSELLING
+;00501-0039;15684-0000;CROSSELLING
+;00501-0039;15684-0001;CROSSELLING
+;00501-0039;15688-0001;CROSSELLING
+;00501-0039;15688-0002;CROSSELLING
