@@ -46,7 +46,7 @@ class ProductDetailsPage extends Page {
 
 		overlayButtonAdd { overlayWaitList.find("a#add_to_waitlist_button") }
 
-		notYourBrandAssortmentProduct { $('.productListItem').find("a", href: endsWith('/00501-0101')) }
+		notYourBrandAssortmentProduct { $('.alert-message') }
 
 	}
 

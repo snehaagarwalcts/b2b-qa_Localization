@@ -39,3 +39,4 @@ class ProductDetailsPageNotPartOfBrandAssortmentTest extends GebReportingSpec {
 	}
 }
 
+
