@@ -31,6 +31,14 @@ class ImpexImportPage extends Page {
 		
 		logOut { $("form input",1)}
 		
+		settings { $("div#settings") }
+		
+		settingsHeader { settings.find("h3",0) }
+		
+		settingsContent { settings.find("div.ui-accordion-content") }
+		
+		settingsLegacyMode { settingsContent.find("input", id:"legacyMode1") }
+		
 	}
 	
 	def importTextScript(String impexText) {
@@ -58,5 +66,18 @@ class ImpexImportPage extends Page {
 		return notification.text() == "Import finished successfully"
 	}
 	
+	def boolean getLegacyMode() {
+		if(!settingsContent.displayed) {
+			settingsHeader.click()
+			waitFor { settingsContent.displayed }
+		}
+		settingsLegacyMode.value()
+	}
+	
+	def void setLegacyMode(boolean mode) {
+		if(getLegacyMode() != mode) {
+			settingsLegacyMode.click()
+		}
+	}
 		
 }

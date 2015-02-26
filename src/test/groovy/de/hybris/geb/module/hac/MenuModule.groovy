@@ -8,15 +8,13 @@ class MenuModule extends Module {
 
 		//Logout
 		
-		logout { $("input", value:"logout") }
+		logout { $("div#loginInfo") }
 		
 		//Console Menu
 		
 		console { $("a#console") }
 
 		consoleImpexImport { $("a", href: endsWith("/console/impex/import")) }
-
-		
 		
 	}
 	

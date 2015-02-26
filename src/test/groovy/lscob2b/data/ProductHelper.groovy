@@ -1,21 +1,42 @@
 package lscob2b.data
 
+import groovy.json.JsonSlurper
+
 
 class ProductHelper  {
+	
+	public static final DATA_PRODUCT				= "src/test/resources/data/Product.json"
 	
 	def static String BRAND_LEVIS = "levis"
 	def static String BRAND_DOCKERS = "dockers"
 	
+	def private static Map<String, Map> products;
+	
+	static {
+		products = (Map<String, Map>) new JsonSlurper().parseText(new File(DATA_PRODUCT).text)
+	}
+	
+	static void main(String[] args) {
+		println "code: " + getProduct(BRAND_LEVIS)
+		println "cross: " + getCrossSelling(BRAND_LEVIS)
+	}
 	
 	/**
 	 * Product for pdp check
 	 */
 	def static String getProduct(brand) {
-		if(brand == BRAND_LEVIS) return "00501-0039"
-		if(brand == BRAND_DOCKERS) return ""
-		null
+		products.get(brand).get("baseProduct").get("code")
 	}			
 	
+	def static List<String> getCrossSelling(brand) {
+		products.get(brand).get("crossSelling")
+	}
+	
+	def static List<String> getUpSelling(brand) {
+		products.get(brand).get("upSelling")
+	}
+	
+	//TODO remove me and use getCrossSelling/getUpSelling
 	def static getUpCrossSelling(brand) {
 		if(brand == BRAND_LEVIS) {
 			return [

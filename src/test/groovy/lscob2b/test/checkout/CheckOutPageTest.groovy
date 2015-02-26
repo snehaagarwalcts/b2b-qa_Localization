@@ -8,13 +8,11 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.checkout.CheckOutPage
 import lscob2b.pages.quickorder.QuickOrderPage
-import lscob2b.test.data.User
+import spock.lang.Ignore
 
 class CheckOutPageTest extends GebReportingSpec {
 
-	def static User user = UserHelper.getCreditCardOnlyUser()
-
-	def static String targetProductCode = ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
+//	def static User user = UserHelper.getCreditCardOnlyUser()
 
 	//def static String targetProductString = "Levis 501"
 
@@ -35,15 +33,16 @@ class CheckOutPageTest extends GebReportingSpec {
 	 * TC BB-834 A customer which on credit card payment cannot choose Invoice
 	 * 
 	 */
+	@Ignore //TODO Dipen - Too much element in setup! please clean it (use where terms)
 	def "B2B unit with payment term code ZCC0 should only display credit card as payment option"() {
 		setup:
-		doSearch(targetProductCode, true)
-		at QuickOrderPage
-		def int cartCount = masterTemplate.cartItemCount.text().toInteger()
-		waitFor { !productSizingGrids.empty }
-		addLimitedStockQuantityToCart(0,1)
-		def int upCartCount = masterTemplate.cartItemCount.text().toInteger()
-		upCartCount == (cartCount+1)
+			doSearch(targetProductCode, true)
+			at QuickOrderPage
+			def int cartCount = masterTemplate.cartItemCount.text().toInteger()
+			waitFor { !productSizingGrids.empty }
+			addLimitedStockQuantityToCart(0,1)
+			def int upCartCount = masterTemplate.cartItemCount.text().toInteger()
+			upCartCount == (cartCount+1)
 
 		when: "at QuickOrderPage"
 		at QuickOrderPage
@@ -57,5 +56,9 @@ class CheckOutPageTest extends GebReportingSpec {
 		then: "check page elements"
 		checkCreditCardPaymentButtonExists()
 		invoicePayment.empty
+		
+		where:
+			user | targetProductCode
+			UserHelper.getCreditCardOnlyUser() | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS) 
 	}
 }

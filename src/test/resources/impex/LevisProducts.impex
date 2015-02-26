@@ -158,3 +158,16 @@ $approved=approvalstatus(code)[default='approved']
 INSERT_UPDATE ApparelStyleVariantProduct;code[unique=true];baseProduct(code,$catalogVersion)[unique=true];demand(code);$catalogVersion[unique=true];variantType(code)[default=ApparelSizeVariantProduct];$approved;unit(code)[default=pieces]
 ;00501-0039;00501;Core 1
 
+##################################################################################################################################################
+# /lscob2binitialdata/resources/lscob2binitialdata/import/sampledata/productCatalogs/levis/product-brandassortment-levis.impex
+##################################################################################################################################################
+$brand=Levis
+$season=151
+$year=2015
+$catalog=$brand$season$yearProductCatalog
+
+$catalogVersion=catalogVersion(catalog(id[default='$catalog']),version[default='Staged'])[unique=true,default='$catalog:Staged']
+$supercategories=supercategories(code, $catalogVersion)[mode=append]
+
+UPDATE ApparelStyleVariantProduct;code[unique=true];$supercategories;$catalogVersion[unique=true]
+;00501-0039;Levis_151_NOR701

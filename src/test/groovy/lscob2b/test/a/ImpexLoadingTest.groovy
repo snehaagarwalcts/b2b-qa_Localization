@@ -40,6 +40,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			at ImpexImportPage
 		
 		and: "load impex in HAC"
+			setLegacyMode(true)
 			importTextScript(getClass().getResource('/impex/Users.impex').text)
 			
 		then: "check import result"
