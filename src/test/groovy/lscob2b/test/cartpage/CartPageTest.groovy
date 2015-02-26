@@ -11,6 +11,7 @@ import lscob2b.pages.productdetails.ProductDetailsPage
 import spock.lang.IgnoreIf
 
 class CartPageTest extends GebReportingSpec {
+		
 	def setupSpec() {
 		PageHelper.gotoPageLogout(browser,baseUrl)
 	}
@@ -53,16 +54,27 @@ class CartPageTest extends GebReportingSpec {
 	@IgnoreIf({System.getProperty("geb.browser") == "chrome"})
 	def "Check the common content of Cart Page with products in cart"(){
 		setup:	//FIXME Dipen - To much element in setup
+		//doGoToCart()
 		at LoginPage
 		login(user)
+		
+		when: "at homepage"
 		at HomePage
+		
+		and: "go to the product details page of a product"
 		PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
+		
+		then: "at product details page"
 		at ProductDetailsPage
+		
+		and: "add quantity of 1 to sizing grid"
 		waitFor { !sizingGrid.empty }
 		sizingGrid.addLimitedStockQuantityToCart(1)
+		
+		and: "click on cart link"
 		masterTemplate.cartItemLink.click()
-
-		when: "at cart page"
+		
+		then: "at cart page"
 		at CartPage
 
 		and: "check common content of the page"
@@ -83,7 +95,6 @@ class CartPageTest extends GebReportingSpec {
 
 		where:
 		user | productCode
-		//		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | ProductHelper.getQuickOrderProduct(ProductHelper.BRAND_LEVIS)[0]
 	}
 }
