@@ -68,7 +68,7 @@ environments {
 	}
 	qa000 {
 		baseUrl = "http://b2bqa-000-web-000.lsco-b2b.com/"
-		hacUrl = "ttp://b2bqa-000-cron-000.lsco-b2b.com:9001/hac"
+		hacUrl = "http://b2bqa-000-cron-000.lsco-b2b.com:9001/hac"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}
@@ -110,7 +110,7 @@ if (sauceBrowser && sauceBrowser != "false") {
 
 	} else if(browserName == "chrome") {
 		//See https://sites.google.com/a/chromium.org/chromedriver/getting-started
-		System.setProperty("webdriver.chrome.driver", "C:/Users/401685/WebDrivers/chromedriver.exe")
+		System.setProperty("webdriver.chrome.driver", "/Users/i844489/Downloads/WebDrivers/chromedriver.exe")
 		driver = { new ChromeDriver() }
 
 	} else if(browserName == "internet explorer") {
