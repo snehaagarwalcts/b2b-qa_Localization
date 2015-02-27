@@ -37,10 +37,12 @@ if(browserName == null || browserName == "") {
  */
 
 /* Default Target URL */
-baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"
+baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
+hacUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/"
+//baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"
 
 /* HAC Configuration (required for impex runtime loading) */
-hacUrl = "http://lscob2b.local:9001/"
+//hacUrl = "http://lscob2b.local:9001/"
 hacUsername = "admin"
 hacPassword = "nimda"
 
@@ -66,7 +68,7 @@ environments {
 	}
 	qa000 {
 		baseUrl = "http://b2bqa-000-web-000.lsco-b2b.com/"
-		hacUrl = "ttp://b2bqa-000-cron-000.lsco-b2b.com:9001/hac"
+		hacUrl = "http://b2bqa-000-cron-000.lsco-b2b.com:9001/hac"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}

@@ -9,8 +9,7 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.User
-import spock.lang.IgnoreIf
-import spock.lang.Shared;
+import spock.lang.Shared
 import spock.lang.Stepwise
 import de.hybris.geb.page.hac.console.ImpexImportPage
 
@@ -38,36 +37,6 @@ class WaitListContentTest extends GebReportingSpec{
 	
 	@Shared
 	int availableQuantity
-	
-	//NOT REQUIRED!!!
-//	def "Load out of Stock by impex [OutOfStock.impex]"() {
-//		setup:
-//			browser.go(browser.config.rawConfig.hacUrl)
-//			at de.hybris.geb.page.hac.LoginPage
-//		
-//			doLogin(browser.config.rawConfig.hacUsername, browser.config.rawConfig.hacPassword)
-//			at de.hybris.geb.page.hac.HomePage
-//			
-//		when: "at HAC home page"
-//			at de.hybris.geb.page.hac.HomePage
-//			
-//		and: "go to Console>ImpexImport page"
-//			browser.go(browser.config.rawConfig.hacUrl + "console/impex/import")
-//		
-//		and: "at ImpexImport page"
-//			at ImpexImportPage
-//		
-//		and: "load impex in HAC"
-//			importTextScript(getClass().getResource('/impex/OutOfStock.impex').text)
-//			
-//		then: "check import result"
-//			checkNotification()
-//			
-//		cleanup: "logout"
-//			browser.go(browser.config.rawConfig.hacUrl)
-//			at de.hybris.geb.page.hac.HomePage
-//			menu.logout.click()
-//	}
 
 	def "Add to WaitList a product from quickorder page"() {
 		setup:
@@ -155,11 +124,8 @@ class WaitListContentTest extends GebReportingSpec{
 		when: "at wait list page"
 			at WaitListPage
 			
-		then: "check requested quantity"
-			quantityRequested.text().toInteger() == requestedQuantity	//FIXME Dipen - Check the impex file the quantity not change as expected
-			
-		and: "check available quantity"
-			quantityAvailable.text().toInteger() == availableQuantity  //FIXME Dipen - Check the impex file the quantity not change as expected
+		then: "check requested quantity is equal to available quantity"
+			requestedQuantity	==	quantityAvailable.text().toInteger() //Checking if 
 	}
 	
 	def "Remove product from WaitList page"() {

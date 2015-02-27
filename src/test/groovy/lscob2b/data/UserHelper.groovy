@@ -25,6 +25,9 @@ class UserHelper  {
 	public static final B2BUNIT_DOCKERS			= "automated-unit-3"
 	public static final B2BUNIT_MULTIBRAND		= "automated-unit-2"
 	
+	public static final COMPLIANT_PASSWORD ="Levi2016#"
+	public static final UNCOMPLIANT_PASSWORD ="12341234"
+	
 	static User getUser(b2bUnit, role) {
 		for(User u in users) {
 			if(u.groups.size() == (role.size()+1) && u.defaultB2BUnit.uid == b2bUnit && u.groups.containsAll(role)) {
@@ -36,6 +39,10 @@ class UserHelper  {
 	
 	static User getInvalidUser() {
 		new User(email:'username', password:'password')
+	}
+	
+	static User getUpdatePasswordUser(){
+		new User(email:'sagarwal1@levi.com', password:'Levis1234#')
 	}
 	
 	static User getTermsAndConditionUser(){

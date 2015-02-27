@@ -46,6 +46,11 @@ class ProductHelper  {
 		null
 	}
 	
+	def static getNotPartOfYourBrandAssortment(brand) {
+		//if(brand == BRAND_LEVIS) return "00501-0101"
+		products.get(brand).get("brandAssortment")
+	}
+	
 	def static getWaitlistProduct(brand) {
 		if(brand == BRAND_LEVIS) return "00501-0039"
 		if(brand == BRAND_DOCKERS) ""

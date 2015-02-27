@@ -1,0 +1,9 @@
+$passwordEncoding=md5
+$defaultPassword=Levis2015#
+$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+
+INSERT_UPDATE B2BCustomer;uid[unique=true];originalUid;email;title(code);name;customerID;groups(uid);defaultB2BUnit(uid);active;sendEmailEnabled[default=false];$setPassword
+;tessi.user@test.com;tessi.user@test.com;tessi.user@test.com;Mr.;"Tessi User";tessi-user-id;automated-unit-1,b2badmingroup,b2bcustomergroup,b2bfinancegroup;automated-unit-1;true
+
+INSERT_UPDATE Order;code[unique=true];user(uid);date[dateformat=dd.MM.yyyy HH:mm];currency(isocode);net;deliveryMode(code);Discounts(code);calculated;unit(uid);site(uid);store(uid);invoices
+;1000001111;tessi.user@test.com;01.01.2014 07:56;GBP;false;;;false;automated-unit-1;lscob2b;GB01;0330363335

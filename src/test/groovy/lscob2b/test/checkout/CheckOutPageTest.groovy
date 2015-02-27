@@ -65,4 +65,53 @@ class CheckOutPageTest extends GebReportingSpec {
 		user | targetProductCode
 		UserHelper.getCreditCardOnlyUser() | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
 	}
+	
+	/**
+	 *  TC BB-869 Customer with ZCC1 payment code should default to credit card as defaulted payment
+	 */
+	def "B2B unit with payment term code ZCC1 should have credit card as defualt payment option"() {
+		setup:
+		at LoginPage
+		login(user)
+
+		when: "at Home page"
+		at HomePage
+
+		and:"click on quick order link"
+		masterTemplate.clickQuickOrder()
+
+		and:"at quick order page"
+		at QuickOrderPage
+
+		then: "search for a product"
+		doSearch(targetProductCode, true)
+
+		when: "at quick order page"
+		at QuickOrderPage
+
+		and: "add product to cart"
+		def int cartCount = masterTemplate.cartItemCount.text().toInteger()
+		waitFor { !productSizingGrids.empty }
+		addLimitedStockQuantityToCart(0,1)
+		def int upCartCount = masterTemplate.cartItemCount.text().toInteger()
+		upCartCount == (cartCount+1)
+
+		then: "at QuickOrderPage"
+		at QuickOrderPage
+
+		when: "click checkout"
+		checkOutLink.click()
+
+		and: "at Checkout page"
+		at CheckOutPage
+
+		then: "check credit card is diffault payment option"
+		//!creditCardDefault.empty  //FIXME once BB-835 is fixed
+		
+		where:
+		user | targetProductCode
+		UserHelper.getDefaultCreditCardUser() | ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)
+	}
+	
+	
 }
