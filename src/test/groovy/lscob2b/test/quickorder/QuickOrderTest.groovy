@@ -80,11 +80,8 @@ class QuickOrderTest extends GebReportingSpec {
 			waitFor { !productSizingGrids.empty }
 			addLimitedStockQuantityToCart(0,1)
 			
-		and: "get updated cart item"
-			def int upCartCount = masterTemplate.cartItemCount.text().toInteger()
-			
 		then: "check cart item count"
-			upCartCount == (cartCount+1)
+			waitFor { masterTemplate.cartItemCount.text().toInteger() == (cartCount+1) }
 	}
 	
 	/**

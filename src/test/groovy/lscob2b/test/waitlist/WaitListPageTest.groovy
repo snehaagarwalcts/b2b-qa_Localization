@@ -30,6 +30,7 @@ class WaitListPageTest extends GebReportingSpec {
 			at HomePage	
 		
 		and: "Click on WaitList link"	
+			waitFor { masterTemplate.waitListLink }
 			masterTemplate.waitListLink.click()
 			
 		then: "at QuickOrder page"

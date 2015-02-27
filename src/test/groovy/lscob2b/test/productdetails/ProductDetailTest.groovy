@@ -49,11 +49,8 @@ class ProductDetailTest extends GebReportingSpec {
 			waitFor { !sizingGrid.empty }
 			sizingGrid.addLimitedStockQuantityToCart(1)
 			
-		and: "get updated cart item"
-			def int upCartCount = masterTemplate.cartItemCount.text().toInteger()
-			
 		then: "check updated cart count"
-			upCartCount == (cartCount+1)
+			waitFor { masterTemplate.cartItemCount.text().toInteger() == (cartCount+1) }
 			
 	}
 	
