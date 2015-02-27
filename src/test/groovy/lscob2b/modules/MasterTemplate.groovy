@@ -14,13 +14,13 @@ class MasterTemplate extends Module {
 		
 		homeLink { $("#breadcrumb li a", href: endsWith('/')) }
 
-		myAccountLink {
-			$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"),0)
-		}
+		//myAccountLink {$('.global-nav-hasmenu.hover>span')}
+
+		myAccountLink {$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"),0)}
 		
-		manageUsersLink {
-			$('div.global-nav a', href: endsWith('manage-users/'))
-		}
+		//manageUsersLink { $('div.global-nav a', href: endsWith('manage-users/')) }
+		
+		manageUsersLink { $('div.global-nav a[href*="manage-users"]') }
 
 		logoutLink {
 			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
@@ -94,7 +94,16 @@ class MasterTemplate extends Module {
 		
 		/*Help*/
 		helpLink { $('.yCmsComponent').find("a", href: endsWith('/help')) }
-		 	
+		
+		/* Footer Links  */
+		
+		siteMapLink {$('div.footer a[href*="sitemap"]')}
+			
+		aboutUsLink {$('div.footer a[href*="levistrauss.com/who-we-are"]')}
+		
+		termsAndConditionsLink {$('div.footer a[href*="/termsAndConditions"]')}
+		
+		privacyPolicyLink {$('div.footer a[href*="/privacyPolicy"]')}		 	
 	}
 	
 	def gotoHelpPage(){
