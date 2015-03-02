@@ -9,8 +9,6 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.checkout.CheckOutPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.test.data.User
-import spock.lang.IgnoreIf
-import spock.lang.IgnoreRest;
 import spock.lang.Stepwise
 
 @Stepwise
