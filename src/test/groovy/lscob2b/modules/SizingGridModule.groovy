@@ -13,7 +13,9 @@ class SizingGridModule extends Module {
 
 		buttonAddToCart(wait:true) { $("a", class:"button-large add_to_cart_button") }	
 		
-		buttonNotifyMe { $("a", class:"button btn-white addtowaitlist") }
+		//buttonNotifyMe { $("a", class:"button btn-white addtowaitlist") }
+		
+		buttonNotifyMe { $('a.button.btn-white.addtowaitlist') }
 	}
 
 	def addLimitedStockQuantityToCart(int quantity) {

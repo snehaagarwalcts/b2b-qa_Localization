@@ -37,8 +37,8 @@ if(browserName == null || browserName == "") {
  */
 
 /* Default Target URL */
-baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
-hacUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/"
+baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
+hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"
 //baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"
 
 /* HAC Configuration (required for impex runtime loading) */
