@@ -44,6 +44,7 @@ class QuickOrderSecurityTest extends GebReportingSpec {
 			addLimitedStockQuantityToCart(0,1)
 			
 		and: "click checkout"
+			waitFor { checkOutLink.displayed }
 			checkOutLink.click()
 			
 		then: "at cart page"	
