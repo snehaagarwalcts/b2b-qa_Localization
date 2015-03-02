@@ -1,15 +1,15 @@
 package lscob2b.test.myaccount
 
-import spock.lang.Ignore;
-import spock.lang.Stepwise;
-import lscob2b.data.PageHelper;
-import lscob2b.data.UserHelper;
-import lscob2b.pages.HomePage;
-import lscob2b.pages.LoginPage;
-import lscob2b.pages.myaccount.MyAccountPage;
-import lscob2b.pages.myaccount.UpdatePasswordPage;
+import spock.lang.Ignore
+import spock.lang.Stepwise
+import lscob2b.data.PageHelper
+import lscob2b.data.UserHelper
+import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
+import lscob2b.pages.myaccount.MyAccountPage
+import lscob2b.pages.myaccount.UpdatePasswordPage
 import lscob2b.test.data.User
-import geb.spock.GebReportingSpec;
+import geb.spock.GebReportingSpec
 
 class UpdatePasswordTest extends GebReportingSpec {
 
@@ -64,7 +64,7 @@ class UpdatePasswordTest extends GebReportingSpec {
 	 * US BB-746 Password rules
 	 * TC BB-861 Verify Password Update functionality with a compliant password
 	 */
-	@Ignore
+	//@Ignore
 	def "Check Password Update functionality with compliant password"(){
 		setup:
 		login(user)
@@ -84,8 +84,7 @@ class UpdatePasswordTest extends GebReportingSpec {
 		doUpdatePassword(user.password,compliantPassword)
 		
 		then: "Password Successfully Updated message appears "
-		//password changed successfully message appears
-		//A pop up also appears
+		passwordUpdateMessage.displayed
 		
 		when: "Login with new password"
 		PageHelper.gotoPageLogout(browser, baseUrl)

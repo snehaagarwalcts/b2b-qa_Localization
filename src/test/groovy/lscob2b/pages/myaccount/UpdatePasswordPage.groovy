@@ -19,6 +19,8 @@ class UpdatePasswordPage extends Page {
 		updatePasswordButton{ $('.button.save') }
 		
 		errorMessage { $('div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span') }
+		
+		passwordUpdateMessage { $('div.note-message h2') }
 				
 	}
 	
