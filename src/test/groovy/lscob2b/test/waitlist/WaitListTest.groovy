@@ -59,13 +59,14 @@ public class WaitListTest extends GebReportingSpec{
 			at QuickOrderPage
 			
 		and: "get current waitlist item count"
-			waitFor { masterTemplate.waitListItemCount }
+			waitFor { masterTemplate.waitListItemCount.displayed }
 			def int currentWL = masterTemplate.waitListItemCount.text().toInteger()
 		
 		and: "add item to waitlist"
 			addOutOfStockQuantityToWaitList(0,1)
 			
 		and: "get updated waitlist item count"
+			waitFor { masterTemplate.waitListItemCount.displayed }
 			def int updateWL = masterTemplate.waitListItemCount.text().toInteger()
 		
 		then: "check waitlist count"

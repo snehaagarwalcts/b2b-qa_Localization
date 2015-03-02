@@ -45,6 +45,8 @@ class ProductDetailsPage extends Page {
 		overlayTable { overlayWaitList.find("table.grid_three_dimensions") }
 
 		overlayButtonAdd { overlayWaitList.find("a#add_to_waitlist_button") }
+		
+		overlayClosePopUp { $('#popupBoxClose')}
 
 		notYourBrandAssortmentProduct { $('.alert-message') }
 
@@ -88,6 +90,8 @@ class ProductDetailsPage extends Page {
 		overlayTable.find("td.Red",0).find("input.sku-quantity").value(quantity)
 
 		overlayButtonAdd.click()
+		
+		overlayClosePopUp.click()
 
 	}
 
