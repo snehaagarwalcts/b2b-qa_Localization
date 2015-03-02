@@ -55,8 +55,8 @@ class MasterTemplate extends Module {
 		
 		/*Contact us after login*/
 		
-		contactUs { $('.yCmsComponent').find('a', href:endsWith('/contactus')) }
-		
+		//contactUs { $('.yCmsComponent').find('a', href:endsWith('/contactus')) }
+		contactUs { $('div.footer a[href*="/contactus"]') }
 
 		/* WaitList */
 		

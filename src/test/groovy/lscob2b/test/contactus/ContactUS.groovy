@@ -42,7 +42,7 @@ class ContactUS extends GebReportingSpec {
 		fillOutCustomerNumber('111-222-3333')
 		def country = selectCountryOption(18)
 		clickSendButton()
-		checkNoteMessageExists()
+		checkNoteMessageExists()//App error in int001
 	}
 	
 	/**
