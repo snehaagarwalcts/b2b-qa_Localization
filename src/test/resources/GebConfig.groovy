@@ -110,12 +110,12 @@ if (sauceBrowser && sauceBrowser != "false") {
 
 	} else if(browserName == "chrome") {
 		//See https://sites.google.com/a/chromium.org/chromedriver/getting-started
-		System.setProperty("webdriver.chrome.driver", "/Users/i844489/Downloads/WebDrivers/chromedriver.exe")
+		System.setProperty("webdriver.chrome.driver", "C:/Users/401685/WebDrivers/chromedriver.exe")
 		driver = { new ChromeDriver() }
 
 	} else if(browserName == "internet explorer") {
 
-		System.setProperty("webdriver.ie.driver", "/Users/i844489/Downloads/WebDrivers/IEDriverServer.exe")
+		System.setProperty("webdriver.ie.driver", "C:/Users/401685/WebDrivers/IEDriverServer.exe")
 		driver = { new InternetExplorerDriver() }
 
 	} else {
