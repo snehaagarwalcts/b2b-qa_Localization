@@ -52,6 +52,9 @@ class QuickOrderSecurityTest extends GebReportingSpec {
 
 		and: "check error message"
 			alertMessage.displayed
+			
+		then: "remove from cart page"
+			doRemove()
 
 		where:
 		user | productCode
