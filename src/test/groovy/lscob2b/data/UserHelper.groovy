@@ -42,7 +42,7 @@ class UserHelper  {
 	}
 	
 	static User getUpdatePasswordUser(){
-		new User(email:'sagarwal1@levi.com', password:'Levis1234#')
+		new User(email:'sagarwal1@levi.com', password:'Levis2015#')
 	}
 	
 	static User getTermsAndConditionUser(){

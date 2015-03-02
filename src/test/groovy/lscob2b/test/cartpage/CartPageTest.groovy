@@ -20,9 +20,9 @@ class CartPageTest extends GebReportingSpec {
 		to LoginPage
 	}
 
-	def cleanup() {
+	/*def cleanup() {
 		masterTemplate.doLogout()
-	}
+	}*/
 
 	/**
 	 * US BB-555 Text for empty cart 
