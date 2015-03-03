@@ -13,6 +13,7 @@ import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import spock.lang.Ignore
+import spock.lang.IgnoreRest;
  
 class OrderHistoryTest extends GebReportingSpec {
 
@@ -28,7 +29,7 @@ class OrderHistoryTest extends GebReportingSpec {
 
 		//Add To Cart
 		addOrderQuantity("1")
-		sizingGrid.addToCart()
+		sizingGrid.buttonAddToCart.click()
 		masterTemplate.goToCartLink.click()
 
 		//Cart
@@ -117,11 +118,12 @@ class OrderHistoryTest extends GebReportingSpec {
 
 	
 	
-	@Ignore //TODO NOTE can't run last 3 tests as we shouldn't place an order	
+	//TODO NOTE can't run last 3 tests as we shouldn't place an order	
+	@Ignore
 	def "Test order creation in history"() {
 		setup:
-			login(user)
 			at LoginPage
+			login(user)		
 			
 		when: "At HomePage"
 			at HomePage
@@ -157,8 +159,9 @@ class OrderHistoryTest extends GebReportingSpec {
 
 	/**
 	 * TC BB-509 Automated test: User Can reorder from history page
-	 */
-	@Ignore //TODO NOTE can't run last 3 tests as we shouldn't place an order
+	 */	
+	//TODO NOTE can't run last 3 tests as we shouldn't place an order
+	@Ignore 
 	def "Test re-order functionality in history"() {
 		setup:
 		login(user)
@@ -191,13 +194,13 @@ class OrderHistoryTest extends GebReportingSpec {
 		where:
 		productCode | user | _
 		ProductHelper.getOrderHistoryProduct(ProductHelper.BRAND_LEVIS) |	UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
-
 	}
 
 	/**
 	 * TC BB-601 Automated Test: Order Search
-	 */
-	@Ignore //TODO NOTE can't run last 3 tests as we shouldn't place an order
+	 */	 
+	//TODO NOTE can't run last 3 tests as we shouldn't place an order
+	@Ignore
 	def "Test search functionality in history"() {
 		setup:
 			login(user)

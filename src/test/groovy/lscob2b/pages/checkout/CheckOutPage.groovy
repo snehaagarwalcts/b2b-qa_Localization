@@ -13,7 +13,8 @@ class CheckOutPage extends Page{
 		
 		masterTemplate {module MasterTemplate}
 		
-		placeOrderLink { $("div.cartButtons a.placeOrderButton") }
+		//placeOrderLink { $("div.cartButtons a.placeOrderButton") }
+		placeOrderLink { $('form#placeOrderForm1 a.button-large.placeOrderButton') }
 		
 		cartItems { $("div.cartItem").collect { module CartModule, it  } }
 		
@@ -28,9 +29,18 @@ class CheckOutPage extends Page{
 		creditCardPayment(required: false) { $('#PaymentTypeSelection_CARD') }
 		invoicePayment(required: false) { $('#PaymentTypeSelection_ACCOUNT') }
 		creditCardDefault { $('#PaymentTypeSelection_CARD').attr('checked')}
+		
+		//Select Delivery address
+		alternateDeliveryAddressSelect{ $('.button.editButton>p')}
+		useAddressSelect{ $('div.addressEntry:nth-child(1) button.useAddress')}
 	}
 
 	def doPlaceOrder(){
+		waitFor { alternateDeliveryAddressSelect.displayed }
+		alternateDeliveryAddressSelect.click()
+		waitFor { useAddressSelect.displayed }
+		useAddressSelect.click()
+		waitFor { placeOrderLink.displayed }
 		placeOrderLink.click()
 	}
 	

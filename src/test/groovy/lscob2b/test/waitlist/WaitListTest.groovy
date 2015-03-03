@@ -92,7 +92,7 @@ public class WaitListTest extends GebReportingSpec{
 			def int currentWL = masterTemplate.waitListItemCount.text().toInteger()
 		
 		and: "add item to waitlist"
-			addOutOfStockQuantityToWaitList(1)
+			addOutOfStockQuantityToWaitList(1)//Bug raised BB-876
 			
 		and: "get updated waitlist item count"
 			def int updateWL = masterTemplate.waitListItemCount.text().toInteger()

@@ -53,19 +53,19 @@ class ProductHelper  {
 	
 	def static getWaitlistProduct(brand) {
 		if(brand == BRAND_LEVIS) return "00501-0039"
-		if(brand == BRAND_DOCKERS) ""
+		if(brand == BRAND_DOCKERS) return ""
 		null
 	}	
 	
 	def static getOrderHistoryProduct(brand) {
-		if(brand == BRAND_LEVIS) "00501-0039"
-		if(brand == BRAND_DOCKERS) ""
+		if(brand == BRAND_LEVIS) return "00501-0039"
+		if(brand == BRAND_DOCKERS) return ""
 		null
 	}
 	
 	def static String[] getQuickOrderProduct(brand) {
 		if(brand == BRAND_LEVIS) return [ "00501-0039", "00501-0113" ]
-		if(brand == BRAND_DOCKERS) ""
+		if(brand == BRAND_DOCKERS) return ""
 		null
 	}
 	

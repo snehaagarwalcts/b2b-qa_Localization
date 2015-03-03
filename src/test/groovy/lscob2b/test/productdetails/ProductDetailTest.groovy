@@ -73,17 +73,29 @@ class ProductDetailTest extends GebReportingSpec {
 			checkItemColorExists()
 			checkItemPriceExists()
 			checkItemQuantityExists()
-			checkItemTotalExists()
-		
+			checkItemTotalExists()		
 	}
 	
 	/**
 	 * TC BB-559 Automated test: be able to place an order from Product details page
 	 */
-	@Ignore //TODO not possible to place an order (SAP Integration is missing)
+	//TODO not possible to place an order (SAP Integration is missing)
+	@Ignore
 	def "Place an order from product details page"(){
-		Product product = TestDataCatalog.getAProductAvailableForUser(user)
-
+		when: "at Cart Page"
+			at CartPage
+			
+		then: "click on checkout"
+			linkCheckout.click()
+		
+		when: "at Checkout page"
+			at CheckOutPage
+			
+		then: "Place Order"
+			doPlaceOrder()
+			
+		/*Product product = TestDataCatalog.getAProductAvailableForUser(user)
+		
 		setup: "Log in"
 
 		to LoginPage
@@ -101,12 +113,11 @@ class ProductDetailTest extends GebReportingSpec {
 		checkOut.doCheckOut()
 		at CheckOutPage
 		//NOTE do not place an order. It'll take up stock
-		/*doPlaceOrder()
-		at OrderConfirmationPage*/
+		doPlaceOrder()
+		at OrderConfirmationPage
 		
 		where:
 		user | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
-	}
-	
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _*/
+	}	
 }
