@@ -62,6 +62,8 @@ class UpdatePasswordTest extends GebReportingSpec {
 	 * US BB-746 Password rules
 	 * TC BB-861 Verify Password Update functionality with a compliant password
 	 */
+	
+	//hello
 	@Ignore
 	def "Check Password Update functionality with compliant password"(){
 		setup:
