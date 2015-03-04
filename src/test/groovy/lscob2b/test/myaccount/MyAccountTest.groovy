@@ -11,6 +11,7 @@ import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.myaccount.ProfilePage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import spock.lang.Ignore
+import spock.lang.IgnoreRest
 
 class MyAccountTest extends GebReportingSpec {
 
@@ -24,7 +25,6 @@ class MyAccountTest extends GebReportingSpec {
 	 * right-side of the header section of the Application, that should redirect the user to the My Account Home Page.
 	 * TC BB-362 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "My Account" Page.
 	 */
-	@Ignore
 	def "Check [MyAccountPage] structure"() {
 		when: "at LoginPage"
 			at LoginPage	
@@ -62,11 +62,10 @@ class MyAccountTest extends GebReportingSpec {
 			
 		where:
 			user | menuLinks | pageLinks
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | ["profile", "address-book", "manage-users/", "orders", "balance"] | ["profile", "update-password", "address-book", "create", "manage-users", "orders", "balance"]
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | ["profile", "address-book", "manage-users/" ] | ["profile", "update-password", "address-book", "create", "manage-users"] 
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | ["profile", "address-book", "manage-users", "orders", "balance"] | ["profile", "update-password", "address-book", "create", "manage-users", "orders", "balance"]
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | ["profile", "address-book", "manage-users" ] | ["profile", "update-password", "address-book", "create", "manage-users"] 
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | ["profile", "address-book", "orders" ] | ["profile", "update-password", "address-book", "orders"]
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | ["profile", "address-book", "balance"] | ["profile", "update-password", "address-book", "balance"]
-		
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | ["profile", "address-book", "balance"] | ["profile", "update-password", "address-book", "balance"]		
 	}
 
 	/**

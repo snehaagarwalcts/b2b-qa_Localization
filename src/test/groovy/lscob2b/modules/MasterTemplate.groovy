@@ -16,7 +16,9 @@ class MasterTemplate extends Module {
 
 		//myAccountLink {$('.global-nav-hasmenu.hover>span')}
 
-		myAccountLink {$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"),0)}
+		myAccountLink {$('div.global-nav ul.global-nav-list').find("a.global-nav-hasmenu", href: contains("/my-account"),0)}				
+		
+		myAccountSubLink { $('ul.global-nav-list>li.yCmsComponent:nth-child(3) li')}
 		
 		//manageUsersLink { $('div.global-nav a', href: endsWith('manage-users/')) }
 		
@@ -28,9 +30,7 @@ class MasterTemplate extends Module {
 
 		/* BreadCrumb */
 		
-		breadCrumbs {
-			$('div#breadcrumb').find('li').not('li.separator')
-		}
+		breadCrumbs { $('div#breadcrumb').find('li').not('li.separator') }
 		
 		breadCrumbHref { String href -> $('div#breadcrumb').find("a", href:endsWith(href),0) }
 		
@@ -204,21 +204,22 @@ class MasterTemplate extends Module {
 	/* MY ACCOUNT */
 	
 	def getMyAccountSubLink(String link) {
-		myAccountLink.jquery.mouseover()
+		//myAccountLink.jquery.mouseover()
 		waitFor {
-			myAccountLink.parent().find("ul").displayed
+			!myAccountLink.parent().find("ul").empty
+			//myAccountLink.parent().find("ul").displayed
 		}
 		myAccountLink.parent().find("a", href: endsWith(link))
 	}
 	
 	def getMyAccountSubLinks() {
-		myAccountLink.jquery.mouseover()
+		//myAccountLink.jquery.mouseover()
 		waitFor {
-			myAccountLink.parent().find("ul").displayed
+			//!myAccountLink.parent().find("ul").empty
+			!myAccountSubLink.empty
 		}
-		myAccountLink.parent().find("ul").find("a")
+		//myAccountLink.parent().find("ul").find("a")
+		myAccountSubLink.find("a")
 	}
-	
-	
-	
+			
 }

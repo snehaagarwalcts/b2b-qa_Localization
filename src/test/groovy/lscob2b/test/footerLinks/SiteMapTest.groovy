@@ -1,5 +1,6 @@
 package lscob2b.test.footerLinks
 
+import spock.lang.IgnoreRest;
 import spock.lang.Stepwise;
 import lscob2b.data.PageHelper;
 import lscob2b.data.UserHelper;
@@ -64,17 +65,26 @@ class SiteMapTest extends GebReportingSpec{
 		when: "at SiteMap page"
 		at SiteMapPage
 		
-		then: "Check Sub Category Links"		
+		then: "check all the Categories"		
 		!menLink.empty
 		!womenLink.empty
-		!myAccountLink.empty		
+		!myAccountLink.empty	
 		
+		and: "check sub-categories under all the Categories"	
+			//check all the subLinks
+			for(def i=0; i<subCategoryLinksize.size(); i++){
+				assert !subCategoryLink(i).empty				
+			}
+			//Account Section Check
+			for(link in pageLinks) {
+				assert hasPageLink(link)
+			}
+								
 		where:
-		user | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | _
-		UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_ADMIN) | _
-		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
-		
+		user | pageLinks
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | ["profile", "address-book", "manage-users", "orders", "balance"]
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | ["profile", "address-book", "manage-users" ]
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | ["profile", "address-book", "orders" ]
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | ["profile", "address-book", "balance"]	
 	}
-
 }

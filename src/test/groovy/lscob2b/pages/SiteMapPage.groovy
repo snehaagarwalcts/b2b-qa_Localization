@@ -14,7 +14,20 @@ class SiteMapPage extends Page {
 		
 		womenLink {('div#main-container a[href*="Women/c/Levis_151_Female"]')}
 		
-		myAccountLink {('div#main-container a[href*="/my-account"]')}
+		myAccountLink {('div#main-container a[href*="/my-account"]')}		
+		
+		subCategoryAccountLink { $('.sitemap-column>ul li') }
+		
+		subCategoryLink { $('.sitemap-column>ul>li>a',it) }
+		
+		subCategoryLinksize { $('.sitemap-column>ul>li>a') }
+		
+	}
+	
+	def boolean hasPageLink(String link) 
+	{
+		waitFor { !subCategoryAccountLink.empty }
+		subCategoryAccountLink.find("a", href: endsWith(link))
 	}
 
 }
