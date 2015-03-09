@@ -37,6 +37,7 @@ public class WaitListTest extends GebReportingSpec{
 
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder
+	 * BB-476 Automated Test Case: Add product to waitlist from Quick order page
 	 */
 	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
 	def "Adding to WaitList from QuickOrder page"() {

@@ -16,6 +16,9 @@ class ProductDetailSecurityTest extends GebReportingSpec {
 		to LoginPage 
 	}
 	
+	/**
+	 * TC BB-560 Automated test case: Users that do no belong to Customer group can't place an order from Quick order page and product details page
+	 */	
 //	@IgnoreIf({ System.getProperty("geb.browser") == "safari" || System.getProperty("geb.browser") == "ie8" || System.getProperty("geb.browser") == "chrome"})
 	def "User that does not hold customer rights tries to place an order from product detail page"() {
 		setup:		

@@ -13,6 +13,7 @@ class LanguageSelectorTest extends GebReportingSpec {
 	}
 	
 	/**
+	 * TC BB-337 Automated Test Case: Language field is available in Login Page.
 	 * TC BB-339 Automated Test Case: When selecting a different language from the Login Page -> Language field,\
 	 * the system language changes to the selected value.
 	 */

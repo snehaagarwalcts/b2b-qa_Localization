@@ -27,7 +27,7 @@ class ProductDetailsPageNotPartOfBrandAssortmentTest extends GebReportingSpec {
 	}
 
 	/**
-	 * TC BB-246 As a customer I should see only products that are assigned to my customer profile
+	 * TC BB-867 As a customer I should see only products that are assigned to my customer profile
 	 */
 	def "Product not part of your brand assortment"(){
 		setup:
