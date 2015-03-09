@@ -11,7 +11,7 @@ class HomePage extends Page{
     static url = ""
 
     static at = {
-		waitFor { title == "LSCO B2B Site | Homepage" }
+		waitFor { title == "LSCO B2B Site | Homepage" ||  title == "LSCO B2B Site | DE_Homepage" }
     }
 
     static content = {

@@ -7,7 +7,7 @@ class CartPage extends Page{
 
 	static url = "/cart"
 
-	static at = { waitFor { title == "Your Shopping Cart | LSCO B2B Site" } }
+	static at = { waitFor { title == "Your Shopping Cart | LSCO B2B Site" || title =="DE_Your Shopping Cart | LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate {module MasterTemplate}
