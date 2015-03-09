@@ -33,7 +33,7 @@ class CartPage extends Page{
 		itemTotal { $("div.itemSummary .total span.label") }
 		
 		//Empty Cart messages
-		emptyCart { $("#main-container .blankSlate h2") }
+		emptyCart (required: false) { $("#main-container .blankSlate h2") }
 		alertContainer { $("div.alert-container") }
 		alertMessage { alertContainer.find("div.alert-message") }
 		

@@ -31,8 +31,11 @@ class CheckOutPage extends Page{
 		creditCardDefault { $('#PaymentTypeSelection_CARD').attr('checked')}
 		
 		//Select Delivery address
-		alternateDeliveryAddressSelect{ $('.button.editButton>p')}
+		alternateDeliveryAddressSelect(required: false) { $('.button.editButton>p')}
 		useAddressSelect{ $('div.addressEntry:nth-child(1) button.useAddress')}
+		
+		//No delivery address selected
+		noDeliveryAddressSelected { $('#globalMessages .alert-message') }
 	}
 
 	def doPlaceOrder(){
@@ -62,6 +65,10 @@ class CheckOutPage extends Page{
 	
 	def checkInvoicePaymentButtonExists(){
 		!invoicePayment.empty
+	}
+	
+	def checkNoDeliveryAddressSelectedExists(){
+		!noDeliveryAddressSelected.empty
 	}
 		
 }
