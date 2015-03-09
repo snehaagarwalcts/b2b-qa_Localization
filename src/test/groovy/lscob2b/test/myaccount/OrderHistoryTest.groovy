@@ -13,7 +13,6 @@ import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import spock.lang.Ignore
-import spock.lang.IgnoreRest;
  
 class OrderHistoryTest extends GebReportingSpec {
 
@@ -116,7 +115,33 @@ class OrderHistoryTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 
-	
+	/**
+	 * US BB-244 Link to Tessi to download an Invoice in PDF
+	 * TC BB-893 Automated test: Link to Tessi to download an ivoice in pdf
+	 */
+	def "go to OrderHistory for [tessi user]"() {
+		setup:
+			login(user)
+
+		when: "At HomePage"
+		at HomePage
+
+		then: "Go to my-account/orders"
+		browser.go(baseUrl + "my-account/orders")
+		
+		when: "at order history page"
+		at OrderHistoryPage
+		
+		and: "click on inovice number"
+		clickOnInvoiceNumber()
+		
+		then: "we can go to another site to download pdf"
+		waitFor {"#bandeauTop"}//Need to figure out the name of the site
+		
+		where:
+		user | _
+		UserHelper.getTessiUser() | _
+	}
 	
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order	
 	@Ignore

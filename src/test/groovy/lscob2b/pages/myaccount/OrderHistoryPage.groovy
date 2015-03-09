@@ -60,7 +60,8 @@ class OrderHistoryPage extends Page{
 		/* Result */
 		
 		resultTable(required: false) { $("table.orderListTable") }
-			
+		
+		invoiceNumber (require:false) { $("a.invoice") }
 	}
 	
 	def checkOrderHistoryData(){
@@ -159,6 +160,10 @@ class OrderHistoryPage extends Page{
 			
 	def clickOnFirstOrder() {
 		resultTable.find("tbody>tr a",0).click()
+	}
+	
+	def clickOnInvoiceNumber(){
+		invoiceNumber.click()
 	}
 		
 }

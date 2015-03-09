@@ -87,6 +87,26 @@ class ImpexLoadingTest extends GebReportingSpec {
 			checkNotification()
 	}
 	
+	def "load impex [/impex/Tessi_Test_Order.impex]"() {
+		setup:
+			browser.go(browser.config.rawConfig.hacUrl)
+			
+		when: "at HAC home page"
+			at HomePage
+			
+		and: "go to Console>ImpexImport page"
+			browser.go(browser.config.rawConfig.hacUrl + "console/impex/import")
+		
+		and: "at ImpexImport page"
+			at ImpexImportPage
+		
+		and: "load impex in HAC"
+			importTextScript(getClass().getResource('/impex/Tessi_Test_Order.impex').text)
+			
+		then: "check import result"
+			checkNotification()
+	}
+	
 	def "logout from HAC"() {
 		setup:
 			browser.go(browser.config.rawConfig.hacUrl)

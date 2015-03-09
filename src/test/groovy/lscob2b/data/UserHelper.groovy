@@ -101,6 +101,10 @@ class UserHelper  {
 		new User (email:'super@unit-16', password:'Levis2015#')
 	}
 	
+	static User getTessiUser(){
+		new User (email:'tessi.user@test.com', password:'Levis2015#')
+	}
+	
 	static List<Address> getShippingAddress(User user) {
 		List<Address> addressList = new ArrayList<Address>()
 		

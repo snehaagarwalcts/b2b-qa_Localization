@@ -125,7 +125,7 @@ class WaitListContentTest extends GebReportingSpec{
 			at WaitListPage
 			
 		then: "check requested quantity is equal to available quantity"
-			requestedQuantity	==	quantityAvailable.text().toInteger() //Checking if 
+			requestedQuantity	==	quantityAvailable.text().toInteger() //Checking if new available quantity equals the requested quantity
 	}
 	
 	def "Remove product from WaitList page"() {
