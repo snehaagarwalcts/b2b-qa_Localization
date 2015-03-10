@@ -133,6 +133,7 @@ class MyAccountTest extends GebReportingSpec {
 
 	/**
 	 * TC BB-424 Automated Test Case: Validate the content of the My Account - "Manage Users" Page for b2badministrator user.
+	 * TC BB-427 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "Manage Users" Page.
 	 */
 	def "Check [ManageUserPage] structure"(){
 		setup:
