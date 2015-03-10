@@ -37,6 +37,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			browser.go(browser.config.rawConfig.hacUrl + "console/impex/import")
 		
 		and: "at ImpexImport page"
+		waitFor { ImpexImportPage}
 			at ImpexImportPage
 		
 		and: "load impex in HAC"
@@ -101,6 +102,7 @@ class ImpexLoadingTest extends GebReportingSpec {
 			at ImpexImportPage
 		
 		and: "load impex in HAC"
+			setLegacyMode(true)
 			importTextScript(getClass().getResource('/impex/Tessi_Test_Order.impex').text)
 			
 		then: "check import result"
