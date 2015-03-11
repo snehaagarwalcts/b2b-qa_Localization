@@ -51,7 +51,7 @@ class CartPageTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | _
 	}
 
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "chrome"})
 	def "Check the common content of Cart Page with products in cart"(){
 		setup:
 		at LoginPage

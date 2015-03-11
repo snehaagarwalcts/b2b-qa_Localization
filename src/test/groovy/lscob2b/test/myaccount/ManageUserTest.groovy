@@ -21,6 +21,7 @@ class ManageUserTest extends GebReportingSpec {
 
 	/**
 	 * Bug BB-523 Security Problem on "my-account""
+	 * TC BB-605 Automated Testcase: Test security access on "my-account/manage-users"
 	 */
 	def "Check access to ManageUserPage for [b2badmingroup]"() {
 		setup:
@@ -44,6 +45,7 @@ class ManageUserTest extends GebReportingSpec {
 
 	/**
 	 * Bug BB-523 Security Problem on "my-account""
+	 * TC BB-605 Automated Testcase: Test security access on "my-account/manage-users"
 	 */
 	def "Check denied access to ManageUserPage for not [b2badmingroup]"() {
 		setup:

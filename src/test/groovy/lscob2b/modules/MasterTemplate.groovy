@@ -221,5 +221,9 @@ class MasterTemplate extends Module {
 		//myAccountLink.parent().find("ul").find("a")
 		myAccountSubLink.find("a")
 	}
+	
+	def waitForSometime(){
+		Thread.sleep(2000)
+	}
 			
 }

@@ -17,7 +17,7 @@ class CategoryDockerTest extends GebReportingSpec {
 	
 	/**
 	 * US BB-34 As product owner I want to see SAP categories in hybris
-	 * TC BB-372 Automated Test Case: Validate the existance of the Levis Company Categories and Subcategories for the Spring-Summer 2015 Season for each brand in the Application StoreFront.
+	 * TC BB-598 Automated test: BB-218 Themes - Correct Navigation Categories displayed based on Brand selected
 	 */
 	def "Dockers categories should be displayed"(){
 		when: "at home page"
@@ -31,6 +31,5 @@ class CategoryDockerTest extends GebReportingSpec {
 			
 		where:
 			[category, subCategory] << new File("src/test/resources/data/DockersCategories.txt").readLines()*.tokenize() //TODO Update Category
-	}
-	
+	}	
 }

@@ -99,9 +99,7 @@ class QuickOrderPage extends Page{
 	}
 	
 	def boolean checkResultSize(int size) {
-		waitFor {
-			productSizingGrids.size() == size
-		}
+		waitFor { productSizingGrids.size() == size }
 	}
 	
 }
