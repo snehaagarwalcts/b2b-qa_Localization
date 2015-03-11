@@ -115,7 +115,7 @@ class QuickOrderTest extends GebReportingSpec {
 			at CheckOutPage
 		
 		and: "check page element"
-			checkTotalExists()
+			checkTotalExists() //BB-621
 			checkSubTotalExists()
 			//add remove step
 		
