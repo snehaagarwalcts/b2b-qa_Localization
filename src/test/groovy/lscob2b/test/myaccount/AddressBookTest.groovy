@@ -32,6 +32,7 @@ class AddressBookTest extends GebReportingSpec {
 	
 	/**
 	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
+	 * TC BB-423 Automated Test Case: Validate the content of the My Account - "User Address Book" Page for any user.
 	 */
 	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Check Users Shipping Address"() {
@@ -42,7 +43,8 @@ class AddressBookTest extends GebReportingSpec {
 		when: "At Address Book page"
 			at AddressBookPage
 	
-		then: "Test Shipping Data Size"
+		then: "Test content of Shipping Address Header and Shipping Data Size"
+			assert shippingHeader.text()=="VIEW MY ADDRESS BOOK"
 			assert addressShipping.size() == shippingData.size();
 		
 		and: "Test Shipping Data Content"
@@ -70,6 +72,7 @@ class AddressBookTest extends GebReportingSpec {
 	
 	/**
 	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
+	 * TC BB-423 Automated Test Case: Validate the content of the My Account - "User Address Book" Page for any user.
 	 */
 	def "Check Users Billing Address on AddressBook page"() {
 		setup:
@@ -79,7 +82,8 @@ class AddressBookTest extends GebReportingSpec {
 		when: "At Address Book page"
 		at AddressBookPage
 	
-		then: "Test Billing Data Size"
+		then: "Test content of Billing Address Header and Test Billing Data Size"
+		assert billingHeader.text()=="VIEW YOUR BILLING ADDRESSES"
 		assert addressBilling.size() == billingData.size();
 		
 		and: "Test Billing Data Content"

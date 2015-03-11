@@ -24,6 +24,10 @@ class MyAccountTest extends GebReportingSpec {
 	 * TC BB-341 Automated Test Case: Any User should see the "My Account" link in the 
 	 * right-side of the header section of the Application, that should redirect the user to the My Account Home Page.
 	 * TC BB-362 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "My Account" Page.
+	 * TC BB-363 Automated Test Case: Validate the "My Account" Page common content for any user.
+	 * TC BB-364 Automated Test Case: Validate the "My Account" Page extra content for B2BAdministrator.
+	 * TC BB-365 Automated Test Case: Validate the "My Account" (All Pages) - Your Account left navigation section common content for any user.
+	 * TC BB-366 Automated Test Case: Validate the "My Account" (All Pages) - Your Account left navigation section to contain extra content for B2BAdministrator.	
 	 */
 	def "Check [MyAccountPage] structure"() {
 		when: "at LoginPage"

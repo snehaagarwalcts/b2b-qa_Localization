@@ -13,6 +13,7 @@ import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
 import spock.lang.Ignore
+import spock.lang.IgnoreRest;
  
 class OrderHistoryTest extends GebReportingSpec {
 
@@ -141,6 +142,40 @@ class OrderHistoryTest extends GebReportingSpec {
 		where:
 		user | _
 		UserHelper.getTessiUser() | _
+	}
+	
+	/**
+	 * US BB-38 As an admin customer user I want to set the default delivery address for my unit
+	 * TC BB-425 Automated Test Case: Validate the content of the My Account - "User Order History" Page for any user.
+	 */
+	@IgnoreRest
+	def "Test content of history"() {
+		setup:
+			login(user)
+
+		when: "At HomePage"
+		at HomePage
+
+		then: "Go to my-account/orders"
+		browser.go(baseUrl + "my-account/orders")
+		
+		when: "at order history page"
+		at OrderHistoryPage
+		
+		then: "check content of order history page"
+		assert ordersFoundLabel.text()=="2 ORDERS FOUND"
+		assert sortByLabel.text()=="SORT BY:"
+		assert datePlacedLabel.text()=="DATE PLACED"
+		assert orderNumberLabel.text()=="ORDER NUMBER"
+		assert orderStatusLabel.text()=="ORDER STATUS"
+		assert orderTypeLabel.text()=="ORDER TYPE"
+		assert totalLabel.text()=="TOTAL"
+		assert orderSourceLabel.text()=="ORDER SOURCE"
+		assert invoiceLabel.text()=="INVOICE"
+		
+		where:
+		user | _
+		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
 	
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order	

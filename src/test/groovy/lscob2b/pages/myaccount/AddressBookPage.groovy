@@ -24,6 +24,10 @@ class AddressBookPage extends Page{
 		addressBookData { $("div strong")*.text() }
 
 		addressItem { $("div.addressItem ul").text() }
+		
+		shippingHeader {$('.description>strong',0)}
+		
+		billingHeader {$('.description>strong',1)}
 
 	}
 	

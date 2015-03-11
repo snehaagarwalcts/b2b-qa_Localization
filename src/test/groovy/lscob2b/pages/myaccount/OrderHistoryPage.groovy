@@ -62,6 +62,18 @@ class OrderHistoryPage extends Page{
 		resultTable(required: false) { $("table.orderListTable") }
 		
 		invoiceNumber (require:false) { $("a.invoice") }
+		
+		/*  order history content */
+		
+		ordersFoundLabel { $(".totalResults",0) }
+		sortByLabel { $("#sort_form1>label") }
+		datePlacedLabel { $("#header1") }
+		orderNumberLabel { $("#header2") }
+		orderStatusLabel { $("#header3") }
+		orderTypeLabel { $("#header4") }
+		totalLabel { $("#header5") }
+		orderSourceLabel { $("#header6") }
+		invoiceLabel { $("#header7") }
 	}
 	
 	def checkOrderHistoryData(){
