@@ -167,7 +167,7 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login 
 	 * TC BB-774 Test first time login and links exists
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test first time login and links exit"(){
 		setup:
 		to LoginPage
@@ -191,7 +191,7 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login
 	 * TC BB-775 Test first time login and disagree to terms and condition
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test first time login and disagree to terms and condition and you should stay on terms and condition page"(){
 		setup:
 		to LoginPage
@@ -219,7 +219,7 @@ class LoginTest extends GebReportingSpec {
 	 * US BB-591 Confirm terms and conditions at first login
 	 * TC BB-776 Test first time login and agree to terms and condition
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "Test first time login and agree to terms and condition"(){
 		setup:
 		to LoginPage

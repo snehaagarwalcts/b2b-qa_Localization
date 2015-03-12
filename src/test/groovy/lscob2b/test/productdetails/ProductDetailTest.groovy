@@ -28,8 +28,7 @@ class ProductDetailTest extends GebReportingSpec {
 		at LoginPage
 		login(user)
 		
-		at HomePage
-		
+		at HomePage		
 	}
 	
 	/**
@@ -80,7 +79,7 @@ class ProductDetailTest extends GebReportingSpec {
 	 * TC BB-559 Automated test: be able to place an order from Product details page
 	 */
 	//TODO not possible to place an order (SAP Integration is missing)
-	@Ignore
+	//@Ignore
 	def "Place an order from product details page"(){
 		when: "at Cart Page"
 			at CartPage
@@ -93,31 +92,5 @@ class ProductDetailTest extends GebReportingSpec {
 			
 		then: "Place Order"
 			doPlaceOrder()
-			
-		/*Product product = TestDataCatalog.getAProductAvailableForUser(user)
-		
-		setup: "Log in"
-
-		to LoginPage
-		login (user)
-		at HomePage
-		browser.go(baseUrl + "p/" + product.getCode())
-		at ProductDetailsPage
-		
-		when: "add product to cart"
-		addOrderQuantity('1')
-		sizingGrid.addToCart()
-		masterTemplate.doGoToCart()
-		
-		then: "check out"
-		checkOut.doCheckOut()
-		at CheckOutPage
-		//NOTE do not place an order. It'll take up stock
-		doPlaceOrder()
-		at OrderConfirmationPage
-		
-		where:
-		user | _
-		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _*/
 	}	
 }

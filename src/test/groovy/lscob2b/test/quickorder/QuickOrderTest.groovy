@@ -103,8 +103,7 @@ class QuickOrderTest extends GebReportingSpec {
 	 * TC BB-477 Automated Test Case: Remove product from Check Out page
 	 * TC BB-621 Automated test: In the checkout the total order value is visible
 	 */
-	//TODO [simone] add remove steps
-	def "Remove product from checkout page"() {
+	def "Check Total, Subtotal and remove product from checkout page"() {
 		when: "at QuickOrder page"
 			at QuickOrderPage
 			
@@ -117,10 +116,8 @@ class QuickOrderTest extends GebReportingSpec {
 		and: "check page element"
 			checkTotalExists() //BB-621
 			checkSubTotalExists()
-			//add remove step
-		
-	}	
-	
+			remove.click()		
+	}		
 }
 
 

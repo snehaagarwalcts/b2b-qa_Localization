@@ -8,7 +8,8 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.waitlist.WaitListPage
 import spock.lang.IgnoreIf
 
-@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+//@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+@IgnoreIf({System.getProperty("geb.env") == "integration001"})
 class WaitListPageTest extends GebReportingSpec {
 	
 	def setup() {
@@ -37,7 +38,6 @@ class WaitListPageTest extends GebReportingSpec {
 			at WaitListPage
 			
 		and: "Correct sections/links should be visible"	
-//				emptyList.displayed
 				continueToShoppingLink.displayed
 			
 		where:

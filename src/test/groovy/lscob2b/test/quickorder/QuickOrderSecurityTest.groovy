@@ -17,7 +17,7 @@ class QuickOrderSecurityTest extends GebReportingSpec {
 		to LoginPage 
 	}
 	
-	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
 	def "User that does not hold customer rights tries to place an order from quick order page"() {
 		setup: "Log in"
 			at LoginPage	

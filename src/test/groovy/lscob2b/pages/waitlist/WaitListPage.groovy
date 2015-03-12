@@ -13,6 +13,7 @@ class WaitListPage extends Page {
 	static at = { waitFor { title == "Your Shopping Waitlist | LSCO B2B Site" } }
 
 	static content = {
+		
 		masterTemplate {module MasterTemplate}
 		
 		emptyList { $("div.blankSlate") }
@@ -26,11 +27,9 @@ class WaitListPage extends Page {
 		quantityAvailable { summary.find("div.quantity span.qty") }
 		
 		items { $("div.cartItem").collect { module WaitListItemModule, it  } }
-		
-		
-		
+	
 	}
-
+	
 //	Navigator getWaitingProductLink(String productCode){
 //		itemLink(productCode)
 //	}

@@ -148,7 +148,6 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * US BB-38 As an admin customer user I want to set the default delivery address for my unit
 	 * TC BB-425 Automated Test Case: Validate the content of the My Account - "User Order History" Page for any user.
 	 */
-	@IgnoreRest
 	def "Test content of history"() {
 		setup:
 			login(user)
@@ -179,7 +178,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	}
 	
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order	
-	@Ignore
+	//@Ignore
 	def "Test order creation in history"() {
 		setup:
 			at LoginPage
@@ -221,7 +220,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-509 Automated test: User Can reorder from history page
 	 */	
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
-	@Ignore 
+	//@Ignore 
 	def "Test re-order functionality in history"() {
 		setup:
 		login(user)
@@ -260,7 +259,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-601 Automated Test: Order Search
 	 */	 
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
-	@Ignore
+	//@Ignore
 	def "Test search functionality in history"() {
 		setup:
 			login(user)

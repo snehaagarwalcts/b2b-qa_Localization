@@ -13,7 +13,8 @@ class ProductDetailsPage extends Page {
 	static String numberRegex = "\\d+(\\.|,)\\d+((\\.|,)\\d+)?"
 
 	static at = {
-		waitFor { browser.currentUrl ==~ /^.*\/p\/[\-\w]+$/ }
+		//waitFor { browser.currentUrl ==~ /^.*\/p\/[\-\w]+$/ }
+		waitFor {browser.currentUrl.contains("/Categories/")}
 	}
 
 	static content = {
@@ -33,9 +34,13 @@ class ProductDetailsPage extends Page {
 		buyStack { module PDPBuyStackModule, $("div.pdp-buystack") }
 
 		wholesalePriceText { $("div.wholesale-price > span").text()}
+		
 		recommendedRetailPriceText { $("div.recommended-retail-price > span").text()}
-		//		orderQuantity{ $(".grid_three_dimensions").find("tr > td > .sku-quantity",0) }
+		
+		//orderQuantity{ $(".grid_three_dimensions").find("tr > td > .sku-quantity",0) }
+		
 		recommendedRetailPriceValue { parsePrice(recommendedRetailPriceText) }
+		
 		wholesalePriceValue { parsePrice(wholesalePriceText) }
 
 		//OverLay

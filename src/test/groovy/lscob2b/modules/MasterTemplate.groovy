@@ -134,6 +134,7 @@ class MasterTemplate extends Module {
 	}
 
 	def clickMyAccount() {
+		waitFor{myAccountLink.displayed}
 		myAccountLink.click()
 	}
 

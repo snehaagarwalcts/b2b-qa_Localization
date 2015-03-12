@@ -9,6 +9,7 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
 import lscob2b.test.data.User
+import spock.lang.IgnoreIf;
 import spock.lang.Shared
 import spock.lang.Stepwise
 import de.hybris.geb.page.hac.console.ImpexImportPage
@@ -16,6 +17,7 @@ import de.hybris.geb.page.hac.console.ImpexImportPage
 /**
  * TC BB-629 Automated test case: BB-497 Order from wait list
  */
+@IgnoreIf({System.getProperty("geb.env") == "integration001"})
 @Stepwise
 class WaitListContentTest extends GebReportingSpec{
 
@@ -65,6 +67,7 @@ class WaitListContentTest extends GebReportingSpec{
 			addOutOfStockQuantityToWaitList(0,1)
 		
 		and: "get updated waitlist item count"
+			masterTemplate.waitForSometime()
 			def int updateWL = masterTemplate.waitListItemCount.text().toInteger()
 		
 		then: "check waitlist count"
@@ -85,8 +88,7 @@ class WaitListContentTest extends GebReportingSpec{
 			availableQuantity = quantityAvailable.text().toInteger()
 						
 		then: "check requested"
-			requestedQuantity > 0
-		
+			requestedQuantity > 0		
 	}
 	
 	def "Update Stock status by impex [UpdateInStock.impex]"() {
@@ -113,8 +115,7 @@ class WaitListContentTest extends GebReportingSpec{
 			checkNotification()
 			
 		cleanup:
-			menu.logout()
-			
+			menu.logout()			
 	}
 	
 	def "Check [InStock] Requested Quantity / Available Quantity"() {
@@ -142,9 +143,6 @@ class WaitListContentTest extends GebReportingSpec{
 			at WaitListPage
 				
 		then: "check product count"
-			waitFor { emptyList.displayed }
-				
-	}
-	
-	
+			waitFor { emptyList.displayed }				
+	}		
 }

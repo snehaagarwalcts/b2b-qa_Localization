@@ -13,6 +13,7 @@ import lscob2b.test.data.User
 import spock.lang.IgnoreIf
 import spock.lang.Stepwise
 
+@IgnoreIf({System.getProperty("geb.env") == "integration001"})
 @Stepwise
 public class WaitListTest extends GebReportingSpec{
 
@@ -39,7 +40,7 @@ public class WaitListTest extends GebReportingSpec{
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder
 	 * BB-476 Automated Test Case: Add product to waitlist from Quick order page
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
 	def "Adding to WaitList from QuickOrder page"() {
 		setup:
 			PageHelper.gotoPage(browser, baseUrl, PageHelper.PAGE_QUICKORDER)
@@ -67,7 +68,8 @@ public class WaitListTest extends GebReportingSpec{
 			addOutOfStockQuantityToWaitList(0,1)
 			
 		and: "get updated waitlist item count"
-			waitFor { masterTemplate.waitListItemCount.displayed }
+			waitFor { masterTemplate.waitListItemCount.displayed }						
+			masterTemplate.waitForSometime()			
 			def int updateWL = masterTemplate.waitListItemCount.text().toInteger()
 		
 		then: "check waitlist count"
@@ -81,7 +83,7 @@ public class WaitListTest extends GebReportingSpec{
 	/**
 	 * TC BB-552 Automated test: User should be able to add products to waitlist from QuickOrder page and ProductDetail page.
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
 	def "Adding to waitlist from ProductDetail page"() {
 		setup:
 			PageHelper.gotoPageProductDetail(browser,baseUrl,productCode)
@@ -96,21 +98,21 @@ public class WaitListTest extends GebReportingSpec{
 			addOutOfStockQuantityToWaitList(1)//Bug raised BB-876
 			
 		and: "get updated waitlist item count"
+			masterTemplate.waitForSometime()
 			def int updateWL = masterTemplate.waitListItemCount.text().toInteger()
 		
 		then: "check waitlist count"
 			updateWL == (currentWL+1)
 
 		where:
-			productCode 	| _
-			ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)	| _
-			
+			productCode | _
+			ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)	| _			
 	}
 
 	/**
 	 * TC BB-556 Automated test: User should be able to edit product quantity from wait list
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
 	def "Edit quantities of product in WaitList page"() {
 
 		setup: "Go to waitlist page"
@@ -129,17 +131,17 @@ public class WaitListTest extends GebReportingSpec{
 			items[0].editOutOfStockQuantity(1)
 			
 		and: "Get updated product quantity"
+			masterTemplate.waitForSometime()
 			def int updatedQuantity = quantityRequested.text().toInteger()
 			
 		then:
 			updatedQuantity == (currentQuantity+1)  
-
 	}
 
 	/**
 	 * BB-511 Automated test: User should be able to remove product from wait list
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "chrome" || System.getProperty("geb.browser") == "internet explorer"})
 	def "Remove product from WaitList page"() {
 		when: "At WaitList page"
 			at WaitListPage
@@ -154,8 +156,6 @@ public class WaitListTest extends GebReportingSpec{
 			at WaitListPage
 				
 		then: "check product count"
-			waitFor { emptyList.displayed }
-				
+			waitFor { emptyList.displayed }			
 	}
-
 }

@@ -1,24 +1,26 @@
 package lscob2b.test.myaccount
 
+import spock.lang.IgnoreIf;
 import geb.spock.GebReportingSpec
+import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.AddressBookPage
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.test.data.Address
-import spock.lang.IgnoreIf
 
 
 class AddressBookTest extends GebReportingSpec {
 
 	def setup() {
+		PageHelper.gotoPageLogout(browser, baseUrl)
 		to LoginPage
 	}
 
-	def cleanup() {
+	/*def cleanup() {
 		masterTemplate.doLogout()
-	}
+	}*/
 	
 	def loginAndGoToPage(user) {
 		login(user)
@@ -34,7 +36,8 @@ class AddressBookTest extends GebReportingSpec {
 	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
 	 * TC BB-423 Automated Test Case: Validate the content of the My Account - "User Address Book" Page for any user.
 	 */
-	@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+	//@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
+	@IgnoreIf({System.getProperty("geb.env") == "integration000"})
 	def "Check Users Shipping Address"() {
 		setup:
 			loginAndGoToPage(user)
@@ -74,6 +77,7 @@ class AddressBookTest extends GebReportingSpec {
 	 * TC BB-496 Automated Test: Validate "Address Book" data presentation.
 	 * TC BB-423 Automated Test Case: Validate the content of the My Account - "User Address Book" Page for any user.
 	 */
+	@IgnoreIf({System.getProperty("geb.env") == "integration000"})
 	def "Check Users Billing Address on AddressBook page"() {
 		setup:
 		loginAndGoToPage(user)
