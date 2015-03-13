@@ -50,7 +50,9 @@ class CartPage extends Page{
 	}
 	
 	def doRemove(){
+		waitFor{ removeProductLink.displayed }
 		removeProductLink.click()
+		waitFor{ removeProducts.displayed }
 		removeProducts.click()
 	}
 	
@@ -99,6 +101,17 @@ class CartPage extends Page{
 	}
 	
 	def emptyCartMessageExists(){
-		!emptyCart.empty
+		waitFor { emptyCart.displayed }		
+	}
+	
+	def boolean removeExistingProducts()
+	{
+		if (!removeProductLink.empty)
+		{
+			removeProductLink.click()
+			removeProducts.click()
+
+		}
+		return true
 	}
 }

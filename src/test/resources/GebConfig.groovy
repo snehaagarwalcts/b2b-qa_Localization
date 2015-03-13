@@ -38,11 +38,11 @@ if(browserName == null || browserName == "") {
 
 /* Default Target URL */
 //baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"
-baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
+baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/"
 
 /* HAC Configuration (required for impex runtime loading) */
 //hacUrl = "http://lscob2b.local:9001/"
-hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"
+hacUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/"
 hacUsername = "admin"
 hacPassword = "nimda"
 
@@ -110,7 +110,7 @@ if (sauceBrowser && sauceBrowser != "false") {
 
 	} else if(browserName == "chrome") {
 		//See https://sites.google.com/a/chromium.org/chromedriver/getting-started
-		System.setProperty("webdriver.chrome.driver", "C:/Users/i844489/Downloads/WebDrivers/chromedriver.exe")
+		System.setProperty("webdriver.chrome.driver", "C:/Users/401685/WebDrivers/chromedriver.exe")
 		driver = { new ChromeDriver() }
 
 	} else if(browserName == "internet explorer") {

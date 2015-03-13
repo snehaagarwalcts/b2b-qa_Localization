@@ -13,8 +13,7 @@ class ProductDetailsPage extends Page {
 	static String numberRegex = "\\d+(\\.|,)\\d+((\\.|,)\\d+)?"
 
 	static at = {
-		//waitFor { browser.currentUrl ==~ /^.*\/p\/[\-\w]+$/ }
-		waitFor {browser.currentUrl.contains("/Categories/")}
+		waitFor { browser.currentUrl.contains("/Categories/") || browser.currentUrl ==~ /^.*\/p\/[\-\w]+$/ }
 	}
 
 	static content = {

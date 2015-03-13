@@ -40,6 +40,7 @@ class CartPageTest extends GebReportingSpec {
 		at CartPage
 
 		and: "Check empty cart message is displayed and also check page is empty"
+		assert removeExistingProducts()  //remove existing products from cart(if any)
 		emptyCartMessageExists()
 		editQuantities.empty
 		removeProductLink.empty
