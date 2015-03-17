@@ -45,11 +45,11 @@ locale="en"
 
 /* Default Target URL */
 //baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"+locale+"/"
-baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/"+locale+"/"
+baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"+locale+"/"
 
 /* HAC Configuration (required for impex runtime loading) */
 //hacUrl = "http://lscob2b.local:9001/"+locale+"/"
-hacUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/"+locale+"/"
+hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"+locale+"/"
 hacUsername = "admin"
 hacPassword = "nimda"
 

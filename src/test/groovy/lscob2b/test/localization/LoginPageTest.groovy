@@ -47,7 +47,6 @@ class LoginPageTest extends PropertProviderTest{
 	/**
 	 * Check Translations - Forgot Password
 	 */
-	@IgnoreRest
 	def "Verify Forgot Password messages"() {
 		setup:
 		to LoginPage
