@@ -21,6 +21,14 @@ class ProfilePage extends Page{
 		//changeYourPassword { $("a.button.editUser", href: endsWith('update-password')).text() }
 		updatePersonalDetailsLink { $("a.button.editUser", href: endsWith('update-profile')) }
 		changeYourPasswordLink { $("a.button.editUser", href: endsWith('update-password')) }
+		
+		
+		//localization
+		profileTxt {$("#main-container>h1")}
+		profileDetails {$(".intro-container")}
+		title {$(".control-group:nth-child(1)")}
+		firstName {$(".control-group:nth-child(2)")}
+		lastName {$(".control-group:nth-child(3)")}
 	}
 	
 	def checkProfileDataExists(){

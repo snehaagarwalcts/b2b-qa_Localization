@@ -45,8 +45,8 @@ locale="en"
 
 /* Default Target URL */
 //baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"+locale+"/"
-baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"+locale+"/"
-
+//baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"+locale+"/"
+	baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/"+locale+"/"
 /* HAC Configuration (required for impex runtime loading) */
 //hacUrl = "http://lscob2b.local:9001/"
 hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"
@@ -142,12 +142,12 @@ if (sauceBrowser && sauceBrowser != "false") {
 
 	} else if(browserName == "chrome") {
 		//See https://sites.google.com/a/chromium.org/chromedriver/getting-started
-		System.setProperty("webdriver.chrome.driver", "C:/Users/401685/WebDrivers/chromedriver.exe")
+		System.setProperty("webdriver.chrome.driver", "C:/Users/9ammis8/SeleniumDrivers/chromedriver.exe")
 		driver = { new ChromeDriver() }
 
 	} else if(browserName == "internet explorer") {
 
-		System.setProperty("webdriver.ie.driver", "C:/Users/401685/WebDrivers/IEDriverServer.exe")
+		System.setProperty("webdriver.ie.driver", "C:/Users/9ammis8/SeleniumDrivers/IEDriverServer.exe")
 		driver = { new InternetExplorerDriver() }
 
 	} else {

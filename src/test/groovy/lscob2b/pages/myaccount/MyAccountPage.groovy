@@ -26,6 +26,7 @@ class MyAccountPage extends Page {
 		//account page address book section
 		addressBookLink { $("div.addressBook div.headline a") }
 		//addressBook { $("div.addressBook div.headline a") }
+		viewMyAddressBook {$(".tile.column.addressBook>ul>li>a")}
 		viewYourDeliveryAddress { $("div.addressBook ul a")}
 
 		//account page manage section
@@ -41,6 +42,9 @@ class MyAccountPage extends Page {
 		
 		//Accont Balance
 		accountBalanceLink(required: false) { $("div.headline").find('a', href: endsWith('/balance')) }
+		
+		//localization
+		changePassWord {$(".tile.column.profile>ul>li:nth-child(2)")}
 	}
 	
 	def boolean hasPageLink(String link) {
@@ -88,5 +92,10 @@ class MyAccountPage extends Page {
 	
 	def checkViewOrderHistoryLinkExists(){
 		!viewOrderHistory.empty
+	}
+	
+	
+	def clickOnProfile(){
+		profileLink.click()
 	}
 }
