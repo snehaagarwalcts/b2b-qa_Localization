@@ -1,4 +1,4 @@
-package lscob2b.test.localization
+package lscob2b.test.data
 
 import lscob2b.data.PropertyProviderPage
 import geb.spock.GebReportingSpec

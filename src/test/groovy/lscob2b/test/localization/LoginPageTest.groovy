@@ -1,9 +1,9 @@
 package lscob2b.test.localization
 
-import spock.lang.IgnoreRest;
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.LoginPage
+import lscob2b.test.data.PropertProviderTest
 
 class LoginPageTest extends PropertProviderTest{
 	
