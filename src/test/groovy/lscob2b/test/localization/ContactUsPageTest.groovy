@@ -3,6 +3,7 @@ package lscob2b.test.localization
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.ContactUsPage
+import lscob2b.pages.HomePage;
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.PropertProviderTest
 
@@ -115,6 +116,52 @@ class ContactUsPageTest extends PropertProviderTest{
 	
 		and:"check translation of message"
 		assert noteMessage.text() == expectedValue("contactus.success.message") ||
-	      contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
+		       alertMessage.text() == expectedValue("contactus.serviceerror.message") ||
+	           contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
 	}
+	
+	def "Verify contact us page fields -After Login"() {
+		setup:
+		to LoginPage
+		at LoginPage
+		login(user)
+		at HomePage
+		masterTemplate.doContactUs()
+		
+		when:"at Contact Us page"
+		at ContactUsPage
+		
+		then: "click on SEND button"
+		clickSendButton()
+	
+		and:"check content translations at ContactUsPage"
+		assert contact.text() == expectedValue("contactus.heading")
+		assert alertMessage.text() == expectedValue("contactus.error.message")
+		assert introContainer.text()==expectedValue("contactus.intro")
+		assert required.text()==expectedValue("contactus.required")
+		assert titleLabel.text()==expectedValue("contactus.user.title")
+		assert firstNameLabel.text()==expectedValue("contactus.user.firstName")
+		assert lastNameLabel.text()==expectedValue("contactus.user.lastName")
+		assert emailLabel.text()==expectedValue("contactus.user.email")
+		assert phoneLabel.text()==expectedValue("contactus.user.phone")
+		assert companyNameLabel.text()==expectedValue("contactus.user.companyName")
+		assert customerNumberLabel.text()==expectedValue("contactus.user.customerNumber")
+		assert countryLabel.text()==expectedValue("contactus.user.country")
+		assert commentsLabel.text()==expectedValue("contactus.user.comments")
+		assert commentsErrorAfterLogin.text()==expectedValue("contactus.comments.invalid")
+		assert sendButton.text()==expectedValue("contactus.send")
+		
+		when: "fill out the form and request access"
+		fillOutComments('test')
+		clickSendButton()
+	
+		then:"check translation of message"
+		assert alertMessage.text() == expectedValue("contactus.serviceerror.message") ||
+			   noteMessage.text() == expectedValue("contactus.success.message") ||
+			   contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
+		
+		where:
+		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
+	}
+	
 }

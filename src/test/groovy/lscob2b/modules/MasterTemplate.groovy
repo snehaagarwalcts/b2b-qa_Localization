@@ -53,6 +53,7 @@ class MasterTemplate extends Module {
 		/*Contact us after login*/
 		
 		//contactUs { $('.yCmsComponent').find('a', href:endsWith('/contactus')) }
+		
 		contactUs { $('div.footer a[href*="/contactus"]') }
 
 		/* WaitList */
@@ -109,9 +110,15 @@ class MasterTemplate extends Module {
 		
 		languageSelector {$('a.global-nav-hasmenu.country span') }
 		
-		globalNavSubLinks { $('.yCmsComponent li a',it) }
+		globalNavSubLinks { $('.yCmsComponent>ul li a', it) }
 		
 		searchText { $('input#input-search').attr('placeholder') }
+		
+		menCategory { $('a[title="Men"]') }
+		
+		womenCategory { $('a[title="Women"]') }
+		
+		subCategory { $('.subnav-column>ul>h3', it) }
 		
 	}
 	

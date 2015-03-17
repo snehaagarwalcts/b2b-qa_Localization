@@ -57,6 +57,8 @@ class ContactUsPage extends Page{
 		customerNumberError { $('.help-inline', 6) }
 		countryError { $('.help-inline', 7) }
 		commentsError { $('.help-inline', 8) }
+		
+		commentsErrorAfterLogin { $('.help-inline') }
 	}
 	
 	def checkRequiredContent(){
