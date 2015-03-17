@@ -48,8 +48,8 @@ locale="en"
 baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"+locale+"/"
 
 /* HAC Configuration (required for impex runtime loading) */
-//hacUrl = "http://lscob2b.local:9001/"+locale+"/"
-hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"+locale+"/"
+//hacUrl = "http://lscob2b.local:9001/"
+hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"
 hacUsername = "admin"
 hacPassword = "nimda"
 
@@ -62,7 +62,7 @@ environments {
 		//locale="es"
 		locale="en"
 		baseUrl = "http://lscob2b.local:9001/lscob2bstorefront/"+locale+"/"
-		hacUrl = "http://lscob2b.local:9001/"+locale+"/"
+		hacUrl = "http://lscob2b.local:9001/"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}
@@ -73,7 +73,7 @@ environments {
 		//locale="es"
 		locale="en"
 		baseUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/lscob2bstorefront/"+locale+"/"
-		hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"+locale+"/"
+		hacUrl = "http://b2bint-000-store-000.lsco-b2b.com:9001/"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}
@@ -84,7 +84,7 @@ environments {
 		//locale="es"
 		locale="en"
 		baseUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/lscob2bstorefront/"+locale+"/"
-		hacUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/"+locale+"/"
+		hacUrl = "http://b2bint-001-store-000.lsco-b2b.com:9001/"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}
@@ -95,7 +95,7 @@ environments {
 		//locale="es"
 		locale="en"
 		baseUrl = "http://b2bqa-000-web-000.lsco-b2b.com/"+locale+"/"
-		hacUrl = "http://b2bqa-000-cron-000.lsco-b2b.com:9001/hac/"+locale+"/"
+		hacUrl = "http://b2bqa-000-cron-000.lsco-b2b.com:9001/hac/"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}
@@ -106,7 +106,7 @@ environments {
 		//locale="es"
 		locale="en"
 		baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/"+locale+"/"
-		hacUrl = "http://b2bqa-001-cron-000.lsco-b2b.com:9001/hac/"+locale+"/"
+		hacUrl = "http://b2bqa-001-cron-000.lsco-b2b.com:9001/hac/"
 		hacUsername = "admin"
 		hacPassword = "nimda"
 	}
