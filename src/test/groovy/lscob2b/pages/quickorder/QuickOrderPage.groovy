@@ -49,6 +49,24 @@ class QuickOrderPage extends Page{
 		overlayButtonAdd { overlayWaitList.find("a#add_to_waitlist_button") }
 		
 		overlayClosePopUp { $('#popupBoxClose')}
+		
+		//Translation
+		
+		breadCrumbLink { $('#breadcrumb>ul>li:nth-of-type(3)')}
+		
+		quickOrder { $('#main-container>h1')}
+		
+		advancedSearch { $('.control-label', it)}
+		
+		blankSlateHeader { $('.blankSlate>h2')}
+		
+		blankSlateContent { $('.blankSlate>p:nth-of-type(1)')}
+		
+		helpLink { $('.blankSlate>p>a')}
+		
+		quantityAndTotal { $('.label', it)}
+		
+		continueshoppingLink { $('.button-large.btn-txt-red>p')}
 
 	}
 	

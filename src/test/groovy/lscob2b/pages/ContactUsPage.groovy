@@ -59,6 +59,8 @@ class ContactUsPage extends Page{
 		commentsError { $('.help-inline', 8) }
 		
 		commentsErrorAfterLogin { $('.help-inline') }
+		
+		continueShoppingLink { $('.button.btn-txt-red>p') }
 	}
 	
 	def checkRequiredContent(){

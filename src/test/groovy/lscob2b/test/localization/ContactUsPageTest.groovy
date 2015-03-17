@@ -149,6 +149,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		assert countryLabel.text()==expectedValue("contactus.user.country")
 		assert commentsLabel.text()==expectedValue("contactus.user.comments")
 		assert commentsErrorAfterLogin.text()==expectedValue("contactus.comments.invalid")
+		assert continueShoppingLink.text()- ~/&/==expectedValue("label.continue.shopping")
 		assert sendButton.text()==expectedValue("contactus.send")
 		
 		when: "fill out the form and request access"
