@@ -29,13 +29,34 @@ class ContactUsPage extends Page{
 		companyName { $('#contactUsForm div.controls input', 4) }
 		customerNumber { $('#contactUsForm div.controls input', 5) }
 		country { $('#contactUsForm select#user\\.country option', it) }
-		//comments { $('#contactUsForm div.controls input', 7) }
+		comments { $('#contactUsForm div.controls textarea') }
 		
 		sendButton { $('button.button') }
 		//required fields left unfilled or something wrong with server
 		alertMessage { $('div.alert-message') }
 		//when email sends
 		noteMessage { $('div.note-message') }
+		
+		//translations
+		titleLabel { $('.control-label', 0) }
+		firstNameLabel { $('.control-label', 1) }
+		lastNameLabel { $('.control-label', 2) }
+		emailLabel { $('.control-label', 3) }
+		phoneLabel { $('.control-label', 4) }
+		companyNameLabel { $('.control-label', 5) }
+		customerNumberLabel { $('.control-label', 6) }
+		countryLabel { $('.control-label', 7) }
+		commentsLabel { $('.label', 8) }
+		
+		titleError { $('.help-inline', 0) }
+		firstNameError { $('.help-inline', 1) }
+		lastNameError { $('.help-inline', 2) }
+		emailError { $('.help-inline', 3) }
+		phoneError { $('.help-inline', 4) }
+		companyNameError { $('.help-inline', 5) }
+		customerNumberError { $('.help-inline', 6) }
+		countryError { $('.help-inline', 7) }
+		commentsError { $('.help-inline', 8) }
 	}
 	
 	def checkRequiredContent(){
@@ -75,6 +96,10 @@ class ContactUsPage extends Page{
 	
 	def fillOutCustomerNumber(String customernumber){
 		customerNumber.value(customernumber)
+	}
+	
+	def fillOutComments(String comment){
+		comments.value(comment)
 	}
 	
 	def clickSendButton(){

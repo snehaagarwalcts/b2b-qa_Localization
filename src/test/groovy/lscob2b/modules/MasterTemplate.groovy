@@ -24,9 +24,7 @@ class MasterTemplate extends Module {
 		
 		manageUsersLink { $('div.global-nav a[href*="manage-users"]') }
 
-		logoutLink {
-			$('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))
-		}
+		logoutLink { $('div.global-nav ul.global-nav-list').find("a", href: contains("/logout"))}
 
 		/* BreadCrumb */
 		
@@ -46,8 +44,7 @@ class MasterTemplate extends Module {
 
 		brandSelectionInput { $("form#theme-form").find("input", type: "hidden", name: "code") }
 		
-		switchBrandLink {$("a#switchTheme")}
-		
+		switchBrandLink {$("a#switchTheme")}		
 		
 		searchInput { $("#input-search") }
 		
@@ -93,6 +90,7 @@ class MasterTemplate extends Module {
 		subCategoryLink { categoryName,subCategoryName -> subNav.find("a", href: endsWith(categoryName)).parent().parent().find("a",href: endsWith(subCategoryName)) }
 		
 		/*Help*/
+		
 		helpLink { $('.yCmsComponent').find("a", href: endsWith('/help')) }
 		
 		/* Footer Links  */
@@ -103,7 +101,18 @@ class MasterTemplate extends Module {
 		
 		termsAndConditionsLink {$('div.footer a[href*="/termsAndConditions"]')}
 		
-		privacyPolicyLink {$('div.footer a[href*="/privacyPolicy"]')}		 	
+		privacyPolicyLink {$('div.footer a[href*="/privacyPolicy"]')}	
+		
+		//Translations
+		
+		welcomeLink {$('.global-nav-list>li',0)}
+		
+		languageSelector {$('a.global-nav-hasmenu.country span') }
+		
+		globalNavSubLinks { $('.yCmsComponent li a',it) }
+		
+		searchText { $('input#input-search').attr('placeholder') }
+		
 	}
 	
 	def gotoHelpPage(){

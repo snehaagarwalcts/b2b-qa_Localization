@@ -16,7 +16,7 @@ class LoginPage extends Page {
 		loginButton { $("#loginForm button") }
 
 		// some error messages
-		errorMessage { $("div.alert-message") }
+		errorMessage { $("div.alert-message p") }
 		errorMessageText { errorMessage.text().trim() }
 
 		// forgotten password
@@ -35,9 +35,23 @@ class LoginPage extends Page {
 		
 		// contact us
 		contactUS { $('div.contact a') }
+		contactUsMessage { $('.contact') }
 		
 		//Password sent
 		noteMessage { $("div.note-message") }
+		
+		//Translation
+		loginTitle { $('#page>p') }
+		username { $('.form_field-label>label',0) }
+		password { $('.form_field-label>label',1) }
+		submitButton { $('.form.right') }
+		selectlanguageLink { $('.control-label') }
+		
+		forgottenPwdTitle { $('.headline') }
+		forgottenPwdRequired { $('.required.right') }
+		forgottenPwdDescription { $('.description') }
+		forgottenPwdEmail { $('#forgottenPwdForm .control-label') }
+		forgottenPwdSubmit { $('.positive') }
 	}
 
 	def login(User user){
