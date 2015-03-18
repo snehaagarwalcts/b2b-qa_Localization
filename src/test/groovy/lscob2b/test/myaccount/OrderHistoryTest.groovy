@@ -90,7 +90,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
-
+	
 	def "Test clear functionality"() {
 		setup:
 			at LoginPage	
@@ -162,7 +162,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		at OrderHistoryPage
 		
 		then: "check content of order history page"
-		assert ordersFoundLabel.text()=="2 ORDERS FOUND"
+		assert ordersFoundLabel.text() - ~/\d/ == "ORDERS FOUND"
 		assert sortByLabel.text()=="SORT BY:"
 		assert datePlacedLabel.text()=="DATE PLACED"
 		assert orderNumberLabel.text()=="ORDER NUMBER"
@@ -178,7 +178,6 @@ class OrderHistoryTest extends GebReportingSpec {
 	}
 	
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order	
-	//@Ignore
 	def "Test order creation in history"() {
 		setup:
 			at LoginPage
@@ -220,7 +219,6 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-509 Automated test: User Can reorder from history page
 	 */	
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
-	//@Ignore 
 	def "Test re-order functionality in history"() {
 		setup:
 		login(user)
@@ -259,7 +257,6 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-601 Automated Test: Order Search
 	 */	 
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
-	//@Ignore
 	def "Test search functionality in history"() {
 		setup:
 			login(user)

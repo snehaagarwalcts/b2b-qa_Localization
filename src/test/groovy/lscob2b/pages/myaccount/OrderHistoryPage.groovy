@@ -31,32 +31,34 @@ class OrderHistoryPage extends Page{
 		
 		fieldPONumber { searchForm.find("input", name: 'poNum') }
 	
-		checkboxOrderSourceB2B { searchForm.find("input", type:'checkbox', name:'b2b',0) }
+//		checkboxOrderSourceB2B { searchForm.find("input", type:'checkbox', name:'b2b',0) }
+//		checkboxOrderSourceEDI { searchForm.find("input", type:'checkbox', name:'edi',0) }	
+//		checkboxOrderSourceSAP { searchForm.find("input", type:'checkbox', name:'sap',0) }		
+//		checkboxOrderSourceSFA { searchForm.find("input", type:'checkbox', name:'sfa',0) }		
+//		checkboxOrderSourceLEO { searchForm.find("input", type:'checkbox', name:'leo',0) }		
+//		checkboxOrderTypeAO { searchForm.find("input", type:'checkbox', name:'atOnce',0) }		
+//		checkboxOrderTypePB { searchForm.find("input", type:'checkbox', name:'preBook',0) }		
+//		checkboxOrderDate30 { searchForm.find("input", type:'checkbox', name:'last30Days',0) }		
+//		checkboxOrderDate90 { searchForm.find("input", type:'checkbox', name:'last90Days',0) }		
+//		checkboxOrderDateYear { searchForm.find("input", type:'checkbox', name:'lastYear',0) }	
+//		checkboxOrderStatusSubmitted { searchForm.find("input", type:'checkbox', name:'submitted',0) }
+//		checkboxOrderStatusCompleted { searchForm.find("input", type:'checkbox', name:'completed',0) }
+//		checkboxOrderStatusInProgress { searchForm.find("input", type:'checkbox', name:'inProgress',0) }
 		
-		checkboxOrderSourceEDI { searchForm.find("input", type:'checkbox', name:'edi',0) }
-		
-		checkboxOrderSourceSAP { searchForm.find("input", type:'checkbox', name:'sap',0) }
-		
-		checkboxOrderSourceSFA { searchForm.find("input", type:'checkbox', name:'sfa',0) }
-		
-		checkboxOrderSourceLEO { searchForm.find("input", type:'checkbox', name:'leo',0) }
-		
-		checkboxOrderTypeAO { searchForm.find("input", type:'checkbox', name:'atOnce',0) }
-		
-		checkboxOrderTypePB { searchForm.find("input", type:'checkbox', name:'preBook',0) }
-		
-		checkboxOrderDate30 { searchForm.find("input", type:'checkbox', name:'last30Days',0) }
-		
-		checkboxOrderDate90 { searchForm.find("input", type:'checkbox', name:'last90Days',0) }
-		
-		checkboxOrderDateYear { searchForm.find("input", type:'checkbox', name:'lastYear',0) }
-		
-		checkboxOrderStatusSubmitted { searchForm.find("input", type:'checkbox', name:'submitted',0) }
-		
-		checkboxOrderStatusCompleted { searchForm.find("input", type:'checkbox', name:'completed',0) }
-		
-		checkboxOrderStatusInProgress { searchForm.find("input", type:'checkbox', name:'inProgress',0) }
-		
+		checkboxOrderStatusSubmitted { $('.iCheck-helper',0)}
+		checkboxOrderStatusCompleted { $('.iCheck-helper',1) }
+		checkboxOrderStatusInProgress { $('.iCheck-helper',2) }
+		checkboxOrderDate30 { $('#duration1') }
+		checkboxOrderDate90 { $('#duration2') }
+		checkboxOrderDateYear { $('#duration3') }
+		checkboxOrderTypeAO { $('.iCheck-helper',3) }
+		checkboxOrderTypePB { $('.iCheck-helper',4) }
+		checkboxOrderSourceB2B { $('.iCheck-helper',5)}
+		checkboxOrderSourceEDI { $('.iCheck-helper',6) }
+		checkboxOrderSourceSAP { $('.iCheck-helper',7)}
+		checkboxOrderSourceSFA { $('.iCheck-helper',8)}
+		checkboxOrderSourceLEO { $('.iCheck-helper',9) }
+
 		/* Result */
 		
 		resultTable(required: false) { $("table.orderListTable") }
@@ -107,19 +109,32 @@ class OrderHistoryPage extends Page{
 	}
 	
 	def switchOnForm() {
-		checkboxOrderSourceB2B.parent().click()
-		checkboxOrderSourceEDI.parent().click()
-		checkboxOrderSourceSAP.parent().click()
-		checkboxOrderSourceSFA.parent().click()
-		checkboxOrderSourceLEO.parent().click()
-		checkboxOrderTypeAO.parent().click()
-		checkboxOrderTypePB.parent().click()
-		checkboxOrderDate30.parent().click()
-		checkboxOrderDate90.parent().click()
-		checkboxOrderDateYear.parent().click()
-		checkboxOrderStatusSubmitted.parent().click()
-		checkboxOrderStatusCompleted.parent().click()
-		checkboxOrderStatusInProgress.parent().click()
+//		checkboxOrderSourceB2B.parent().click()
+//		checkboxOrderSourceEDI.parent().click()
+//		checkboxOrderSourceSAP.parent().click()
+//		checkboxOrderSourceSFA.parent().click()
+//		checkboxOrderSourceLEO.parent().click()
+//		checkboxOrderTypeAO.parent().click()
+//		checkboxOrderTypePB.parent().click()
+//		checkboxOrderDate30.parent().click()
+//		checkboxOrderDate90.parent().click()
+//		checkboxOrderDateYear.parent().click()
+//		checkboxOrderStatusSubmitted.parent().click()
+//		checkboxOrderStatusCompleted.parent().click()
+//		checkboxOrderStatusInProgress.parent().click()	
+		checkboxOrderSourceB2B.click()
+		checkboxOrderSourceEDI.click()
+		checkboxOrderSourceSAP.click()
+		checkboxOrderSourceSFA.click()
+		checkboxOrderSourceLEO.click()
+		checkboxOrderTypeAO.click()
+		checkboxOrderTypePB.click()
+		checkboxOrderDate30.click()
+		checkboxOrderDate90.click()
+		checkboxOrderDateYear.click()
+		checkboxOrderStatusSubmitted.click()
+		checkboxOrderStatusCompleted.click()
+		checkboxOrderStatusInProgress.click()
 		fieldPONumber.value("Test PO")
 		fieldOrderNumber.value("Test Order")
 	}

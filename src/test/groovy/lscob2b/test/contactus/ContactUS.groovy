@@ -1,5 +1,6 @@
 package lscob2b.test.contactus
 
+import spock.lang.IgnoreRest;
 import geb.spock.GebReportingSpec
 import lscob2b.pages.ContactUsPage
 import lscob2b.pages.LoginPage
@@ -36,11 +37,12 @@ class ContactUS extends GebReportingSpec {
 		def title = selectTitleOption(2)
 		fillOutFirstName('Customer')
 		fillOutlastName('Unit')
-		fillOutEmail('cust@unit-5')
+		fillOutEmail('sagarwal1@levi.com')
 		fillOutPhone('111-222-3333')
 		fillOutCompanyName('Levis')
 		fillOutCustomerNumber('111-222-3333')
-		def country = selectCountryOption(18)
+		def country = selectCountryOption(234)
+		fillOutComments('test')
 		clickSendButton()
 		checkNoteMessageExists()//App error in int001
 	}

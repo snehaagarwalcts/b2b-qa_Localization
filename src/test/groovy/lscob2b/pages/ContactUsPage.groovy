@@ -21,15 +21,22 @@ class ContactUsPage extends Page{
 		
 		contactUsForm { $('#contactUsForm div div label.control-label') }
 		
-		titleText { $('#contactUsForm select#user\\.title option', it) }
-		firstName { $('#contactUsForm div.controls input', 0) }
-		lastName { $('#contactUsForm div.controls input', 1) }
-		emailText { $('#contactUsForm div.controls input', 2) }
-		phoneText { $('#contactUsForm div.controls input', 3) }
-		companyName { $('#contactUsForm div.controls input', 4) }
-		customerNumber { $('#contactUsForm div.controls input', 5) }
-		country { $('#contactUsForm select#user\\.country option', it) }
+		titleText { $('.controls select[name="titleCode"] option', it) }
+		firstName { $('.controls input', 0) }
+		lastName { $('.controls input', 1) }
+		emailText { $('.controls input', 2) }
+		phoneText { $('.controls input', 3) }
+		companyName { $('.controls input', 4) }
+		customerNumber { $('.controls input', 5) }
+		country { $('.dropdown-container select[name="countryCode"] option', it) }
 		comments { $('#contactUsForm div.controls textarea') }
+		
+		firstNameAfterLogin { $('.controls', 1) }
+		lastNameAfterLogin { $('.controls', 2) }
+		emailTextAfterLogin { $('.controls', 3) }
+		phoneTextAfterLogin { $('.controls', 4) }
+		companyNameAfterLogin { $('.controls', 5) }
+		customerNumberAfterLogin { $('.controls', 6) }
 		
 		sendButton { $('button.button') }
 		//required fields left unfilled or something wrong with server

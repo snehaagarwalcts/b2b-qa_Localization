@@ -33,11 +33,11 @@ class ContactUsAfterLogin extends GebReportingSpec {
 
 		then: "Compare user data"
 		//titleText == "Ms." //user.title
-		firstName == user.name
-		lastName == user.surname
-		emailText == user.email
-		companyName == user.companyname
-		customerNumber == user.customernumber
+		firstNameAfterLogin.text() == user.name
+		lastNameAfterLogin.text()  == user.surname
+		emailTextAfterLogin.text()  == user.email
+		companyNameAfterLogin.text()  == user.companyname
+		customerNumberAfterLogin.text()  == user.customernumber
 		//country == "United Kingdom"//user.country
 
 		where:
