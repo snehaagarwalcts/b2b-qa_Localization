@@ -13,10 +13,6 @@ class MyAccountPage extends Page {
 	static content = {
 		masterTemplate { module MasterTemplate }
 
-		/**
-		 * Added by i844489 on 12/4/14.
-		 * Updated by i844489 on 12/9/2014
-		 */
 		//account page profile section
 		profileLink { $("div.profile div.headline a") }
 		//profile { $("div.profile div.headline a") }
@@ -33,7 +29,8 @@ class MyAccountPage extends Page {
 		//manageUsersLink { $("div.headline").find('a', href: endsWith('/manage-users')) }
 		manageUsers(required:false) { $("div.headline").find('a', href: endsWith('/manage-users')) }
 		addNewUsers(required:false) { $("div ul").find('a', href: endsWith('/manage-users/create')) }
-		editUsers(required:false) { $("div ul").find('a', href: endsWith('/manage-users')) }
+		//editUsers(required:false) { $("div ul").find('a', href: endsWith('/manage-users')) }
+		editUsers(required:false) { $(".tile.column li:nth-of-type(2) a[href*='/manage-users']") }		
 		
 		//account page order section
 		orderHistoryLink { $("div.orderHistory div.headline a") }
@@ -44,7 +41,9 @@ class MyAccountPage extends Page {
 		accountBalanceLink(required: false) { $("div.headline").find('a', href: endsWith('/balance')) }
 		
 		//localization
-		changePassWord {$(".tile.column.profile>ul>li:nth-child(2)")}
+		myAccountText {$('#main-container>h1')}
+		myAccountBalanceLink {$('.tile.column.accountBalance>ul>li>a')}
+		//changePassWord {$(".tile.column.profile>ul>li:nth-child(2)")}
 	}
 	
 	def boolean hasPageLink(String link) {
@@ -93,8 +92,7 @@ class MyAccountPage extends Page {
 	def checkViewOrderHistoryLinkExists(){
 		!viewOrderHistory.empty
 	}
-	
-	
+		
 	def clickOnProfile(){
 		profileLink.click()
 	}

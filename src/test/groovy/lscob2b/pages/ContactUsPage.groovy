@@ -37,7 +37,7 @@ class ContactUsPage extends Page{
 		//when email sends
 		noteMessage { $('div.note-message') }
 		
-		//translations
+		//Localization
 		titleLabel { $('.control-label', 0) }
 		firstNameLabel { $('.control-label', 1) }
 		lastNameLabel { $('.control-label', 2) }
@@ -58,8 +58,7 @@ class ContactUsPage extends Page{
 		countryError { $('.help-inline', 7) }
 		commentsError { $('.help-inline', 8) }
 		
-		commentsErrorAfterLogin { $('.help-inline') }
-		
+		commentsErrorAfterLogin { $('.help-inline') }		
 		continueShoppingLink { $('.button.btn-txt-red>p') }
 	}
 	

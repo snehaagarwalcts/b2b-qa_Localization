@@ -104,7 +104,7 @@ class MasterTemplate extends Module {
 		
 		privacyPolicyLink {$('div.footer a[href*="/privacyPolicy"]')}	
 		
-		//Translations
+		//Localization
 		
 		welcomeLink {$('.global-nav-list>li',0)}
 		

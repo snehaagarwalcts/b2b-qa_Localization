@@ -50,7 +50,7 @@ class QuickOrderPage extends Page{
 		
 		overlayClosePopUp { $('#popupBoxClose')}
 		
-		//Translation
+		//Localization
 		
 		breadCrumbLink { $('#breadcrumb>ul>li:nth-of-type(3)')}
 		

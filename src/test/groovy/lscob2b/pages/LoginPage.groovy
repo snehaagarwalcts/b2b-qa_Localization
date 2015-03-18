@@ -40,7 +40,7 @@ class LoginPage extends Page {
 		//Password sent
 		noteMessage { $("div.note-message") }
 		
-		//Translation
+		//Localization
 		loginTitle { $('#page>p') }
 		username { $('.form_field-label>label',0) }
 		password { $('.form_field-label>label',1) }
@@ -52,8 +52,7 @@ class LoginPage extends Page {
 		forgottenPwdDescription { $('.description') }
 		forgottenPwdEmail { $('#forgottenPwdForm .control-label') }
 		forgottenPwdSubmit { $('.positive') }
-		
-		myAccount {$('a.global-nav-hasmenu span')}
+
 	}
 
 	def login(User user){
@@ -94,9 +93,5 @@ class LoginPage extends Page {
 	
 	def clickContactUS(){
 		contactUS.click()
-	}
-	
-	def clickMyAccount(){
-		myAccount.click()
 	}
 }

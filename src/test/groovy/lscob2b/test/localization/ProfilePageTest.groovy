@@ -1,8 +1,10 @@
 package lscob2b.test.localization
+
 import lscob2b.data.PageHelper
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.data.UserHelper
 import lscob2b.pages.ContactUsPage
+import lscob2b.pages.HomePage;
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.PropertProviderTest
 import lscob2b.pages.myaccount.ProfilePage
@@ -13,30 +15,35 @@ class ProfilePageTest extends PropertProviderTest{
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 	
-	def "Verify Profile Page Fields"(){		
-		
+	def "Verify Profile Page Fields"(){			
 		setup:
 		to LoginPage
 		at LoginPage
-		login(user)		
-		clickMyAccount()
+		login(user)	
+		at HomePage	
+		masterTemplate.clickMyAccount()
 		
-		when: "User clicks on Profile Link "
-		to MyAccountPage
+		when: "at MyAccountPage"
 		at MyAccountPage
+		
+		and: "click on Profile Link "
 		clickOnProfile()
 		
-		then: "Verify Fields at Profile Page"
-		to ProfilePage
+		then: "at ProfilePage"
 		at ProfilePage		
 	
+		and: "Verify Fields at Profile Page"
+		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
+		assert profileTxt.text() == expectedValue("text.account.profile")
 		assert profileDetails.text() == expectedValue("text.account.profile.details.subtitle")
-		assert title.text() == expectedValue("profile.title")
+		assert titleLabel.text() == expectedValue("profile.title")
 		assert firstName.text() == expectedValue("profile.firstName")
 		assert lastName.text() == expectedValue("profile.lastName")
+		assert changeYourPasswordLink.text()- ~/&/ == expectedValue("text.account.profile.changePassword")
+		assert updatePersonalDetailsLink.text()- ~/&/ == expectedValue("text.account.profile.updatePersonalDetails")		
 		
 		where:
-		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
+		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 
 	}
 }

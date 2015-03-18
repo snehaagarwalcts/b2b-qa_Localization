@@ -106,7 +106,6 @@ class MyAccountTest extends GebReportingSpec {
 			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) |_
 	}
 
-
 	/**
 	 * TC BB-426 Automated Test Case: Validate the Breadcrumb Trail from the My Account - "Address Book" Page.
 	 */

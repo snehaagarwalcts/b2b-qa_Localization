@@ -14,6 +14,13 @@ class ProductCategoryPage extends Page {
 		
 		masterTemplate {module MasterTemplate}
 		
+		firstProductLink {$("a.productMainLink", 0)}
+		
+		keylookItems { $("div#keylook_slider ul li.org") }
+		
+		keylookLink { index -> keylookItems[index].find("a") }
+		
+		/* Localization */
 		categoryLink { $('.yCmsContentSlot.shop-by-category>h2') }
 		
 		seasonalInitiativeLink { $('.yCmsContentSlot.shop-by-seasonal>h2') }
@@ -21,14 +28,6 @@ class ProductCategoryPage extends Page {
 		shopByStyleLink { $('.yCmsContentSlot.shop-by-style>h2') }
 		
 		shopByFitLink { $('.yCmsContentSlot.shop-by-fit>h2') }
-		
-		firstProductLink {$("a.productMainLink", 0)}
-		
-		/**/
-		
-		keylookItems { $("div#keylook_slider ul li.org") }
-		
-		keylookLink { index -> keylookItems[index].find("a") }
 		
 	}
 
