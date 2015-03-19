@@ -1,20 +1,21 @@
 package lscob2b.test.localization
+
 import lscob2b.data.PageHelper
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.data.UserHelper
-import lscob2b.pages.ContactUsPage
-import lscob2b.pages.HomePage;
+import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.PropertProviderTest
 import lscob2b.pages.myaccount.ProfilePage
+import lscob2b.pages.myaccount.admin.CreateUserPage
+
 class CreateUserPageTest extends PropertProviderTest {
-	
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 	
-	def "Verify Profile Page Fields"(){
+	def "Verify Create User Page Fields"(){
 		setup:
 		to LoginPage
 		at LoginPage
@@ -25,14 +26,13 @@ class CreateUserPageTest extends PropertProviderTest {
 		when: "at MyAccountPage"
 		at MyAccountPage
 		
-		and: "click on Add New Users Link "
-		clickAddNewUsers()
+		then: "click on Add New Users Link "
+		addNewUsers.click()
 		
-		then: "at Add Users Details Page" 
-		assert errorMessage.text()==expectedValue("loginPage.error.accountNotFound")
+		when: "at CreateUserPage"
+		at CreateUserPage
 		
-where:
-user=UserHelper.getInvalidUser()
-
-}
+		then: "Verify fields in CreateUserPage" 
+		assert errorMessage.text()==expectedValue("loginPage.error.accountNotFound")				
+	}
 }
