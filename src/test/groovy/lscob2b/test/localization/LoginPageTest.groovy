@@ -21,7 +21,7 @@ class LoginPageTest extends PropertProviderTest{
 		when: "at login page"
 		at LoginPage
 	
-		then:"check content translations at LoginPage"
+		then:"Verify translations at LoginPage"
 		assert loginTitle.text() == expectedValue("loginPage.title")
 		assert username.text()==expectedValue("loginPage.username")
 		assert password.text()==expectedValue("loginPage.password")

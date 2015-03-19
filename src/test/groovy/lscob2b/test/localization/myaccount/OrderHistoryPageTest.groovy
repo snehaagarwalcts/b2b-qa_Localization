@@ -31,7 +31,7 @@ class OrderHistoryPageTest extends PropertProviderTest {
 		when: "at OrderHistoryPage"
 		at OrderHistoryPage
 	
-		then: "Verify Fields at OrderHistoryPage"
+		then: "Verify translations at OrderHistoryPage"
 		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
 		
 		where:

@@ -21,7 +21,7 @@ class GlobalNavTest extends PropertProviderTest{
 		when:"at HomePage"
 		at HomePage
 	
-		then:"check content translations at GlobalNav"
+		then:"Verify translations at GlobalNav"
 		assert masterTemplate.welcomeLink.text() == expectedValue("header.welcome")
 		assert masterTemplate.logoutLink.text() == expectedValue("header.link.logout")
 		assert masterTemplate.myAccountLink.text() == expectedValue("header.link.account")

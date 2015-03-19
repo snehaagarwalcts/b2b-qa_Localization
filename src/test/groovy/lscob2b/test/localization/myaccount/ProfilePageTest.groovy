@@ -34,7 +34,7 @@ class ProfilePageTest extends PropertProviderTest{
 		when: "at ProfilePage"
 		at ProfilePage		
 	
-		then: "Verify Fields at Profile Page"
+		then: "Verify translations at Profile Page"
 		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
 		assert profileTxt.text() == expectedValue("text.account.profile")
 		assert profileDetails.text() == expectedValue("text.account.profile.details.subtitle")
@@ -72,7 +72,7 @@ class ProfilePageTest extends PropertProviderTest{
 			when: "at UpdatePersonalDetailsPage"
 			at UpdatePersonalDetailsPage
 			
-			then: "verify fields in UpdatePersonalDetailsPage"			
+			then: "verify translations in UpdatePersonalDetailsPage"			
 			//assert profileDetails.text() == expectedValue("text.account.profile.update.subtitle")
 						
 			where:
@@ -103,7 +103,7 @@ class ProfilePageTest extends PropertProviderTest{
 			when:"at UpdatePasswordPage"
 			at UpdatePasswordPage
 			
-			then: "verify fields in Update Password Page"
+			then: "verify translations in Update Password Page"
 			assert updatePasswordTxt.text()==expectedValue("text.account.profile.updatePasswordForm")
 			assert profileDetails.text() == expectedValue("text.account.profile.update.password.subtitle")
 			assert currentPwdTxt.text() == expectedValue("profile.currentPassword")

@@ -26,7 +26,7 @@ class MyAccountPageTest extends PropertProviderTest {
 		when: "at MyAccountpage"
 		at MyAccountPage
 				
-		then: "Verify fields in My Account Page"	
+		then: "Verify translations in My Account Page"	
 		assert masterTemplate.breadCrumbActive.text() == expectedValue("header.link.account")
 		assert myAccountText.text()  == expectedValue("header.link.account")
 		assert profileLink.text()  == expectedValue("text.account.profile")

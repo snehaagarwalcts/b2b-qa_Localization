@@ -31,7 +31,7 @@ class AddressBookPageTest extends PropertProviderTest {
 		when: "at AddressBookPage"
 		at AddressBookPage
 	
-		then: "Verify Fields at AddressBookPage"
+		then: "Verify translations at AddressBookPage"
 		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")
 		
 		where:

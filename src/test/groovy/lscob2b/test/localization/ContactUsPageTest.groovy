@@ -25,7 +25,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		when:"at Contact Us page"
 		at ContactUsPage
 	
-		then:"check content translations at ContactUsPage"
+		then:"Verify translations at ContactUsPage"
 		assert contact.text() == expectedValue("contactus.heading")
 		assert introContainer.text()==expectedValue("contactus.intro")
 		assert required.text()==expectedValue("required")
@@ -53,7 +53,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		then: "click on SEND button"
 		clickSendButton()
 	
-		and:"check translation of error messages in ContactUsPage"
+		and:"Verify of error messages in ContactUsPage"
 		assert alertMessage.text() == expectedValue("contactus.error.message")
 		assert titleError.text()==expectedValue("contactus.title.invalid")
 		assert firstNameError.text()==expectedValue("contactus.firstname.invalid")
@@ -88,7 +88,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		fillOutComments('test')
 		clickSendButton()
 
-		and:"check translation of error message"
+		and:"Verify translation of error message"
 		assert alertMessage.text() == expectedValue("contactus.serviceerror.message")	||	
 		       contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
 	}
@@ -114,7 +114,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		fillOutComments('test')
 		clickSendButton()
 	
-		and:"check translation of message"
+		and:"Verify translation of message"
 		assert noteMessage.text() == expectedValue("contactus.success.message") ||
 		       alertMessage.text() == expectedValue("contactus.serviceerror.message") ||
 	           contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
@@ -134,7 +134,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		then: "click on SEND button"
 		clickSendButton()
 	
-		and:"check content translations at ContactUsPage"
+		and:"Verify translations at ContactUsPage"
 		assert contact.text() == expectedValue("contactus.heading")
 		assert alertMessage.text() == expectedValue("contactus.error.message")
 		assert introContainer.text()==expectedValue("contactus.intro")
@@ -156,7 +156,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		fillOutComments('test')
 		clickSendButton()
 	
-		then:"check translation of message"
+		then: "Verify translation of message"
 		assert alertMessage.text() == expectedValue("contactus.serviceerror.message") ||
 			   noteMessage.text() == expectedValue("contactus.success.message") ||
 			   contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")

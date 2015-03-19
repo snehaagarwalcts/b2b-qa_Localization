@@ -34,14 +34,14 @@ class ManageUsersPageTest extends PropertProviderTest {
 		when: "at ManageUsersPage"
 		at ManageUsersPage
 		
-		then: "Verify fields in ManageUsersPage"
+		then: "Verify translations in ManageUsersPage"
 		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}
 
-	def "Verify CreateUser Page Fields"(){
+	def "Verify CreateNewUser Page Fields"(){
 		setup:
 		to LoginPage
 		at LoginPage
@@ -64,7 +64,7 @@ class ManageUsersPageTest extends PropertProviderTest {
 		when: "at CreateUserPage"
 		at CreateUserPage
 		
-		then: "Verify fields in CreateUserPage"
+		then: "Verify translations in CreateUserPage"
 		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
 		
 		where:
@@ -94,7 +94,7 @@ class ManageUsersPageTest extends PropertProviderTest {
 		when: "at ViewUserDetailsPage"
 		at ViewUserDetailsPage
 		
-		then: "Verify fields in ViewUserDetailsPage"
+		then: "Verify translations in ViewUserDetailsPage"
 		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
 		
 		where:
@@ -130,7 +130,7 @@ class ManageUsersPageTest extends PropertProviderTest {
 		when: "at EditUserDetailsPage"
 		at EditUserDetailsPage
 		
-		then: "Verify fields in EditUserDetailsPage"
+		then: "Verify translations in EditUserDetailsPage"
 		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
 		
 		where:

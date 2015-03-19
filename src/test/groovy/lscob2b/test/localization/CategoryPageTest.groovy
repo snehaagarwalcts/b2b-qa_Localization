@@ -28,7 +28,7 @@ class CategoryPageTest extends PropertProviderTest{
 		when:"at Category Page"
 		at ProductCategoryPage
 		
-		then: "check content translations at CategoryPage"
+		then: "Verify translations at CategoryPage"
 		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home")
 		assert masterTemplate.breadCrumbHref("/categories").text() == expectedValue("categorylandingpage.categories")
 		assert categoryLink.text() == expectedValue("categorylandingpage.categories")
@@ -55,7 +55,7 @@ class CategoryPageTest extends PropertProviderTest{
 		when:"at Category Page"
 		at ProductCategoryPage
 		
-		then: "check content translations at CategoryPage"
+		then: "Verify translations at CategoryPage"
 		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home")
 		assert masterTemplate.breadCrumbHref("/categories").text() == expectedValue("categorylandingpage.categories")
 		assert categoryLink.text() == expectedValue("categorylandingpage.categories")

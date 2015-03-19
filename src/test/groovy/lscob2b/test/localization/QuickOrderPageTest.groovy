@@ -24,7 +24,7 @@ class QuickOrderPageTest extends PropertProviderTest{
 		when:"at QuickOrderPage"
 		at QuickOrderPage
 	
-		then:"check content translations at QuickOrderPage"
+		then:"Verify translations at QuickOrderPage"
 		assert breadCrumbLink.text() == expectedValue("search.page.breadcrumb")
 		assert quickOrder.text() == expectedValue("search.advanced")
 		assert advancedSearch(0).text() == expectedValue("search.advanced.keyword")

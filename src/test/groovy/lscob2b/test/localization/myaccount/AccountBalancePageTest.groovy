@@ -31,7 +31,7 @@ class AccountBalancePageTest extends PropertProviderTest {
 		when: "at AccountBalancePage"
 		at AccountBalancePage
 	
-		then: "Verify Fields at AccountBalancePage"
+		then: "Verify translations at AccountBalancePage"
 		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")
 		
 		where:
