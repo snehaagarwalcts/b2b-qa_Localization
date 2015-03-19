@@ -25,7 +25,7 @@ class ProfilePage extends Page{
 		//localization
 		profileTxt {$("#main-container>h1")}
 		profileDetails {$(".intro-container")}
-		titleLabel { $(".control-group:nth-child(1) .label") }
+		titleLabel { $(".control-group:nth-child(1) .label")}
 		firstName {$(".control-group:nth-child(2) .label")}
 		lastName {$(".control-group:nth-child(3) .label")}
 	}
@@ -40,5 +40,14 @@ class ProfilePage extends Page{
 	
 	def checkChangeYourPasswordLinkExists(){
 		!changeYourPasswordLink.empty
+	}
+	
+	//localization
+	def clickOnUpdatePersonalDetailsLink(){
+		updatePersonalDetailsLink.click()
+	}
+	
+	def clickOnChangeYourPasswordLink(){
+		changeYourPasswordLink.click()
 	}
 }

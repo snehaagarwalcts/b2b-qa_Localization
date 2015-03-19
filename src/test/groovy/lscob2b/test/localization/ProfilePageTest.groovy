@@ -44,6 +44,35 @@ class ProfilePageTest extends PropertProviderTest{
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
+	}
+		
+	
+		def "Verify Update Profile Page"(){
+		
+			setup:
+			to LoginPage
+			at LoginPage
+			login(user)
+			at HomePage
+			masterTemplate.clickMyAccount()
+			
+			when: "at MyAccountPage"
+			at MyAccountPage
+			
+			and: "click on Profile Link "
+			clickOnProfile()
+			
+			then: "at ProfilePage click on Update Personal Details Link"			
+			at ProfilePage
+			clickOnUpdatePersonalDetailsLink()
+			
+			then: "verify fields in Update Profile Page"			
+			assert profileDetails.text() == expectedValue("text.account.profile.update.subtitle")
+			
+			then: "click "				
+			where:
+			user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
+		
 
 	}
 }

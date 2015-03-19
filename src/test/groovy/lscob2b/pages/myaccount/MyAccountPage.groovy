@@ -43,7 +43,6 @@ class MyAccountPage extends Page {
 		//localization
 		myAccountText {$('#main-container>h1')}
 		myAccountBalanceLink {$('.tile.column.accountBalance>ul>li>a')}
-		//changePassWord {$(".tile.column.profile>ul>li:nth-child(2)")}
 	}
 	
 	def boolean hasPageLink(String link) {

@@ -20,8 +20,17 @@ class UpdatePasswordPage extends Page {
 		
 		errorMessage { $('div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span') }
 		
-		passwordUpdateMessage { $('div.note-message h2') }
+		passwordUpdateMessage { $('div.note-message h2') }		
+		
+		//localization
+		
+		updatePasswordTxt {$("#main-container>h1")}
+		profileDetails {$(".intro-container")}	
+		passwordHintText {$(".help-inline>span")} 
 				
+		currentPwdTxt {$("div.b2BCustomerFormList>div.control-group .label .control-label",0)}
+		newPasswordTxt {$("div.b2BCustomerFormList>div.control-group .label .control-label",1)}
+		confirmNewPasswordTxt {$("div.b2BCustomerFormList>div.control-group .label .control-label",2)}
 	}
 	
 	def doUpdatePassword(oldPassword, newPassword)
