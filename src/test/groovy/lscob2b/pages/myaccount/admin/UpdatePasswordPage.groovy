@@ -1,4 +1,4 @@
-package lscob2b.pages.myaccount
+package lscob2b.pages.myaccount.admin
 
 import geb.Page;
 

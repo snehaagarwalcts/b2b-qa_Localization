@@ -6,7 +6,7 @@ import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.MyAccountPage
-import lscob2b.pages.myaccount.UpdatePasswordPage
+import lscob2b.pages.myaccount.admin.UpdatePasswordPage
 import spock.lang.Ignore
 
 class UpdatePasswordTest extends GebReportingSpec {

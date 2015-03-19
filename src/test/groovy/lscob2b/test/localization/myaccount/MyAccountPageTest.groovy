@@ -1,4 +1,5 @@
-package lscob2b.test.localization
+package lscob2b.test.localization.myaccount
+
 import lscob2b.data.PageHelper
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.data.UserHelper
@@ -7,9 +8,7 @@ import lscob2b.pages.HomePage;
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.PropertProviderTest
 
-
-class MyAccountPageTest extends PropertProviderTest {
-	
+class MyAccountPageTest extends PropertProviderTest {	
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)
