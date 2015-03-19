@@ -26,6 +26,7 @@ class OrderHistoryPageTest extends PropertProviderTest {
 		at MyAccountPage
 		
 		then: "click on OrderHistory Link "
+		//Add
 		
 		when: "at OrderHistoryPage"
 		at OrderHistoryPage

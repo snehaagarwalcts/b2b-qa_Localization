@@ -26,6 +26,7 @@ class AccountBalancePageTest extends PropertProviderTest {
 		at MyAccountPage
 		
 		then: "click on AccountBalance Link "
+		//Add
 		
 		when: "at AccountBalancePage"
 		at AccountBalancePage

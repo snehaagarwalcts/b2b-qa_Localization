@@ -29,6 +29,7 @@ class ManageUsersPageTest extends PropertProviderTest {
 		at MyAccountPage
 		
 		then: "click on ManageUsers Link "
+		//Add
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
@@ -52,11 +53,13 @@ class ManageUsersPageTest extends PropertProviderTest {
 		at MyAccountPage
 		
 		then: "click on ManageUsers Link "
+		//Add
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
 		
 		then: "click on Add new Users Link"
+		//Add
 		
 		when: "at CreateUserPage"
 		at CreateUserPage
@@ -80,11 +83,13 @@ class ManageUsersPageTest extends PropertProviderTest {
 		at MyAccountPage
 		
 		then: "click on ManageUsers Link "
+		//Add
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
 		
 		then: "click on any existing Users Link"
+		//Add
 		
 		when: "at ViewUserDetailsPage"
 		at ViewUserDetailsPage
@@ -108,16 +113,19 @@ class ManageUsersPageTest extends PropertProviderTest {
 		at MyAccountPage
 		
 		then: "click on ManageUsers Link "
+		//Add
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
 		
 		then: "click on any existing Users Link"
+		//Add
 		
 		when: "at ViewUserDetailsPage"
 		at ViewUserDetailsPage
 		
 		then:"click on EDIT button"
+		//Add
 		
 		when: "at EditUserDetailsPage"
 		at EditUserDetailsPage

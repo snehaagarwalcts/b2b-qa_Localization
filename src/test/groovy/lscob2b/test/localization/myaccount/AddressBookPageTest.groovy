@@ -26,11 +26,13 @@ class AddressBookPageTest extends PropertProviderTest {
 		at MyAccountPage
 		
 		then: "click on AddressBook Link "
+		//Add
 		
 		when: "at AddressBookPage"
 		at AddressBookPage
 	
 		then: "Verify Fields at AddressBookPage"
+		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
