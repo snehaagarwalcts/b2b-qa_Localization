@@ -28,7 +28,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		then:"check content translations at ContactUsPage"
 		assert contact.text() == expectedValue("contactus.heading")
 		assert introContainer.text()==expectedValue("contactus.intro")
-		assert required.text()==expectedValue("contactus.required")
+		assert required.text()==expectedValue("required")
 		assert titleLabel.text()==expectedValue("contactus.user.title")
 		assert firstNameLabel.text()==expectedValue("contactus.user.firstName")
 		assert lastNameLabel.text()==expectedValue("contactus.user.lastName")
