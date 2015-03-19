@@ -38,7 +38,7 @@ class LoginPageTest extends PropertProviderTest{
 		waitFor { errorMessage.displayed }
 		
 		then:"Verify error message translation"
-		assert errorMessage.text()==expectedValue("loginPage.error.accountNotFound")
+		assert errorMessage.text()==expectedValue("loginPage.error.accountNotFound") //FAIL
 				
 		where:
 		user=UserHelper.getInvalidUser()
@@ -69,7 +69,7 @@ class LoginPageTest extends PropertProviderTest{
 		waitFor { noteMessage.displayed }
 		
 		and: "Verify Message Translation for 'password link sent' message"
-		assert noteMessage.text()==expectedValue("loginPage.forgottenPwd.link.sent")
+		assert noteMessage.text()==expectedValue("loginPage.forgottenPwd.link.sent") //FAIL
 		
 		when:"Enter invalid forgotten password email Id"
 		openForgottenPasswordDialog()
@@ -79,7 +79,7 @@ class LoginPageTest extends PropertProviderTest{
 		waitFor { errorMessage.displayed }
 		
 		then: "A Message Appears.Verify Message Translation"
-		assert errorMessage.text()==expectedValue("loginPage.forgottenPwd.error")
+		assert errorMessage.text()==expectedValue("loginPage.forgottenPwd.error") //FAIL
 		
 		where:
 		validUser | invalidUser

@@ -3,7 +3,7 @@ package lscob2b.test.localization
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.ContactUsPage
-import lscob2b.pages.HomePage;
+import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.PropertProviderTest
 
@@ -41,7 +41,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		assert sendButton.text()==expectedValue("contactus.send")
 	}	
 	
-	def "Verify error messages- All fields Empty "() {
+	def "Verify translation of error message with All fields Empty - ContactUsPage "() {
 		setup:
 		to LoginPage
 		at LoginPage
@@ -67,33 +67,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		
 	}
 	
-	def "Verify error messages- Invalid Email Id"() {
-		setup:
-		to LoginPage
-		at LoginPage
-		clickContactUS()
-		
-		when:"at Contact Us page"
-		at ContactUsPage
-		
-		then:"fill out the form and request access"
-		def title = selectTitleOption(2)
-		fillOutFirstName('test')
-		fillOutlastName('test')
-		fillOutEmail('test@test.com')
-		fillOutPhone('111-222-3333')
-		fillOutCompanyName('test')
-		fillOutCustomerNumber('111-222-3333')
-		def country = selectCountryOption(15)
-		fillOutComments('test')
-		clickSendButton()
-
-		and:"Verify translation of error message"
-		assert alertMessage.text() == expectedValue("contactus.serviceerror.message")	||	
-		       contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
-	}
-	
-	def "Verify SUCCESSFUL SENT message"() {
+	def "Verify SUCCESSFUL SENT message - ContactUsPage"() {
 		setup:
 		to LoginPage
 		at LoginPage
@@ -110,17 +84,65 @@ class ContactUsPageTest extends PropertProviderTest{
 		fillOutPhone('111-222-3333')
 		fillOutCompanyName('Levis')
 		fillOutCustomerNumber('111-222-3333')
-		def country = selectCountryOption(15)
+		def country = selectCountryOption(234)
 		fillOutComments('test')
 		clickSendButton()
 	
 		and:"Verify translation of message"
-		assert noteMessage.text() == expectedValue("contactus.success.message") ||
-		       alertMessage.text() == expectedValue("contactus.serviceerror.message") ||
-	           contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
+		assert noteMessage.text() == expectedValue("contactus.success.message")
 	}
 	
-	def "Verify contact us page fields -After Login"() {
+	def "Verify translation of error message with Invalid Email Id - ContactUsPage"() {
+		setup:
+		to LoginPage
+		at LoginPage
+		clickContactUS()
+		
+		when:"at Contact Us page"
+		at ContactUsPage
+		
+		then:"fill out the form and request access"
+		def title = selectTitleOption(2)
+		fillOutFirstName('test')
+		fillOutlastName('test')
+		fillOutEmail('test@test.com')
+		fillOutPhone('111-222-3333')
+		fillOutCompanyName('test')
+		fillOutCustomerNumber('111-222-3333')
+		def country = selectCountryOption(234)
+		fillOutComments('test')
+		clickSendButton()
+
+		and:"Verify translation of error message"
+		assert alertMessage.text() == expectedValue("contactus.serviceerror.message")
+	}
+	
+	def "Verify translation of SYSTEM ERROR message - ContactUsPage"() {
+		setup:
+		to LoginPage
+		at LoginPage
+		clickContactUS()
+		
+		when:"at Contact Us page"
+		at ContactUsPage
+		
+		then:"fill out the form and request access"
+		def title = selectTitleOption(2)
+		fillOutFirstName('test')
+		fillOutlastName('test')
+		fillOutEmail('sagarwal1@levi.com')
+		fillOutPhone('111-222-3333')
+		fillOutCompanyName('test')
+		fillOutCustomerNumber('111-222-3333')
+		def country = selectCountryOption(18)
+		fillOutComments('test')
+		clickSendButton()
+
+		and:"Verify translation of error message"
+	    assert contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
+	}
+	
+	def "Verify contact us page fields after Login"() {
 		setup:
 		to LoginPage
 		at LoginPage
@@ -138,7 +160,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		assert contact.text() == expectedValue("contactus.heading")
 		assert alertMessage.text() == expectedValue("contactus.error.message")
 		assert introContainer.text()==expectedValue("contactus.intro")
-		assert required.text()==expectedValue("contactus.required")
+		assert required.text()==expectedValue("required")
 		assert titleLabel.text()==expectedValue("contactus.user.title")
 		assert firstNameLabel.text()==expectedValue("contactus.user.firstName")
 		assert lastNameLabel.text()==expectedValue("contactus.user.lastName")
@@ -151,18 +173,54 @@ class ContactUsPageTest extends PropertProviderTest{
 		assert commentsErrorAfterLogin.text()==expectedValue("contactus.comments.invalid")
 		assert continueShoppingLink.text()- ~/&/==expectedValue("label.continue.shopping")
 		assert sendButton.text()==expectedValue("contactus.send")
+
+		where:
+		user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 		
-		when: "fill out the form and request access"
+	}
+	
+	def "Verify SUCCESSFUL SENT message after Login - ContactUsPage"() {
+		setup:
+		to LoginPage
+		at LoginPage
+		login(user)
+		at HomePage
+		masterTemplate.doContactUs()
+		
+		when:"at Contact Us page"
+		at ContactUsPage
+			
+		then: "fill out the form and request access"
 		fillOutComments('test')
 		clickSendButton()
 	
-		then: "Verify translation of message"
-		assert alertMessage.text() == expectedValue("contactus.serviceerror.message") ||
-			   noteMessage.text() == expectedValue("contactus.success.message") ||
-			   contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
+		and: "Verify translation of message"
+		assert noteMessage.text() == expectedValue("contactus.success.message")
 		
 		where:
-		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
+		user = UserHelper.getUpdatePasswordUser()
+	}
+		
+	def "Verify translation of error message after Login - ContactUsPage"() {
+		setup:
+		to LoginPage
+		at LoginPage
+		login(user)
+		at HomePage
+		masterTemplate.doContactUs()
+		
+		when:"at Contact Us page"
+		at ContactUsPage			
+			
+		then: "fill out the form and request access"
+		fillOutComments('test')
+		clickSendButton()
+	
+		and: "Verify translation of message"
+		assert alertMessage.text() == expectedValue("contactus.serviceerror.message")
+		
+		where:
+		user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}
 	
 }
