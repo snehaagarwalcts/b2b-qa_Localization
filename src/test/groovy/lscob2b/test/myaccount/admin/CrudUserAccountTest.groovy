@@ -68,7 +68,7 @@ class CrudUserAccountTest extends GebReportingSpec {
 			at ViewUserDetailsPage
 		
 		and: "Check message"
-			waitFor { noteMessage.displayed }				
+			waitFor { masterTemplate.noteMessage.displayed }				
 	}
 	
 	/**
@@ -115,7 +115,7 @@ class CrudUserAccountTest extends GebReportingSpec {
 			at ViewUserDetailsPage
 		
 		and: "Check message"
-			waitFor { noteMessage.displayed }
+			waitFor { masterTemplate.noteMessage.displayed }
 			
 	}
 	
@@ -149,7 +149,7 @@ class CrudUserAccountTest extends GebReportingSpec {
 			at ViewUserDetailsPage
 
 		and: "Check Message"	
-			waitFor { noteMessage.displayed }
+			waitFor { masterTemplate.noteMessage.displayed }
 	}
 	
 	def User createTemporaryUser() {

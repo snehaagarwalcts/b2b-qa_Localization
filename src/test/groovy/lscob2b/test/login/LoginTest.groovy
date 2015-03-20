@@ -33,7 +33,7 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		and: "a message is displayed"
-		waitFor { errorMessage.displayed }
+		waitFor { masterTemplate.alertMessage.displayed }
 
 		where:
 		user = UserHelper.getInvalidUser()
@@ -122,7 +122,7 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		then: "We should see a error message"
-		waitFor { errorMessage.displayed }
+		waitFor { masterTemplate.alertMessage.displayed }
 		
 		where:
 			user | _
@@ -156,7 +156,7 @@ class LoginTest extends GebReportingSpec {
 		at LoginPage
 
 		then: "We should see a error message"
-			waitFor { errorMessage.displayed }
+			waitFor { masterTemplate.alertMessage.displayed }
 		
 		where:
 			user | _

@@ -28,7 +28,7 @@ class MyAccountPageTest extends PropertProviderTest {
 				
 		then: "Verify translations in My Account Page"	
 		assert masterTemplate.breadCrumbActive.text() == expectedValue("header.link.account")
-		assert myAccountText.text()  == expectedValue("header.link.account")
+		assert masterTemplate.mainContainerLabel.text()  == expectedValue("header.link.account")
 		assert profileLink.text()  == expectedValue("text.account.profile")
 		assert updatePersonalDetails.text() == expectedValue("text.account.profile.updatePersonalDetails")
 		assert changeYourPassword.text()  == expectedValue("text.account.profile.changePassword")

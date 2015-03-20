@@ -22,8 +22,8 @@ class CheckOutPage extends Page{
 		total { $('.total span') }
 		subTotal { $('.subtotal span') }
 		including { $('#ajaxCart .including') } //For this to work order simulation has to be turned on
-		remove { $("#RemoveProduct_0",0) }
-		removeConfirm { $("#RemoveProduct_0",1) }
+		remove { $("#RemoveProduct_0>p") }
+		removeConfirm { $("#RemoveProduct_0>p",1) }
 		
 		//Payment Terms
 		creditCardPayment(required: false) { $('#PaymentTypeSelection_CARD') }

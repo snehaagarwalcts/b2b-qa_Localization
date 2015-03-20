@@ -38,11 +38,11 @@ class ProfilePageTest extends PropertProviderTest{
 	
 		then: "Verify translations at Profile Page"
 		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
-		assert profileTxt.text() == expectedValue("text.account.profile")
-		assert profileDetails.text() == expectedValue("text.account.profile.details.subtitle")
-		assert titleLabel.text() == expectedValue("profile.title")
-		assert firstName.text() == expectedValue("profile.firstName")
-		assert lastName.text() == expectedValue("profile.lastName")
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.account.profile")
+		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.details.subtitle")
+		assert titleLabel.text() == expectedValue("text.company.user.title")
+		assert firstName.text() == expectedValue("text.company.user.name")
+		assert lastName.text() == expectedValue("text.company.unit.name")
 		assert changeYourPasswordLink.text()- ~/&/ == expectedValue("text.account.profile.changePassword")
 		assert updatePersonalDetailsLink.text()- ~/&/ == expectedValue("text.account.profile.updatePersonalDetails")		
 		
@@ -50,8 +50,60 @@ class ProfilePageTest extends PropertProviderTest{
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}		
 	
-	@IgnoreRest
-		def "Verify error messages in UpdatePersonalDetails Page Fields"(){
+	def "Verify translations in UpdatePassword Page"(){
+		setup:
+		to LoginPage
+		at LoginPage
+		login(user)
+		at HomePage
+		masterTemplate.clickMyAccount()
+
+		when: "at MyAccountPage"
+		at MyAccountPage
+
+		then: "click on Profile Link "
+		clickOnProfile()
+		
+		when:"at ProfilePage"
+		at ProfilePage
+		
+		then: "click on Update Password Link"
+		clickOnChangeYourPasswordLink()
+
+		when:"at UpdatePasswordPage"
+		at UpdatePasswordPage
+		
+		then: "verify translations in UpdatePassword Page"
+		assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.profile.updatePasswordForm")
+		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.profile.updatePasswordForm")
+		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.update.password.subtitle")
+		assert masterTemplate.requiredMessageText.text()== expectedValue("required")
+		assert currentPwdLabel.text() == expectedValue("profile.currentPassword")
+		assert newPasswordLabel.text() == expectedValue("profile.newPassword")
+		assert passwordHintText.text()==expectedValue("hint.update.password")
+		assert confirmNewPasswordLabel.text() == expectedValue("profile.checkNewPassword")
+		assert cancelButton.text()- ~/&/ == expectedValue("cancel")
+		assert updatePasswordButton.text() == expectedValue("updatePwd.submit")
+		
+		when: "click on UpdatePasswordButton - All fields empty"
+		clickUpdatePasswordButton()
+		
+		then: "verify error messages in UpdatePassword Page"
+		assert masterTemplate.alertMessage.text()	==expectedValue("form.global.error")
+		assert currentPasswordError.text() == expectedValue("profile.currentPassword.invalid")	
+		
+		when: "click on UpdatePasswordButton - All fields filled Up"
+		doUpdatePassword(user.password,uncompliantPassword)	
+		
+		then: "verify translation of SUCCESSFUL PASSWORD CHANGE message"
+		assert masterTemplate.noteMessage.text() == expectedValue("account.confirmation.password.updated")
+		
+		where:
+		user | uncompliantPassword
+		UserHelper.getUpdatePasswordUser() | UserHelper.UNCOMPLIANT_PASSWORD
+	}
+	
+	def "Verify translations in UpdatePersonalDetails Page"(){
 		
 			setup:
 			to LoginPage
@@ -66,7 +118,7 @@ class ProfilePageTest extends PropertProviderTest{
 			then: "click on Profile Link"
 			clickOnProfile()
 			
-			when: "at ProfilePage"			
+			when: "at ProfilePage"
 			at ProfilePage
 			
 			then: "click on Update Personal Details Link"
@@ -74,97 +126,26 @@ class ProfilePageTest extends PropertProviderTest{
 			
 			when: "at UpdatePersonalDetailsPage"
 			at UpdatePersonalDetailsPage
-			clickSaveButton()
 			
 			then: "verify translations in UpdatePersonalDetailsPage"			
-			
-			assert alertMessage.text()	==expectedValue("text.please.note").toUpperCase()
-			assert errorMessageText.text() == expectedValue("form.global.error")
-			assert profileDetails.text() == expectedValue("text.account.profile.update.password.subtitle")
-			assert requiredMessageText.text()== expectedValue("required")
+			assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.profile")
+			assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.profile")
+			assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.update.subtitle")
+			assert masterTemplate.requiredMessageText.text()== expectedValue("required")
+			assert updateProfileLabel(0).text() == expectedValue("profile.title")
+			assert updateProfileLabel(1).text() == expectedValue("profile.firstName")
+			assert updateProfileLabel(2).text() == expectedValue("profile.lastName")
 			assert cancelButton.text()- ~/&/ == expectedValue("cancel")
+			assert saveButton.text() == expectedValue("text.account.profile.saveUpdates")
 			
-			
-			where:
-			user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)		
-
-	}
-		
-		def "Verify UpdatePassword Page Fields"(){
-			setup:
-			to LoginPage
-			at LoginPage
-			login(user)
-			at HomePage
-			masterTemplate.clickMyAccount()
-	
-			when: "at MyAccountPage"
-			at MyAccountPage
-	
-			then: "click on Profile Link "
-			clickOnProfile()
-			
-			when:"at ProfilePage"
-			at ProfilePage
-			
-			then: "click on Update Password Link"
-			clickOnChangeYourPasswordLink()
-	
-			when:"at UpdatePasswordPage"
-			at UpdatePasswordPage
-			
-			then: "verify translations in Update Password Page"
-			assert updatePasswordText.text()==expectedValue("text.account.profile.updatePasswordForm")
-			assert profileDetails.text() == expectedValue("text.account.profile.update.password.subtitle")
-			assert currentPwdLabel.text() == expectedValue("profile.currentPassword")
-			assert newPasswordLabel.text() == expectedValue("profile.newPassword")
-			assert passwordHintText.text() == expectedValue("hint.update.password")
-			assert confirmNewPasswordLabel.text() == expectedValue("profile.checkNewPassword")
-			assert updatePasswordButton.text() == expectedValue("updatePwd.submit")
-			
-			where:
-			user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
-		}		
-		
-		def "Verify error messages in UpdatePassword Page Fields with All fields Empty"(){
-			setup:
-			to LoginPage
-			at LoginPage
-			login(user)
-			at HomePage
-			masterTemplate.clickMyAccount()
-	
-			when: "at MyAccountPage"
-			at MyAccountPage
-	
-			then: "click on Profile Link "
-			clickOnProfile()
-			
-			when:"at ProfilePage"
-			at ProfilePage
-			
-			then: "click on Update Password Link"
-			clickOnChangeYourPasswordLink()
-	
-			when:"at UpdatePasswordPage click on UpdatePasswordButton"
-			at UpdatePasswordPage
+			when: "click on Save button"
 			clickSaveButton()
 			
-			then: "verify error messages at UpdatePassword Page"		
-			assert updatePasswordText.text()==expectedValue("text.account.profile.updatePasswordForm")
-			assert alertMessage.text()	==expectedValue("text.please.note").toUpperCase()
-			assert errorMessageText.text() == expectedValue("form.global.error")
-			assert profileDetails.text() == expectedValue("text.account.profile.update.password.subtitle")
-			assert requiredMessageText.text()== expectedValue("required")
-			assert currentPwdLabel.text() == expectedValue("profile.currentPassword")
-			assert currentPasswordError.text() == expectedValue("profile.currentPassword.invalid")
-			assert newPasswordLabel.text() == expectedValue("profile.newPassword")
-			assert passwordHintText.text()==expectedValue("hint.update.password")	
-			assert confirmNewPasswordLabel.text() == expectedValue("profile.checkNewPassword")			
-			assert cancelButton.text()- ~/&/ == expectedValue("cancel")					
-			assert updatePasswordButton.text() == expectedValue("updatePwd.submit")			
+			then: "verify translation of PROFILE UPDATE message"
+			assert masterTemplate.noteMessage.text() == expectedValue("account.confirmation.profile.updated")
 			
 			where:
 			user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
-		}
+	}
+	
 }

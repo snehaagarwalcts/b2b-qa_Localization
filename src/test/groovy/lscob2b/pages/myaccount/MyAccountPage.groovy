@@ -41,7 +41,6 @@ class MyAccountPage extends Page {
 		accountBalanceLink(required: false) { $("div.headline").find('a', href: endsWith('/balance')) }
 		
 		//localization
-		myAccountText {$('#main-container>h1')}
 		myAccountBalanceLink {$('.tile.column.accountBalance>ul>li>a')}
 	}
 	

@@ -13,11 +13,11 @@ class HelpPage extends Page {
 	static content = {
 		masterTemplate {module MasterTemplate}
 
-		faq { $('.bannerContent').find('a', href: endsWith('/faq')) }
+		faq { $('.bannerWrapper').find('a', href: endsWith('/faq')) }
 
-		training { $('.bannerContent').find('a', href: endsWith('/training')) }
+		training { $('.bannerWrapper').find('a', href: endsWith('/training')) }
 
-		contactUs { $('.bannerContent').find('a', href: endsWith('/contactus')) }
+		contactUs { $('.bannerWrapper').find('a', href: endsWith('/contactus')) }
 	}
 
 	def checkFAQLinkExists(){

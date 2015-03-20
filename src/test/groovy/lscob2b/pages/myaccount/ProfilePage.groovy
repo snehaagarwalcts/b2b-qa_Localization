@@ -23,8 +23,6 @@ class ProfilePage extends Page{
 		changeYourPasswordLink { $("a.button.editUser", href: endsWith('update-password')) }
 			
 		//localization
-		profileTxt {$("#main-container>h1")}
-		profileDetails {$(".intro-container")}
 		titleLabel { $(".control-group:nth-child(1) .label")}
 		firstName {$(".control-group:nth-child(2) .label")}
 		lastName {$(".control-group:nth-child(3) .label")}

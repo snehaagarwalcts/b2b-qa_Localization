@@ -54,8 +54,6 @@ class QuickOrderPage extends Page{
 		
 		breadCrumbLink { $('#breadcrumb>ul>li:nth-of-type(3)')}
 		
-		quickOrder { $('#main-container>h1')}
-		
 		advancedSearch { $('.control-label', it)}
 		
 		blankSlateHeader { $('.blankSlate>h2')}

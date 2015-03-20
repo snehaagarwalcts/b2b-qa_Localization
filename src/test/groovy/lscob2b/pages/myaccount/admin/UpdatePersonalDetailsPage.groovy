@@ -1,5 +1,6 @@
 package lscob2b.pages.myaccount.admin
 
+import lscob2b.modules.MasterTemplate
 import geb.Page
 
 class UpdatePersonalDetailsPage extends Page {
@@ -14,12 +15,16 @@ class UpdatePersonalDetailsPage extends Page {
 		
 		/* Localization */
 		
-		//Profile { $('') }
-		//localization
-		saveButton {$(".control-label")}
-	}
-	
-	def clickSaveButton(){
+		saveButton {$(".button.save")}
 		
+		cancelButton {$(".button.btn-txt-red.cancel>p")}
+		
+		updateProfileLabel { $('.control-label', it)}
+				
+	}	
+	
+	//Localization 
+	def clickSaveButton(){
+		saveButton.click()
 	}
 }

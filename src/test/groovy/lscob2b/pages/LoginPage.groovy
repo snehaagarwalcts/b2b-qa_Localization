@@ -1,6 +1,7 @@
 package lscob2b.pages
 
 import geb.Page
+import lscob2b.modules.MasterTemplate;
 import lscob2b.test.data.User
 
 class LoginPage extends Page {
@@ -10,6 +11,9 @@ class LoginPage extends Page {
 	static at = { waitFor { title == "Login | LSCO B2B Site" ||  title == "DE_Login | LSCO B2B Site" } }
 
 	static content = {
+		
+		masterTemplate {module MasterTemplate}
+		
 		// login form
 		usernameInput { $("#j_username") }
 		passwordInput { $("#j_password") }
@@ -36,9 +40,6 @@ class LoginPage extends Page {
 		// contact us
 		contactUS { $('div.contact a') }
 		contactUsMessage { $('.contact') }
-		
-		//Password sent
-		noteMessage { $("div.note-message") }
 		
 		//Localization
 		loginTitle { $('#page>p') }

@@ -120,6 +120,16 @@ class MasterTemplate extends Module {
 		
 		subCategory { $('.subnav-column>ul>h3', it) }
 		
+		mainContainerLabel { $('#main-container>h1') }
+		
+		introContainerLabel { $('.intro-container') }
+		
+		alertMessage { $('div.alert-message') }
+		
+		noteMessage { $('div.note-message') }
+		
+		requiredMessageText { $('.required') }
+		
 	}
 	
 	def gotoHelpPage(){

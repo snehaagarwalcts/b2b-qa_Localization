@@ -46,6 +46,7 @@ class QuickOrderPageTest extends GebReportingSpec {
 			waitFor { searchInput.displayed }
 			searchLink.displayed
 			divCheckboxProductIDs.displayed
+			divCheckboxProductIDs.click()
 			buttonAdd.displayed
 			spanQuantity.displayed
 			spanPrice.displayed

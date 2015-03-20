@@ -9,5 +9,9 @@ class TrainingPage extends Page{
 
 	static at = { waitFor { title == "Training | LSCO B2B Site"} }
 
-	static content = { masterTemplate {module MasterTemplate} }
+	static content = { 
+		
+		masterTemplate {module MasterTemplate} 
+		
+	}
 }

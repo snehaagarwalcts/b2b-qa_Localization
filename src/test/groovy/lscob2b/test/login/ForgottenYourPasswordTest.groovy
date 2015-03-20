@@ -46,7 +46,7 @@ class ForgottenYourPasswordTest extends GebReportingSpec {
 		  at LoginPage
 		  
 		and: "Confirmation message should be display" 
-		  waitFor { noteMessage.displayed }
+		  waitFor { masterTemplate.noteMessage.displayed }
 		  
 		where: 
 			user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)  
@@ -66,7 +66,7 @@ class ForgottenYourPasswordTest extends GebReportingSpec {
 		  at LoginPage
 		  
 		and: "Confirmation message should be display"
-		  waitFor { errorMessage.displayed }
+		  waitFor { masterTemplate.alertMessage.displayed }
 		  
 		where:
 			user = UserHelper.getInvalidUser()

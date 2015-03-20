@@ -116,7 +116,9 @@ class QuickOrderTest extends GebReportingSpec {
 		and: "check page element"
 			checkTotalExists() //BB-621
 			checkSubTotalExists()
-			remove.click()		
+			waitFor {remove.displayed}
+			remove.click()	
+			removeConfirm.click()
 	}		
 }
 

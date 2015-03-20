@@ -1,5 +1,6 @@
 package lscob2b.pages.myaccount.admin
 
+import lscob2b.modules.MasterTemplate
 import geb.Page;
 
 class UpdatePasswordPage extends Page {
@@ -9,6 +10,8 @@ class UpdatePasswordPage extends Page {
 	static at = { waitFor { title == "Profile | LSCO B2B Site" } }
 
 	static content = {
+		
+		masterTemplate { module MasterTemplate }
 		
 		currentPasswordText { $('div.b2BCustomerFormList>div.control-group:nth-child(1) div.controls>input') }
 		
@@ -20,24 +23,19 @@ class UpdatePasswordPage extends Page {
 		
 		errorMessage { $('div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span') }
 		
-		passwordUpdateMessage { $('div.note-message h2') }		
-		
 		//localization
 		
-		updatePasswordText {$("#main-container>h1")}
-		profileDetails {$(".intro-container")}	
-		passwordHintText {$("div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span",1)} 
-				
+		passwordHintText {$(".help-inline>span")} 
+		
 		currentPwdLabel {$("div.b2BCustomerFormList>div.control-group .label .control-label",0)}
+		
 		newPasswordLabel {$("div.b2BCustomerFormList>div.control-group .label .control-label",1)}
+		
 		confirmNewPasswordLabel {$("div.b2BCustomerFormList>div.control-group .label .control-label",2)}
 		
-		//localization error messages
-		alertMessage {$(".alert-message>h2")}
-		errorMessageText {$(".alert-message>p")}
-		requiredMessageText{$(".required")}		
-		currentPasswordError {$("div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span",0)}
 		cancelButton {$(".button.btn-txt-red.cancel>p")}
+		
+		currentPasswordError {$("div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span",0)}
 		
 	}
 	
@@ -49,7 +47,8 @@ class UpdatePasswordPage extends Page {
 		updatePasswordButton.click()
 	}
 	
-	def clickSaveButton(){
+	//localization
+	def clickUpdatePasswordButton(){
 		updatePasswordButton.click()
 	}	
 

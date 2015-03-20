@@ -81,7 +81,7 @@ class UpdatePasswordTest extends GebReportingSpec {
 		doUpdatePassword(user.password,compliantPassword)
 		
 		then: "Password Successfully Updated message appears "
-		passwordUpdateMessage.displayed
+		masterTemplate.noteMessage.displayed
 		
 		when: "Login with new password"
 		PageHelper.gotoPageLogout(browser, baseUrl)

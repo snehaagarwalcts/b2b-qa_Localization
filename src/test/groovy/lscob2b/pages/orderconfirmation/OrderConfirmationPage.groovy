@@ -18,8 +18,5 @@ class OrderConfirmationPage extends Page{
 	
 		order {module OrderModule}
 		
-	}
-	
-	
-	
+	}			
 }

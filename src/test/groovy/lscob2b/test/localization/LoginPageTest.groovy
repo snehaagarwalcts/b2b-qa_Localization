@@ -22,6 +22,7 @@ class LoginPageTest extends PropertProviderTest{
 		at LoginPage
 	
 		then:"Verify translations at LoginPage"
+		assert pageheading ==expectedValue("loginPage.header")
 		assert loginTitle.text() == expectedValue("loginPage.title")
 		assert username.text()==expectedValue("loginPage.username")
 		assert password.text()==expectedValue("loginPage.password")
@@ -35,10 +36,10 @@ class LoginPageTest extends PropertProviderTest{
 		at LoginPage
 		
 		and:"a message is displayed"
-		waitFor { errorMessage.displayed }
+		waitFor { masterTemplate.alertMessage.displayed }
 		
 		then:"Verify error message translation"
-		assert errorMessage.text()==expectedValue("loginPage.error.accountNotFound") //FAIL
+		assert masterTemplate.alertMessage.text()==expectedValue("loginPage.error.accountNotFound") //FAIL
 				
 		where:
 		user=UserHelper.getInvalidUser()
@@ -66,20 +67,20 @@ class LoginPageTest extends PropertProviderTest{
 		and:"Enter valid forgotten password email Id"	
 		sendForgottenPasswordEmail(validUser.email)
 		at LoginPage
-		waitFor { noteMessage.displayed }
+		waitFor { masterTemplate.noteMessage.displayed }
 		
 		and: "Verify Message Translation for 'password link sent' message"
-		assert noteMessage.text()==expectedValue("loginPage.forgottenPwd.link.sent") //FAIL
+		assert masterTemplate.noteMessage.text()==expectedValue("loginPage.forgottenPwd.link.sent") //FAIL
 		
 		when:"Enter invalid forgotten password email Id"
 		openForgottenPasswordDialog()
 		waitFor { forgottenPasswordDialog.displayed }
 		sendForgottenPasswordEmail(invalidUser.email)
 		at LoginPage
-		waitFor { errorMessage.displayed }
+		waitFor { masterTemplate.alertMessage.displayed }
 		
 		then: "A Message Appears.Verify Message Translation"
-		assert errorMessage.text()==expectedValue("loginPage.forgottenPwd.error") //FAIL
+		assert masterTemplate.alertMessage.text()==expectedValue("loginPage.forgottenPwd.error") //FAIL
 		
 		where:
 		validUser | invalidUser

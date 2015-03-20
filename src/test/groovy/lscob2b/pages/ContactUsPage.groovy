@@ -14,10 +14,6 @@ class ContactUsPage extends Page{
 
 	static content = {
 		masterTemplate {module MasterTemplate}
-
-		contact { $('#main-container h1') }
-		introContainer { $('#main-container div.intro-container') }
-		required { $('#main-container div.required') }
 		
 		contactUsForm { $('#contactUsForm div div label.control-label') }
 		
@@ -39,10 +35,6 @@ class ContactUsPage extends Page{
 		customerNumberAfterLogin { $('.controls', 6) }
 		
 		sendButton { $('button.button') }
-		//required fields left unfilled or something wrong with server
-		alertMessage { $('div.alert-message') }
-		//when email sends
-		noteMessage { $('div.note-message') }
 		
 		//Localization
 		titleLabel { $('.control-label', 0) }
@@ -70,18 +62,18 @@ class ContactUsPage extends Page{
 	}
 	
 	def checkRequiredContent(){
-		!contact.empty
-		!introContainer.empty
-		!required.empty
+		!masterTemplate.mainContainerLabel.empty
+		!masterTemplate.introContainerLabel.empty
+		!masterTemplate.requiredMessageText.empty
 		!contactUsForm.empty
 	}
 	
 	def checkAlertMessageExists(){
-		!alertMessage.empty
+		!masterTemplate.alertMessage.empty
 	}
 	
 	def checkNoteMessageExists(){
-		!noteMessage.empty
+		!masterTemplate.noteMessage.empty
 	}
 	
 	def fillOutFirstName(String firstname){

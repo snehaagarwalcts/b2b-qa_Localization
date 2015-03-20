@@ -12,11 +12,11 @@ class EditUserDetailsPage extends Page{
 	static at = { waitFor { title == "LSCO B2B Site" } }
 
 	static content = {
+		
 		masterTemplate { module MasterTemplate }
 		
 		userDetails { module EditUserDetailsModule}
 		
 	}
-
 	
 }

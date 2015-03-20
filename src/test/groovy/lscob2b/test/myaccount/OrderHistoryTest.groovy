@@ -162,7 +162,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		at OrderHistoryPage
 		
 		then: "check content of order history page"
-		assert ordersFoundLabel.text() - ~/\d/ == "ORDERS FOUND"
+		assert ordersFoundLabel.text() - ~/\d/ == " ORDERS FOUND"
 		assert sortByLabel.text()=="SORT BY:"
 		assert datePlacedLabel.text()=="DATE PLACED"
 		assert orderNumberLabel.text()=="ORDER NUMBER"
@@ -257,6 +257,7 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-601 Automated Test: Order Search
 	 */	 
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
+	@IgnoreRest
 	def "Test search functionality in history"() {
 		setup:
 			login(user)
@@ -283,6 +284,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		when: "Test search by: order number and order source b2b"
 			clearForm()
 			searchByOrderNumberAndOrderSource(currentOrder.number, true, false, false, false, false)
+			//searchByOrderNumberAndOrderSource(currentOrder.number)
 			
 		then: "Check unique result"
 			checkUniqueResult()

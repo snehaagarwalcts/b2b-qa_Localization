@@ -26,9 +26,9 @@ class ContactUsPageTest extends PropertProviderTest{
 		at ContactUsPage
 	
 		then:"Verify translations at ContactUsPage"
-		assert contact.text() == expectedValue("contactus.heading")
-		assert introContainer.text()==expectedValue("contactus.intro")
-		assert required.text()==expectedValue("required")
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("contactus.heading")
+		assert masterTemplate.introContainerLabel.text()==expectedValue("contactus.intro")
+		assert masterTemplate.requiredMessageText.text()==expectedValue("required")
 		assert titleLabel.text()==expectedValue("contactus.user.title")
 		assert firstNameLabel.text()==expectedValue("contactus.user.firstName")
 		assert lastNameLabel.text()==expectedValue("contactus.user.lastName")
@@ -54,7 +54,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and:"Verify of error messages in ContactUsPage"
-		assert alertMessage.text() == expectedValue("contactus.error.message")
+		assert masterTemplate.alertMessage.text() == expectedValue("contactus.error.message")
 		assert titleError.text()==expectedValue("contactus.title.invalid")
 		assert firstNameError.text()==expectedValue("contactus.firstname.invalid")
 		assert lastNameError.text()==expectedValue("contactus.lastname.invalid")
@@ -89,7 +89,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and:"Verify translation of message"
-		assert noteMessage.text() == expectedValue("contactus.success.message")
+		assert masterTemplate.noteMessage.text() == expectedValue("contactus.success.message")
 	}
 	
 	def "Verify translation of error message with Invalid Email Id - ContactUsPage"() {
@@ -114,7 +114,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 
 		and:"Verify translation of error message"
-		assert alertMessage.text() == expectedValue("contactus.serviceerror.message")
+		assert masterTemplate.alertMessage.text() == expectedValue("contactus.serviceerror.message")
 	}
 	
 	def "Verify translation of SYSTEM ERROR message - ContactUsPage"() {
@@ -139,7 +139,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 
 		and:"Verify translation of error message"
-	    assert contact.text()==expectedValue("system.error") && alertMessage.text() == expectedValue("system.error.try.again")
+	    assert masterTemplate.mainContainerLabel.text()==expectedValue("system.error") && masterTemplate.alertMessage.text() == expectedValue("system.error.try.again")
 	}
 	
 	def "Verify contact us page fields after Login"() {
@@ -157,10 +157,10 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and:"Verify translations at ContactUsPage"
-		assert contact.text() == expectedValue("contactus.heading")
-		assert alertMessage.text() == expectedValue("contactus.error.message")
-		assert introContainer.text()==expectedValue("contactus.intro")
-		assert required.text()==expectedValue("required")
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("contactus.heading")
+		assert masterTemplate.alertMessage.text() == expectedValue("contactus.error.message")
+		assert masterTemplate.introContainerLabel.text()==expectedValue("contactus.intro")
+		assert masterTemplate.requiredMessageText.text()==expectedValue("required")
 		assert titleLabel.text()==expectedValue("contactus.user.title")
 		assert firstNameLabel.text()==expectedValue("contactus.user.firstName")
 		assert lastNameLabel.text()==expectedValue("contactus.user.lastName")
@@ -195,7 +195,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and: "Verify translation of message"
-		assert noteMessage.text() == expectedValue("contactus.success.message")
+		assert masterTemplate.noteMessage.text() == expectedValue("contactus.success.message")
 		
 		where:
 		user = UserHelper.getUpdatePasswordUser()
@@ -217,7 +217,7 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and: "Verify translation of message"
-		assert alertMessage.text() == expectedValue("contactus.serviceerror.message")
+		assert masterTemplate.alertMessage.text() == expectedValue("contactus.serviceerror.message")
 		
 		where:
 		user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

@@ -13,8 +13,6 @@ class ViewUserDetailsPage extends Page{
 		
 		masterTemplate {module MasterTemplate}
 		
-		noteMessage { $("div.note-message") }
-		
 		userDetails { module ViewUserDetailsModule }
 		
 	}
