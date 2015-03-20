@@ -30,7 +30,7 @@ class MasterTemplate extends Module {
 		
 		breadCrumbs { $('div#breadcrumb').find('li').not('li.separator') }
 		
-		breadCrumbHref { String href -> $('div#breadcrumb').find("a", href:endsWith(href),0) }
+		breadCrumbHref { String href -> $('div#breadcrumb').find("a", href:endsWith(href),0)}
 		
 		breadCrumbActive { $('div#breadcrumb').find("li.active",0) }
 

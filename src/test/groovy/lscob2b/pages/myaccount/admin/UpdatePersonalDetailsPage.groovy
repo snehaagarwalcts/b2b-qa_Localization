@@ -15,6 +15,11 @@ class UpdatePersonalDetailsPage extends Page {
 		/* Localization */
 		
 		//Profile { $('') }
+		//localization
+		saveButton {$(".control-label")}
+	}
+	
+	def clickSaveButton(){
 		
 	}
 }

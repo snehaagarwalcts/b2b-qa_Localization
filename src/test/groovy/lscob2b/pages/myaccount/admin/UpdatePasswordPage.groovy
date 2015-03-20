@@ -24,13 +24,21 @@ class UpdatePasswordPage extends Page {
 		
 		//localization
 		
-		updatePasswordTxt {$("#main-container>h1")}
+		updatePasswordText {$("#main-container>h1")}
 		profileDetails {$(".intro-container")}	
-		passwordHintText {$(".help-inline>span")} 
+		passwordHintText {$("div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span",1)} 
 				
-		currentPwdTxt {$("div.b2BCustomerFormList>div.control-group .label .control-label",0)}
-		newPasswordTxt {$("div.b2BCustomerFormList>div.control-group .label .control-label",1)}
-		confirmNewPasswordTxt {$("div.b2BCustomerFormList>div.control-group .label .control-label",2)}
+		currentPwdLabel {$("div.b2BCustomerFormList>div.control-group .label .control-label",0)}
+		newPasswordLabel {$("div.b2BCustomerFormList>div.control-group .label .control-label",1)}
+		confirmNewPasswordLabel {$("div.b2BCustomerFormList>div.control-group .label .control-label",2)}
+		
+		//localization error messages
+		alertMessage {$(".alert-message>h2")}
+		errorMessageText {$(".alert-message>p")}
+		requiredMessageText{$(".required")}		
+		currentPasswordError {$("div.b2BCustomerFormList>div.control-group.error>:nth-of-type(2)>span",0)}
+		cancelButton {$(".button.btn-txt-red.cancel>p")}
+		
 	}
 	
 	def doUpdatePassword(oldPassword, newPassword)
@@ -40,5 +48,9 @@ class UpdatePasswordPage extends Page {
 		confirmNewPasswordText.value(newPassword)
 		updatePasswordButton.click()
 	}
+	
+	def clickSaveButton(){
+		updatePasswordButton.click()
+	}	
 
 }
