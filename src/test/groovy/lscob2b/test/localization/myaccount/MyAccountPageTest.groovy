@@ -43,8 +43,6 @@ class MyAccountPageTest extends PropertProviderTest {
 		assert myAccountBalanceLink.text() == expectedValue("text.account.viewAccountBalance")						
 		
 		where:		
-		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
-		
+		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)		
 	}
-
 }

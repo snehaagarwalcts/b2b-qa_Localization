@@ -18,7 +18,7 @@ class OrderHistoryPage extends Page{
 		orderHistoryData { $("div#main-container>h1") }
 		orderHistoryDescription { $("div.description").text() }
 		orderHistoryBar { $("div.paginationBar").text() }
-		orderHistoryListTable { $("table.orderListTable thead tr").text() }
+		orderHistoryListTable { $("table.orderListTable thead tr").text()}
 
 		/* FORM */
 				
@@ -65,6 +65,18 @@ class OrderHistoryPage extends Page{
 		totalLabel { $("#header5") }
 		orderSourceLabel { $("#header6") }
 		invoiceLabel { $("#header7") }
+		
+		
+		//localization
+		clearSelection {$(".button.btn-txt-red.clear>p")}
+		hideSearch{$(".button.btn-txt-grey.toggle>p")}				
+		poNumberLabel {$(".control-label.forText:nth-child(1)")}
+		orderNumberLabel {$(".control-label.forText:nth-child(3)")}		
+		status {$(".control-group>h2",0)}
+		date {$(".control-group>h2",1)}
+		type {$(".control-group>h2",2)}
+		orderSource {$(".control-group>h2",3)}
+		
 	}
 	
 	def checkOrderHistoryData(){

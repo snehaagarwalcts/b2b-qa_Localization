@@ -91,7 +91,18 @@ class MyAccountPage extends Page {
 		!viewOrderHistory.empty
 	}
 		
+	// localization
 	def clickOnProfile(){
 		profileLink.click()
+	}
+	def clickOnMyAccountBalanceLink(){
+		myAccountBalanceLink.click()
+	}
+	def clickOnAddressBookLink(){		
+		addressBookLink.click()
+	}
+	
+	def clickOnOrderHistoryLink(){
+		orderHistoryLink.click()
 	}
 }

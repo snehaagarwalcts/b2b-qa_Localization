@@ -20,6 +20,9 @@ class AccountBalancePage extends Page {
 		totalOverdue { $("div.balance-group",1).find("div.label") }
 		
 		creditLimit { $("div.balance-group",2).find("div.label") }
+		
+		//localization
+		balanceIntro {$(".intro-container")}
 
 	}
 	
