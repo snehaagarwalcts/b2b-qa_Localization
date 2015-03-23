@@ -111,4 +111,8 @@ class MyAccountPage extends Page {
 	def clickOnManageUsersLink(){
 		manageUsers.click()
 	}
+	
+	def clickOnAddNewUsers(){
+		addNewUsers.click()
+	}
 }
