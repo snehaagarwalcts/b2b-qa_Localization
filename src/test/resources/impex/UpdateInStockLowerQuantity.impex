@@ -1,3 +1,5 @@
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true];available;inStockStatus(code)[default=notSpecified];maxPreOrder[default=0];maxStockLevelHistoryCount[default=5];overSelling[default=0];preOrder[default=0];reserved[default=0]
 ;00501003902832;3002;11
 ;00501003902832;3001;11
+;00501003904032;3002;5
+;00501003904032;3001;5
