@@ -162,7 +162,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		at OrderHistoryPage
 		
 		then: "check content of order history page"
-		assert ordersFoundLabel.text() - ~/\d/ == " ORDERS FOUND"
+		assert ordersFoundLabel.text() - ~/\d+\s+/ == "ORDERS FOUND"
 		assert sortByLabel.text()=="SORT BY:"
 		assert datePlacedLabel.text()=="DATE PLACED"
 		assert orderNumberLabel.text()=="ORDER NUMBER"

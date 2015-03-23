@@ -15,8 +15,6 @@ class AddressBookPage extends Page{
 		
 		masterTemplate { module MasterTemplate }
 		
-		mainContainer { $("#main-container > h1") }
-		
 		addressShipping { $("div.addressItems",0).find("div.addressItem") }
 		
 		addressBilling { $("div.addressItems",1).find("div.addressItem") }

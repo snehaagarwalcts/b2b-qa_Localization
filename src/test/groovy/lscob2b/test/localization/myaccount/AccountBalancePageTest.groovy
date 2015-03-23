@@ -32,11 +32,12 @@ class AccountBalancePageTest extends PropertProviderTest {
 		at AccountBalancePage		
 
 		then: "Verify translations at AccountBalancePage"
-		assert mainContainer.text()==expectedValue("text.account.accountBalance")
-		assert balanceIntro.text()==expectedValue("text.account.accountBalanceIntro")
-		assert totalBalance.text()==expectedValue("text.account.accountBalanceTotal")
-		assert totalOverdue.text()==expectedValue("text.account.accountBalanceOverdue")
-		assert creditLimit.text()==expectedValue("text.account.accountBalanceLimit")
+		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.accountBalance")
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.account.accountBalance")
+		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.accountBalanceIntro")
+		assert totalBalance.text() == expectedValue("text.account.accountBalanceTotal")
+		assert totalOverdue.text() == expectedValue("text.account.accountBalanceOverdue")
+		assert creditLimit.text() == expectedValue("text.account.accountBalanceLimit")
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}

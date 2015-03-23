@@ -13,21 +13,16 @@ class AccountBalancePage extends Page {
 
 		masterTemplate { module MasterTemplate }
 
-		mainContainer { $("#main-container > h1") }
-
 		totalBalance { $("div.balance-group",0).find("div.label") }
 
 		totalOverdue { $("div.balance-group",1).find("div.label") }
 		
 		creditLimit { $("div.balance-group",2).find("div.label") }
-		
-		//localization
-		balanceIntro {$(".intro-container")}
 
 	}
 	
 	def checkAccountBalanceExists(){
-		!mainContainer.empty
+		!masterTemplate.mainContainerLabel.empty
 	}
 	
 	def checkTotalBalanceExists(){

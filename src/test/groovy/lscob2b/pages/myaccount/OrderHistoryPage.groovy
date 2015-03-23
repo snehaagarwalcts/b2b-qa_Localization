@@ -15,8 +15,8 @@ class OrderHistoryPage extends Page{
 		
 		masterTemplate { module MasterTemplate }
 
-		orderHistoryData { $("div#main-container>h1") }
-		orderHistoryDescription { $("div.description").text() }
+		//orderHistoryData { $("div#main-container>h1") }
+		//orderHistoryDescription { $("div.description").text() }
 		orderHistoryBar { $("div.paginationBar").text() }
 		orderHistoryListTable { $("table.orderListTable thead tr").text()}
 
@@ -76,11 +76,17 @@ class OrderHistoryPage extends Page{
 		date {$(".control-group>h2",1)}
 		type {$(".control-group>h2",2)}
 		orderSource {$(".control-group>h2",3)}
-		
+		orderSelectionLabels { $('.control-group>fieldset>div label', it) }
+		searchOrderHistoryLink { $('.button.btn-txt-red.toggle>p') }
+		ordersFoundLabel1 { $(".totalResults",1) }
+		sortByLabel1 { $("#sort_form2>label") }
+		sortByDropdown { $('.paginationBar .sortOptions', it) }
+		sortByOptions { $('.paginationBar .sortOptions option', it) }
+		pageLink { $('.pagination>span', it) }
 	}
 	
 	def checkOrderHistoryData(){
-		!orderHistoryData.empty
+		!masterTemplate.mainContainerLabel.empty
 	}
 
 	def clearForm() {

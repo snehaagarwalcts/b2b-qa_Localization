@@ -89,7 +89,7 @@ class ProfilePageTest extends PropertProviderTest{
 		clickUpdatePasswordButton()
 		
 		then: "verify error messages in UpdatePassword Page"
-		assert masterTemplate.alertMessage.text()	==expectedValue("form.global.error")
+		assert masterTemplate.alertMessage.text() == expectedValue("form.global.error")
 		assert currentPasswordError.text() == expectedValue("profile.currentPassword.invalid")	
 		
 		when: "click on UpdatePasswordButton - All fields filled Up"

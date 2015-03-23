@@ -90,19 +90,25 @@ class MyAccountPage extends Page {
 	def checkViewOrderHistoryLinkExists(){
 		!viewOrderHistory.empty
 	}
-		
+			
 	// localization
 	def clickOnProfile(){
 		profileLink.click()
 	}
+	
 	def clickOnMyAccountBalanceLink(){
 		myAccountBalanceLink.click()
 	}
+	
 	def clickOnAddressBookLink(){		
 		addressBookLink.click()
 	}
 	
 	def clickOnOrderHistoryLink(){
 		orderHistoryLink.click()
+	}
+	
+	def clickOnManageUsersLink(){
+		manageUsers.click()
 	}
 }

@@ -27,7 +27,7 @@ class GlobalNavTest extends PropertProviderTest{
 		assert masterTemplate.myAccountLink.text() == expectedValue("header.link.account")
 		assert masterTemplate.helpLink.text() == expectedValue("nav.text.help")
 		assert masterTemplate.languageSelector.text() == expectedValue("header.locale")
-		assert masterTemplate.waitListLink.text() - ~/\d/ == expectedValue("breadcrumb.waitlist")
+		assert masterTemplate.waitListLink.text() - ~/\d+/ == expectedValue("breadcrumb.waitlist")
 		
 //		masterTemplate.myAccountLink.jquery.mouseover()
 //		assert masterTemplate.globalNavSubLinks(0).text() == expectedValue("text.account.profile") //sub-links

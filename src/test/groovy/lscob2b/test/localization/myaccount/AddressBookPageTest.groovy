@@ -33,7 +33,8 @@ class AddressBookPageTest extends PropertProviderTest {
 		at AddressBookPage
 	
 		then: "Verify translations at AddressBookPage"
-		assert mainContainer.text()==expectedValue("text.account.addressBook")
+		assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.addressBook")
+		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.addressBook")
 		assert shippingHeader.text()==expectedValue("text.account.addressBook.manageYourAddresses")
 		assert billingHeader.text()==expectedValue("text.account.addressBook.manageYourBillingAddresses")
 		
