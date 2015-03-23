@@ -92,15 +92,37 @@ class ProfilePageTest extends PropertProviderTest{
 		assert masterTemplate.alertMessage.text() == expectedValue("form.global.error")
 		assert currentPasswordError.text() == expectedValue("profile.currentPassword.invalid")	
 		
-		when: "click on UpdatePasswordButton - All fields filled Up"
-		doUpdatePassword(user.password,uncompliantPassword)	
+		where:
+		user | _
+		UserHelper.getUpdatePasswordUser() | _
+	}
+
+	def "Verify SUCCESSFUL PASSWORD CHANGE message in UpdatePassword Page"(){
+		setup:
+		to LoginPage
+		at LoginPage
+		login(user)
+		at HomePage
+		masterTemplate.clickMyAccount()
+
+		when: "at MyAccountPage"
+		at MyAccountPage
+		
+		then: "click on change password link"
+		changeYourPassword.click()
+		
+		when: "at update Password"
+		at UpdatePasswordPage
+		
+		and: "Try to update password "
+		doUpdatePassword(user.password,compliantPassword)
 		
 		then: "verify translation of SUCCESSFUL PASSWORD CHANGE message"
 		assert masterTemplate.noteMessage.text() == expectedValue("account.confirmation.password.updated")
 		
 		where:
-		user | uncompliantPassword
-		UserHelper.getUpdatePasswordUser() | UserHelper.UNCOMPLIANT_PASSWORD
+		user | compliantPassword
+		UserHelper.getUpdatePasswordUser() | UserHelper.COMPLIANT_PASSWORD	
 	}
 	
 	def "Verify translations in UpdatePersonalDetails Page"(){

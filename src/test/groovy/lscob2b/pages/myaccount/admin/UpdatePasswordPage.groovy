@@ -14,10 +14,12 @@ class UpdatePasswordPage extends Page {
 		masterTemplate { module MasterTemplate }
 		
 		currentPasswordText { $('div.b2BCustomerFormList>div.control-group:nth-child(1) div.controls>input') }
+		//currentPasswordText { $('.controls input',0) }
 		
 		newPasswordText { $('#profile-newPassword') }
 		
 		confirmNewPasswordText { $('div.b2BCustomerFormList>div.control-group:nth-child(4) div.controls>input') }
+		//confirmNewPasswordText { $('.controls input',2) }
 		
 		updatePasswordButton{ $('.button.save') }
 		

@@ -22,7 +22,7 @@ class GlobalNavTest extends PropertProviderTest{
 		at HomePage
 	
 		then:"Verify translations at GlobalNav"
-		assert masterTemplate.welcomeLink.text() == expectedValue("header.welcome")
+		assert masterTemplate.welcomeLink.text()- ~/\s+\w+/ == expectedValue("header.welcome")
 		assert masterTemplate.logoutLink.text() == expectedValue("header.link.logout")
 		assert masterTemplate.myAccountLink.text() == expectedValue("header.link.account")
 		assert masterTemplate.helpLink.text() == expectedValue("nav.text.help")
