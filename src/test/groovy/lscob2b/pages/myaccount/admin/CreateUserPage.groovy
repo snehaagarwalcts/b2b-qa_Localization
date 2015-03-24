@@ -19,6 +19,5 @@ class CreateUserPage extends Page {
 		
 		userDetails { module EditUserDetailsModule }
 		
-		alertContainer { $("div.alert-container") }
 	}
 }
