@@ -1,5 +1,6 @@
 package lscob2b.test.myaccount
 
+import de.hybris.geb.page.hac.console.ImpexImportPage;
 import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
@@ -15,6 +16,35 @@ class UpdatePasswordTest extends GebReportingSpec {
 		PageHelper.gotoPageLogout(browser, baseUrl)
 		to LoginPage
 		at LoginPage	
+	}
+	
+	def "load impex [/impex/Users.impex]"() {
+		setup:
+			browser.go(browser.config.rawConfig.hacUrl)
+			at de.hybris.geb.page.hac.LoginPage
+		
+			doLogin(browser.config.rawConfig.hacUsername, browser.config.rawConfig.hacPassword)
+			at de.hybris.geb.page.hac.HomePage
+			
+		when: "at HAC home page"
+			at de.hybris.geb.page.hac.HomePage
+			
+		and: "go to Console>ImpexImport page"
+			browser.go(browser.config.rawConfig.hacUrl + "console/impex/import")
+		
+		and: "at ImpexImport page"
+		waitFor { ImpexImportPage}
+			at ImpexImportPage
+		
+		and: "load impex in HAC"
+			setLegacyMode(true)
+			importTextScript(getClass().getResource('/impex/Users.impex').text)
+			
+		then: "check import result"
+			checkNotification()
+			
+		cleanup:
+			menu.logout()
 	}
 	
 	/**

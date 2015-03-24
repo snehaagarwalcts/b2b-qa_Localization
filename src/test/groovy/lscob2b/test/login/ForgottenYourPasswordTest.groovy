@@ -12,9 +12,9 @@ class ForgottenYourPasswordTest extends GebReportingSpec {
         to LoginPage
     }
 	
-	 /**
-	  * TC BB-750 Forgotten your password
-	  */
+	/**
+	 * TC BB-750 Forgotten your password
+	 */
     def "Open forgotten password dialog"() {
 		when: "At login page"
 			at LoginPage
@@ -62,10 +62,10 @@ class ForgottenYourPasswordTest extends GebReportingSpec {
 		and: "Enter email and click send"
 			sendForgottenPasswordEmail(user.email)
 
-		then: "At login page"
-		  at LoginPage
+//		then: "At login page"
+//		  at LoginPage
 		  
-		and: "Confirmation message should be display"
+		then: "Confirmation message should be display"
 		  waitFor { masterTemplate.alertMessage.displayed }
 		  
 		where:

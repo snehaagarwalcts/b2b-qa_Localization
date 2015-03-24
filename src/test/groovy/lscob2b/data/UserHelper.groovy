@@ -38,7 +38,7 @@ class UserHelper  {
 	}
 	
 	static User getInvalidUser() {
-		new User(email:'username', password:'password')
+		new User(email:'username1', password:'password')
 	}
 	
 	static User getUpdatePasswordUser(){
