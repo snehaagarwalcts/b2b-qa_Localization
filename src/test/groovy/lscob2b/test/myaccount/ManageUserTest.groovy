@@ -1,6 +1,6 @@
 package lscob2b.test.myaccount
 
-import spock.lang.Ignore;
+import spock.lang.IgnoreRest;
 import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.ProductHelper
@@ -152,7 +152,7 @@ class ManageUserTest extends GebReportingSpec {
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER)
 	}
 	
-	//this test continues from step above. after removing the default address you should see alternative address select
+	/*this test continues from step above. after removing the default address you should see alternative address select*/
 	def "sign in with levis customer and check alternative delivery address displayed"(){
 		setup:
 		login(user)
@@ -171,15 +171,17 @@ class ManageUserTest extends GebReportingSpec {
 		and: "add item to cart"
 		waitFor { !productSizingGrids.empty }
 		addLimitedStockQuantityToCart(0,1)
+		masterTemplate.waitForSometime()
 
 		then:"click checkout"
 		checkOutLink.click() //issue with firefox
 
 		when: "at Checkout page"
 		at CheckOutPage
+		masterTemplate.waitForSometime()
 		
 		then: "check alternative delivery address displayed"
-		!alternateDeliveryAddressSelect.displayed
+		alternateDeliveryAddressSelect.displayed
 		
 		where:
 		user | product

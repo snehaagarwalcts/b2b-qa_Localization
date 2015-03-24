@@ -53,9 +53,7 @@ class ProductDetailSecurityTest extends GebReportingSpec {
 
 		where:
 		user | productCode
-//		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | ProductHelper.getQuickOrderProduct(ProductHelper.BRAND_LEVIS)[0]
-//		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
 //		UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
 	}
 

@@ -40,7 +40,7 @@ class ProductHelper  {
 		if(brand == BRAND_LEVIS) {
 			return [
 				code: '00501-0039',
-				related: ["00501-0039","00501-0101"]
+				related: ["00501-0039","00501-0113"]
 			]
 		}
 		null

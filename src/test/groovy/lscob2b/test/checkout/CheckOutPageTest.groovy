@@ -52,6 +52,7 @@ class CheckOutPageTest extends GebReportingSpec {
 		at QuickOrderPage
 
 		when: "click checkout"
+		masterTemplate.waitForSometime()
 		checkOutLink.click()
 
 		and: "at Checkout page"

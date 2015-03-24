@@ -26,11 +26,9 @@ class WaitListContentTest extends GebReportingSpec{
 	def static String productCode = ProductHelper.getWaitlistProduct(ProductHelper.BRAND_LEVIS)
 	
 	def setupSpec() {
-		PageHelper.gotoPageLogout(browser,baseUrl)
-		
+		PageHelper.gotoPageLogout(browser,baseUrl)		
 		to LoginPage
-		login(user)
-		
+		login(user)		
 		at HomePage
 	}
 	

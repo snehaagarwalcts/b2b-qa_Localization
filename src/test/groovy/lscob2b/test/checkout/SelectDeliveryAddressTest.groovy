@@ -28,35 +28,38 @@ class SelectDeliveryAddressTest extends GebReportingSpec {
 	def "Checkout without selecting an address"(){
 		setup:
 		to LoginPage
-
 		at LoginPage
 		login(user)
 		at HomePage
-
 		masterTemplate.clickQuickOrder()
-		at QuickOrderPage
 
 		when:"at quickorder page"
 		at QuickOrderPage
 
-		and: "search for a product"
+		then: "search for a product"
 		doSearch(targetProductCode, true)
+		
+		when: "at quick order page"
 		at QuickOrderPage
 
 		and: "add item to cart"
 		waitFor { !productSizingGrids.empty }
 		addLimitedStockQuantityToCart(0,1)
+		
+		then: "at quick order page"
+		at QuickOrderPage
 
-		then:"click checkout"
+		when:"click checkout"
+		masterTemplate.waitForSometime()
 		checkOutLink.click() //issue with firefox
 
-		when: "at Checkout page"
+		and: "at Checkout page"
 		at CheckOutPage
 		
-		and: "click place order"
+		then: "click place order"
 		placeOrderLink.click()
 		
-		then: "You should remain on the checkout page and see please select delivery address"
+		and: "You should remain on the checkout page and see please select delivery address"
 		at CheckOutPage
 		checkNoDeliveryAddressSelectedExists()
 		

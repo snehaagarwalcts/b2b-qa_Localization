@@ -83,6 +83,7 @@ class ProductDetailTest extends GebReportingSpec {
 	def "Place an order from product details page"(){
 		when: "at Cart Page"
 			at CartPage
+			masterTemplate.waitForSometime()
 			
 		then: "click on checkout"
 			linkCheckout.click()

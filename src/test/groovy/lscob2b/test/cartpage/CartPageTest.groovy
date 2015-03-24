@@ -12,11 +12,8 @@ import spock.lang.IgnoreIf
 
 class CartPageTest extends GebReportingSpec {
 		
-	def setupSpec() {
-		PageHelper.gotoPageLogout(browser,baseUrl)
-	}
-
 	def setup() {
+		PageHelper.gotoPageLogout(browser,baseUrl)
 		to LoginPage
 	}
 
@@ -71,8 +68,9 @@ class CartPageTest extends GebReportingSpec {
 		waitFor { !sizingGrid.empty }
 		sizingGrid.addLimitedStockQuantityToCart(1)
 		
-		and: "click on cart link"
-		masterTemplate.cartItemLink.click()
+		and: "Go to Cart Page"
+		to CartPage		
+//		masterTemplate.cartItemLink.click()
 		
 		then: "at cart page"
 		at CartPage
