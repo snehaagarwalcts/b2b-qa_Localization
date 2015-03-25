@@ -46,6 +46,7 @@ class QuickOrderSecurityTest extends GebReportingSpec {
 		and: "click checkout"
 			//to QuickOrderPage //For qa000
 			waitFor { !checkOutLink.empty }
+			masterTemplate.waitForSometime()
 			checkOutLink.click()
 			
 		then: "at cart page"	

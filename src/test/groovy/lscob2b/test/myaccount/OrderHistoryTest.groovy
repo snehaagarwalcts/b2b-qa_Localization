@@ -257,7 +257,6 @@ class OrderHistoryTest extends GebReportingSpec {
 	 * TC BB-601 Automated Test: Order Search
 	 */	 
 	//TODO NOTE can't run last 3 tests as we shouldn't place an order
-	@IgnoreRest
 	def "Test search functionality in history"() {
 		setup:
 			login(user)

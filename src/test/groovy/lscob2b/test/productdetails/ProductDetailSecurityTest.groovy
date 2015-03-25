@@ -36,7 +36,8 @@ class ProductDetailSecurityTest extends GebReportingSpec {
 			sizingGrid.addLimitedStockQuantityToCart(1)
 			
 		and: "click cart page"
-			masterTemplate.cartItemLink.click()
+			//masterTemplate.cartItemLink.click()
+			to CartPage
 			
 		then: "at cart page"	
 			at CartPage

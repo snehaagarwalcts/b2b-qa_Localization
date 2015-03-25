@@ -61,7 +61,7 @@ class OrderHistoryPageTest extends PropertProviderTest {
 		assert sortByLabel.text()== expectedValue("text.account.orderHistory.page.sortTitle")
 		assert sortByLabel1.text()== expectedValue("text.account.orderHistory.page.sortTitle")		
 		sortByDropdown(0).jquery.mouseover()
-		assert sortByOptions(0).text()== expectedValue("text.account.orderHistory.page.sort.byDate")
+		assert sortByOptions(0).text()- ~/\s+/== expectedValue("text.account.orderHistory.page.sort.byDate")
 		assert sortByOptions(1).text()== expectedValue("text.account.orderHistory.page.sort.byOrderNumber")
 		sortByDropdown(1).jquery.mouseover()
 		assert sortByOptions(2).text()== expectedValue("text.account.orderHistory.page.sort.byDate")

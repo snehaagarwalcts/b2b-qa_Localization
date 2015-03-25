@@ -250,7 +250,7 @@ class MasterTemplate extends Module {
 	}
 	
 	def waitForSometime(){
-		Thread.sleep(2000)
+		Thread.sleep(3000)
 	}
 			
 }
