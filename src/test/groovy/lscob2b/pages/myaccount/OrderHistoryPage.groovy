@@ -15,29 +15,22 @@ class OrderHistoryPage extends Page{
 		
 		masterTemplate { module MasterTemplate }
 
-		//orderHistoryData { $("div#main-container>h1") }
-		//orderHistoryDescription { $("div.description").text() }
 		orderHistoryBar { $("div.paginationBar").text() }
 		orderHistoryListTable { $("table.orderListTable thead tr").text()}
 
-		/* FORM */
-				
-		searchForm { $("form#orderSearchForm") }
-		
-		searchButton(to: OrderHistoryPage) { searchForm.find("button", type:'submit') }
-		
-		clearButton { searchForm.find("a.clear") }
-		
-		fieldOrderNumber { searchForm.find("input", name: 'orderNum') }
-		
+		/* FORM */				
+		searchForm { $("form#orderSearchForm") }	
+		searchButton(to: OrderHistoryPage) { searchForm.find("button", type:'submit') }		
+		clearButton { searchForm.find("a.clear") }		
+		fieldOrderNumber { searchForm.find("input", name: 'orderNum') }		
 		fieldPONumber { searchForm.find("input", name: 'poNum') }
 	
 		checkboxOrderStatusSubmitted { searchForm.find("input", type:'checkbox', name:'statuses',0) }
 		checkboxOrderStatusCompleted { searchForm.find("input", type:'checkbox', name:'statuses',1) }
 		checkboxOrderStatusInProgress { searchForm.find("input", type:'checkbox', name:'statuses',2) }
-//		checkboxOrderDate30 { searchForm.find("input", type:'radio', name:'duration',0) }
-//		checkboxOrderDate90 { searchForm.find("input", type:'radio', name:'duration',1) }
-//		checkboxOrderDateYear { searchForm.find("input", type:'radio', name:'duration',2) }
+		checkboxOrderDate30 { $('#duration1') }
+		checkboxOrderDate90 { $('#duration2') }
+		checkboxOrderDateYear { $('#duration3') }
 		checkboxOrderTypeAO { searchForm.find("input", type:'checkbox', name:'types',0) }
 		checkboxOrderTypePB { searchForm.find("input", type:'checkbox', name:'types',1) }
 		checkboxOrderSourceB2B { searchForm.find("input", type:'checkbox', name:'sources',0) }
@@ -47,19 +40,13 @@ class OrderHistoryPage extends Page{
 		checkboxOrderSourceLEO { searchForm.find("input", type:'checkbox', name:'sources',4) }			
 
 		clickCheckbox  { $('.iCheck-helper', it) }
-		checkboxOrderDate30 { $('#duration1') }
-		checkboxOrderDate90 { $('#duration2') }
-		checkboxOrderDateYear { $('#duration3') }
-		
-		
+
 		/* Result */
 		
-		resultTable(required: false) { $("table.orderListTable") }
-		
+		resultTable(required: false) { $("table.orderListTable") }		
 		invoiceNumber (require:false) { $("a.invoice") }
 		
-		/*  order history content */
-		
+		/*  order history content */		
 		ordersFoundLabel { $(".totalResults",0) }
 		sortByLabel { $("#sort_form1>label") }
 		datePlacedLabel { $("#header1") }
@@ -68,8 +55,7 @@ class OrderHistoryPage extends Page{
 		orderTypeLabel { $("#header4") }
 		totalLabel { $("#header5") }
 		orderSourceLabel { $("#header6") }
-		invoiceLabel { $("#header7") }
-		
+		invoiceLabel { $("#header7") }		
 		
 		//localization
 		clearSelection {$(".button.btn-txt-red.clear>p")}
@@ -92,24 +78,6 @@ class OrderHistoryPage extends Page{
 	def checkOrderHistoryData(){
 		!masterTemplate.mainContainerLabel.empty
 	}
-
-	def clearForm() {
-		if(checkboxOrderSourceB2B.value() != false) checkboxOrderSourceB2B.parent().click()
-		if(checkboxOrderSourceEDI.value() != false) checkboxOrderSourceEDI.parent().click()
-		if(checkboxOrderSourceSAP.value() != false) checkboxOrderSourceSAP.parent().click()
-		if(checkboxOrderSourceSFA.value() != false) checkboxOrderSourceSFA.parent().click()
-		if(checkboxOrderSourceLEO.value() != false) checkboxOrderSourceLEO.parent().click()
-		if(checkboxOrderTypeAO.value() != false) checkboxOrderTypeAO.parent().click()
-		if(checkboxOrderTypePB.value() != false) checkboxOrderTypePB.parent().click()
-		if(checkboxOrderDate30.value() != false) checkboxOrderDate30.parent().click()
-		if(checkboxOrderDate90.value() != false) checkboxOrderDate90.parent().click()
-		if(checkboxOrderDateYear.value() != false) checkboxOrderDateYear.parent().click()
-		if(checkboxOrderStatusSubmitted.value() != false) checkboxOrderStatusSubmitted.parent().click()
-		if(checkboxOrderStatusCompleted.value() != false) checkboxOrderStatusCompleted.parent().click()
-		if(checkboxOrderStatusInProgress.value() != false) checkboxOrderStatusInProgress.parent().click()
-		fieldPONumber.value("")
-		fieldOrderNumber.value("")
-	}
 	
 	def isFormClear() {
 		return !checkboxOrderSourceB2B.value() && !checkboxOrderSourceEDI.value() && !checkboxOrderSourceSAP.value() &&
@@ -119,20 +87,7 @@ class OrderHistoryPage extends Page{
 		!checkboxOrderStatusInProgress.value() && fieldOrderNumber.value() == "" && fieldPONumber.value() == ""
 	}
 	
-	def switchOnForm() {
-//		checkboxOrderSourceB2B.parent().click()
-//		checkboxOrderSourceEDI.parent().click()
-//		checkboxOrderSourceSAP.parent().click()
-//		checkboxOrderSourceSFA.parent().click()
-//		checkboxOrderSourceLEO.parent().click()
-//		checkboxOrderTypeAO.parent().click()
-//		checkboxOrderTypePB.parent().click()
-//		checkboxOrderDate30.parent().click()
-//		checkboxOrderDate90.parent().click()
-//		checkboxOrderDateYear.parent().click()
-//		checkboxOrderStatusSubmitted.parent().click()
-//		checkboxOrderStatusCompleted.parent().click()
-//		checkboxOrderStatusInProgress.parent().click()		
+	def switchOnForm() {		
 		clickCheckbox(0).click()
 		clickCheckbox(1).click()
 		clickCheckbox(2).click()
@@ -156,40 +111,34 @@ class OrderHistoryPage extends Page{
 	}	
 
 	def searchByOrderNumberAndOrderSource(String orderNumber, boolean b2b, boolean edi, boolean sap, boolean sfa, boolean leo) {
-		if(checkboxOrderSourceB2B.value() != b2b) checkboxOrderSourceB2B.parent().click()
-		if(checkboxOrderSourceEDI.value() != edi) checkboxOrderSourceEDI.parent().click()
-		if(checkboxOrderSourceSAP.value() != sap) checkboxOrderSourceSAP.parent().click()
-		if(checkboxOrderSourceSFA.value() != sfa) checkboxOrderSourceSFA.parent().click()
-		if(checkboxOrderSourceLEO.value() != leo) checkboxOrderSourceLEO.parent().click()	
+		if(checkboxOrderSourceB2B.value() != b2b) clickCheckbox(5).click()
+		if(checkboxOrderSourceEDI.value() != edi) clickCheckbox(6).click()
+		if(checkboxOrderSourceSAP.value() != sap) clickCheckbox(7).click()
+		if(checkboxOrderSourceSFA.value() != sfa) clickCheckbox(8).click()
+		if(checkboxOrderSourceLEO.value() != leo) clickCheckbox(9).click()
 		fieldOrderNumber.value(orderNumber)
 		searchButton.click()
 	}
 	
-//	def searchByOrderNumberAndOrderSource(String orderNumber) {
-//		clickCheckbox(5).click()
-//		fieldOrderNumber.value(orderNumber)
-//		searchButton.click()
-//	}
-	
 	def searchByOrderNumberAndOrderType(String orderNumber, boolean atOnce, boolean preBook) {
-		if(checkboxOrderTypeAO.value() != atOnce) checkboxOrderTypeAO.parent().click()
-		if(checkboxOrderTypePB.value() != preBook) checkboxOrderTypePB.parent().click()
+		if(checkboxOrderTypeAO.value() != atOnce) clickCheckbox(3).click()
+		if(checkboxOrderTypePB.value() != preBook) clickCheckbox(4).click()
 		fieldOrderNumber.value(orderNumber)
 		searchButton.click()
 	}
 	
 	def searchByOrderNumberAndOrderDate(String orderNumber, boolean last30, boolean last90, boolean lastYear) {
-		if(checkboxOrderDate30.value() != last30) checkboxOrderDate30.parent().click()
-		if(checkboxOrderDate90.value() != last90) checkboxOrderDate90.parent().click()
-		if(checkboxOrderDateYear.value() != lastYear) checkboxOrderDateYear.parent().click()
+		if(checkboxOrderDate30.value() != last30) checkboxOrderDate30.click()
+		if(checkboxOrderDate90.value() != last90) checkboxOrderDate90.click()
+		if(checkboxOrderDateYear.value() != lastYear) checkboxOrderDateYear.click()
 		fieldOrderNumber.value(orderNumber)
 		searchButton.click()
 	}
 	
 	def searchByOrderNumberAndOrderStatus(String orderNumber, boolean submitted, boolean completed, boolean inProgress) {
-		if(checkboxOrderStatusSubmitted.value() != submitted) checkboxOrderStatusSubmitted.parent().click()
-		if(checkboxOrderStatusCompleted.value() != completed) checkboxOrderStatusCompleted.parent().click()
-		if(checkboxOrderStatusInProgress.value() != inProgress) checkboxOrderStatusInProgress.parent().click()
+		if(checkboxOrderStatusSubmitted.value() != submitted) clickCheckbox(0).click()
+		if(checkboxOrderStatusCompleted.value() != completed) clickCheckbox(1).click()
+		if(checkboxOrderStatusInProgress.value() != inProgress) clickCheckbox(2).click()
 		fieldOrderNumber.value(orderNumber)
 		searchButton.click()
 	}

@@ -274,78 +274,74 @@ class OrderHistoryTest extends GebReportingSpec {
 			at OrderHistoryPage
 
 		when: "Test search by: order number"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumber(currentOrder.number)
 
 		then: "Check unique result"				
 			checkUniqueResult()
 
 		when: "Test search by: order number and order source b2b"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderSource(currentOrder.number, true, false, false, false, false)
-			//searchByOrderNumberAndOrderSource(currentOrder.number)
 			
 		then: "Check unique result"
 			checkUniqueResult()
 
 		when: "Test search by: order number and order source not b2b"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderSource(currentOrder.number, false, true, true, true, true)
 		
 		then: "Check empty result"
 			checkEmptyResult()
 			
 		when: "Test search by: order number and order type at once"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderType(currentOrder.number, true, false)
 			
 		then: "Check unique result"
 			checkUniqueResult()
 			
 		when: "Test search by: order number and order type pre book"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderType(currentOrder.number, false, true)
 			
 		then: "Check empty result"
 			checkEmptyResult()
 
 		when: "Test search by: order number and order date last 30d"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderDate(currentOrder.number, true, false, false)
 			
 		then: "Check unique result"
 			checkUniqueResult()
 
 		when: "Test search by: order number and order date last 90d"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderDate(currentOrder.number, false, true, false)
 			
 		then: "Check unique result"
-			checkUniqueResult()
-			
+			checkUniqueResult()			
 
 		when: "Test search by: order number and order date last year"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderDate(currentOrder.number, false, false, true)
 		
 		then: "Check unique result"
-			checkUniqueResult()
-			
+			checkUniqueResult()		
 
 		when: "Test search by: order number and order status submitted"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderStatus(currentOrder.number, true, false, false)
 		
 		then: "Check unique result"
-			checkUniqueResult()
-		
+			checkUniqueResult()		
 
 		when: "Test search by: order number and order status not submitted"
-			clearForm()
+			clearButton.click()
 			searchByOrderNumberAndOrderStatus(currentOrder.number, false, true, true)
 		
 		then: "Check empty result"
-		checkEmptyResult()
+			checkEmptyResult()
 
 		where:
 		productCode | user | _
