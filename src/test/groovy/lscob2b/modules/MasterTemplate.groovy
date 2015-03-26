@@ -228,24 +228,18 @@ class MasterTemplate extends Module {
 		}
 	}
 	
-	/* MY ACCOUNT */
-	
+	/* MY ACCOUNT */	
 	def getMyAccountSubLink(String link) {
-		//myAccountLink.jquery.mouseover()
 		waitFor {
 			!myAccountLink.parent().find("ul").empty
-			//myAccountLink.parent().find("ul").displayed
 		}
 		myAccountLink.parent().find("a", href: endsWith(link))
 	}
 	
 	def getMyAccountSubLinks() {
-		//myAccountLink.jquery.mouseover()
 		waitFor {
-			//!myAccountLink.parent().find("ul").empty
 			!myAccountSubLink.empty
 		}
-		//myAccountLink.parent().find("ul").find("a")
 		myAccountSubLink.find("a")
 	}
 	

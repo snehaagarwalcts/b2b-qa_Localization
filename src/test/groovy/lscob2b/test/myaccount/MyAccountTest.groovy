@@ -141,8 +141,7 @@ class MyAccountTest extends GebReportingSpec {
 	def "Check [ManageUserPage] structure"(){
 		setup:
 			at LoginPage
-			login(user)
-			
+			login(user)			
 			at HomePage
 			PageHelper.gotoPage(browser,baseUrl,PageHelper.PAGE_MANAGE_USERS)
 		

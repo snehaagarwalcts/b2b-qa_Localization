@@ -60,12 +60,6 @@ class OrderHistoryPageTest extends PropertProviderTest {
 		assert ordersFoundLabel1.text() - ~/\d+\s+/ ==expectedValue("text.account.orderHistory.page.totalResults")
 		assert sortByLabel.text()== expectedValue("text.account.orderHistory.page.sortTitle")
 		assert sortByLabel1.text()== expectedValue("text.account.orderHistory.page.sortTitle")		
-		sortByDropdown(0).jquery.mouseover()
-		assert sortByOptions(0).text()- ~/\s+/== expectedValue("text.account.orderHistory.page.sort.byDate")
-		assert sortByOptions(1).text()== expectedValue("text.account.orderHistory.page.sort.byOrderNumber")
-		sortByDropdown(1).jquery.mouseover()
-		assert sortByOptions(2).text()== expectedValue("text.account.orderHistory.page.sort.byDate")
-		assert sortByOptions(3).text()== expectedValue("text.account.orderHistory.page.sort.byOrderNumber")	
 		assert pageLink(0).text().replaceAll("\\s+\\d+","") == expectedValue("text.account.orderHistory.page.currentPage")
 		assert pageLink(1).text().replaceAll("\\s+\\d+","")== expectedValue("text.account.orderHistory.page.currentPage")		
 		assert datePlacedLabel.text()  == expectedValue("text.account.orderHistory.datePlaced")
@@ -75,6 +69,22 @@ class OrderHistoryPageTest extends PropertProviderTest {
 		assert totalLabel.text() ==expectedValue("text.account.orderHistory.total")
 		assert orderSourceLabel.text() ==expectedValue("text.account.orderHistory.orderSource")
 		assert invoiceLabel.text() == expectedValue("text.account.orderHistory.invoice")	
+		
+		when: "MouseHover SortBy dropdown 1"
+		//sortByDropdown(0).jquery.mouseover()   //Issue with Firefox 35
+		interact { moveToElement(sortByDropdown(0)) }
+
+		then: "verify translations of Dropdown options"
+		assert sortByOptions(0).text()- ~/\s+/== expectedValue("text.account.orderHistory.page.sort.byDate")
+		assert sortByOptions(1).text()== expectedValue("text.account.orderHistory.page.sort.byOrderNumber")
+		
+		when: "MouseHover SortBy dropdown 1=2"
+		//sortByDropdown(1).jquery.mouseover()    //Issue with Firefox 35
+		interact { moveToElement(sortByDropdown(1)) }
+		
+		then: "verify translations of Dropdown options"
+		assert sortByOptions(2).text()== expectedValue("text.account.orderHistory.page.sort.byDate")
+		assert sortByOptions(3).text()== expectedValue("text.account.orderHistory.page.sort.byOrderNumber")
 		
 		when: "click on HIDE SEARCH"
 		hideSearch.click()

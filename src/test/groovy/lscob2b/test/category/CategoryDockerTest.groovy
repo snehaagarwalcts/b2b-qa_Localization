@@ -24,8 +24,9 @@ class CategoryDockerTest extends GebReportingSpec {
 			at HomePage
 			
 		and: "mouse over category"
-			masterTemplate.categoryLink(category).jquery.mouseover() //TODO fix the mouse over on Firefox Windows 7
-			
+			//masterTemplate.categoryLink(category).jquery.mouseover()      //Issue with Firefox 35
+			interact { moveToElement(masterTemplate.categoryLink(category)) }
+		
 		then: "check all subcategories"
 			masterTemplate.subCategoryLink(category, subCategory).displayed
 			

@@ -24,10 +24,20 @@ class HomePageTest extends PropertProviderTest{
 		then:"Verify translations at HomePage"
 		assert masterTemplate.quickOrderLink.text() == expectedValue("search.advanced.title")
 		assert masterTemplate.searchText == expectedValue("search.placeholder")
-		masterTemplate.menCategory.jquery.mouseover()
+		
+		when: "MouseHover Men Category"	
+		//masterTemplate.menCategory.jquery.mouseover()   //Issue with Firefox 35
+		interact { moveToElement(masterTemplate.menCategory) }
+		
+		then:"verify translations of Men Category"		
 		assert masterTemplate.subCategory(0).text() == expectedValue("categorylandingpage.categories")
 		assert masterTemplate.subCategory(1).text() == expectedValue("categorylandingpage.seasonalinitiatives")
-		masterTemplate.womenCategory.jquery.mouseover()
+		
+		when: "MouseHover Women Category"
+		//masterTemplate.womenCategory.jquery.mouseover()   //Issue with Firefox 35
+		interact { moveToElement(masterTemplate.womenCategory) }
+		
+		then: "verify translations of Women Category"
 		assert masterTemplate.subCategory(2).text() == expectedValue("categorylandingpage.categories")
 		assert masterTemplate.subCategory(3).text() == expectedValue("categorylandingpage.seasonalinitiatives")
 				
