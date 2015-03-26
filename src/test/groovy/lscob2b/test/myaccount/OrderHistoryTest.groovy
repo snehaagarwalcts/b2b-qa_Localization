@@ -90,7 +90,7 @@ class OrderHistoryTest extends GebReportingSpec {
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
-	
+
 	def "Test clear functionality"() {
 		setup:
 			at LoginPage	
