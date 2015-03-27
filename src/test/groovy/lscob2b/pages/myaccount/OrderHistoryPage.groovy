@@ -97,9 +97,9 @@ class OrderHistoryPage extends Page{
 		clickCheckbox(7).click()
 		clickCheckbox(8).click()
 		clickCheckbox(9).click()
-		checkboxOrderTypePB.click()
 		checkboxOrderDate30.click()
 		checkboxOrderDate90.click()
+		checkboxOrderDateYear.click()
 		fieldPONumber.value("Test PO")
 		fieldOrderNumber.value("Test Order")
 	}

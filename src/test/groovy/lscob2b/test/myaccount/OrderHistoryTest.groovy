@@ -12,8 +12,6 @@ import lscob2b.pages.myaccount.OrderDetailPage
 import lscob2b.pages.myaccount.OrderHistoryPage
 import lscob2b.pages.orderconfirmation.OrderConfirmationPage
 import lscob2b.pages.productdetails.ProductDetailsPage
-import spock.lang.Ignore
-import spock.lang.IgnoreRest;
  
 class OrderHistoryTest extends GebReportingSpec {
 
@@ -90,12 +88,11 @@ class OrderHistoryTest extends GebReportingSpec {
 		user | _
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
 	}
-
+	
 	def "Test clear functionality"() {
 		setup:
 			at LoginPage	
-			login(user)
-			
+			login(user)		
 			at HomePage
 			PageHelper.gotoPage(browser,baseUrl,PageHelper.PAGE_ORDER_HISTORY)
 		
