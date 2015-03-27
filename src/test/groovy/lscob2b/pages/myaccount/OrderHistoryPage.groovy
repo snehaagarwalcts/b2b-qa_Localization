@@ -28,9 +28,9 @@ class OrderHistoryPage extends Page{
 		checkboxOrderStatusSubmitted { searchForm.find("input", type:'checkbox', name:'statuses',0) }
 		checkboxOrderStatusCompleted { searchForm.find("input", type:'checkbox', name:'statuses',1) }
 		checkboxOrderStatusInProgress { searchForm.find("input", type:'checkbox', name:'statuses',2) }
-		checkboxOrderDate30 { $('#duration1') }
-		checkboxOrderDate90 { $('#duration2') }
-		checkboxOrderDateYear { $('#duration3') }
+		checkboxOrderDate30 { searchForm.find("input", type:'radio', name:'duration',0) }
+		checkboxOrderDate90 { searchForm.find("input", type:'radio', name:'duration',1) }
+		checkboxOrderDateYear { searchForm.find("input", type:'radio', name:'duration',2) }
 		checkboxOrderTypeAO { searchForm.find("input", type:'checkbox', name:'types',0) }
 		checkboxOrderTypePB { searchForm.find("input", type:'checkbox', name:'types',1) }
 		checkboxOrderSourceB2B { searchForm.find("input", type:'checkbox', name:'sources',0) }
@@ -41,8 +41,7 @@ class OrderHistoryPage extends Page{
 
 		clickCheckbox  { $('.iCheck-helper', it) }
 
-		/* Result */
-		
+		/* Result */		
 		resultTable(required: false) { $("table.orderListTable") }		
 		invoiceNumber (require:false) { $("a.invoice") }
 		
@@ -128,9 +127,9 @@ class OrderHistoryPage extends Page{
 	}
 	
 	def searchByOrderNumberAndOrderDate(String orderNumber, boolean last30, boolean last90, boolean lastYear) {
-		if(checkboxOrderDate30.value() != last30) checkboxOrderDate30.click()
-		if(checkboxOrderDate90.value() != last90) checkboxOrderDate90.click()
-		if(checkboxOrderDateYear.value() != lastYear) checkboxOrderDateYear.click()
+		if(last30) checkboxOrderDate30.click()
+		if(last90) checkboxOrderDate90.click()
+		if(lastYear) checkboxOrderDateYear.click()
 		fieldOrderNumber.value(orderNumber)
 		searchButton.click()
 	}
