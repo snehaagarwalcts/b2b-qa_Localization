@@ -25,8 +25,8 @@ class CategoryLevisTest extends GebReportingSpec {
 			at HomePage
 			
 		and: "mouse over category"
-			//masterTemplate.categoryLink(category).jquery.mouseover()     //Issue with Firefox 35
-			interact { moveToElement(masterTemplate.categoryLink(category)) }
+			masterTemplate.categoryLink(category).jquery.mouseover()     //Issue with Firefox 35
+			interact { moveToElement(masterTemplate.categoryLink(category)) }  //Issue with Chrome
 			
 		then: "check all subcategories"
 			masterTemplate.subCategoryLink(category, subCategory).displayed

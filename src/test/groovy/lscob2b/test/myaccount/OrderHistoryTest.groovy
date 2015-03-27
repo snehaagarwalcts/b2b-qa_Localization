@@ -29,7 +29,8 @@ class OrderHistoryTest extends GebReportingSpec {
 		addOrderQuantity("1")
 		sizingGrid.buttonAddToCart.click()
 		masterTemplate.goToCartLink.click()
-
+		to CartPage
+		
 		//Cart
 		at CartPage
 		linkCheckout.click()

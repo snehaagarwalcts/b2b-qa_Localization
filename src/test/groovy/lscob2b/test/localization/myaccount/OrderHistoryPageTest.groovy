@@ -71,16 +71,16 @@ class OrderHistoryPageTest extends PropertProviderTest {
 		assert invoiceLabel.text() == expectedValue("text.account.orderHistory.invoice")	
 		
 		when: "MouseHover SortBy dropdown 1"
-		//sortByDropdown(0).jquery.mouseover()   //Issue with Firefox 35
-		interact { moveToElement(sortByDropdown(0)) }
+		sortByDropdown(0).jquery.mouseover()   //Issue with Firefox 35
+		interact { moveToElement(sortByDropdown(0)) } //Issue with Chrome
 
 		then: "verify translations of Dropdown options"
 		assert sortByOptions(0).text()- ~/\s+/== expectedValue("text.account.orderHistory.page.sort.byDate")
 		assert sortByOptions(1).text()== expectedValue("text.account.orderHistory.page.sort.byOrderNumber")
 		
 		when: "MouseHover SortBy dropdown 1=2"
-		//sortByDropdown(1).jquery.mouseover()    //Issue with Firefox 35
-		interact { moveToElement(sortByDropdown(1)) }
+		sortByDropdown(1).jquery.mouseover()    //Issue with Firefox 35
+		interact { moveToElement(sortByDropdown(1)) } //Issue with Chrome
 		
 		then: "verify translations of Dropdown options"
 		assert sortByOptions(2).text()== expectedValue("text.account.orderHistory.page.sort.byDate")

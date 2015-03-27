@@ -26,16 +26,16 @@ class HomePageTest extends PropertProviderTest{
 		assert masterTemplate.searchText == expectedValue("search.placeholder")
 		
 		when: "MouseHover Men Category"	
-		//masterTemplate.menCategory.jquery.mouseover()   //Issue with Firefox 35
-		interact { moveToElement(masterTemplate.menCategory) }
+		masterTemplate.menCategory.jquery.mouseover()   //Issue with Firefox 35
+		interact { moveToElement(masterTemplate.menCategory) }  //Issue with Chrome
 		
 		then:"verify translations of Men Category"		
 		assert masterTemplate.subCategory(0).text() == expectedValue("categorylandingpage.categories")
 		assert masterTemplate.subCategory(1).text() == expectedValue("categorylandingpage.seasonalinitiatives")
 		
 		when: "MouseHover Women Category"
-		//masterTemplate.womenCategory.jquery.mouseover()   //Issue with Firefox 35
-		interact { moveToElement(masterTemplate.womenCategory) }
+		masterTemplate.womenCategory.jquery.mouseover()   //Issue with Firefox 35
+		interact { moveToElement(masterTemplate.womenCategory) }  //Issue with Chrome
 		
 		then: "verify translations of Women Category"
 		assert masterTemplate.subCategory(2).text() == expectedValue("categorylandingpage.categories")
