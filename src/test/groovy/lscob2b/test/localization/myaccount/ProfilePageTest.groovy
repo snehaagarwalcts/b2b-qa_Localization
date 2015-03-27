@@ -10,8 +10,6 @@ import lscob2b.test.data.PropertProviderTest
 import lscob2b.pages.myaccount.ProfilePage
 import lscob2b.pages.myaccount.admin.UpdatePasswordPage;
 import lscob2b.pages.myaccount.admin.UpdatePersonalDetailsPage
-import spock.lang.IgnoreRest
-
 
 class ProfilePageTest extends PropertProviderTest{
 	
