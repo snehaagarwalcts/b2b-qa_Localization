@@ -278,6 +278,12 @@
 
 		<!-- ENV PROFILE -->
 		<profile>
+			<id>preprod</id>
+			<properties>
+				<test.env>preprod</test.env>
+			</properties>
+		</profile>
+		<profile>
 			<id>integration000</id>
 			<properties>
 				<test.env>integration000</test.env>

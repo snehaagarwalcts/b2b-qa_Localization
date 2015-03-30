@@ -1,73 +1,45 @@
 package lscob2b.test.quickorder
 
-import spock.lang.IgnoreIf;
-import geb.spock.GebReportingSpec
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.quickorder.QuickOrderPage
+import lscob2b.test.data.PropertProviderTest
 
-class QuickOrderPageTest extends GebReportingSpec {
+class QuickOrderPageTest extends PropertProviderTest{
 	
 	def setup() {
-		PageHelper.gotoPageLogout(browser,baseUrl)
-		to LoginPage 
+		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 	
-	/**
-	 * US BB-88 Be able to place a quick order 
-	 * TC BB-436 Automated Test Case: Any User should see the "Quick Order" link in the header section of the Application,
-	 * that should redirect the user to the Quick Order Page.
-	 * TC BB-437 Automated Test Case: validate the content of the "Quick Order" Page for any user
-	 */
-	//@IgnoreIf({System.getProperty("geb.browser") == "internet explorer"})
-	@IgnoreIf({System.getProperty("geb.env") == "integration000"})
-	def "Test page structure of [QuickOrderPage]"() {
-		when: "at login page"
-			at LoginPage
-			
-		and: "do login"
-			login(user)
+	def "Verify translations - QuickOrderPage"() {
+		setup:
+		to LoginPage
+		at LoginPage
+		login(user)
+		at HomePage
+		masterTemplate.clickQuickOrder()
 		
-		and: "at home page"
-			at HomePage	
-		
-		then: "QuickOrder link is available"
-			masterTemplate.quickOrderLink.displayed				//TC BB-436
-			
-		when: "Click on QuickOrder link"	
-			masterTemplate.clickQuickOrder()
-			
-		then: "at QuickOrder page"
-			at QuickOrderPage
-			
-		and: "Correct sections/links should be visible"			//TC BB-437
-			waitFor { searchInput.displayed }
-			searchLink.displayed
-			divCheckboxProductIDs.displayed
-			divCheckboxProductIDs.click()
-			buttonAdd.displayed
-			spanQuantity.displayed
-			spanPrice.displayed
-			checkOutLink.displayed
-			
+		when:"at QuickOrderPage"
+		at QuickOrderPage
+	
+		then:"Verify translations at QuickOrderPage"
+		assert breadCrumbLink.text() == expectedValue("search.page.breadcrumb")
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("search.advanced")
+		assert advancedSearch(0).text() == expectedValue("search.advanced.keyword")
+		assert advancedSearch(1).text() == expectedValue("search.advanced.onlyproductids")		
+		assert searchLink.text() == expectedValue("search.advanced.search")
+		assert blankSlateHeader.text() == expectedValue("search.advanced.how.to")
+		assert blankSlateContent.text()  == expectedValue("search.advanced.how.to.text")
+		assert helpLink.text() == expectedValue("quick.order.help.link.label")
+		assert quantityAndTotal(0).text() == expectedValue("order.quantity")
+		assert quantityAndTotal(1).text() == expectedValue("order.total")
+		assert continueshoppingLink.text()- ~/&/ == expectedValue("cart.page.continue")
+		assert checkOutLink.text()- ~/&/  == expectedValue("cart.checkout")
+				
 		where:
-			user | _
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_ADMIN) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_CUSTOMER) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_FINANCE) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_SUPER) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_ADMIN) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_CUSTOMER) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_DOCKERS, UserHelper.ROLE_FINANCE) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_SUPER) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_ADMIN) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_CUSTOMER) | _
-			UserHelper.getUser(UserHelper.B2BUNIT_MULTIBRAND, UserHelper.ROLE_FINANCE) | _
+		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}
-
 }
-
 
