@@ -9,7 +9,6 @@ import lscob2b.pages.TermsAndConditionPage
 import spock.lang.IgnoreIf
 import spock.lang.IgnoreRest
 
-
 class LoginTest extends GebReportingSpec {
 
 	def setup() {
