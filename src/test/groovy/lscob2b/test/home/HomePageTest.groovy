@@ -22,7 +22,7 @@ class HomePageTest extends PropertProviderTest{
 		at HomePage
 	
 		then:"Verify translations at HomePage"
-		assert masterTemplate.quickOrderLink.text() == expectedValue("search.advanced.title")
+		assert masterTemplate.quickOrderLink.text() == expectedValue("search.advanced")
 		assert masterTemplate.searchText == expectedValue("search.placeholder")
 		
 		when: "MouseHover Men Category"	

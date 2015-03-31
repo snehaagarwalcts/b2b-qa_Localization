@@ -75,12 +75,12 @@ class ProfilePageTest extends PropertProviderTest{
 		assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.profile.updatePasswordForm")
 		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.profile.updatePasswordForm")
 		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.update.password.subtitle")
-		assert masterTemplate.requiredMessageText.text()== expectedValue("required")
+		assert masterTemplate.requiredMessageText.text()== expectedValue("address.required")
 		assert currentPwdLabel.text() == expectedValue("profile.currentPassword")
 		assert newPasswordLabel.text() == expectedValue("profile.newPassword")
 		assert passwordHintText.text()==expectedValue("hint.update.password")
 		assert confirmNewPasswordLabel.text() == expectedValue("profile.checkNewPassword")
-		assert cancelButton.text()- ~/&/ == expectedValue("cancel")
+		assert cancelButton.text()- ~/&/ == expectedValue("cancelButton.displayName")
 		assert updatePasswordButton.text() == expectedValue("updatePwd.submit")
 		
 		when: "click on UpdatePasswordButton - All fields empty"
@@ -151,11 +151,11 @@ class ProfilePageTest extends PropertProviderTest{
 			assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.profile")
 			assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.profile")
 			assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.update.subtitle")
-			assert masterTemplate.requiredMessageText.text()== expectedValue("required")
+			assert masterTemplate.requiredMessageText.text()== expectedValue("address.required")
 			assert updateProfileLabel(0).text() == expectedValue("profile.title")
 			assert updateProfileLabel(1).text() == expectedValue("profile.firstName")
 			assert updateProfileLabel(2).text() == expectedValue("profile.lastName")
-			assert cancelButton.text()- ~/&/ == expectedValue("cancel")
+			assert cancelButton.text()- ~/&/ == expectedValue("cancelButton.displayName")
 			assert saveButton.text() == expectedValue("text.account.profile.saveUpdates")
 			
 			when: "click on Save button"
