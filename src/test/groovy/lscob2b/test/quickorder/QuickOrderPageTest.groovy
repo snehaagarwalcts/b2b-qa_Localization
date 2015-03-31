@@ -25,18 +25,18 @@ class QuickOrderPageTest extends PropertProviderTest{
 		at QuickOrderPage
 	
 		then:"Verify translations at QuickOrderPage"
-		assert breadCrumbLink.text() == expectedValue("search.page.breadcrumb")
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("search.advanced")
-		assert advancedSearch(0).text() == expectedValue("search.advanced.keyword")
-		assert advancedSearch(1).text() == expectedValue("search.advanced.onlyproductids")		
-		assert searchLink.text() == expectedValue("search.advanced.search")
-		assert blankSlateHeader.text() == expectedValue("search.advanced.how.to")
+		assert breadCrumbLink.text() == expectedValue("search.page.breadcrumb").toUpperCase()
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("search.advanced").toUpperCase()
+		assert advancedSearch(0).text() == expectedValue("search.advanced.keyword").toUpperCase()
+		assert advancedSearch(1).text() == expectedValue("search.advanced.onlyproductids").toUpperCase()
+		assert searchLink.text() == expectedValue("search.advanced.search").toUpperCase()
+		assert blankSlateHeader.text() == expectedValue("search.advanced.how.to").toUpperCase()
 		assert blankSlateContent.text()  == expectedValue("search.advanced.how.to.text")
 		assert helpLink.text() == expectedValue("quick.order.help.link.label")
-		assert quantityAndTotal(0).text() == expectedValue("order.quantity")
-		assert quantityAndTotal(1).text() == expectedValue("order.total")
-		assert continueshoppingLink.text()- ~/&/ == expectedValue("cart.page.continue")
-		assert checkOutLink.text()- ~/&/  == expectedValue("cart.checkout")
+		assert quantityAndTotal(0).text() == expectedValue("order.quantity").toUpperCase()
+		assert quantityAndTotal(1).text() == expectedValue("order.total").toUpperCase()
+		assert continueshoppingLink.text()- ~/&/ == expectedValue("cart.page.continue").toUpperCase()
+		assert checkOutLink.text()- ~/&/  == expectedValue("cart.checkout").toUpperCase()
 				
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

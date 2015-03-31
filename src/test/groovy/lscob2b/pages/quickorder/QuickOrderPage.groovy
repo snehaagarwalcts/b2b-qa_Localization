@@ -10,7 +10,7 @@ class QuickOrderPage extends Page{
 	
 	static url = "/search/advanced"
 
-	static at = { waitFor { title == "Quick Order | LSCO B2B Site" } }
+	static at = { waitFor { title == "Quick Order | LSCO B2B Site" || title == "DE_Quick Order | LSCO B2B Site"} }
 
 	static content = { 
 		
