@@ -32,9 +32,8 @@ class CreateNewUserPageTest extends PropertProviderTest {
 		at CreateUserPage
 		
 		then: "Verify translations in AddUserDetails Page"
-		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")
-		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.company.manageUsers.adduser.title")
-		assert userDetails.firstNameLabel.text()==expectedValue("text.company.manageUser.user.firstName")
+		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.company.manageUsers.adduser.title").toUpperCase()
+		assert userDetails.firstNameLabel.text()==expectedValue("text.company.manageUser.user.firstName").toUpperCase()
 		assert masterTemplate.requiredMessageText.text()==expectedValue("")
 		
 		where:

@@ -23,7 +23,7 @@ class EditUserDetailsModule extends Module{
 		saveButton { $("button", type: "submit") }
 		
 		//Localization
-		firstNameLabel { $(".control-group .label label.control-label",0)}
+		firstNameLabel { customerForm.find("label.control-label") }
 		
 		lastNameLabel { $(".control-group:nth-child(2) .label")}
 			
