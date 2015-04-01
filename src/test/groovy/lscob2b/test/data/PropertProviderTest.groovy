@@ -17,15 +17,15 @@ class PropertProviderTest extends GebReportingSpec {
 		
 		FileInputStream fs = new FileInputStream(FilePath)
 		
-		WorkbookSettings wbSettings = new WorkbookSettings();
+		WorkbookSettings wbSettings = new WorkbookSettings()
 		
-		wbSettings.setEncoding("CP1252");
+		wbSettings.setEncoding("CP1252")
 		
-		Workbook wb = Workbook.getWorkbook(fs, wbSettings);
+		Workbook wb = Workbook.getWorkbook(fs, wbSettings)
 		
 		Sheet sh = wb.getSheet("Sheet1")
 		
-		Cell cell;
+		Cell cell
 		
 		int column=0
 		

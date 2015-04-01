@@ -29,12 +29,12 @@ class CategoryPageTest extends PropertProviderTest{
 		at ProductCategoryPage
 		
 		then: "Verify translations at CategoryPage"
-		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home")
-		assert masterTemplate.breadCrumbHref("/categories").text() == expectedValue("categorylandingpage.categories")
-		assert categoryLink.text() == expectedValue("categorylandingpage.categories")
-		assert seasonalInitiativeLink.text() == expectedValue("categorylandingpage.seasonalinitiatives")
-		assert shopByStyleLink.text() == expectedValue("categorylandingpage.shopbystyle")
-		assert shopByFitLink.text() == expectedValue("categorylandingpage.shopbyfit")
+		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home").toUpperCase()
+		assert masterTemplate.breadCrumbHref("/categories").text() == expectedValue("categorylandingpage.categories").toUpperCase()
+		assert categoryLink.text() == expectedValue("categorylandingpage.categories").toUpperCase()
+		assert seasonalInitiativeLink.text() == expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase()
+		assert shopByStyleLink.text() == expectedValue("categorylandingpage.shopbystyle").toUpperCase()
+		assert shopByFitLink.text() == expectedValue("categorylandingpage.shopbyfit").toUpperCase()
 				
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
@@ -56,12 +56,12 @@ class CategoryPageTest extends PropertProviderTest{
 		at ProductCategoryPage
 		
 		then: "Verify translations at CategoryPage"
-		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home")
-		assert masterTemplate.breadCrumbHref("/categories").text() == expectedValue("categorylandingpage.categories")
-		assert categoryLink.text() == expectedValue("categorylandingpage.categories")
-		assert seasonalInitiativeLink.text() == expectedValue("categorylandingpage.seasonalinitiatives")
-		assert shopByStyleLink.text() == expectedValue("categorylandingpage.shopbystyle")
-		assert shopByFitLink.text() == expectedValue("categorylandingpage.shopbyfit")
+		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home").toUpperCase()
+		assert masterTemplate.breadCrumbHref("/categories").text() == expectedValue("categorylandingpage.categories").toUpperCase()
+		assert categoryLink.text() == expectedValue("categorylandingpage.categories").toUpperCase()
+		assert seasonalInitiativeLink.text() == expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase()
+		assert shopByStyleLink.text() == expectedValue("categorylandingpage.shopbystyle").toUpperCase()
+		assert shopByFitLink.text() == expectedValue("categorylandingpage.shopbyfit").toUpperCase()
 				
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

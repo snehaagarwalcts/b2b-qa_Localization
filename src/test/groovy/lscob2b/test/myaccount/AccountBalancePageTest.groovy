@@ -14,7 +14,7 @@ class AccountBalancePageTest extends PropertProviderTest {
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 
-	def "Verify OrderHistory Page Fields"(){
+	def "Verify AccountBalance Page Fields"(){
 		setup:
 		to LoginPage
 		at LoginPage
@@ -32,12 +32,12 @@ class AccountBalancePageTest extends PropertProviderTest {
 		at AccountBalancePage		
 
 		then: "Verify translations at AccountBalancePage"
-		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.accountBalance")
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.account.accountBalance")
+		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.accountBalance").toUpperCase()
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.account.accountBalance").toUpperCase()
 		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.accountBalanceIntro")
-		assert totalBalance.text() == expectedValue("text.account.accountBalanceTotal")
-		assert totalOverdue.text() == expectedValue("text.account.accountBalanceOverdue")
-		assert creditLimit.text() == expectedValue("text.account.accountBalanceLimit")
+		assert totalBalance.text() == expectedValue("text.account.accountBalanceTotal").toUpperCase()
+		assert totalOverdue.text() == expectedValue("text.account.accountBalanceOverdue").toUpperCase()
+		assert creditLimit.text() == expectedValue("text.account.accountBalanceLimit").toUpperCase()
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}

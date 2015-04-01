@@ -22,7 +22,7 @@ class HomePageTest extends PropertProviderTest{
 		at HomePage
 	
 		then:"Verify translations at HomePage"
-		assert masterTemplate.quickOrderLink.text() == expectedValue("search.advanced")
+		assert masterTemplate.quickOrderLink.text() == expectedValue("search.advanced").toUpperCase()
 		assert masterTemplate.searchText == expectedValue("search.placeholder")
 		
 		when: "MouseHover Men Category"	
@@ -30,16 +30,16 @@ class HomePageTest extends PropertProviderTest{
 		interact { moveToElement(masterTemplate.menCategory) }  //Issue with Chrome
 		
 		then:"verify translations of Men Category"		
-		assert masterTemplate.subCategory(0).text() == expectedValue("categorylandingpage.categories")
-		assert masterTemplate.subCategory(1).text() == expectedValue("categorylandingpage.seasonalinitiatives")
+		assert masterTemplate.subCategory(0).text() == expectedValue("categorylandingpage.categories").toUpperCase()
+		assert masterTemplate.subCategory(1).text() == expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase()
 		
 		when: "MouseHover Women Category"
 		masterTemplate.womenCategory.jquery.mouseover()   //Issue with Firefox 35
 		interact { moveToElement(masterTemplate.womenCategory) }  //Issue with Chrome
 		
 		then: "verify translations of Women Category"
-		assert masterTemplate.subCategory(2).text() == expectedValue("categorylandingpage.categories")
-		assert masterTemplate.subCategory(3).text() == expectedValue("categorylandingpage.seasonalinitiatives")
+		assert masterTemplate.subCategory(2).text() == expectedValue("categorylandingpage.categories").toUpperCase()
+		assert masterTemplate.subCategory(3).text() == expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase()
 				
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

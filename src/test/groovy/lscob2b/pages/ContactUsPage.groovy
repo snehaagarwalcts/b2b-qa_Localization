@@ -23,7 +23,6 @@ class ContactUsPage extends Page{
 		emailText { $('.controls input', 2) }
 		phoneText { $('.controls input', 3) }
 		companyName { $('.controls input', 4) }
-		customerNumber { $('.controls input', 5) }
 		country { $('.dropdown-container select[name="countryCode"] option', it) }
 		comments { $('#contactUsForm div.controls textarea') }
 		
@@ -43,9 +42,11 @@ class ContactUsPage extends Page{
 		emailLabel { $('.control-label', 3) }
 		phoneLabel { $('.control-label', 4) }
 		companyNameLabel { $('.control-label', 5) }
-		customerNumberLabel { $('.control-label', 6) }
-		countryLabel { $('.control-label', 7) }
-		commentsLabel { $('.label', 8) }
+		countryLabel { $('.control-label', 6) }
+		commentsLabel { $('.label', 7) }	
+		customerNumberLabelAfterLogin { $('.control-label', 6) }
+		countryLabelAfterLogin { $('.control-label', 7) }
+		commentsLabelAfterLogin { $('.label', 8) }
 		
 		titleError { $('.help-inline', 0) }
 		firstNameError { $('.help-inline', 1) }
@@ -53,11 +54,10 @@ class ContactUsPage extends Page{
 		emailError { $('.help-inline', 3) }
 		phoneError { $('.help-inline', 4) }
 		companyNameError { $('.help-inline', 5) }
-		customerNumberError { $('.help-inline', 6) }
-		countryError { $('.help-inline', 7) }
-		commentsError { $('.help-inline', 8) }
-		
-		commentsErrorAfterLogin { $('.help-inline') }		
+		countryError { $('.help-inline', 6) }
+		//commentsError { $('.help-inline', 7) }		
+		//commentsErrorAfterLogin { $('.help-inline') }	
+			
 		continueShoppingLink { $('.button.btn-txt-red>p') }
 	}
 	
@@ -95,11 +95,7 @@ class ContactUsPage extends Page{
 	def fillOutCompanyName(String companyname){
 		companyName.value(companyname)
 	}
-	
-	def fillOutCustomerNumber(String customernumber){
-		customerNumber.value(customernumber)
-	}
-	
+
 	def fillOutComments(String comment){
 		comments.value(comment)
 	}

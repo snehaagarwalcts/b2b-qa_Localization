@@ -114,9 +114,9 @@ class MasterTemplate extends Module {
 		
 		searchText { $('input#input-search').attr('placeholder') }
 		
-		menCategory { $('a[title="Men"]') }
+		menCategory { $('a[href*="Men/c/Levis_151_Male"]') }
 		
-		womenCategory { $('a[title="Women"]') }
+		womenCategory { $('a[href*="Women/c/Levis_151_Female"]') }
 		
 		subCategory { $('.subnav-column>ul>h3', it) }
 		
@@ -124,9 +124,13 @@ class MasterTemplate extends Module {
 		
 		introContainerLabel { $('.intro-container') }
 		
-		alertMessage { $('div.alert-message') }
+		alertMessageHeader { $('div.alert-message h2') }
 		
-		noteMessage { $('div.note-message') }
+		alertMessage { $('div.alert-message p') }
+		
+		noteMessageHeader { $('div.note-message h2') }
+		
+		noteMessage { $('div.note-message')}
 		
 		requiredMessageText { $('.required') }
 		

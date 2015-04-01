@@ -22,21 +22,23 @@ class GlobalNavTest extends PropertProviderTest{
 		at HomePage
 	
 		then:"Verify translations at GlobalNav"
-		assert masterTemplate.welcomeLink.text()- ~/\s+\w+/ == expectedValue("header.welcome")
-		assert masterTemplate.logoutLink.text() == expectedValue("header.link.logout")
-		assert masterTemplate.myAccountLink.text() == expectedValue("header.link.account")
-		assert masterTemplate.helpLink.text() == expectedValue("nav.text.help")
+		assert masterTemplate.welcomeLink.text()- ~/\s+\w+/ == expectedValue("header.welcome").toUpperCase()
+		assert masterTemplate.logoutLink.text() == expectedValue("header.link.logout").toUpperCase()
+		assert masterTemplate.myAccountLink.text() == expectedValue("header.link.account").toUpperCase()
+		assert masterTemplate.helpLink.text() == expectedValue("nav.text.help").toUpperCase()
 		//assert masterTemplate.languageSelector.text() == expectedValue("header.locale")
-		assert masterTemplate.waitListLink.text() - ~/\d+/ == expectedValue("breadcrumb.waitlist")
+		assert masterTemplate.waitListLink.text() - ~/\d+/ == expectedValue("breadcrumb.waitlist").toUpperCase()	
 		
-//		masterTemplate.myAccountLink.jquery.mouseover()
-//		assert masterTemplate.globalNavSubLinks(0).text() == expectedValue("text.account.profile") //sub-links
-//		assert masterTemplate.globalNavSubLinks(1).text() == expectedValue("text.account.addressBook")
-//		assert masterTemplate.globalNavSubLinks(2).text() == expectedValue("text.company.manageUser")
-//		assert masterTemplate.globalNavSubLinks(3).text() == expectedValue("text.account.orderHistory")
-//		assert masterTemplate.globalNavSubLinks(4).text() == expectedValue("text.account.accountBalance")	
+//		masterTemplate.myAccountLink.jquery.mouseover() 
+//		interact { moveToElement(masterTemplate.myAccountLink) }
+//		assert masterTemplate.globalNavSubLinks(0).text() == expectedValue("text.account.profile").toUpperCase() //sub-links
+//		assert masterTemplate.globalNavSubLinks(1).text() == expectedValue("text.account.addressBook").toUpperCase()
+//		assert masterTemplate.globalNavSubLinks(2).text() == expectedValue("text.company.manageUser").toUpperCase()
+//		assert masterTemplate.globalNavSubLinks(3).text() == expectedValue("text.account.orderHistory").toUpperCase()
+//		assert masterTemplate.globalNavSubLinks(4).text() == expectedValue("text.account.accountBalance").toUpperCase()	
 //		masterTemplate.helpLink.jquery.mouseover()
-//		assert masterTemplate.globalNavSubLinks(7).text() == expectedValue("text.contactus")	
+//		interact { moveToElement(masterTemplate.helpLink) }
+//		assert masterTemplate.globalNavSubLinks(7).text() == expectedValue("text.contactus").toUpperCase()	
 				
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

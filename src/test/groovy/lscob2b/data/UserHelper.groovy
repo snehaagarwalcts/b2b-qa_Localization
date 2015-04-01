@@ -45,6 +45,10 @@ class UserHelper  {
 		new User(email: 'update@password-1', password:'Levis2015#')
 	}
 	
+	static User getValidUser(){
+		new User(email: 'sagarwal1@levi.com', password:'Levis2015#')
+	}
+	
 	static User getTermsAndConditionUser(){
 		new User(email: 'term@condition-1', password:'Levis2015#')
 	} 
