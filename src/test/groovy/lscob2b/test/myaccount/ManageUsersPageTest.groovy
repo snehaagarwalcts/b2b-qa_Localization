@@ -31,15 +31,23 @@ class ManageUsersPageTest extends PropertProviderTest {
 		when: "at MyAccountPage"
 		at MyAccountPage
 		
-		then: "click on ManageUsers Link "
+		then: "click on ManageUsers Link"
 		clickOnManageUsersLink()
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
 	
 		then: "Verify translations in ManageUsersPage"
-		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")	
-	
+		assert breadcrumbLink.text() == expectedValue("text.company.manageUser").toUpperCase()	
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.company.manageUser").toUpperCase()
+		assert masterTemplate.introContainerLabel.text() == expectedValue("text.company.manageusers.roles.subtitle") //FAILED
+		assert usersFoundLabel.text()- ~/\d+\s+/ == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
+		assert buttonCreateNewUser.text()- ~/ &/ == expectedValue("text.company.manageUser.button.create").toUpperCase()
+		assert pageLabel.text().replaceAll("\\s+\\d+","") == expectedValue("text.company.manageUser.pageAll.currentPage").toUpperCase()
+		assert nameLabel.text() == expectedValue("text.company.manage.units.user.name").toUpperCase()
+		assert rolesLabel.text() == expectedValue("text.company.manageUser.roles").toUpperCase()
+		assert statusLabel.text() == expectedValue("text.status").toUpperCase()
+		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}

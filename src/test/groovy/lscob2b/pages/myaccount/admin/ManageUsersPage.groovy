@@ -20,6 +20,19 @@ class ManageUsersPage extends Page{
 		
 		buttonCreateNewUser { $("a.addnewuser") }
 
+		//Localization
+		breadcrumbLink { $('#breadcrumb>ul>li:nth-child(5)') }
+		
+		usersFoundLabel{ $(".totalResults") }
+		
+		pageLabel{ $(".pagination>span") }
+		
+		nameLabel{ $("#header1") }
+		
+		rolesLabel{ $("#header2") }
+		
+		statusLabel{ $("#header5") }
+								
 	}
 	
 }
