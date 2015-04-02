@@ -32,9 +32,16 @@ class CreateNewUserPageTest extends PropertProviderTest {
 		at CreateUserPage
 		
 		then: "Verify translations in AddUserDetails Page"
-		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.company.manageUsers.adduser.title").toUpperCase()
-		assert userDetails.firstNameLabel.text()==expectedValue("text.company.manageUser.user.firstName").toUpperCase()
-		assert masterTemplate.requiredMessageText.text()==expectedValue("")
+		//assert masterTemplate.mainContainerLabel.text()==expectedValue("text.company.manageUsers.adduser.title").toUpperCase()
+		//assert userDetails.firstNameLabel.text()==expectedValue("text.company.manageUser.user.firstName").toUpperCase()
+		//assert masterTemplate.requiredMessageText.text()==expectedValue("")
+		//assert AddUserLabels(0).text()==expectedValue("text.company.manageUsers.adduser.title").toUpperCase()
+		assert AddUserLabels(1).text()==expectedValue("text.company.manageUser.user.firstName").toUpperCase()
+		assert AddUserLabels(2).text()==expectedValue("")
+		assert AddUserLabels(3).text()==expectedValue("")
+		assert AddUserLabels(4).text()==expectedValue("")
+		assert AddUserLabels(5).text()==expectedValue("")
+		
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

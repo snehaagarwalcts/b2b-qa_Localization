@@ -21,11 +21,6 @@ class EditUserDetailsModule extends Module{
 		selectDDA { customerForm.find("select#text\\.company\\.user\\.default\\.shipping\\.address") }
 
 		saveButton { $("button", type: "submit") }
-		
-		//Localization
-		firstNameLabel { customerForm.find("label.control-label") }
-		
-		lastNameLabel { $(".control-group:nth-child(2) .label")}
 			
 	}
 

@@ -19,5 +19,8 @@ class CreateUserPage extends Page {
 		
 		userDetails { module EditUserDetailsModule }
 		
+		//Localization
+		AddUserLabels { $('.control-label', it) }
+		
 	}
 }
