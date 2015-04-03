@@ -31,6 +31,7 @@ class ViewUserDetailsPageTest extends PropertProviderTest {
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
+		assert breadcrumbLink == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
 		
 		then: "click on any existing Users Link"
 		//Add

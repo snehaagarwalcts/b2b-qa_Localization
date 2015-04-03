@@ -32,6 +32,13 @@ class EditUserDetailsPageTest extends PropertProviderTest {
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
+		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.company.manageUsers").toUpperCase()
+		assert breadcrumbLink == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
+		assert usersFoundLabel == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
+		assert buttonCreateNewUser == expectedValue("text.company.manageUser.button.create").toUpperCase()
+		assert nameLabel == expectedValue("").toUpperCase()
+		assert rolesLabel == expectedValue("").toUpperCase()
+		assert statusLabel == expectedValue("").toUpperCase()
 		
 		then: "click on any existing Users Link"
 		//Add
