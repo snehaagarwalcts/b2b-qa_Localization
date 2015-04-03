@@ -32,32 +32,39 @@ class EditUserDetailsPageTest extends PropertProviderTest {
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
-		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.company.manageUsers").toUpperCase()
-		assert breadcrumbLink == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
-		assert usersFoundLabel == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
-		assert buttonCreateNewUser == expectedValue("text.company.manageUser.button.create").toUpperCase()
-		assert nameLabel == expectedValue("").toUpperCase()
-		assert rolesLabel == expectedValue("").toUpperCase()
-		assert statusLabel == expectedValue("").toUpperCase()
 		
-		then: "click on any existing Users Link"
-		//Add
+		then:"click on any of the existing users"
+		clickOnSelectFirstUserLink()
 		
 		when: "at ViewUserDetailsPage"
 		at ViewUserDetailsPage
 		
-		then:"click on EDIT button"
-		//Add
+		then: "click on Edit User button"
+		userDetails.clickEditUser()
 		
 		when: "at EditUserDetailsPage"
 		at EditUserDetailsPage
 		
 		then: "Verify translations in EditUserDetailsPage"
-		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.company.manageUsers.edituser.title").toUpperCase()
+		//assert masterTemplate.introContainerLabel.text() == expectedValue("text.mycompany.user.updateForm")	
+		assert titleDropdownLabels(0).text() == expectedValue("form.select.empty")
+		assert titleDropdownLabels(1).text() == expectedValue("text.company.user.mr.name")+ "."
+		assert titleDropdownLabels(2).text() == expectedValue("text.company.user.ms.name")+ "."
+		assert EditUserDetailsLabel(0).text() == expectedValue("user.title").toUpperCase()
+		assert EditUserDetailsLabel(1).text() == expectedValue("text.company.manageUser.user.firstName").toUpperCase()
+		assert EditUserDetailsLabel(2).text() == expectedValue("text.company.manageUser.user.lastName").toUpperCase()
+		assert EditUserDetailsLabel(3).text() == expectedValue("text.company.manage.units.user.email").toUpperCase() //FAILED
+		assert EditUserDetailsLabel(4).text() == expectedValue("text.company.user.default.shipping.address").toUpperCase()
+		assert EditUserDetailsLabel(5).text() == expectedValue("text.company.manage.units.user.roles").toUpperCase()		
+		assert roleUserManagement.text()== expectedValue("b2busergroup.b2badmingroup.name")
+		assert rolePurchasing.text()== expectedValue("b2busergroup.b2bcustomergroup.name")
+		assert roleFinance.text()== expectedValue("b2busergroup.b2bfinancegroup.name")				
+		assert cancelButton.text()- ~/&/ == expectedValue("text.company.manage.unit.address.cancelButton").toUpperCase()
+		assert userDetails.saveButton.text() == expectedValue("text.account.user.saveUpdates").toUpperCase()
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}
-
 
 }

@@ -15,6 +15,9 @@ class ViewUserDetailsPage extends Page{
 		
 		userDetails { module ViewUserDetailsModule }
 		
+		//Localization
+		ViewUserDetailsLabel { $('.label',it) }
+		
 	}
 	
 }

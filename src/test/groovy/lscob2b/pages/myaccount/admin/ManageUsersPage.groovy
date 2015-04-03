@@ -32,7 +32,15 @@ class ManageUsersPage extends Page{
 		rolesLabel{ $("#header2") }
 		
 		statusLabel{ $("#header5") }
+		
+		selectFirstUserLink {$('.odd>td>a',0)}
 								
+	}
+	
+	def clickOnSelectFirstUserLink()
+	{
+		waitFor { selectFirstUserLink.displayed }
+		selectFirstUserLink.click()
 	}
 	
 }

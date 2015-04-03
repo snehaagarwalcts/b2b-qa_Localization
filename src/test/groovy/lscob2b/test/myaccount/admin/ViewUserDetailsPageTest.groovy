@@ -31,19 +31,27 @@ class ViewUserDetailsPageTest extends PropertProviderTest {
 		
 		when: "at ManageUsersPage"
 		at ManageUsersPage
-		assert breadcrumbLink == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
 		
 		then: "click on any existing Users Link"
-		//Add
+		clickOnSelectFirstUserLink()
 		
 		when: "at ViewUserDetailsPage"
 		at ViewUserDetailsPage
 		
 		then: "Verify translations in ViewUserDetailsPage"
-		//assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile")
-		
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.company.manageUser.user.viewDetails").toUpperCase()
+		assert masterTemplate.introContainerLabel.text() == expectedValue("text.company.manageusers.details.subtitle")	
+		assert userDetails.editUserButton.text()- ~/&/ == expectedValue("text.company.manageUser.button.edit").toUpperCase()
+		assert userDetails.disableUserButton.text()- ~/&/ == expectedValue("text.company.manageusers.button.disableuser").toUpperCase()
+		assert ViewUserDetailsLabel(0).text()- ~/:/ == expectedValue("user.title").toUpperCase()
+		assert ViewUserDetailsLabel(1).text()- ~/:/ == expectedValue("text.company.manageUser.user.firstName").toUpperCase()
+		assert ViewUserDetailsLabel(2).text() == expectedValue("text.company.manageUser.user.lastName").toUpperCase()
+		assert ViewUserDetailsLabel(3).text() == expectedValue("text.company.manage.units.user.email").toUpperCase() //FAILED
+		assert ViewUserDetailsLabel(4).text() == expectedValue("text.company.user.default.shipping.address").toUpperCase()
+		assert ViewUserDetailsLabel(5).text()- ~/:/ == expectedValue("text.company.manage.units.user.roles").toUpperCase()		
+
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}
-
+	
 }

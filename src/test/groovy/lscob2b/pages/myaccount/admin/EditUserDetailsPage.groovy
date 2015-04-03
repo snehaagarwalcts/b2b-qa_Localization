@@ -17,6 +17,18 @@ class EditUserDetailsPage extends Page{
 		
 		userDetails { module EditUserDetailsModule}
 		
+		//Localization
+		titleDropdownLabels { $('select[id="user.title"] option',it) }
+		
+		EditUserDetailsLabel { $('.control-label',it) }
+		
+		roleUserManagement { $('.controls fieldset label',0) }
+		
+		rolePurchasing { $('.controls fieldset label',1) }
+		
+		roleFinance { $('.controls fieldset label',2) }
+		
+		cancelButton { $('.button.btn-txt-red.cancel>p') }
 	}
 	
 }
