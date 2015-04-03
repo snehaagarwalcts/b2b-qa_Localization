@@ -5,14 +5,9 @@ import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.MyAccountPage
-import lscob2b.pages.myaccount.admin.CreateUserPage
-import lscob2b.pages.myaccount.admin.EditUserDetailsPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
-import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
 import lscob2b.test.data.PropertProviderTest
-import spock.lang.IgnoreRest
 import lscob2b.modules.MasterTemplate
-import lscob2b.modules.EditUserDetailsModule
 
 class ManageUsersPageTest extends PropertProviderTest {
 	

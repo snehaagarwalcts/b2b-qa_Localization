@@ -1,10 +1,10 @@
 package lscob2b.test.category
 
 import lscob2b.data.PageHelper
-import lscob2b.data.UserHelper;
-import lscob2b.pages.HomePage;
-import lscob2b.pages.LoginPage;
-import lscob2b.pages.category.ProductCategoryPage;
+import lscob2b.data.UserHelper
+import lscob2b.pages.HomePage
+import lscob2b.pages.LoginPage
+import lscob2b.pages.category.ProductCategoryPage
 import lscob2b.test.data.PropertProviderTest
 
 class CategoryPageTest extends PropertProviderTest{

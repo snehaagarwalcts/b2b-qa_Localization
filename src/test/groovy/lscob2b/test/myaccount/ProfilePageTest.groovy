@@ -3,13 +3,10 @@ package lscob2b.test.myaccount
 import lscob2b.data.PageHelper
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.data.UserHelper
-import lscob2b.pages.ContactUsPage
-import lscob2b.pages.HomePage;
+import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.test.data.PropertProviderTest
 import lscob2b.pages.myaccount.ProfilePage
-import lscob2b.pages.myaccount.admin.UpdatePasswordPage;
-import lscob2b.pages.myaccount.admin.UpdatePersonalDetailsPage
 
 class ProfilePageTest extends PropertProviderTest{
 	
