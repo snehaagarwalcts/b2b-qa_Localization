@@ -7,7 +7,7 @@ class UpdatePasswordPage extends Page {
 
 	static url = "my-account/update-password"
 
-	static at = { waitFor { title == "Profile | LSCO B2B Site" } }
+	static at = { waitFor { title == "Profile | LSCO B2B Site" || title == "DE_Profile | LSCO B2B Site"} }
 
 	static content = {
 		

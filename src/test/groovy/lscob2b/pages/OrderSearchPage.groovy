@@ -5,8 +5,6 @@ import lscob2b.modules.CheckOutModule
 import lscob2b.modules.MasterTemplate
 import lscob2b.modules.SizingGridModule
 
-
-
 class OrderSearchPage extends Page {
 
 	static String numberRegex = "\\d+(\\.|,)\\d+((\\.|,)\\d+)?"

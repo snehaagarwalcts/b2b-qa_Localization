@@ -6,7 +6,7 @@ class SiteMapPage extends Page {
 
 	static url = "/sitemap"
 
-	static at = { waitFor { title == "Site Map | LSCO B2B Site" } }
+	static at = { waitFor { title == "Site Map | LSCO B2B Site" || title == "DE_Site Map | LSCO B2B Site"} }
 
 	static content = {
 		

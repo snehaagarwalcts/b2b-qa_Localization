@@ -7,8 +7,7 @@ class HelpPage extends Page {
 
 	static url = "/help"
 
-	static at = { waitFor { title == "Help | LSCO B2B Site"
-		} }
+	static at = { waitFor { title == "Help | LSCO B2B Site" ||  title == "DE_Help | LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate {module MasterTemplate}

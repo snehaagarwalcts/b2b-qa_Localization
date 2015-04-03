@@ -9,7 +9,7 @@ class ProfilePage extends Page{
 
 	static url = "my-account/profile"
 
-	static at = { waitFor { title == "Profile | LSCO B2B Site" } }
+	static at = { waitFor { title == "Profile | LSCO B2B Site" || title == "DE_Profile | LSCO B2B Site" } }
 
 	static content = {
 		masterTemplate { module MasterTemplate }

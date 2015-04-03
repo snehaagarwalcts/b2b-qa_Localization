@@ -6,7 +6,7 @@ class TermsAndConditionPage extends Page{
 
 	static url = "termsAndConditions"
 	
-	static at = { waitFor { title == "Terms & Conditions | LSCO B2B Site" } }
+	static at = { waitFor { title == "Terms & Conditions | LSCO B2B Site" || title == "DE_Terms & Conditions | LSCO B2B Site" } }
 	
 	static content = {
 		

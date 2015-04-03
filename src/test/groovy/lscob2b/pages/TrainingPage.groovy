@@ -7,7 +7,7 @@ class TrainingPage extends Page{
 
 	static url = "/training"
 
-	static at = { waitFor { title == "Training | LSCO B2B Site"} }
+	static at = { waitFor { title == "Training | LSCO B2B Site" || title == "DE_Training | LSCO B2B Site"} }
 
 	static content = { 
 		

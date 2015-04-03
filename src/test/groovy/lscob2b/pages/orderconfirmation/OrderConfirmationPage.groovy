@@ -10,7 +10,7 @@ class OrderConfirmationPage extends Page{
 	
 	static url = "/checkout/orderConfirmation/"
 
-	static at = { waitFor { title == "Order Confirmation | LSCO B2B Site" } }
+	static at = { waitFor { title == "Order Confirmation | LSCO B2B Site" || title == "DE_Order Confirmation | LSCO B2B Site"} }
 
 	static content = {
 		

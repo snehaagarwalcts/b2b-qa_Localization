@@ -7,7 +7,7 @@ class AccountBalancePage extends Page {
 
 	static url = "my-account/balance"
 
-	static at = { waitFor { title == "Your Account Balance | LSCO B2B Site"}  }
+	static at = { waitFor { title == "Your Account Balance | LSCO B2B Site" || title == "DE_Your Account Balance | LSCO B2B Site"}  }
 
 	static content = {
 

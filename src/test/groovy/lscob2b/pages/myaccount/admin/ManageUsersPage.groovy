@@ -10,7 +10,7 @@ class ManageUsersPage extends Page{
 
 	static url = "my-account/manage-users"
 
-	static at = { waitFor { title == "Your Account | LSCO B2B Site" } }
+	static at = { waitFor { title == "Your Account | LSCO B2B Site" || title == "DE_Your Account | LSCO B2B Site"} }
 
 	static content = {
 		
