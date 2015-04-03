@@ -22,6 +22,9 @@ class ViewUserDetailsModule extends Module {
 		editUserButton { $("a.button.edituser")}
 
 		disableUserButton { $("a#disableUser") }
+		
+		enableUserButton { $("a#enableUser") }
+				
 	}
 
 	def clickEditUser(){
@@ -39,6 +42,14 @@ class ViewUserDetailsModule extends Module {
 		user.email = email.text()
 		user.address = address.text()
 		user
+	}
+	
+	def clickDisableUser(){
+		disableUserButton.click()
+	}
+	
+	def clickEnableUser(){
+		enableUserButton.click()
 	}
 	
 }

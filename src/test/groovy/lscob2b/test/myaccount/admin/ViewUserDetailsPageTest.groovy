@@ -1,5 +1,6 @@
 package lscob2b.test.myaccount.admin
 
+import spock.lang.Stepwise
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
@@ -8,10 +9,14 @@ import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
 import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.User
 
+@Stepwise
 class ViewUserDetailsPageTest extends PropertProviderTest {
 	
-	def setup() {
+	def static User user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
+	
+	def setupSpec() {
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 	
@@ -49,9 +54,29 @@ class ViewUserDetailsPageTest extends PropertProviderTest {
 		assert ViewUserDetailsLabel(3).text() == expectedValue("text.company.manage.units.user.email").toUpperCase() //FAILED
 		assert ViewUserDetailsLabel(4).text() == expectedValue("text.company.user.default.shipping.address").toUpperCase()
 		assert ViewUserDetailsLabel(5).text()- ~/:/ == expectedValue("text.company.manage.units.user.roles").toUpperCase()		
+	}
+	
+	def "Verify ViewUserDetails Page messages"(){
 
-		where:
-		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
+		when: "at ViewUserDetailsPage"
+		at ViewUserDetailsPage
+		
+		then: "click on Disable User button"
+		userDetails.clickDisableUser()
+		
+		and: "Verify translation of User Disabled message"
+		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
+		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("text.confirmation.user.disable")
+		
+		and: "Verify translations of Enable User button"
+		assert userDetails.enableUserButton.text()- ~/&/== expectedValue("text.company.manageusers.button.enableuser").toUpperCase()
+		
+		when: "click on Enable User Button"
+		userDetails.clickEnableUser()
+		
+		then: "Verify translation of User Enabled message"
+		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
+		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("text.confirmation.user.enable")
 	}
 	
 }
