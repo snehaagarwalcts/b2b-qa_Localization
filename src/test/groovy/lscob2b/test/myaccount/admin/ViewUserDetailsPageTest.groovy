@@ -48,7 +48,7 @@ class ViewUserDetailsPageTest extends PropertProviderTest {
 		assert masterTemplate.introContainerLabel.text() == expectedValue("text.company.manageusers.details.subtitle")	
 		assert userDetails.editUserButton.text()- ~/&/ == expectedValue("text.company.manageUser.button.edit").toUpperCase()
 		assert userDetails.disableUserButton.text()- ~/&/ == expectedValue("text.company.manageusers.button.disableuser").toUpperCase()
-		assert ViewUserDetailsLabel(0).text()- ~/:/ == expectedValue("user.title").toUpperCase()
+		assert ViewUserDetailsLabel(0).text()- ~/:/ == expectedValue("text.company.user.title").toUpperCase()
 		assert ViewUserDetailsLabel(1).text()- ~/:/ == expectedValue("text.company.manageUser.user.firstName").toUpperCase()
 		assert ViewUserDetailsLabel(2).text() == expectedValue("text.company.manageUser.user.lastName").toUpperCase()
 		assert ViewUserDetailsLabel(3).text() == expectedValue("text.company.manage.units.user.email").toUpperCase() //FAILED

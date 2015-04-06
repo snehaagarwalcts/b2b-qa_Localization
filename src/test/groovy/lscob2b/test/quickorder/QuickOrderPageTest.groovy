@@ -33,10 +33,10 @@ class QuickOrderPageTest extends PropertProviderTest{
 		assert blankSlateHeader.text() == expectedValue("search.advanced.how.to").toUpperCase()
 		assert blankSlateContent.text()  == expectedValue("search.advanced.how.to.text")
 		assert helpLink.text() == expectedValue("quick.order.help.link.label")
-		assert quantityAndTotal(0).text() == expectedValue("order.quantity")
+		assert quantityAndTotal(0).text() == expectedValue("text.quantity")
 		assert quantityAndTotal(1).text() == expectedValue("order.total")+ " "
 		assert continueshoppingLink.text()- ~/&/ == expectedValue("cart.page.continue").toUpperCase()
-		assert checkOutLink.text()- ~/&/  == expectedValue("cart.checkout").toUpperCase()
+		assert checkOutLink.text()- ~/&/  == expectedValue("checkout.checkout").toUpperCase()
 				
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

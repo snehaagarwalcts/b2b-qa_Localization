@@ -34,11 +34,11 @@ class OrderHistoryPageTest extends PropertProviderTest {
 		then: "Verify translations at OrderHistoryPage"
 		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.orderHistory").toUpperCase()
 		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.account.orderHistory").toUpperCase()		
-		assert status.text() ==expectedValue("account.order.status").toUpperCase()
+		assert status.text() ==expectedValue("text.account.orderHistory.orderStatus").toUpperCase()
 		assert date.text()==expectedValue("account.order.date").toUpperCase()
 		assert type.text()==expectedValue("account.order.type").toUpperCase()
 		assert orderSource.text()==expectedValue("account.order.source").toUpperCase()
-		assert poNumberLabel.text()== expectedValue("text.account.quoteHistory.purchaseOrderNumber").toUpperCase()
+		assert poNumberLabel.text()== expectedValue("account.order.ponum").toUpperCase()
 		assert orderNumberLabel.text()==expectedValue("account.order.number").toUpperCase()		
 		assert orderSelectionLabels(0).text()==expectedValue("ordersearch.submitted").toUpperCase()
 		assert orderSelectionLabels(1).text()==expectedValue("ordersearch.completed").toUpperCase()

@@ -35,7 +35,7 @@ class CreateNewUserPageTest extends PropertProviderTest {
 		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.company.manageUsers.adduser.title").toUpperCase()
 		assert masterTemplate.introContainerLabel.text()== expectedValue("text.mycompany.user.createForm")
 		assert masterTemplate.requiredMessageText.text()==expectedValue("address.required")
-		assert AddUserLabels(0).text()==expectedValue("text.company.user.title").toUpperCase()		
+		assert AddUserLabels(0).text()==expectedValue("user.title").toUpperCase()		
 		assert AddUserLabels(1).text()==expectedValue("text.company.manageUser.user.firstName").toUpperCase()
 		assert AddUserLabels(2).text()==expectedValue("text.company.manageUser.user.lastName").toUpperCase()
 		assert AddUserLabels(3).text()==expectedValue("text.company.manage.units.user.email").toUpperCase()

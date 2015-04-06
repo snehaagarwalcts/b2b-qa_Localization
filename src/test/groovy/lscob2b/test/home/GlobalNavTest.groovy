@@ -26,7 +26,7 @@ class GlobalNavTest extends PropertProviderTest{
 		assert masterTemplate.logoutLink.text() == expectedValue("header.link.logout").toUpperCase()
 		assert masterTemplate.myAccountLink.text() == expectedValue("header.link.account").toUpperCase()
 		assert masterTemplate.helpLink.text() == expectedValue("nav.text.help").toUpperCase()
-		//assert masterTemplate.languageSelector.text() == expectedValue("header.locale")
+		assert masterTemplate.languageSelector.text() == expectedValue("header.locale")
 		assert masterTemplate.waitListLink.text() - ~/\d+/ == expectedValue("breadcrumb.waitlist").toUpperCase()	
 		
 //		masterTemplate.myAccountLink.jquery.mouseover() 

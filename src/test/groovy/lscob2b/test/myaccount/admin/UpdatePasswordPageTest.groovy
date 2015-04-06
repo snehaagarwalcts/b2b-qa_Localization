@@ -47,7 +47,7 @@ class UpdatePasswordPageTest extends PropertProviderTest{
 		assert newPasswordLabel.text() == expectedValue("profile.newPassword").toUpperCase()
 		assert passwordHintText.text()==expectedValue("hint.update.password")
 		assert confirmNewPasswordLabel.text() == expectedValue("profile.checkNewPassword").toUpperCase()
-		assert cancelButton.text()- ~/&/ == expectedValue("cancelButton.displayName").toUpperCase()
+		assert cancelButton.text()- ~/&/ == expectedValue("b2bcustomer.cancel").toUpperCase()
 		assert updatePasswordButton.text() == expectedValue("updatePwd.submit").toUpperCase()
 		
 		when: "click on UpdatePasswordButton - All fields empty"
