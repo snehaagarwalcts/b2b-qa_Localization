@@ -36,7 +36,7 @@ class QuickOrderPageTest extends PropertProviderTest{
 		assert helpLink.text() == expectedValue("quick.order.help.link.label")
 		assert quantityAndTotal(0).text() == expectedValue("text.quantity")
 		assert quantityAndTotal(1).text() == expectedValue("basket.page.total")+ " "
-		assert continueshoppingLink.text()- ~/&/ == expectedValue("label.continue.shopping").toUpperCase()
+		assert continueshoppingLink.text()- ~/&/ == expectedValue("cart.page.continue").toUpperCase()
 		assert checkOutLink.text()- ~/&/  == expectedValue("checkout.checkout").toUpperCase()
 				
 		where:
