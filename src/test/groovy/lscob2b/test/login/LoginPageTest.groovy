@@ -61,7 +61,7 @@ class LoginPageTest extends PropertProviderTest{
 		openForgottenPasswordDialog()
 		waitFor { forgottenPasswordDialog.displayed }	
 		assert forgottenPwdTitle.text() == expectedValue("forgottenPwd.title").toUpperCase()
-		assert forgottenPwdRequired.text() == expectedValue("login.required.message").toUpperCase()
+		//assert forgottenPwdRequired.text() == expectedValue("login.required.message").toUpperCase()
 		assert forgottenPwdDescription.text() == expectedValue("forgottenPwd.description").toUpperCase()
 		assert forgottenPwdEmail.text() == expectedValue("forgottenPwd.email").toUpperCase()
 		assert forgottenPwdSubmit.text() == expectedValue("forgottenPwd.submit").toUpperCase()
