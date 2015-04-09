@@ -17,6 +17,8 @@ class WaitListItemModule extends Module {
 		
 		buttonUpdate { $("a", class:"button update add_to_waitlist_button") }
 		
+		buttonCancel { $("a", class:"button btn-white cancel") }
+		
 	}
 
 	def editOutOfStockQuantity(int quantityToAdd) {

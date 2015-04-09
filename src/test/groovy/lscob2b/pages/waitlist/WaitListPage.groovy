@@ -27,6 +27,15 @@ class WaitListPage extends Page {
 		quantityAvailable { summary.find("div.quantity span.qty") }
 		
 		items { $("div.cartItem").collect { module WaitListItemModule, it  } }
+		
+		//LOCALIZATION
+		itemLabels { $('.label', it) }
+		
+		inStockLabel { $('.available') }
+		
+		limitedStockLabel { $('.limited') }
+		
+		outOfStockLabel { $('.outofstock') }
 	
 	}
 	

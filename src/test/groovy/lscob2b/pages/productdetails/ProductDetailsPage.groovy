@@ -53,6 +53,16 @@ class ProductDetailsPage extends Page {
 		overlayClosePopUp { $('#popupBoxClose')}
 
 		notYourBrandAssortmentProduct { $('.alert-message') }
+		
+		//Localization - Confirmation Message Overlay
+		
+		overlayConfirmation { $("#overlay #dialogue") }
+		
+		overlayConfirmationHeader { $("#overlay #dialogue h2") }
+		
+		overlayConfirmationMessage { $("#overlay #dialogue div") }
+		
+		overlayOkButton { $("#overlay #dialogue a p") }
 
 	}
 
@@ -95,7 +105,11 @@ class ProductDetailsPage extends Page {
 
 		overlayButtonAdd.click()
 		
-		overlayClosePopUp.click()
+		//overlayClosePopUp.click()
+		
+		waitFor {overlayConfirmation.displayed}
+		
+		overlayOkButton.click()
 
 	}
 
