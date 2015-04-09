@@ -65,6 +65,26 @@ class QuickOrderPage extends Page{
 		quantityAndTotal { $('.label', it)}
 		
 		continueshoppingLink { $('.button-large.btn-txt-red>p')}
+		
+		productsFoundlabel { $('.totalResults') }
+		
+		itemLabels { $('.label', it) }
+		
+		hideQuantityButton { $('.btn-open') }
+		
+		editQuantityButton { $('.button.btn-white.toggle>p') }
+		
+		enterSizeLabel { $('.product-grid-header>h2') }
+		
+		sizeGuideLabel { $('.product-grid-header>p>a') }
+		
+		inStockLabel { $('.available') }
+		
+		limitedStockLabel { $('.limited') }
+		
+		outOfStockLabel { $('.outofstock') }
+		
+		waitListHeader { $('div.popup_box h2') }
 
 	}
 	
