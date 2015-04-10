@@ -26,20 +26,49 @@ class CartPage extends Page{
 		
 		//Cart items
 		itemName { $("div.itemName") }
+		
 		itemStyle { $("div.itemAttributes .itemStyle span") }
+		
 		itemColor { $("div.itemAttributes .itemColor span") }
+		
 		itemPrice { $("div.itemAttributes .itemPrice span") }
+		
 		itemQuantity { $("div.itemSummary .quantity span.label")}
+		
 		itemTotal { $("div.itemSummary .total span.label") }
 		
 		//Empty Cart messages
 		emptyCart (required: false) { $("#main-container .blankSlate h2") }
+		
 		alertContainer { $("div.alert-container") }
+		
 		alertMessage { alertContainer.find("div.alert-message") }
 		
 		//Remove product from cart
 		removeProductLink(required: false) { $(".itemButtons a.btn-warning") }
+		
 		removeProducts { $(".dialogueButtons #RemoveProduct_0") }
+		
+		//LOCALIZATION
+		itemLabels { $('.label', it) }
+		
+		buttonHideQuantities { $('.button.btn-white.toggle') }
+		
+		inStockLabel { $('#AddToCartOrderForm .available') }
+			
+		limitedStockLabel { $('#AddToCartOrderForm .limited') }	
+		
+		outOfStockLabel { $('#AddToCartOrderForm .outofstock') }
+		
+		buttonUpdate { $("a", class:"button update add_to_cart_button") }
+		
+		buttonCancel { $("a", class:"button btn-txt-red cancel") }
+		
+		removePopUpHeader {$('#dialogue>h2')}
+		
+		removePopCancelButton {$('.button.btn-white.cancelRemoveProduct>p')}
+		
+		addToCartForm { $('#AddToCartOrderForm') }
 		
 	}
 	

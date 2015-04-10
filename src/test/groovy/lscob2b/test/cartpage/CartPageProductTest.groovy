@@ -37,10 +37,47 @@ class CartPageProductTest extends PropertProviderTest{
 		at CartPage
 		
 		then: "verify translations of Cart Page"
-		//assert
+		assert itemStyle.text()== expectedValue("product.variants.style").toUpperCase()
+		assert itemColor.text()== expectedValue("product.variants.color").toUpperCase()
+		assert itemPrice.text()== expectedValue("product.wholesale.price").toUpperCase()
+		assert itemQuantity.text()== expectedValue("text.quantity").toUpperCase()
+		assert itemTotal.text()== expectedValue("basket.page.total").toUpperCase()
+		assert removeProductLink.text()- ~/&/== expectedValue("text.remove").toUpperCase()
+		assert editQuantities.text()- ~/&/== expectedValue("product.edit.quantities").toUpperCase()
+		assert itemLabels(5).text()== expectedValue("text.quantity")
+		assert itemLabels(6).text()== expectedValue("basket.page.total")
+		assert linkCheckout.text()- ~/&/  == expectedValue("checkout.checkout").toUpperCase()
+		assert continueShopping.text()- ~/&/ == expectedValue("label.continue.shopping").toUpperCase()
 		
+		when: "at cart page"
+		at CartPage
+		
+		then: "click on Edit Quantities"
+		editQuantities.click()
+		
+		and: "verify translations of Sizing Grid"
+		assert buttonHideQuantities.text()- ~/&/== expectedValue("product.hide.quantities").toUpperCase()
+		waitFor { addToCartForm.displayed }
+		assert inStockLabel.text()== expectedValue("product.variants.in.stock").toUpperCase()
+		assert limitedStockLabel.text()== expectedValue("product.variants.limited.stock").toUpperCase()
+		assert outOfStockLabel.text()== expectedValue("product.variants.out.of.stock").toUpperCase()
+		assert buttonCancel.text()== expectedValue("cancelButton.displayName").toUpperCase()
+		assert buttonUpdate.text()== expectedValue("product.variants.update").toUpperCase()
+		
+		when: "at cart page"
+		at CartPage
+		
+		and: "click on remove"
+		removeProductLink.click()
+		waitFor{ removeProducts.displayed }
+		
+		then: "verify translations of Remove PopUp"
+		assert removePopUpHeader.text() == expectedValue("product.remove.confirmation").toUpperCase()
+		assert removePopCancelButton.text()- ~/&/ == expectedValue("cancelButton.displayName").toUpperCase()
+		assert removeProducts.text()- ~/&/ == expectedValue("text.remove").toUpperCase()
+
 		and: "Remove the product from cart"
-		doRemove()
+		removeProducts.click()
 		
 		where:
 		user | productCode
