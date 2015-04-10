@@ -254,5 +254,11 @@ class MasterTemplate extends Module {
 	def waitForSometime(){
 		Thread.sleep(3000)
 	}
+	
+	//Localization
+	def searchForProduct(){
+		searchInput.value("Levis 501")
+		searchLink.click()
+	}
 			
 }

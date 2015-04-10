@@ -7,25 +7,31 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.category.ProductCategoryPage
 import lscob2b.test.data.PropertProviderTest
 
-class CategoryPageTest extends PropertProviderTest{
+class SearchPageTest extends PropertProviderTest{
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 	
-	def "Verify translations of Category Page"() {
+	def "Verify translations of Search Page"() {
 		setup:
 		to LoginPage
 		at LoginPage
 		login(user)
-		PageHelper.gotoPageCategory(browser, baseUrl)
 		
-		when:"at CategoryPage"
+		when:"at HomePage"
+		at HomePage
+		
+		and: "search for a product"
+		masterTemplate.searchForProduct()
+		
+		then:"at CategoryPage"
 		at ProductCategoryPage
 		
 		then:"verify translations at Category Page"
+		assert masterTemplate.mainContainerLabel.text().contains(expectedValue("search.page.searchText").toUpperCase())
 		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home").toUpperCase()
-		assert breadCrumbLink.text() == expectedValue("categorylandingpage.categories").toUpperCase()
+		assert masterTemplate.breadCrumbActive.text() == expectedValue("search.page.breadcrumb").toUpperCase()
 		assert sortByLabel.text()- ~/:/ == expectedValue("search.page.sortTitle").toUpperCase()
 		assert productsFoundLabel.text() - ~/\d+\s+/ == expectedValue("search.page.totalResults").toUpperCase()
 		//assert pageOfLabel.text().replaceAll("\\s+\\d+","") == expectedValue("search.page.currentPage").toUpperCase()

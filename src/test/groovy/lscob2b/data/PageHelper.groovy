@@ -13,6 +13,7 @@ class PageHelper  {
 	public static final String PAGE_PRODUCT_DETAIL = "p"
 	public static final String PAGE_QUICKORDER = "search/advanced"
 	public static final String PAGE_ABOUT_US = "http://levistrauss.com/who-we-are/"
+	public static final String PAGE_CATEGORY = "Categories/c/categories"
 	
 	static void gotoPage(browser, baseUrl, page) {
 		browser.go(baseUrl + page)
@@ -32,6 +33,10 @@ class PageHelper  {
 	
 	static void gotoPageProductDetail(browser, baseUrl, productCode) {
 		browser.go(baseUrl + PAGE_PRODUCT_DETAIL + "/" + productCode)
+	}
+	
+	static void gotoPageCategory(browser, baseUrl) {
+		browser.go(baseUrl + PAGE_CATEGORY)
 	}
 		
 }
