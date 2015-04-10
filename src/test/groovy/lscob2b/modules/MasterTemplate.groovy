@@ -108,7 +108,7 @@ class MasterTemplate extends Module {
 		
 		welcomeLink {$('.global-nav-list>li',0)}
 		
-		languageSelector {$('a.global-nav-hasmenu.country span') }
+		//languageSelector {$('a.global-nav-hasmenu.country span') }
 		
 		globalNavSubLinks { $('.yCmsComponent>ul li a', it) }
 		
@@ -133,6 +133,10 @@ class MasterTemplate extends Module {
 		noteMessage { $('div.note-message')}
 		
 		requiredMessageText { $('.required') }
+		
+		waitListEmptyMessage { $('.cart-notices') }
+		
+		emptyCartMessage { $('#cart-info div') }
 		
 	}
 	

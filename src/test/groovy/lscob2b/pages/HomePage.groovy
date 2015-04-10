@@ -16,6 +16,12 @@ class HomePage extends Page{
 
     static content = {
         masterTemplate {module MasterTemplate}
+		
+		newsAndTipsLabel { $('.content>h1') }
+		
+		quickOrderButton { $('.button-large>p',0) }
+		
+		uploadOrderButton { $('.button-large>p',1) }
     }
 	 
 	 def checkSwitchTo(){

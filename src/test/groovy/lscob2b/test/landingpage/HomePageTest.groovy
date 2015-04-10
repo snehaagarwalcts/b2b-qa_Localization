@@ -24,6 +24,9 @@ class HomePageTest extends PropertProviderTest{
 		then:"Verify translations at HomePage"
 		assert masterTemplate.quickOrderLink.text() == expectedValue("search.advanced").toUpperCase()
 		assert masterTemplate.searchText == expectedValue("search.placeholder")
+		assert newsAndTipsLabel.text() == expectedValue("landingpage.newsandtips").toUpperCase()
+		assert quickOrderButton.text()- ~/</ == expectedValue("search.advanced.meta.description.title").toUpperCase()
+		assert uploadOrderButton.text()- ~/</ == expectedValue("text.order.upload").toUpperCase()
 		
 		when: "MouseHover Men Category"	
 		masterTemplate.menCategory.jquery.mouseover()   //Issue with Firefox 35

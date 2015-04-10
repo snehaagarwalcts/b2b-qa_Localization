@@ -26,7 +26,7 @@ class GlobalNavTest extends PropertProviderTest{
 		assert masterTemplate.logoutLink.text() == expectedValue("header.link.logout").toUpperCase()
 		assert masterTemplate.myAccountLink.text() == expectedValue("header.link.account").toUpperCase()
 		assert masterTemplate.helpLink.text() == expectedValue("nav.text.help").toUpperCase()
-		assert masterTemplate.languageSelector.text() == expectedValue("header.locale")
+		//assert masterTemplate.languageSelector.text() == expectedValue("header.locale")
 		assert masterTemplate.waitListLink.text() - ~/\d+/ == expectedValue("breadcrumb.waitlist").toUpperCase()	
 		
 //		masterTemplate.myAccountLink.jquery.mouseover() 
@@ -38,8 +38,14 @@ class GlobalNavTest extends PropertProviderTest{
 //		assert masterTemplate.globalNavSubLinks(4).text() == expectedValue("text.account.accountBalance").toUpperCase()	
 //		masterTemplate.helpLink.jquery.mouseover()
 //		interact { moveToElement(masterTemplate.helpLink) }
-//		assert masterTemplate.globalNavSubLinks(7).text() == expectedValue("text.contactus").toUpperCase()	
-				
+//		assert masterTemplate.globalNavSubLinks(7).text() == expectedValue("text.contactus").toUpperCase()		
+//		masterTemplate.waitListLink.jquery.mouseover()
+//		interact { moveToElement(masterTemplate.waitListLink) }
+//		assert masterTemplate.waitListEmptyMessage.text() == expectedValue("popup.waitlist.empty").toUpperCase()	
+//		masterTemplate.cartItemLink.jquery.mouseover()
+//		interact { moveToElement(masterTemplate.cartItemLink) }
+//		assert masterTemplate.emptyCartMessage.text() == expectedValue("popup.cart.empty").toUpperCase()
+		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}

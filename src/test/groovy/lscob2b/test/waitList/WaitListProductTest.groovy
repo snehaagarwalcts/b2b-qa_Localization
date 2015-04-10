@@ -39,7 +39,7 @@ class WaitListProductTest extends PropertProviderTest{
 		when:"at WaitListPage"
 		at WaitListPage
 	
-		then:"Verify translations at empty WaitList Page"
+		then:"Verify translations of WaitList Page"
 		items.size() > 0
 		assert itemLabels(0).text()== expectedValue("product.variants.style").toUpperCase()
 		assert itemLabels(1).text()== expectedValue("product.variants.color").toUpperCase()
