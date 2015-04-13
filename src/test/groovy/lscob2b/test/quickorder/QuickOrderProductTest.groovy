@@ -31,7 +31,7 @@ class QuickOrderProductTest extends PropertProviderTest{
 		then: "at QuickOrder page"
 		at QuickOrderPage
 		
-		and: "check QuickOrder page verify translations"
+		and: "verify translations of QuickOrder Page "
 		assert breadCrumbLink.text() == expectedValue("search.page.breadcrumb").toUpperCase()
 		assert masterTemplate.mainContainerLabel.text() == expectedValue("search.advanced").toUpperCase()
 		assert advancedSearch(0).text() == expectedValue("search.advanced.keyword").toUpperCase()
@@ -55,7 +55,7 @@ class QuickOrderProductTest extends PropertProviderTest{
 		assert limitedStockLabel.text() == expectedValue("product.variants.limited.stock").toUpperCase()
 		assert outOfStockLabel.text() == expectedValue("product.variants.out.of.stock").toUpperCase()
 		assert productSizingGrids[0].buttonNotifyMe.text()- ~/&/ == expectedValue("basket.add.to.waitlist").toUpperCase()
-		assert productSizingGrids[0].buttonAddToCart.text()- ~/&/ == expectedValue("basket.add.to.basket").toUpperCase()
+		assert productSizingGrids[0].buttonAddToCart.text()- ~/&/ == expectedValue("basket.add.to.cart").toUpperCase()
 		
 		where:
 		user | productCode

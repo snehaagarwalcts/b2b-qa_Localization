@@ -9,16 +9,23 @@ class KeylookModule extends Module{
 			
 		thumb { $("div.thumb") }
 		
-		name { $("div.itemName") }
+		itemName { $("div.itemName") }
 		
-		style { $("div.itemStyle") }
+		style { $("div.itemStyle span") }
 		
-		color { $("div.itemColor") }
+		color { $("div.itemColor span") }
 		
-		priceWholesale { $("div.wholesale-price") }
+		priceWholesale { $("div.itemPrice span") }
 		
-		priceRetail { $("div.recommended-retail-price") }
+		//priceRetail { $("div.recommended-retail-price") }
+		
+		//Localization
+		
+		inStockLabel { $('.available') }
+		
+		limitedStockLabel { $('.limited') }
+		
+		outOfStockLabel { $('.outofstock') }
 		
 	}
-
 }

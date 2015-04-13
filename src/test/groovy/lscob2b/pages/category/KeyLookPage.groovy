@@ -27,6 +27,20 @@ class KeyLookPage extends Page {
 		//ITEMS
 		
 		keylookItems { $("div.keylooktItem").collect { module KeylookModule, it  } }
+		
+		//LOCALIZATION
+		
+		breadCrumbLink { $('div#breadcrumb li:nth-child(3)') }
+		
+		labelQuantity { $('div.quantity span') }
+		
+		labelTotal { $('div.total span') }
+		
+		continueShopping { $('.button-large.btn-txt-red>p') }
+		
+		buttonAddToCart { $('.button-large.add_keylook_to_cart.checkout>p') }
+		
+		
 			
 	}
 
