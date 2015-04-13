@@ -1,4 +1,4 @@
-package lscob2b.test.landingpage
+package lscob2b.test.landingPage
 
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper

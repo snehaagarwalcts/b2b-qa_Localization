@@ -1,9 +1,9 @@
-package lscob2b.test.landingpage
+package lscob2b.test.landingPage
 
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.LoginPage
-import lscob2b.pages.UploadOrderPage;
+import lscob2b.pages.UploadOrderPage
 import lscob2b.test.data.PropertProviderTest
 
 class UploadOrderPageTest extends PropertProviderTest{
