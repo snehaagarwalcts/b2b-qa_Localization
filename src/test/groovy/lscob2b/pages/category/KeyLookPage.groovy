@@ -38,11 +38,8 @@ class KeyLookPage extends Page {
 		
 		continueShopping { $('.button-large.btn-txt-red>p') }
 		
-		buttonAddToCart { $('.button-large.add_keylook_to_cart.checkout>p') }
-		
-		
+		buttonAddToCart { $('.button-large.add_keylook_to_cart.checkout>p') }	
 			
 	}
-
 		
 }
