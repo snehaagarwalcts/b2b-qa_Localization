@@ -1,6 +1,7 @@
 package lscob2b.pages.cart
 
 import geb.Page
+import lscob2b.modules.CartModule
 import lscob2b.modules.MasterTemplate
 
 class CartPage extends Page{
@@ -10,9 +11,10 @@ class CartPage extends Page{
 	static at = { waitFor { title == "Your Shopping Cart | LSCO B2B Site" || title =="DE_Your Shopping Cart | LSCO B2B Site" } }
 
 	static content = {
+		
 		masterTemplate {module MasterTemplate}
 				
-		//cartItems { $("div.cartItem").collect { module CartModule, it  } }
+		cartItems { $("div.cartItem").collect { module CartModule, it  } }
 		
 		alertMessage1 { $(".alert-message h2") }
 		
@@ -22,51 +24,25 @@ class CartPage extends Page{
 		
 		linkCheckout(required: false) { $("a.checkout") }
 		
-		editQuantities(required: false) { $(".itemButtons a.btn-white") }
-		
-		//Cart items
-		itemName { $("div.itemName") }
-		
-		itemStyle { $("div.itemAttributes .itemStyle span") }
-		
-		itemColor { $("div.itemAttributes .itemColor span") }
-		
-		itemPrice { $("div.itemAttributes .itemPrice span") }
-		
-		itemQuantity { $("div.itemSummary .quantity span.label")}
-		
-		itemTotal { $("div.itemSummary .total span.label") }
-		
 		//Empty Cart messages
+		
 		emptyCart (required: false) { $("#main-container .blankSlate h2") }
 		
 		alertContainer { $("div.alert-container") }
 		
 		alertMessage { alertContainer.find("div.alert-message") }
 		
-		//Remove product from cart
-		removeProductLink(required: false) { $(".itemButtons a.btn-warning") }
+		//remove cart items
 		
-		removeProducts { $(".dialogueButtons #RemoveProduct_0") }
-		
-		//LOCALIZATION
-		itemLabels { $('.label', it) }
-		
-		buttonHideQuantities { $('.button.btn-white.toggle') }
-		
-		inStockLabel { $('#AddToCartOrderForm .available') }
-			
-		limitedStockLabel { $('#AddToCartOrderForm .limited') }	
-		
-		outOfStockLabel { $('#AddToCartOrderForm .outofstock') }
-		
-		buttonUpdate { $("a", class:"button update add_to_cart_button") }
-		
-		buttonCancel { $("a", class:"button btn-txt-red cancel") }
+		removeProducts { $('a.button.btn-white.default.submitRemoveProduct>p') }
 		
 		removePopUpHeader {$('#dialogue>h2')}
 		
 		removePopCancelButton {$('.button.btn-white.cancelRemoveProduct>p')}
+		
+		//LOCALIZATION
+		
+		itemLabels { $('.label', it) }
 		
 		addToCartForm { $('#AddToCartOrderForm') }
 		
@@ -79,34 +55,34 @@ class CartPage extends Page{
 	}
 	
 	def doRemove(){
-		waitFor{ removeProductLink.displayed }
-		removeProductLink.click()
+		waitFor{ cartItems[0].removeProductLink.displayed }
+		cartItems[0].removeProductLink.click()
 		waitFor{ removeProducts.displayed }
 		removeProducts.click()
 	}
 	
 	def checkItemNameExists(){
-		!itemName.empty
+		!cartItems[0].itemName.empty
 	}
 	
 	def checkItemStyleExists(){
-		!itemStyle.empty
+		!cartItems[0].itemStyle.empty
 	}
 	
 	def checkItemColorExists(){
-		!itemColor.empty
+		!cartItems[0].itemColor.empty
 	}
 
 	def checkItemPriceExists(){
-		!itemPrice.empty
+		!cartItems[0].itemPrice.empty
 	}
 	
 	def checkItemQuantityExists(){
-		!itemQuantity.empty
+		!cartItems[0].itemQuantity.empty
 	}
 
 	def checkItemTotalExists(){
-		!itemTotal.empty
+		!cartItems[0].itemTotal.empty
 	}
 	
 	def checkContinueShoppingButtonExists(){
@@ -118,15 +94,15 @@ class CartPage extends Page{
 	}
 	
 	def checkEditQuantitiesButtonExists(){
-		!editQuantities.empty
+		!cartItems[0].editQuantities.empty
 	}
 	
 	def checkRemoveProductButtonExists(){
-		!removeProductLink.empty
+		!cartItems[0].removeProductLink.empty
 	}
 	
 	def editQuantitiesButtonclick(){
-		editQuantities.click()
+		cartItems[0].editQuantities.click()
 	}
 	
 	def emptyCartMessageExists(){
@@ -135,9 +111,9 @@ class CartPage extends Page{
 	
 	def boolean removeExistingProducts()
 	{
-		if (!removeProductLink.empty)
+		if (!cartItems[0].removeProductLink.empty)
 		{
-			removeProductLink.click()
+			cartItems[0].removeProductLink.click()
 			removeProducts.click()
 
 		}

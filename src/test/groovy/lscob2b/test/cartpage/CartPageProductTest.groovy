@@ -37,13 +37,13 @@ class CartPageProductTest extends PropertProviderTest{
 		at CartPage
 		
 		then: "verify translations of Cart Page"
-		assert itemStyle.text()== expectedValue("product.variants.style").toUpperCase()
-		assert itemColor.text()== expectedValue("product.variants.color").toUpperCase()
-		assert itemPrice.text()== expectedValue("product.wholesale.price").toUpperCase()
-		assert itemQuantity.text()== expectedValue("text.quantity").toUpperCase()
-		assert itemTotal.text()== expectedValue("basket.page.total").toUpperCase()
-		assert removeProductLink.text()- ~/&/== expectedValue("text.remove").toUpperCase()
-		assert editQuantities.text()- ~/&/== expectedValue("product.edit.quantities").toUpperCase()
+		assert cartItems[0].itemStyle.text()== expectedValue("product.variants.style").toUpperCase()
+		assert cartItems[0].itemColor.text()== expectedValue("product.variants.color").toUpperCase()
+		assert cartItems[0].itemPrice.text()== expectedValue("product.wholesale.price").toUpperCase()
+		assert cartItems[0].itemQuantity.text()== expectedValue("text.quantity").toUpperCase()
+		assert cartItems[0].itemTotal.text()== expectedValue("basket.page.total").toUpperCase()
+		assert cartItems[0].removeProductLink.text()- ~/&/== expectedValue("text.remove").toUpperCase()
+		assert cartItems[0].editQuantities.text()- ~/&/== expectedValue("product.edit.quantities").toUpperCase()
 		assert itemLabels(5).text()== expectedValue("text.quantity")
 		assert itemLabels(6).text()== expectedValue("basket.page.total")
 		assert linkCheckout.text()- ~/&/  == expectedValue("checkout.checkout").toUpperCase()
@@ -53,22 +53,22 @@ class CartPageProductTest extends PropertProviderTest{
 		at CartPage
 		
 		then: "click on Edit Quantities"
-		editQuantities.click()
+		cartItems[0].editQuantities.click()
 		
 		and: "verify translations of Sizing Grid"
-		assert buttonHideQuantities.text()- ~/&/== expectedValue("product.hide.quantities").toUpperCase()
+		assert cartItems[0].buttonHideQuantities.text()- ~/&/== expectedValue("product.hide.quantities").toUpperCase()
 		waitFor { addToCartForm.displayed }
-		assert inStockLabel.text()== expectedValue("product.variants.in.stock").toUpperCase()
-		assert limitedStockLabel.text()== expectedValue("product.variants.limited.stock").toUpperCase()
-		assert outOfStockLabel.text()== expectedValue("product.variants.out.of.stock").toUpperCase()
-		assert buttonCancel.text()== expectedValue("cancelButton.displayName").toUpperCase()
-		assert buttonUpdate.text()== expectedValue("product.variants.update").toUpperCase()
+		assert cartItems[0].inStockLabel.text()== expectedValue("product.variants.in.stock").toUpperCase()
+		assert cartItems[0].limitedStockLabel.text()== expectedValue("product.variants.limited.stock").toUpperCase()
+		assert cartItems[0].outOfStockLabel.text()== expectedValue("product.variants.out.of.stock").toUpperCase()
+		assert cartItems[0].buttonCancel.text()== expectedValue("cancelButton.displayName").toUpperCase()
+		assert cartItems[0].buttonUpdate.text()== expectedValue("product.variants.update").toUpperCase()
 		
 		when: "at cart page"
 		at CartPage
 		
 		and: "click on remove"
-		removeProductLink.click()
+		cartItems[0].removeProductLink.click()
 		waitFor{ removeProducts.displayed }
 		
 		then: "verify translations of Remove PopUp"
