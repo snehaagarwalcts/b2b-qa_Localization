@@ -76,11 +76,17 @@ class CheckOutPage extends Page{
 		
 		labelSelectAddress { $('.contentSection>h2') }
 		
-		labelAlternateAddress { $('.button.editButton>p') }
+		alternateAddressLink { $('.button.editButton>p') }
 		
-		//labelNoneSelected { $('.contentSection') }
+		labelNoneSelected { $('.contentSection') }
 		
 		labelToBeConfirmed { $('div.total', it) }
+		
+		headerAddressBook { $('.headline') }
+		
+		buttonUseThisAddress { $('.positive.useAddress', it) }
+		
+		continueShopping { $('.button-large.btn-txt-red>p') }
 	}
 
 	def doPlaceOrder(){

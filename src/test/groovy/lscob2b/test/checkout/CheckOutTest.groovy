@@ -37,29 +37,26 @@ class CheckOutTest extends PropertProviderTest{
 		at CheckOutPage
 		
 		then: "verify translations of CheckOut Page"
-		assert masterTemplate.mainContainerLabel.text()- ~/&/  == expectedValue("checkout.checkout").toUpperCase()
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text() == expectedValue("")
-		
-		assert paymentMethodHeader.text() == expectedValue("").toUpperCase()
-		assert labelInvoice.text() == expectedValue("").toUpperCase()
-		assert labelCardPayment.text() == expectedValue("").toUpperCase()
-		assert labelPONumber.text() == expectedValue("").toUpperCase()
-		
-		assert labelSelectAddress.text() == expectedValue("").toUpperCase()
-		assert labelAlternateAddress.text() == expectedValue("").toUpperCase()
-		
-		assert labelToBeConfirmed.text() == expectedValue("").toUpperCase()
-		assert labelNoneSelected.text() == expectedValue("").toUpperCase()
-		
-		assert labelSubTotal(0).text()== expectedValue("")
+		assert masterTemplate.mainContainerLabel.text() == expectedValue("checkout.checkout").toUpperCase()
+		//assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
+		//assert masterTemplate.alertMessage.text() == expectedValue("checkout.orderConfirmation.saperror")		
+		assert paymentMethodHeader.text() == expectedValue("checkout.summary.select.payment.method").toUpperCase()
+		assert labelInvoice.text() == expectedValue("text.account.orderHistory.invoice").toUpperCase()
+		//assert labelCardPayment.text() == expectedValue("").toUpperCase() //Not present in Excel
+		assert labelPONumber.text() == expectedValue("checkout.summary.purchaseOrderNumber").toUpperCase()		
+		assert labelSelectAddress.text() == expectedValue("select.delivery.address").toUpperCase()
+		//assert labelNoneSelected.text() == expectedValue("checkout.summary.deliveryAddress.noneSelected").toUpperCase()
+		assert alternateAddressLink.text()- ~/ &/ == expectedValue("checkout.summary.deliveryAddress.editDeliveryAddressButton").toUpperCase()		
+		assert labelToBeConfirmed(0).text().replaceAll(labelTotal(0).text()+"\n", "") == expectedValue("order.tobeconfirmed").toUpperCase()
+		assert labelToBeConfirmed(2).text().replaceAll(labelTotal(2).text()+" ", "") == expectedValue("order.tobeconfirmed")
+		assert labelSubTotal(0).text()== expectedValue("product.grid.subtotalText").toUpperCase()
 		assert labelSubTotal(1).text()== expectedValue("text.quantity")
-		assert labelSubTotal(2).text()== expectedValue("")
-		assert labelTotal(0).text()== expectedValue("basket.page.total")
-		assert labelTotal(1).text()== expectedValue("basket.page.total")
+		assert labelSubTotal(2).text()== expectedValue("product.grid.subtotalText")
+		assert labelTotal(0).text()== expectedValue("basket.page.total").toUpperCase()
+		assert labelTotal(2).text()== expectedValue("basket.page.total")
 		assert continueShopping.text()- ~/&/ == expectedValue("label.continue.shopping").toUpperCase()
-		assert placeOrderLink.text()- ~/&/ == expectedValue("").toUpperCase()
-		assert placeOrderLink1.text()- ~/&/ == expectedValue("").toUpperCase()
+		assert placeOrderLink.text()- ~/&/ == expectedValue("checkout.summary.placeOrder").toUpperCase()
+		assert placeOrderLink1.text()- ~/&/ == expectedValue("checkout.summary.placeOrder").toUpperCase()
 		assert cartItems[0].itemStyle.text()== expectedValue("product.variants.style").toUpperCase()
 		assert cartItems[0].itemColor.text()== expectedValue("product.variants.color").toUpperCase()
 		assert cartItems[0].itemPrice.text()== expectedValue("product.wholesale.price").toUpperCase()
@@ -68,6 +65,18 @@ class CheckOutTest extends PropertProviderTest{
 		assert cartItems[0].removeProductLink.text()- ~/&/== expectedValue("text.remove").toUpperCase()
 		assert cartItems[0].editQuantities.text()- ~/&/== expectedValue("product.edit.quantities").toUpperCase()
 		
+		when: "at CheckOut Page"
+		at CheckOutPage
+		
+		then: "click on Select Delivery Address"
+		alternateAddressLink.click()
+		
+		and: "verify translations of Delivery Address pop up"
+		waitFor { headerAddressBook.displayed }
+		//assert headerAddressBook.text() == expectedValue("text.account.addressBook").toUpperCase() //FAILED
+		assert buttonUseThisAddress(0).text() == expectedValue("checkout.summary.deliveryAddress.useThisAddress").toUpperCase()
+		assert buttonUseThisAddress(1).text() == expectedValue("checkout.summary.deliveryAddress.useThisAddress").toUpperCase()
+						
 		when: "at CheckOut Page"
 		at CheckOutPage
 		
