@@ -95,6 +95,16 @@ class CheckOutTest extends PropertProviderTest{
 		when: "at CheckOut Page"
 		at CheckOutPage
 		
+		and: "click on place order with payment type as CARD PAYMENT"
+		placeOrderLink.click()
+		
+		then: "verify translations of alert message"
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("checkout.error.payment.cybersource"))
+		
+		when: "at CheckOut Page"
+		at CheckOutPage
+		
 		and: "click on remove"
 		cartItems[0].removeProductLink.click()
 		
