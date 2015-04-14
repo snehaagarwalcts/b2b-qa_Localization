@@ -33,15 +33,16 @@ class ManageUsersPageTest extends PropertProviderTest {
 		at ManageUsersPage
 	
 		then: "Verify translations in ManageUsersPage"
-		assert breadcrumbLink.text() == expectedValue("text.company.manageUser").toUpperCase()	
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.company.manageUser").toUpperCase()
-		assert masterTemplate.introContainerLabel.text() == expectedValue("text.company.manageusers.roles.subtitle") //FAILED
-		assert usersFoundLabel.text()- ~/\d+\s+/ == expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase()
-		assert buttonCreateNewUser.text()- ~/ &/ == expectedValue("text.company.manageUser.button.create").toUpperCase()
-		assert pageLabel.text().replaceAll("\\s+\\d+","") == expectedValue("text.company.manageUser.pageAll.currentPage").toUpperCase()
-		assert nameLabel.text() == expectedValue("text.company.manage.units.user.name").toUpperCase()
-		assert rolesLabel.text() == expectedValue("text.company.manageUser.roles").toUpperCase()
-		assert statusLabel.text() == expectedValue("text.status").toUpperCase()
+		verifyTrue(breadcrumbLink.text(), expectedValue("text.company.manageUser").toUpperCase())	
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.company.manageUser").toUpperCase())
+		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.company.manageusers.roles.subtitle")) //FAILED
+		verifyTrue(usersFoundLabel.text()- ~/\d+\s+/, expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase())
+		verifyTrue(buttonCreateNewUser.text()- ~/ &/, expectedValue("text.company.manageUser.button.create").toUpperCase())
+		verifyTrue(pageLabel.text().replaceAll("\\s+\\d+",""), expectedValue("text.company.manageUser.pageAll.currentPage").toUpperCase())  
+		verifyTrue(nameLabel.text(), expectedValue("text.company.manage.units.user.name").toUpperCase())
+		verifyTrue(rolesLabel.text(), expectedValue("text.company.manageUser.roles").toUpperCase())
+		verifyTrue(statusLabel.text(), expectedValue("text.status").toUpperCase())
+		verifyTestFailedOrPassed()
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

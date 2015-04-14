@@ -1,10 +1,12 @@
 package lscob2b.test.data
 
+
 import jxl.Cell
 import jxl.Sheet
 import jxl.Workbook
 import jxl.WorkbookSettings
 import geb.spock.GebReportingSpec
+
 import org.openqa.selenium.WebDriver
 
 class PropertProviderTest extends GebReportingSpec {
@@ -40,5 +42,52 @@ class PropertProviderTest extends GebReportingSpec {
 			}			
 		}														
 		return cell.getContents()
+	}
+	
+	int count=0
+	def String verifyTrue(String actual, String expected)
+	{	
+		try
+		{
+			assert actual == expected
+		}
+		catch(AssertionError e)
+		{
+			e.printStackTrace()
+			count++
+		}
+		finally
+		{
+			return true
+		}
+	}
+	
+	def String verifyTrueContains(String actual, String expected, String text)
+	{
+		try
+		{
+			assert actual.contains(expected)
+		}
+		catch(AssertionError e)
+		{
+			e.printStackTrace()
+			count++
+		}
+		finally
+		{
+			return true
+		}
+	}
+	
+	def verifyTestFailedOrPassed(){
+		if(count!=0)
+		{
+			count=0
+			return false
+		}
+		else
+		{
+			return true
+		}
 	}
 }

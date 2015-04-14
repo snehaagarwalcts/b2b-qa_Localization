@@ -44,16 +44,17 @@ class ViewUserDetailsPageTest extends PropertProviderTest {
 		at ViewUserDetailsPage
 		
 		then: "Verify translations in ViewUserDetailsPage"
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.company.manageUser.user.viewDetails").toUpperCase()
-		assert masterTemplate.introContainerLabel.text() == expectedValue("text.company.manageusers.details.subtitle")	
-		assert userDetails.editUserButton.text()- ~/&/ == expectedValue("text.company.manageUser.button.edit").toUpperCase()
-		assert userDetails.disableUserButton.text()- ~/&/ == expectedValue("text.company.manageusers.button.disableuser").toUpperCase()
-		assert ViewUserDetailsLabel(0).text()- ~/:/ == expectedValue("text.company.user.title").toUpperCase()
-		assert ViewUserDetailsLabel(1).text()- ~/:/ == expectedValue("text.company.manageUser.user.firstName").toUpperCase()
-		assert ViewUserDetailsLabel(2).text() == expectedValue("text.company.manageUser.user.lastName").toUpperCase()
-		assert ViewUserDetailsLabel(3).text() == expectedValue("text.company.manage.units.user.email").toUpperCase() //FAILED
-		assert ViewUserDetailsLabel(4).text() == expectedValue("text.company.user.default.shipping.address").toUpperCase()
-		assert ViewUserDetailsLabel(5).text()- ~/:/ == expectedValue("text.company.manage.units.user.roles").toUpperCase()		
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.company.manageUser.user.viewDetails").toUpperCase())
+		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.company.manageusers.details.subtitle"))	
+		verifyTrue(userDetails.editUserButton.text()- ~/&/, expectedValue("text.company.manageUser.button.edit").toUpperCase())
+		verifyTrue(userDetails.disableUserButton.text()- ~/&/, expectedValue("text.company.manageusers.button.disableuser").toUpperCase())
+		verifyTrue(ViewUserDetailsLabel(0).text()- ~/:/, expectedValue("text.company.user.title").toUpperCase())
+		verifyTrue(ViewUserDetailsLabel(1).text()- ~/:/, expectedValue("text.company.manageUser.user.firstName").toUpperCase())
+		verifyTrue(ViewUserDetailsLabel(2).text(), expectedValue("text.company.manageUser.user.lastName").toUpperCase())
+		verifyTrue(ViewUserDetailsLabel(3).text(), expectedValue("text.company.manage.units.user.email").toUpperCase()) //FAILED
+		verifyTrue(ViewUserDetailsLabel(4).text(), expectedValue("text.company.user.default.shipping.address").toUpperCase())
+		verifyTrue(ViewUserDetailsLabel(5).text()- ~/:/, expectedValue("text.company.manage.units.user.roles").toUpperCase())
+		verifyTestFailedOrPassed()
 	}
 	
 	def "Verify ViewUserDetails Page messages"(){
@@ -65,18 +66,19 @@ class ViewUserDetailsPageTest extends PropertProviderTest {
 		userDetails.clickDisableUser()
 		
 		and: "Verify translation of User Disabled message"
-		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("text.confirmation.user.disable")
+		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("text.confirmation.user.disable"))
 		
 		and: "Verify translations of Enable User button"
-		assert userDetails.enableUserButton.text()- ~/&/== expectedValue("text.company.manageusers.button.enableuser").toUpperCase()
+		verifyTrue(userDetails.enableUserButton.text()- ~/&/, expectedValue("text.company.manageusers.button.enableuser").toUpperCase())
 		
 		when: "click on Enable User Button"
 		userDetails.clickEnableUser()
 		
 		then: "Verify translation of User Enabled message"
-		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("text.confirmation.user.enable")
+		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("text.confirmation.user.enable"))
+		verifyTestFailedOrPassed()
 	}
 	
 }

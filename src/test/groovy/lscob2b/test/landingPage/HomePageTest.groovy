@@ -22,27 +22,28 @@ class HomePageTest extends PropertProviderTest{
 		at HomePage
 	
 		then:"Verify translations at HomePage"
-		assert masterTemplate.quickOrderLink.text() == expectedValue("search.advanced").toUpperCase()
-		assert masterTemplate.searchText == expectedValue("search.placeholder")
-		assert newsAndTipsLabel.text() == expectedValue("landingpage.newsandtips").toUpperCase()
-		assert quickOrderButton.text()- ~/</ == expectedValue("search.advanced.meta.description.title").toUpperCase()
-		assert uploadOrderButton.text()- ~/</ == expectedValue("text.order.upload").toUpperCase()
+		verifyTrue(masterTemplate.quickOrderLink.text(), expectedValue("search.advanced").toUpperCase())
+		verifyTrue(masterTemplate.searchText, expectedValue("search.placeholder"))
+		verifyTrue(newsAndTipsLabel.text(), expectedValue("landingpage.newsandtips").toUpperCase())
+		verifyTrue(quickOrderButton.text()- ~/</, expectedValue("search.advanced.meta.description.title").toUpperCase())
+		verifyTrue(uploadOrderButton.text()- ~/</, expectedValue("text.order.upload").toUpperCase())
 		
 		when: "MouseHover Men Category"	
 		masterTemplate.menCategory.jquery.mouseover()   //Issue with Firefox 35
 		interact { moveToElement(masterTemplate.menCategory) }  //Issue with Chrome
 		
 		then:"verify translations of Men Category"		
-		assert masterTemplate.subCategory(0).text() == expectedValue("categorylandingpage.categories").toUpperCase()
-		assert masterTemplate.subCategory(1).text() == expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase()
+		verifyTrue(masterTemplate.subCategory(0).text(), expectedValue("categorylandingpage.categories").toUpperCase())
+		verifyTrue(masterTemplate.subCategory(1).text(), expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase())
 		
 		when: "MouseHover Women Category"
 		masterTemplate.womenCategory.jquery.mouseover()   //Issue with Firefox 35
 		interact { moveToElement(masterTemplate.womenCategory) }  //Issue with Chrome
 		
 		then: "verify translations of Women Category"
-		assert masterTemplate.subCategory(2).text() == expectedValue("categorylandingpage.categories").toUpperCase()
-		assert masterTemplate.subCategory(3).text() == expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase()
+		verifyTrue(masterTemplate.subCategory(2).text(), expectedValue("categorylandingpage.categories").toUpperCase())
+		verifyTrue(masterTemplate.subCategory(3).text(), expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase())
+		verifyTestFailedOrPassed()
 				
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

@@ -46,22 +46,23 @@ class EditUserDetailsPageTest extends PropertProviderTest {
 		at EditUserDetailsPage
 		
 		then: "Verify translations in EditUserDetailsPage"
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.company.manageUsers.edituser.title").toUpperCase()
-		//assert masterTemplate.introContainerLabel.text() == expectedValue("text.mycompany.user.updateForm")	
-		assert titleDropdownLabels(0).text() == expectedValue("form.select.empty")
-		assert titleDropdownLabels(1).text() == expectedValue("text.company.user.mr.name")+ "."
-		assert titleDropdownLabels(2).text() == expectedValue("text.company.user.ms.name")+ "."
-		assert EditUserDetailsLabel(0).text() == expectedValue("user.title").toUpperCase()
-		assert EditUserDetailsLabel(1).text() == expectedValue("text.company.manageUser.user.firstName").toUpperCase()
-		assert EditUserDetailsLabel(2).text() == expectedValue("text.company.manageUser.user.lastName").toUpperCase()
-		assert EditUserDetailsLabel(3).text() == expectedValue("text.company.manage.units.user.email").toUpperCase() //FAILED
-		assert EditUserDetailsLabel(4).text() == expectedValue("text.company.user.default.shipping.address").toUpperCase()
-		assert EditUserDetailsLabel(5).text() == expectedValue("text.company.manage.units.user.roles").toUpperCase()		
-		assert roleUserManagement.text()== expectedValue("b2busergroup.b2badmingroup.name")
-		assert rolePurchasing.text()== expectedValue("b2busergroup.b2bcustomergroup.name")
-		assert roleFinance.text()== expectedValue("b2busergroup.b2bfinancegroup.name")				
-		assert cancelButton.text()- ~/&/ == expectedValue("text.company.manage.unit.address.cancelButton").toUpperCase()
-		assert userDetails.saveButton.text() == expectedValue("text.account.user.saveUpdates").toUpperCase()
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.company.manageUsers.edituser.title").toUpperCase())
+		//verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.mycompany.user.updateForm"))	
+		verifyTrue(titleDropdownLabels(0).text(), expectedValue("form.select.empty"))
+		verifyTrue(titleDropdownLabels(1).text(), expectedValue("text.company.user.mr.name")+ ".")
+		verifyTrue(titleDropdownLabels(2).text(), expectedValue("text.company.user.ms.name")+ ".")
+		verifyTrue(EditUserDetailsLabel(0).text(), expectedValue("user.title").toUpperCase())
+		verifyTrue(EditUserDetailsLabel(1).text(), expectedValue("text.company.manageUser.user.firstName").toUpperCase())
+		verifyTrue(EditUserDetailsLabel(2).text(), expectedValue("text.company.manageUser.user.lastName").toUpperCase())
+		verifyTrue(EditUserDetailsLabel(3).text(), expectedValue("text.company.manage.units.user.email").toUpperCase()) //FAILED
+		verifyTrue(EditUserDetailsLabel(4).text(), expectedValue("text.company.user.default.shipping.address").toUpperCase())
+		verifyTrue(EditUserDetailsLabel(5).text(), expectedValue("text.company.manage.units.user.roles").toUpperCase())		
+		verifyTrue(roleUserManagement.text(), expectedValue("b2busergroup.b2badmingroup.name"))
+		verifyTrue(rolePurchasing.text(), expectedValue("b2busergroup.b2bcustomergroup.name"))
+		verifyTrue(roleFinance.text(), expectedValue("b2busergroup.b2bfinancegroup.name"))			
+		verifyTrue(cancelButton.text()- ~/&/, expectedValue("text.company.manage.unit.address.cancelButton").toUpperCase())
+		verifyTrue(userDetails.saveButton.text(), expectedValue("text.account.user.saveUpdates").toUpperCase())
+		verifyTestFailedOrPassed()
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

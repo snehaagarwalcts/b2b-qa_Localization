@@ -41,13 +41,13 @@ class WaitListProductTest extends PropertProviderTest{
 	
 		then:"Verify translations of WaitList Page"
 		items.size() > 0
-		assert itemLabels(0).text()== expectedValue("product.variants.style").toUpperCase()
-		assert itemLabels(1).text()== expectedValue("product.variants.color").toUpperCase()
-		assert itemLabels(2).text()== expectedValue("product.wholesale.price").toUpperCase()
-		assert itemLabels(3).text()== expectedValue("waitlist.quantity.requested").toUpperCase()
-		assert itemLabels(4).text()== expectedValue("waitlist.quantity.available").toUpperCase()
-		assert items[0].buttonRemove.text()- ~/&/== expectedValue("text.remove").toUpperCase()
-		assert items[0].buttonEditQuantities.text()- ~/&/== expectedValue("product.edit.quantities").toUpperCase()
+		verifyTrue(itemLabels(0).text(), expectedValue("product.variants.style").toUpperCase())
+		verifyTrue(itemLabels(1).text(), expectedValue("product.variants.color").toUpperCase())
+		verifyTrue(itemLabels(2).text(), expectedValue("product.wholesale.price").toUpperCase())
+		verifyTrue(itemLabels(3).text(), expectedValue("waitlist.quantity.requested").toUpperCase())
+		verifyTrue(itemLabels(4).text(), expectedValue("waitlist.quantity.available").toUpperCase())
+		verifyTrue(items[0].buttonRemove.text()- ~/&/, expectedValue("text.remove").toUpperCase())
+		verifyTrue(items[0].buttonEditQuantities.text()- ~/&/, expectedValue("product.edit.quantities").toUpperCase())
 
 		when: "at WaitListPage"
 		at WaitListPage
@@ -57,12 +57,12 @@ class WaitListProductTest extends PropertProviderTest{
 		items[0].buttonEditQuantities.click()
 		
 		and: "verify translations of Sizing Grid"
-		assert items[0].buttonHideQuantities.text()- ~/&/== expectedValue("product.hide.quantities").toUpperCase()
-		assert inStockLabel.text()== expectedValue("product.variants.in.stock").toUpperCase()
-		assert limitedStockLabel.text()== expectedValue("product.variants.limited.stock").toUpperCase()
-		assert outOfStockLabel.text()== expectedValue("product.variants.out.of.stock").toUpperCase()	
-		assert items[0].buttonCancel.text()== expectedValue("cancelButton.displayName").toUpperCase()
-		assert items[0].buttonUpdate.text()== expectedValue("product.variants.update").toUpperCase()
+		verifyTrue(items[0].buttonHideQuantities.text()- ~/&/, expectedValue("product.hide.quantities").toUpperCase())
+		verifyTrue(inStockLabel.text(), expectedValue("product.variants.in.stock").toUpperCase())
+		verifyTrue(limitedStockLabel.text(), expectedValue("product.variants.limited.stock").toUpperCase())
+		verifyTrue(outOfStockLabel.text(), expectedValue("product.variants.out.of.stock").toUpperCase())	
+		verifyTrue(items[0].buttonCancel.text(), expectedValue("cancelButton.displayName").toUpperCase())
+		verifyTrue(items[0].buttonUpdate.text(), expectedValue("product.variants.update").toUpperCase())
 		
 		when: "At WaitList page"
 		at WaitListPage
@@ -72,8 +72,9 @@ class WaitListProductTest extends PropertProviderTest{
 		items[0].buttonRemove.click()
 		at WaitListPage
 		
-		and: "check product count"		
+		and: "check empty list message"		
 		waitFor { emptyList.displayed }
+		verifyTestFailedOrPassed()
 		
 		where:
 		productCode = ProductHelper.getProduct(ProductHelper.BRAND_LEVIS)

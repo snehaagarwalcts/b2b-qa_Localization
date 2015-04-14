@@ -32,17 +32,14 @@ class AccountBalancePageTest extends PropertProviderTest {
 		at AccountBalancePage		
 
 		then: "Verify translations at AccountBalancePage"
-		try{
-		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.accountBalance").toUpperCase()
-		}catch(Exception e)
-		{
-		println(e);
-		}
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.account.accountBalance").toUpperCase()
-		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.accountBalanceIntro")
-		assert totalBalance.text() == expectedValue("text.account.accountBalanceTotal").toUpperCase()
-		assert totalOverdue.text() == expectedValue("text.account.accountBalanceOverdue").toUpperCase()
-		assert creditLimit.text() == expectedValue("text.account.accountBalanceLimit").toUpperCase()
+		verifyTrue(masterTemplate.breadCrumbActive.text(), expectedValue("text.account.accountBalance").toUpperCase())
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.account.accountBalance").toUpperCase())
+		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.account.accountBalanceIntro"))
+		verifyTrue(totalBalance.text(), expectedValue("text.account.accountBalanceTotal").toUpperCase())
+		verifyTrue(totalOverdue.text(), expectedValue("text.account.accountBalanceOverdue").toUpperCase())
+		verifyTrue(creditLimit.text(), expectedValue("text.account.accountBalanceLimit").toUpperCase())
+		verifyTestFailedOrPassed()
+		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}

@@ -31,23 +31,24 @@ class ContactUsAfterLoginPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and:"Verify translations at ContactUsPage"
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("contactus.heading")
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text() == expectedValue("contactus.error.message")
-		assert masterTemplate.introContainerLabel.text()==expectedValue("contactus.intro")
-		assert masterTemplate.requiredMessageText.text()==expectedValue("login.required.message")
-		assert titleLabel.text()==expectedValue("user.title").toUpperCase()
-		assert firstNameLabel.text()==expectedValue("user.firstName").toUpperCase()
-		assert lastNameLabel.text()==expectedValue("user.lastName").toUpperCase()
-		assert emailLabel.text()==expectedValue("user.email").toUpperCase() //FAILED
-		assert phoneLabel.text()==expectedValue("user.phone").toUpperCase()
-		assert companyNameLabel.text()==expectedValue("user.companyName").toUpperCase()
-		assert customerNumberLabelAfterLogin.text()==expectedValue("user.customerNumber").toUpperCase()
-		assert countryLabelAfterLogin.text()==expectedValue("user.country").toUpperCase()
-		assert commentsLabelAfterLogin.text()==expectedValue("user.comments").toUpperCase()
-		//assert commentsErrorAfterLogin.text()==expectedValue("contactus.comments.invalid").toUpperCase()
-		assert continueShoppingLink.text()- ~/&/==expectedValue("label.continue.shopping").toUpperCase()
-		assert sendButton.text()==expectedValue("contactus.send").toUpperCase() //FAILED
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("contactus.heading"))
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("contactus.error.message"))
+		verifyTrue(masterTemplate.introContainerLabel.text(),expectedValue("contactus.intro"))
+		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("login.required.message"))
+		verifyTrue(titleLabel.text(),expectedValue("user.title").toUpperCase())
+		verifyTrue(firstNameLabel.text(),expectedValue("user.firstName").toUpperCase())
+		verifyTrue(lastNameLabel.text(),expectedValue("user.lastName").toUpperCase())
+		verifyTrue(emailLabel.text(),expectedValue("user.email").toUpperCase()) //FAILED
+		verifyTrue(phoneLabel.text(),expectedValue("user.phone").toUpperCase())
+		verifyTrue(companyNameLabel.text(),expectedValue("user.companyName").toUpperCase())
+		verifyTrue(customerNumberLabelAfterLogin.text(),expectedValue("user.customerNumber").toUpperCase())
+		verifyTrue(countryLabelAfterLogin.text(),expectedValue("user.country").toUpperCase())
+		verifyTrue(commentsLabelAfterLogin.text(),expectedValue("user.comments").toUpperCase())
+		//verifyTrue(commentsErrorAfterLogin.text(),expectedValue("contactus.comments.invalid").toUpperCase())
+		verifyTrue(continueShoppingLink.text()- ~/&/,expectedValue("label.continue.shopping").toUpperCase())
+		verifyTrue(sendButton.text(),expectedValue("contactus.send").toUpperCase()) //FAILED
+		verifyTestFailedOrPassed()
 
 		where:
 		user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
@@ -70,8 +71,9 @@ class ContactUsAfterLoginPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and: "Verify translation of message"
-		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.msg.sent.successfully").toUpperCase()
-		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("contactus.success.message") //FAILED
+		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.msg.sent.successfully").toUpperCase())
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("contactus.success.message")) //FAILED
+		verifyTestFailedOrPassed()
 		
 		where:
 		user = UserHelper.getValidUser()
@@ -93,8 +95,9 @@ class ContactUsAfterLoginPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and: "Verify translation of message"
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text() == expectedValue("contactus.serviceerror.message")
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("contactus.serviceerror.message"))
+		verifyTestFailedOrPassed()
 		
 		where:
 		user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

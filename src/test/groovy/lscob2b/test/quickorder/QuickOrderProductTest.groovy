@@ -32,30 +32,31 @@ class QuickOrderProductTest extends PropertProviderTest{
 		at QuickOrderPage
 		
 		and: "verify translations of QuickOrder Page "
-		assert breadCrumbLink.text() == expectedValue("search.page.breadcrumb").toUpperCase()
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("search.advanced").toUpperCase()
-		assert advancedSearch(0).text() == expectedValue("search.advanced.keyword").toUpperCase()
-		assert advancedSearch(1).text() == expectedValue("search.advanced.onlyproductids").toUpperCase()
-		assert searchLink.text() == expectedValue("search.advanced.search").toUpperCase()
-		assert continueshoppingLink.text()- ~/&/ == expectedValue("cart.page.continue").toUpperCase()
-		assert checkOutLink.text()- ~/&/  == expectedValue("checkout.checkout").toUpperCase()
-		assert buttonAdd.text() == expectedValue("search.advanced.productids.add").toUpperCase()
-		assert productsFoundlabel.text() - ~/\d+\s+/ == expectedValue("search.page.totalResults").toUpperCase()
-		assert itemLabels(0).text() == expectedValue("product.variants.style").toUpperCase()
-		assert itemLabels(1).text() == expectedValue("product.variants.color").toUpperCase()
-		assert itemLabels(2).text() == expectedValue("product.wholesale.price").toUpperCase()
-		assert itemLabels(3).text() == expectedValue("text.quantity").toUpperCase()
-		assert itemLabels(4).text() ==expectedValue("basket.page.total").toUpperCase()
-		assert itemLabels(5).text() == expectedValue("text.quantity")
-		assert itemLabels(6).text() ==expectedValue("basket.page.total")+ " "
-		assert hideQuantityButton.text()- ~/&/ == expectedValue("product.hide.quantities").toUpperCase()
-		assert enterSizeLabel.text() == expectedValue("product.variants.select.size").toUpperCase()
-		assert sizeGuideLabel.text() == expectedValue("product.variants.size.guide")
-		assert inStockLabel.text() == expectedValue("product.variants.in.stock").toUpperCase()
-		assert limitedStockLabel.text() == expectedValue("product.variants.limited.stock").toUpperCase()
-		assert outOfStockLabel.text() == expectedValue("product.variants.out.of.stock").toUpperCase()
-		assert productSizingGrids[0].buttonNotifyMe.text()- ~/&/ == expectedValue("basket.add.to.waitlist").toUpperCase()
-		assert productSizingGrids[0].buttonAddToCart.text()- ~/&/ == expectedValue("basket.add.to.cart").toUpperCase()
+		verifyTrue(breadCrumbLink.text(), expectedValue("search.page.breadcrumb").toUpperCase())
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("search.advanced").toUpperCase())
+		verifyTrue(advancedSearch(0).text(), expectedValue("search.advanced.keyword").toUpperCase())
+		verifyTrue(advancedSearch(1).text(), expectedValue("search.advanced.onlyproductids").toUpperCase())
+		verifyTrue(searchLink.text(), expectedValue("search.advanced.search").toUpperCase())
+		verifyTrue(continueshoppingLink.text()- ~/&/, expectedValue("cart.page.continue").toUpperCase())
+		verifyTrue(checkOutLink.text()- ~/&/ , expectedValue("checkout.checkout").toUpperCase())
+		verifyTrue(buttonAdd.text(), expectedValue("search.advanced.productids.add").toUpperCase())
+		verifyTrue(productsFoundlabel.text() - ~/\d+\s+/, expectedValue("search.page.totalResults").toUpperCase())
+		verifyTrue(itemLabels(0).text(), expectedValue("product.variants.style").toUpperCase())
+		verifyTrue(itemLabels(1).text(), expectedValue("product.variants.color").toUpperCase())
+		verifyTrue(itemLabels(2).text(), expectedValue("product.wholesale.price").toUpperCase())
+		verifyTrue(itemLabels(3).text(), expectedValue("text.quantity").toUpperCase())
+		verifyTrue(itemLabels(4).text(),expectedValue("basket.page.total").toUpperCase())
+		verifyTrue(itemLabels(5).text(), expectedValue("text.quantity"))
+		verifyTrue(itemLabels(6).text(),expectedValue("basket.page.total")+ " ")
+		verifyTrue(hideQuantityButton.text()- ~/&/, expectedValue("product.hide.quantities").toUpperCase())
+		verifyTrue(enterSizeLabel.text(), expectedValue("product.variants.select.size").toUpperCase())
+		verifyTrue(sizeGuideLabel.text(), expectedValue("product.variants.size.guide"))
+		verifyTrue(inStockLabel.text(), expectedValue("product.variants.in.stock").toUpperCase())
+		verifyTrue(limitedStockLabel.text(), expectedValue("product.variants.limited.stock").toUpperCase())
+		verifyTrue(outOfStockLabel.text(), expectedValue("product.variants.out.of.stock").toUpperCase())
+		verifyTrue(productSizingGrids[0].buttonNotifyMe.text()- ~/&/, expectedValue("basket.add.to.waitlist").toUpperCase())
+		verifyTrue(productSizingGrids[0].buttonAddToCart.text()- ~/&/, expectedValue("basket.add.to.cart").toUpperCase())
+		verifyTestFailedOrPassed()
 		
 		where:
 		user | productCode
@@ -83,7 +84,8 @@ class QuickOrderProductTest extends PropertProviderTest{
 		hideQuantityButton.click()
 		
 		and: "check translation of EDIT QUANTITIES button"
-		assert editQuantityButton.text()- ~/&/ == expectedValue("product.edit.quantities").toUpperCase()
+		verifyTrue(editQuantityButton.text()- ~/&/, expectedValue("product.edit.quantities").toUpperCase())
+		verifyTestFailedOrPassed()
 		
 		where:
 		user | productCode

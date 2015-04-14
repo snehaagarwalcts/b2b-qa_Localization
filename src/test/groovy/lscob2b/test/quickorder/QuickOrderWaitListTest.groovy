@@ -37,8 +37,9 @@ class QuickOrderWaitListTest extends PropertProviderTest{
 		productSizingGrids[0].buttonNotifyMe.click()
 		
 		and: "check translations of WaitList Pop Up"
-		assert waitListHeader.text() == expectedValue("product.notify.me").toUpperCase()
-		assert overlayButtonAdd.text()- ~/&/ == expectedValue("waitlist.add.to.waitlist").toUpperCase()
+		verifyTrue(waitListHeader.text(), expectedValue("product.notify.me").toUpperCase())
+		verifyTrue(overlayButtonAdd.text()- ~/&/, expectedValue("waitlist.add.to.waitlist").toUpperCase())
+		verifyTestFailedOrPassed()
 		
 		where:
 		user | productCode

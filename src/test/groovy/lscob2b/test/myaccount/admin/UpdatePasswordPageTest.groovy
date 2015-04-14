@@ -39,24 +39,25 @@ class UpdatePasswordPageTest extends PropertProviderTest{
 		at UpdatePasswordPage
 		
 		then: "verify translations in UpdatePassword Page"
-		assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.profile.updatePasswordForm").toUpperCase()
-		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.profile.updatePasswordForm").toUpperCase()
-		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.update.password.subtitle")
-		assert masterTemplate.requiredMessageText.text()== expectedValue("address.required")
-		assert currentPwdLabel.text() == expectedValue("profile.currentPassword").toUpperCase()
-		assert newPasswordLabel.text() == expectedValue("profile.newPassword").toUpperCase()
-		assert passwordHintText.text()==expectedValue("hint.update.password")
-		assert confirmNewPasswordLabel.text() == expectedValue("profile.checkNewPassword").toUpperCase()
-		assert cancelButton.text()- ~/&/ == expectedValue("b2bcustomer.cancel").toUpperCase()
-		assert updatePasswordButton.text() == expectedValue("updatePwd.submit").toUpperCase()
+		verifyTrue(masterTemplate.breadCrumbActive.text(),expectedValue("text.account.profile.updatePasswordForm").toUpperCase())
+		verifyTrue(masterTemplate.mainContainerLabel.text(),expectedValue("text.account.profile.updatePasswordForm").toUpperCase())
+		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.account.profile.update.password.subtitle"))
+		verifyTrue(masterTemplate.requiredMessageText.text(), expectedValue("address.required"))
+		verifyTrue(currentPwdLabel.text(), expectedValue("profile.currentPassword").toUpperCase())
+		verifyTrue(newPasswordLabel.text(), expectedValue("profile.newPassword").toUpperCase())
+		verifyTrue(passwordHintText.text(),expectedValue("hint.update.password"))
+		verifyTrue(confirmNewPasswordLabel.text(), expectedValue("profile.checkNewPassword").toUpperCase())
+		verifyTrue(cancelButton.text()- ~/&/, expectedValue("b2bcustomer.cancel").toUpperCase())
+		verifyTrue(updatePasswordButton.text(), expectedValue("updatePwd.submit").toUpperCase())
 		
 		when: "click on UpdatePasswordButton - All fields empty"
 		clickUpdatePasswordButton()
 		
 		then: "verify error messages in UpdatePassword Page"
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text() == expectedValue("form.global.error")
-		assert currentPasswordError.text() == expectedValue("profile.currentPassword.invalid")
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("form.global.error"))
+		verifyTrue(currentPasswordError.text(), expectedValue("profile.currentPassword.invalid"))
+		verifyTestFailedOrPassed()
 		
 		where:
 		user | _
@@ -84,8 +85,9 @@ class UpdatePasswordPageTest extends PropertProviderTest{
 		doUpdatePassword(user.password,compliantPassword)
 		
 		then: "verify translation of SUCCESSFUL PASSWORD CHANGE message"
-		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("account.confirmation.password.updated") //FAILED       
+		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("account.confirmation.password.updated")) //FAILED       
+		verifyTestFailedOrPassed()
 		
 		where:
 		user | compliantPassword

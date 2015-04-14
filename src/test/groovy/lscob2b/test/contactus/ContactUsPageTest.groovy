@@ -26,18 +26,19 @@ class ContactUsPageTest extends PropertProviderTest{
 		at ContactUsPage
 	
 		then:"Verify translations at ContactUsPage"
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("contactus.heading")
-		assert masterTemplate.introContainerLabel.text()==expectedValue("contactus.intro") //FAILED
-		assert masterTemplate.requiredMessageText.text()==expectedValue("login.required.message")
-		assert titleLabel.text()==expectedValue("user.title").toUpperCase()
-		assert firstNameLabel.text()==expectedValue("user.firstName").toUpperCase()
-		assert lastNameLabel.text()==expectedValue("user.lastName").toUpperCase()
-		assert emailLabel.text()==expectedValue("user.email").toUpperCase() //FAILED
-		assert phoneLabel.text()==expectedValue("user.phone").toUpperCase()
-		assert companyNameLabel.text()==expectedValue("user.companyName").toUpperCase()
-		assert countryLabel.text()==expectedValue("user.country").toUpperCase()
-		assert commentsLabel.text()==expectedValue("user.comments").toUpperCase()
-		assert sendButton.text()==expectedValue("contactus.send").toUpperCase() //FAILED
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("contactus.heading"))
+		verifyTrue(masterTemplate.introContainerLabel.text(),expectedValue("contactus.intro")) //FAILED
+		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("login.required.message"))
+		verifyTrue(titleLabel.text(),expectedValue("user.title").toUpperCase())
+		verifyTrue(firstNameLabel.text(),expectedValue("user.firstName").toUpperCase())
+		verifyTrue(lastNameLabel.text(),expectedValue("user.lastName").toUpperCase())
+		verifyTrue(emailLabel.text(),expectedValue("user.email").toUpperCase()) //FAILED
+		verifyTrue(phoneLabel.text(),expectedValue("user.phone").toUpperCase())
+		verifyTrue(companyNameLabel.text(),expectedValue("user.companyName").toUpperCase())
+		verifyTrue(countryLabel.text(),expectedValue("user.country").toUpperCase())
+		verifyTrue(commentsLabel.text(),expectedValue("user.comments").toUpperCase())
+		verifyTrue(sendButton.text(),expectedValue("contactus.send").toUpperCase()) //FAILED
+		verifyTestFailedOrPassed()
 	}	
 	
 	def "Verify translation of error message with All fields Empty - ContactUsPage "() {
@@ -53,16 +54,17 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and:"Verify of error messages in ContactUsPage"
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text() == expectedValue("contactus.error.message")
-		assert titleError.text()==expectedValue("contactus.title.invalid")
-		assert firstNameError.text()==expectedValue("contactus.firstname.invalid")
-		assert lastNameError.text()==expectedValue("contactus.lastname.invalid")
-		assert emailError.text()==expectedValue("contactus.email.invalid")
-		assert phoneError.text()==expectedValue("contactus.phone.invalid")
-		assert companyNameError.text()==expectedValue("contactus.company.invalid")
-		assert countryError.text()==expectedValue("contactus.country.invalid")
-		//assert commentsError.text()==expectedValue("contactus.comments.invalid")
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("contactus.error.message"))
+		verifyTrue(titleError.text(),expectedValue("contactus.title.invalid"))
+		verifyTrue(firstNameError.text(),expectedValue("contactus.firstname.invalid"))
+		verifyTrue(lastNameError.text(),expectedValue("contactus.lastname.invalid"))
+		verifyTrue(emailError.text(),expectedValue("contactus.email.invalid"))
+		verifyTrue(phoneError.text(),expectedValue("contactus.phone.invalid"))
+		verifyTrue(companyNameError.text(),expectedValue("contactus.company.invalid"))
+		verifyTrue(countryError.text(),expectedValue("contactus.country.invalid"))
+		//verifyTrue(commentsError.text(),expectedValue("contactus.comments.invalid"))
+		verifyTestFailedOrPassed()
 		
 	}
 	
@@ -87,8 +89,9 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 	
 		and:"Verify translation of message"
-		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.msg.sent.successfully").toUpperCase()
-		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("contactus.success.message") //FAILED   
+		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.msg.sent.successfully").toUpperCase())
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("contactus.success.message")) //FAILED   
+		verifyTestFailedOrPassed()
 	}
 	
 	def "Verify translation of error message with Invalid Email Id - ContactUsPage"() {
@@ -112,8 +115,9 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 
 		and:"Verify translation of error message"
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text() == expectedValue("contactus.serviceerror.message")
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("contactus.serviceerror.message"))
+		verifyTestFailedOrPassed()
 	}
 	
 	def "Verify translation of SYSTEM ERROR message - ContactUsPage"() {
@@ -137,8 +141,9 @@ class ContactUsPageTest extends PropertProviderTest{
 		clickSendButton()
 
 		and:"Verify translation of error message"
-	    assert masterTemplate.mainContainerLabel.text()==expectedValue("system.error").toUpperCase() //FAILED
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("system.error.title").toUpperCase() //FAILED
-		assert masterTemplate.alertMessage.text() == expectedValue("system.error.try.again") //FAILED
+	    verifyTrue(masterTemplate.mainContainerLabel.text(),expectedValue("system.error").toUpperCase()) //FAILED
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("system.error.title").toUpperCase()) //FAILED
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("system.error.try.again")) //FAILED
+		verifyTestFailedOrPassed()
 	}
 }

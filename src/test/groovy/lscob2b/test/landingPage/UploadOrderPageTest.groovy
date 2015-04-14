@@ -26,13 +26,14 @@ class UploadOrderPageTest extends PropertProviderTest{
 		uploadFileButton.click()
 		
 		and: "verify translations of UploadOrderPage"
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.order.upload").toUpperCase()
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		//assert masterTemplate.alertMessage.text() == expectedValue("orderupload.invalid.file.format")
-		assert downloadFileTitle.text() == expectedValue("orderupload.template.download").toUpperCase()
-		assert downloadFileLink.text()- ~/&/ == expectedValue("orderupload.template.download").toUpperCase()
-		assert uploadFileButton.value() == expectedValue("order.upload.file")
-		
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.order.upload").toUpperCase())
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		//verifyTrue(masterTemplate.alertMessage.text(), expectedValue("orderupload.invalid.file.format"))
+		verifyTrue(downloadFileTitle.text(), expectedValue("orderupload.template.download").toUpperCase())
+		verifyTrue(downloadFileLink.text()- ~/&/, expectedValue("orderupload.template.download").toUpperCase())
+		verifyTrue(uploadFileButton.value(), expectedValue("order.upload.file"))
+		verifyTestFailedOrPassed()
+			
 		where:
 		user | link
 		UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | "order/upload"

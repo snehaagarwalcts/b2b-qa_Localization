@@ -37,17 +37,17 @@ class CartPageProductTest extends PropertProviderTest{
 		at CartPage
 		
 		then: "verify translations of Cart Page"
-		assert cartItems[0].itemStyle.text()== expectedValue("product.variants.style").toUpperCase()
-		assert cartItems[0].itemColor.text()== expectedValue("product.variants.color").toUpperCase()
-		assert cartItems[0].itemPrice.text()== expectedValue("product.wholesale.price").toUpperCase()
-		assert cartItems[0].itemQuantity.text()== expectedValue("text.quantity").toUpperCase()
-		assert cartItems[0].itemTotal.text()== expectedValue("basket.page.total").toUpperCase()
-		assert cartItems[0].removeProductLink.text()- ~/&/== expectedValue("text.remove").toUpperCase()
-		assert cartItems[0].editQuantities.text()- ~/&/== expectedValue("product.edit.quantities").toUpperCase()
-		assert itemLabels(5).text()== expectedValue("text.quantity")
-		assert itemLabels(6).text()== expectedValue("basket.page.total")
-		assert linkCheckout.text()- ~/&/  == expectedValue("checkout.checkout").toUpperCase()
-		assert continueShopping.text()- ~/&/ == expectedValue("label.continue.shopping").toUpperCase()
+		verifyTrue(cartItems[0].itemStyle.text(), expectedValue("product.variants.style").toUpperCase())
+		verifyTrue(cartItems[0].itemColor.text(), expectedValue("product.variants.color").toUpperCase())
+		verifyTrue(cartItems[0].itemPrice.text(), expectedValue("product.wholesale.price").toUpperCase())
+		verifyTrue(cartItems[0].itemQuantity.text(), expectedValue("text.quantity").toUpperCase())
+		verifyTrue(cartItems[0].itemTotal.text(), expectedValue("basket.page.total").toUpperCase())
+		verifyTrue(cartItems[0].removeProductLink.text()- ~/&/, expectedValue("text.remove").toUpperCase())
+		verifyTrue(cartItems[0].editQuantities.text()- ~/&/, expectedValue("product.edit.quantities").toUpperCase())
+		verifyTrue(itemLabels(5).text(), expectedValue("text.quantity"))
+		verifyTrue(itemLabels(6).text(), expectedValue("basket.page.total"))
+		verifyTrue(linkCheckout.text()- ~/&/ , expectedValue("checkout.checkout").toUpperCase())
+		verifyTrue(continueShopping.text()- ~/&/, expectedValue("label.continue.shopping").toUpperCase())
 		
 		when: "at cart page"
 		at CartPage
@@ -56,13 +56,13 @@ class CartPageProductTest extends PropertProviderTest{
 		cartItems[0].editQuantities.click()
 		
 		and: "verify translations of Sizing Grid"
-		assert cartItems[0].buttonHideQuantities.text()- ~/&/== expectedValue("product.hide.quantities").toUpperCase()
+		verifyTrue(cartItems[0].buttonHideQuantities.text()- ~/&/, expectedValue("product.hide.quantities").toUpperCase())
 		waitFor { addToCartForm.displayed }
-		assert cartItems[0].inStockLabel.text()== expectedValue("product.variants.in.stock").toUpperCase()
-		assert cartItems[0].limitedStockLabel.text()== expectedValue("product.variants.limited.stock").toUpperCase()
-		assert cartItems[0].outOfStockLabel.text()== expectedValue("product.variants.out.of.stock").toUpperCase()
-		assert cartItems[0].buttonCancel.text()== expectedValue("cancelButton.displayName").toUpperCase()
-		assert cartItems[0].buttonUpdate.text()== expectedValue("product.variants.update").toUpperCase()
+		verifyTrue(cartItems[0].inStockLabel.text(), expectedValue("product.variants.in.stock").toUpperCase())
+		verifyTrue(cartItems[0].limitedStockLabel.text(), expectedValue("product.variants.limited.stock").toUpperCase())
+		verifyTrue(cartItems[0].outOfStockLabel.text(), expectedValue("product.variants.out.of.stock").toUpperCase())
+		verifyTrue(cartItems[0].buttonCancel.text(), expectedValue("cancelButton.displayName").toUpperCase())
+		verifyTrue(cartItems[0].buttonUpdate.text(), expectedValue("product.variants.update").toUpperCase())
 		
 		when: "at cart page"
 		at CartPage
@@ -72,12 +72,13 @@ class CartPageProductTest extends PropertProviderTest{
 		waitFor{ removeProducts.displayed }
 		
 		then: "verify translations of Remove PopUp"
-		assert removePopUpHeader.text() == expectedValue("product.remove.confirmation").toUpperCase()
-		assert removePopCancelButton.text()- ~/&/ == expectedValue("cancelButton.displayName").toUpperCase()
-		assert removeProducts.text()- ~/&/ == expectedValue("text.remove").toUpperCase()
+		verifyTrue(removePopUpHeader.text(), expectedValue("product.remove.confirmation").toUpperCase())
+		verifyTrue(removePopCancelButton.text()- ~/&/, expectedValue("cancelButton.displayName").toUpperCase())
+		verifyTrue(removeProducts.text()- ~/&/, expectedValue("text.remove").toUpperCase())
 
 		and: "Remove the product from cart"
 		removeProducts.click()
+		verifyTestFailedOrPassed()
 		
 		where:
 		user | productCode

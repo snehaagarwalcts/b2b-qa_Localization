@@ -26,8 +26,9 @@ class WaitListPageTest extends PropertProviderTest{
 		at WaitListPage
 	
 		then:"Verify translations at empty WaitList Page"
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("label.your.waitlist").toUpperCase()
-		assert continueToShoppingLink.text()- ~/&/ == expectedValue("label.continue.shopping").toUpperCase()
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("label.your.waitlist").toUpperCase())
+		verifyTrue(continueToShoppingLink.text()- ~/&/, expectedValue("label.continue.shopping").toUpperCase())
+		verifyTestFailedOrPassed()
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

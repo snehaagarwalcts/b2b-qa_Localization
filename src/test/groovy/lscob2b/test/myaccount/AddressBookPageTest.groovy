@@ -33,11 +33,12 @@ class AddressBookPageTest extends PropertProviderTest {
 		at AddressBookPage
 	
 		then: "Verify translations at AddressBookPage"
-		assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.addressBook").toUpperCase()
-		assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.addressBook").toUpperCase()
-		assert shippingHeader.text()==expectedValue("text.account.addressBook.manageYourAddresses").toUpperCase()  //FAILED
-		assert billingHeader.text()==expectedValue("text.account.addressBook.manageYourBillingAddresses").toUpperCase()
-		
+		verifyTrue(masterTemplate.breadCrumbActive.text(), expectedValue("text.account.addressBook").toUpperCase())
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.account.addressBook").toUpperCase())
+		verifyTrue(shippingHeader.text(), expectedValue("text.account.addressBook.manageYourAddresses").toUpperCase())  //FAILED
+		verifyTrue(billingHeader.text(), expectedValue("text.account.addressBook.manageYourBillingAddresses").toUpperCase())
+		verifyTestFailedOrPassed()
+			
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}	

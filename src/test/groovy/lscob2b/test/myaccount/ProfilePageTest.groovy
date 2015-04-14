@@ -32,14 +32,15 @@ class ProfilePageTest extends PropertProviderTest{
 		at ProfilePage		
 	
 		then: "Verify translations at Profile Page"
-		assert masterTemplate.breadCrumbActive.text() == expectedValue("text.account.profile").toUpperCase()	
-		assert masterTemplate.mainContainerLabel.text() == expectedValue("text.account.profile").toUpperCase()
-		assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.details.subtitle")
-		assert titleLabel.text()- ~/:/ == expectedValue("text.company.user.title").toUpperCase()
-		assert firstName.text() == expectedValue("text.company.user.name").toUpperCase()
-		assert lastName.text() == expectedValue("text.company.unit.name").toUpperCase()
-		assert changeYourPasswordLink.text()- ~/&/ == expectedValue("text.account.profile.changePassword").toUpperCase()
-		assert updatePersonalDetailsLink.text()- ~/&/ == expectedValue("text.account.profile.updatePersonalDetails").toUpperCase()		
+		verifyTrue(masterTemplate.breadCrumbActive.text(), expectedValue("text.account.profile").toUpperCase())	
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.account.profile").toUpperCase())
+		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.account.profile.details.subtitle"))
+		verifyTrue(titleLabel.text()- ~/:/, expectedValue("text.company.user.title").toUpperCase())
+		verifyTrue(firstName.text(), expectedValue("text.company.user.name").toUpperCase())
+		verifyTrue(lastName.text(), expectedValue("text.company.unit.name").toUpperCase())
+		verifyTrue(changeYourPasswordLink.text()- ~/&/, expectedValue("text.account.profile.changePassword").toUpperCase())
+		verifyTrue(updatePersonalDetailsLink.text()- ~/&/, expectedValue("text.account.profile.updatePersonalDetails").toUpperCase())		
+		verifyTestFailedOrPassed()
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

@@ -40,22 +40,23 @@ class UpdatePersonalDetailsPageTest extends PropertProviderTest{
 			at UpdatePersonalDetailsPage
 			
 			then: "verify translations in UpdatePersonalDetailsPage"
-			assert masterTemplate.breadCrumbActive.text()==expectedValue("text.account.profile").toUpperCase()
-			assert masterTemplate.mainContainerLabel.text()==expectedValue("text.account.profile").toUpperCase()
-			assert masterTemplate.introContainerLabel.text() == expectedValue("text.account.profile.update.subtitle")
-			assert masterTemplate.requiredMessageText.text()== expectedValue("address.required")
-			assert updateProfileLabel(0).text() == expectedValue("profile.title").toUpperCase()
-			assert updateProfileLabel(1).text() == expectedValue("profile.firstName").toUpperCase()
-			assert updateProfileLabel(2).text() == expectedValue("profile.lastName").toUpperCase()
-			assert cancelButton.text()- ~/&/ == expectedValue("cancelButton.displayName").toUpperCase()
-			assert saveButton.text() == expectedValue("text.account.profile.saveUpdates").toUpperCase()
+			verifyTrue(masterTemplate.breadCrumbActive.text(),expectedValue("text.account.profile").toUpperCase())
+			verifyTrue(masterTemplate.mainContainerLabel.text(),expectedValue("text.account.profile").toUpperCase())
+			verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.account.profile.update.subtitle"))
+			verifyTrue(masterTemplate.requiredMessageText.text(), expectedValue("address.required"))
+			verifyTrue(updateProfileLabel(0).text(), expectedValue("profile.title").toUpperCase())
+			verifyTrue(updateProfileLabel(1).text(), expectedValue("profile.firstName").toUpperCase())
+			verifyTrue(updateProfileLabel(2).text(), expectedValue("profile.lastName").toUpperCase())
+			verifyTrue(cancelButton.text()- ~/&/, expectedValue("cancelButton.displayName").toUpperCase())
+			verifyTrue(saveButton.text(), expectedValue("text.account.profile.saveUpdates").toUpperCase())
 			
 			when: "click on Save button"
 			clickSaveButton()
 			
 			then: "verify translation of PROFILE UPDATE message"
-			assert masterTemplate.noteMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-			assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","")+"." == expectedValue("account.confirmation.profile.updated")     
+			verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+			verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","")+".", expectedValue("account.confirmation.profile.updated"))     
+			verifyTestFailedOrPassed()
 			
 			where:
 			user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

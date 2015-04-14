@@ -25,24 +25,25 @@ class KeyLookTest extends PropertProviderTest{
 		at KeyLookPage
 		
 		then: "verify translations of KeyLook Page"
-		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home").toUpperCase()
-		assert breadCrumbLink.text() == expectedValue("categorylandingpage.categories").toUpperCase()
-		//assert keylookHeroTitle.text() == expectedValue("").toUpperCase() //No translation available
+		verifyTrue(masterTemplate.breadCrumbs.text(), expectedValue("breadcrumb.home").toUpperCase())
+		verifyTrue(breadCrumbLink.text(), expectedValue("categorylandingpage.categories").toUpperCase())
+		//verifyTrue(keylookHeroTitle.text(), expectedValue("").toUpperCase()) //No translation available
 		for(item in keylookItems) {
-			assert item.style.text() == expectedValue("product.variants.style").toUpperCase()
-			assert item.color.text() == expectedValue("product.variants.color").toUpperCase()
-			assert item.priceWholesale.text() == expectedValue("product.wholesale.price").toUpperCase()
-			assert item.inStockLabel.text()== expectedValue("product.variants.in.stock").toUpperCase()
-			assert item.limitedStockLabel.text()== expectedValue("product.variants.limited.stock").toUpperCase()
-			assert item.outOfStockLabel.text()== expectedValue("product.variants.out.of.stock").toUpperCase()	
+			verifyTrue(item.style.text(), expectedValue("product.variants.style").toUpperCase())
+			verifyTrue(item.color.text(), expectedValue("product.variants.color").toUpperCase())
+			verifyTrue(item.priceWholesale.text(), expectedValue("product.wholesale.price").toUpperCase())
+			verifyTrue(item.inStockLabel.text(), expectedValue("product.variants.in.stock").toUpperCase())
+			verifyTrue(item.limitedStockLabel.text(), expectedValue("product.variants.limited.stock").toUpperCase())
+			verifyTrue(item.outOfStockLabel.text(), expectedValue("product.variants.out.of.stock").toUpperCase())	
 		}	
-		assert labelQuantity.text()== expectedValue("text.quantity")
-		assert labelTotal.text()== expectedValue("basket.page.total")
-		assert continueShopping.text()- ~/ &/ == expectedValue("label.continue.shopping").toUpperCase()
-		assert buttonAddToCart.text()- ~/&/ == expectedValue("basket.add.to.cart").toUpperCase()
+		verifyTrue(labelQuantity.text(), expectedValue("text.quantity"))
+		verifyTrue(labelTotal.text(), expectedValue("basket.page.total"))
+		verifyTrue(continueShopping.text()- ~/ &/, expectedValue("label.continue.shopping").toUpperCase())
+		verifyTrue(buttonAddToCart.text()- ~/&/, expectedValue("basket.add.to.cart").toUpperCase())
+		verifyTestFailedOrPassed()
 			
 		where:
 			user | link
-			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | "en/keylook/levisKeyLook1" 
+			UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER) | "keylook/levisKeyLook1" 
 	}			
 }

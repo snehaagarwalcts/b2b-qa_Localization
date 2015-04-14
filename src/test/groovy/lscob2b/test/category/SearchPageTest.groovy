@@ -29,21 +29,20 @@ class SearchPageTest extends PropertProviderTest{
 		at ProductCategoryPage
 		
 		then:"verify translations at Category Page"
-		assert masterTemplate.mainContainerLabel.text().contains(expectedValue("search.page.searchText").toUpperCase())
-		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home").toUpperCase()
-		assert masterTemplate.breadCrumbActive.text() == expectedValue("search.page.breadcrumb").toUpperCase()
-		assert sortByLabel.text()- ~/:/ == expectedValue("search.page.sortTitle").toUpperCase()
-		assert productsFoundLabel.text() - ~/\d+\s+/ == expectedValue("search.page.totalResults").toUpperCase()
-		//assert pageOfLabel.text().replaceAll("\\s+\\d+","") == expectedValue("search.page.currentPage").toUpperCase()
-		assert refinementsLabel.text() == expectedValue("search.nav.refinements").toUpperCase()
-		
+		verifyTrueContains(masterTemplate.mainContainerLabel.text(), expectedValue("search.page.searchText").toUpperCase(), "use contains()")
+		verifyTrue(masterTemplate.breadCrumbs.text(), expectedValue("breadcrumb.home").toUpperCase())
+		verifyTrue(masterTemplate.breadCrumbActive.text(), expectedValue("search.page.breadcrumb").toUpperCase())
+		verifyTrue(sortByLabel.text()- ~/:/, expectedValue("search.page.sortTitle").toUpperCase())
+		verifyTrue(productsFoundLabel.text() - ~/\d+\s+/, expectedValue("search.page.totalResults").toUpperCase())
+		//verifyTrue(pageOfLabel.text().replaceAll("\\s+\\d+",""), expectedValue("search.page.currentPage").toUpperCase())
+		verifyTrue(refinementsLabel.text(), expectedValue("search.nav.refinements").toUpperCase())		
 		for(item in pdpItems) {
-			assert item.WholeSalePrice.text() == expectedValue("product.wholesale.price").toUpperCase()
-		}	
-		
+			verifyTrue(item.WholeSalePrice.text(), expectedValue("product.wholesale.price").toUpperCase())
+		}		
 		for(facetTitle in facetHeadLabels) {
-			assert facetTitle.text().contains(expectedValue("search.nav.facetTitle").toUpperCase())
+			verifyTrueContains(facetTitle.text(), expectedValue("search.nav.facetTitle").toUpperCase(), "use contains()")
 		}
+		verifyTestFailedOrPassed()
 		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)

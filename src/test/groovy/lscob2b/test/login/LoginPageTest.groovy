@@ -22,15 +22,15 @@ class LoginPageTest extends PropertProviderTest{
 		at LoginPage
 	
 		then:"Verify translations at LoginPage"
-		assert pageheading ==expectedValue("header.welcome").toUpperCase()
-		assert loginTitle.text() == expectedValue("account.login.title").toUpperCase()
-		assert username.text()==expectedValue("account.login.username").toUpperCase()
-		assert password.text()==expectedValue("account.login.password").toUpperCase()
-		assert submitButton.text()==expectedValue("account.login.button.text").toUpperCase()
-		assert forgottenYourPasswordButton.text()==expectedValue("login.link.forgottenPwd").toUpperCase()
-		assert selectlanguageLink.text()==expectedValue("text.language").toUpperCase()
-		assert contactUsMessage.text().replaceAll(contactUS.text(),"") ==expectedValue("contactus.page.content").toUpperCase() //FAILED
-		assert contactUS.text()==expectedValue("text.contactus").toUpperCase()
+		verifyTrue(pageheading,expectedValue("header.welcome").toUpperCase())
+		verifyTrue(loginTitle.text(), expectedValue("account.login.title").toUpperCase())
+		verifyTrue(username.text(),expectedValue("account.login.username").toUpperCase())
+		verifyTrue(password.text(),expectedValue("account.login.password").toUpperCase())
+		verifyTrue(submitButton.text(),expectedValue("account.login.button.text").toUpperCase())
+		verifyTrue(forgottenYourPasswordButton.text(),expectedValue("login.link.forgottenPwd").toUpperCase())
+		verifyTrue(selectlanguageLink.text(),expectedValue("text.language").toUpperCase())
+		verifyTrue(contactUsMessage.text().replaceAll(contactUS.text(),""),expectedValue("contactus.page.content").toUpperCase()) //FAILED
+		verifyTrue(contactUS.text(),expectedValue("text.contactus").toUpperCase())
 		
 		when:"do an invalid login"
 		login(user)
@@ -40,8 +40,9 @@ class LoginPageTest extends PropertProviderTest{
 		waitFor { masterTemplate.alertMessage.displayed }
 		
 		then:"Verify error message translation"		
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text() == expectedValue("login.error.account.not.found.title") //FAILED
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("login.error.account.not.found.title")) //FAILED
+		verifyTestFailedOrPassed()
 				
 		where:
 		user=UserHelper.getInvalidUser()
@@ -60,11 +61,11 @@ class LoginPageTest extends PropertProviderTest{
 		then: "verify translations in forgot password pop up"
 		openForgottenPasswordDialog()
 		waitFor { forgottenPasswordDialog.displayed }	
-		assert forgottenPwdTitle.text() == expectedValue("forgottenPwd.title").toUpperCase()
-		//assert forgottenPwdRequired.text() == expectedValue("login.required.message").toUpperCase()
-		assert forgottenPwdDescription.text() == expectedValue("forgottenPwd.description").toUpperCase()
-		assert forgottenPwdEmail.text() == expectedValue("forgottenPwd.email").toUpperCase()
-		assert forgottenPwdSubmit.text() == expectedValue("forgottenPwd.submit").toUpperCase()
+		verifyTrue(forgottenPwdTitle.text(), expectedValue("forgottenPwd.title").toUpperCase())
+		//verifyTrue(forgottenPwdRequired.text(), expectedValue("login.required.message").toUpperCase())
+		verifyTrue(forgottenPwdDescription.text(), expectedValue("forgottenPwd.description").toUpperCase())
+		verifyTrue(forgottenPwdEmail.text(), expectedValue("forgottenPwd.email").toUpperCase())
+		verifyTrue(forgottenPwdSubmit.text(), expectedValue("forgottenPwd.submit").toUpperCase())
 		
 		and:"Enter valid forgotten password email Id"	
 		sendForgottenPasswordEmail(validUser.email)
@@ -72,8 +73,8 @@ class LoginPageTest extends PropertProviderTest{
 		waitFor { masterTemplate.noteMessage.displayed }
 		
 		and: "Verify Message Translation for 'password link sent' message"
-		assert masterTemplate.noteMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","") == expectedValue("account.confirmation.forgotten.password.link.sent") //FAILED
+		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("account.confirmation.forgotten.password.link.sent")) //FAILED
 		
 		when:"Enter invalid forgotten password email Id"
 		openForgottenPasswordDialog()
@@ -83,8 +84,9 @@ class LoginPageTest extends PropertProviderTest{
 		waitFor { masterTemplate.alertMessage.displayed }
 		
 		then: "A Message Appears.Verify Message Translation"
-		assert masterTemplate.alertMessageHeader.text() == expectedValue("text.please.note").toUpperCase()
-		assert masterTemplate.alertMessage.text()==expectedValue("account.confirmation.forgotten.password.link.error") //FAILED
+		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
+		verifyTrue(masterTemplate.alertMessage.text(),expectedValue("account.confirmation.forgotten.password.link.error")) //FAILED
+		verifyTestFailedOrPassed()
 		
 		where:
 		validUser | invalidUser

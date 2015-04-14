@@ -29,13 +29,14 @@ class WomenCategoryPageTest extends PropertProviderTest{
 		at ProductCategoryPage
 		
 		then: "Verify translations at CategoryPage"
-		assert masterTemplate.breadCrumbs.text() == expectedValue("breadcrumb.home").toUpperCase()
-		assert masterTemplate.breadCrumbHref("/categories").text() == expectedValue("categorylandingpage.categories").toUpperCase()
-		assert categoryLink.text() == expectedValue("categorylandingpage.categories").toUpperCase()
-		assert seasonalInitiativeLink.text() == expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase()
-		assert shopByStyleLink.text() == expectedValue("categorylandingpage.shopbystyle").toUpperCase()
-		assert shopByFitLink.text() == expectedValue("categorylandingpage.shopbyfit").toUpperCase()
-				
+		verifyTrue(masterTemplate.breadCrumbs.text(), expectedValue("breadcrumb.home").toUpperCase())
+		verifyTrue(masterTemplate.breadCrumbHref("/categories").text(), expectedValue("categorylandingpage.categories").toUpperCase())
+		verifyTrue(categoryLink.text(), expectedValue("categorylandingpage.categories").toUpperCase())
+		verifyTrue(seasonalInitiativeLink.text(), expectedValue("categorylandingpage.seasonalinitiatives").toUpperCase())
+		verifyTrue(shopByStyleLink.text(), expectedValue("categorylandingpage.shopbystyle").toUpperCase())
+		verifyTrue(shopByFitLink.text(), expectedValue("categorylandingpage.shopbyfit").toUpperCase())
+		verifyTestFailedOrPassed()
+		
 		where:
 		user=UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	}
