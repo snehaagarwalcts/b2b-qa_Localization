@@ -112,5 +112,9 @@ class ProductDetailsPage extends Page {
 		overlayOkButton.click()
 
 	}
+	
+	def addFullStockOrderQuantity(String quantity){
+		sizingTable.addFullStockQuantity(quantity.toInteger())
+	}
 
 }

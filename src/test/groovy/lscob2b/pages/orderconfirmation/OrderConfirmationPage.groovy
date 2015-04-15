@@ -1,6 +1,7 @@
 package lscob2b.pages.orderconfirmation
 
 import geb.Page
+import lscob2b.modules.CartModule;
 import lscob2b.modules.MasterTemplate
 import lscob2b.modules.OrderModule;
 import lscob2b.test.data.Address;
@@ -17,6 +18,26 @@ class OrderConfirmationPage extends Page{
 		masterTemplate {module MasterTemplate}
 	
 		order {module OrderModule}
+		
+		orderItems { $("div.cartItem").collect { module CartModule, it  } }
+		
+		buttonShowQuantities { $('.showQuantitiesProduct') }
+		
+		labelQuantity { $('.checkoutTotals .quantity .label') }
+		
+		labelSubTotal { $('.checkoutTotals .subtotal .label') }
+		
+		labelTotal { $('.checkoutTotals .total span') }
+		
+		labelToBeConfirmed { $('.checkoutTotals .total') }
+		
+		labelLine { $('#header1') }
+		
+		labelProductCode { $('#header2') }
+		
+		labelProductSize { $('#header3') }
+		
+		labelQuantityOrdered { $('#header4') }
 		
 	}			
 }

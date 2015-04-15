@@ -10,6 +10,25 @@ class OrderModule extends Module {
 		orderInfo { $("div.info") }
 		
 		orderAddress { $("div.address") }
+		
+		paymentInfo { $("div.payment") }
+		
+		labelOrderNumber {orderInfo.find('h2')}
+		
+		labelOrderDesc {orderInfo.find('p',1)}
+		
+		headerorderAddress {orderAddress.find('h2')}		
+		
+		labelPaymentDetalis { paymentInfo.find('h2')}
+		
+		labelOrderPlacedBy { paymentInfo.find('p span',0) }
+		
+		labelPONumber { paymentInfo.find('p span',1) }
+		
+		labelPaymentMethod { paymentInfo.find('p span',2) }
+		
+		labelPaymentTerms { paymentInfo.find('p span',3) }
+		
 	}
 
 	//Order

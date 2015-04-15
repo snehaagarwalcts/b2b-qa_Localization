@@ -26,4 +26,8 @@ class SizingTableModule extends Module {
 		table.find("td.Red",0).find("input.sku-quantity").value().toInteger()
 	}
 	
+	def void addFullStockQuantity(int quantity){
+		table.find("td.Green",0).find("input.sku-quantity").value(quantity)
+	}
+	
 }
