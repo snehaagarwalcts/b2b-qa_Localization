@@ -2,13 +2,11 @@ package lscob2b.test.a
 
 import geb.spock.GebReportingSpec
 import spock.lang.Ignore
-import spock.lang.IgnoreIf
 import spock.lang.Stepwise
 import de.hybris.geb.page.hac.HomePage
 import de.hybris.geb.page.hac.LoginPage
 import de.hybris.geb.page.hac.console.ImpexImportPage
-
-
+@Ignore
 @Stepwise
 class ImpexLoadingTest extends GebReportingSpec {
 
@@ -118,9 +116,6 @@ class ImpexLoadingTest extends GebReportingSpec {
 	
 		and: "logout from HAC"	
 			menu.logout()
-			
-//		and: "go to HAC home page"	
-//			browser.go(browser.config.rawConfig.hacUrl)
 			
 		then: "at login page"
 			at LoginPage	
