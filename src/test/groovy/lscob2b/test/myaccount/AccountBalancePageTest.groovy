@@ -6,9 +6,9 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.AccountBalancePage
 import lscob2b.pages.myaccount.MyAccountPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 
-class AccountBalancePageTest extends PropertProviderTest {
+class AccountBalancePageTest extends PropertProvider {
 
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)

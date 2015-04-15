@@ -5,10 +5,10 @@ import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 import lscob2b.pages.myaccount.ProfilePage
 
-class ProfilePageTest extends PropertProviderTest{
+class ProfilePageTest extends PropertProvider{
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)

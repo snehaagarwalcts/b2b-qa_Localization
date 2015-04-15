@@ -4,9 +4,9 @@ import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.LoginPage
 import lscob2b.pages.category.KeyLookPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 
-class KeyLookTest extends PropertProviderTest{
+class KeyLookTest extends PropertProvider{
 
 	def setupSpec() {
 		PageHelper.gotoPageLogout(browser,baseUrl)

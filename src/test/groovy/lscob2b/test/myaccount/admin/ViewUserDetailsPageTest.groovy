@@ -8,11 +8,11 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 import lscob2b.test.data.User
 
 @Stepwise
-class ViewUserDetailsPageTest extends PropertProviderTest {
+class ViewUserDetailsPageTest extends PropertProvider {
 	
 	def static User user = UserHelper.getUser(UserHelper.B2BUNIT_LEVIS, UserHelper.ROLE_SUPER)
 	

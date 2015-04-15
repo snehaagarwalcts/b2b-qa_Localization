@@ -8,9 +8,9 @@ import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.admin.EditUserDetailsPage
 import lscob2b.pages.myaccount.admin.ManageUsersPage
 import lscob2b.pages.myaccount.admin.ViewUserDetailsPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 
-class EditUserDetailsPageTest extends PropertProviderTest {
+class EditUserDetailsPageTest extends PropertProvider {
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)

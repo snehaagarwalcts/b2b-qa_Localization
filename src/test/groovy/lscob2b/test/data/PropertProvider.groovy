@@ -9,7 +9,7 @@ import geb.spock.GebReportingSpec
 
 import org.openqa.selenium.WebDriver
 
-class PropertProviderTest extends GebReportingSpec {
+class PropertProvider extends GebReportingSpec {
 
 	def String expectedValue(String baseProperty)
 	{			

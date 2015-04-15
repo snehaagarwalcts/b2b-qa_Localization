@@ -4,9 +4,9 @@ import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 
-class GlobalNavTest extends PropertProviderTest{
+class GlobalNavTest extends PropertProvider{
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)

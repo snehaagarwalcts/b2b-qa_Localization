@@ -8,9 +8,9 @@ import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.MyAccountPage
 import lscob2b.pages.myaccount.ProfilePage
 import lscob2b.pages.myaccount.admin.UpdatePasswordPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 
-class UpdatePasswordPageTest extends PropertProviderTest{
+class UpdatePasswordPageTest extends PropertProvider{
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)

@@ -6,10 +6,10 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.myaccount.AddressBookPage
 import lscob2b.pages.myaccount.MyAccountPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 import lscob2b.pages.myaccount.AddressBookPage
 
-class AddressBookPageTest extends PropertProviderTest {	
+class AddressBookPageTest extends PropertProvider {	
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)

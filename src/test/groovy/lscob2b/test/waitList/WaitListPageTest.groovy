@@ -6,9 +6,9 @@ import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
 import lscob2b.pages.quickorder.QuickOrderPage
 import lscob2b.pages.waitlist.WaitListPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 
-class WaitListPageTest extends PropertProviderTest{
+class WaitListPageTest extends PropertProvider{
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)

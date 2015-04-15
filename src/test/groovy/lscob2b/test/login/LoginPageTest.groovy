@@ -3,9 +3,9 @@ package lscob2b.test.login
 import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.LoginPage
-import lscob2b.test.data.PropertProviderTest
+import lscob2b.test.data.PropertProvider
 
-class LoginPageTest extends PropertProviderTest{
+class LoginPageTest extends PropertProvider{
 	
 	def setup() {
 		PageHelper.gotoPageLogout(browser, baseUrl)
