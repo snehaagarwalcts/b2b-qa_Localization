@@ -50,7 +50,7 @@ class OrderConfirmationTest extends PropertProvider{
 		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("order.confirmation.thanks").toUpperCase())
 		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
 		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("checkout.orderConfirmation.saperror"))
-
+		
 		verifyTestFailedOrPassed()
 		
 		where:

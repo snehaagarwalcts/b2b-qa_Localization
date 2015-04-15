@@ -12,10 +12,6 @@ import lscob2b.test.data.PropertProvider
 
 class UpdatePasswordPageTest extends PropertProvider{
 	
-	def setup() {
-		PageHelper.gotoPageLogout(browser, baseUrl)
-	}
-	
 	def "load impex [/impex/UpdateUsers.impex]"() {
 		setup:
 		browser.go(browser.config.rawConfig.hacUrl)
@@ -47,6 +43,7 @@ class UpdatePasswordPageTest extends PropertProvider{
 	
 	def "Verify translations in UpdatePassword Page"(){
 		setup:
+		PageHelper.gotoPageLogout(browser, baseUrl)
 		to LoginPage
 		at LoginPage
 		login(user)
@@ -96,6 +93,7 @@ class UpdatePasswordPageTest extends PropertProvider{
 
 	def "Verify SUCCESSFUL PASSWORD CHANGE message in UpdatePassword Page"(){
 		setup:
+		PageHelper.gotoPageLogout(browser, baseUrl)
 		to LoginPage
 		at LoginPage
 		login(user)

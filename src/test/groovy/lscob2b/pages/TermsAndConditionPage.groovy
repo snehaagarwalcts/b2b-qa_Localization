@@ -1,5 +1,6 @@
 package lscob2b.pages
 
+import lscob2b.modules.MasterTemplate
 import geb.Page
 
 class TermsAndConditionPage extends Page{
@@ -10,8 +11,15 @@ class TermsAndConditionPage extends Page{
 	
 	static content = {
 		
+		masterTemplate {module MasterTemplate}
+		
 		agree { $("div.dialogueButtons").find('a', href: endsWith('/agree')) }
+		
 		disagree { $("div.dialogueButtons").find('a', href: endsWith('/disagree')) }
+		
+		headerMessage { $('#dialogue>h2') }
+		
+		message { $('.terms>p') }
 	}
 	
 	def agreeLinkExists(){
