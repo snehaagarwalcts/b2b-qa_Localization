@@ -57,8 +57,7 @@ class OrderConfirmationTest extends PropertProvider{
 		verifyTrue(order.labelOrderPlacedBy.text()- ~/:/, expectedValue("checkout.orderConfirmation.orderPlacedBy").toUpperCase())
 		verifyTrue(order.labelPONumber.text()- ~/:/, expectedValue("checkout.orderConfirmation.purchaseOrderNumber").toUpperCase()- ~/:/)
 		verifyTrue(order.labelPaymentMethod.text(), expectedValue("text.payment.method").toUpperCase())
-		verifyTrue(order.labelPaymentTerms.text(), expectedValue("text.payment.terms").toUpperCase())
-		
+		verifyTrue(order.labelPaymentTerms.text(), expectedValue("text.payment.terms").toUpperCase())		
 		verifyTrue(orderItems[0].itemStyle.text(), expectedValue("product.variants.style").toUpperCase())
 		verifyTrue(orderItems[0].itemColor.text(), expectedValue("product.variants.color").toUpperCase())
 		verifyTrue(orderItems[0].itemPrice.text(), expectedValue("product.wholesale.price").toUpperCase())
