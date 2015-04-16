@@ -23,6 +23,8 @@ class OrderConfirmationPage extends Page{
 		
 		buttonShowQuantities { $('.showQuantitiesProduct') }
 		
+		buttonHideQuantities { $('.showQuantitiesProduct') }
+		
 		labelQuantity { $('.checkoutTotals .quantity .label') }
 		
 		labelSubTotal { $('.checkoutTotals .subtotal .label') }

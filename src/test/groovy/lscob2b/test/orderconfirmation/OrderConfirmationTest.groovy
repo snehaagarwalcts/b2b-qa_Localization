@@ -49,7 +49,7 @@ class OrderConfirmationTest extends PropertProvider{
 		then: "verify translations of OrderConfirmationPage"
 		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("order.confirmation.thanks").toUpperCase())
 		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
-		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("checkout.orderConfirmation.saperror"))
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","").replaceAll("’", ""), expectedValue("checkout.orderConfirmation.saperror").replaceAll("'", ""))
 		verifyTrue(order.labelOrderNumber.text(), expectedValue("text.account.orderDetail.orderNumber").toUpperCase()- ~/:/)
 		verifyTrueContains(order.labelOrderDesc.text(), expectedValue("order.copy.sent").toUpperCase(), "use contains()")
 		verifyTrue(order.headerorderAddress.text(), expectedValue("order.detail.deliveryAddress").toUpperCase())
@@ -71,10 +71,10 @@ class OrderConfirmationTest extends PropertProvider{
 		
 		then: "click on Show Quantities"
 		buttonShowQuantities.click()
-		waitFor { cartItems[0].buttonHideQuantities.displayed }
+		waitFor { buttonHideQuantities.displayed }
 		
 		and: "verify translations of Order List Table"
-		verifyTrue(cartItems[0].buttonHideQuantities.text()- ~/&/, expectedValue("product.hide.quantities").toUpperCase())
+		verifyTrue(buttonHideQuantities.text()- ~/&/, expectedValue("product.hide.quantities").toUpperCase())
 		verifyTrue(labelLine.text(), expectedValue("text.account.orderDetail.entry.Line").toUpperCase())
 		verifyTrue(labelProductCode.text(), expectedValue("text.account.orderDetail.entry.productCode").toUpperCase())
 		verifyTrue(labelProductSize.text(), expectedValue("text.account.orderDetail.entry.productSize").toUpperCase())
