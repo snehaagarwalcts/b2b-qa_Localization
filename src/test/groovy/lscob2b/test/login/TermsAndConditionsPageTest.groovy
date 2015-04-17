@@ -12,6 +12,7 @@ class TermsAndConditionsPageTest extends PropertProvider{		def "load impex [/i
 		
 		then: "verify translations of TermsAndConditionPage"
 		verifyTrueContains(masterTemplate.mainContainerLabel.text(), expectedValue("login.agreement.terms").toUpperCase(),"use contains()")
+		verifyTrueContains(title.text(), expectedValue("login.agreement.terms").toUpperCase())
 		verifyTrue(headerMessage.text(), expectedValue("login.agreement.infoMsg").toUpperCase())
 		verifyTrue(disagree.text(), expectedValue("login.agreement.dontagree").toUpperCase())
 		verifyTrue(agree.text(), expectedValue("login.agreement.agree").toUpperCase())

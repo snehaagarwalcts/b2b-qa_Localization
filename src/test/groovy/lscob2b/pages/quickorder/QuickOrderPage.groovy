@@ -2,9 +2,10 @@ package lscob2b.pages.quickorder
 
 import geb.Page
 import geb.navigator.Navigator
+import lscob2b.modules.CartModule
 import lscob2b.modules.MasterTemplate
 import lscob2b.modules.SizingGridModule
-import lscob2b.modules.SizingTableModule;
+import lscob2b.modules.SizingTableModule
 
 class QuickOrderPage extends Page{
 	
@@ -17,6 +18,8 @@ class QuickOrderPage extends Page{
 		masterTemplate { module MasterTemplate } 
 		
 		productSizingGrids { $("div.cartItem").collect { module SizingGridModule, it  } }
+		
+		quickOrderItems { $("div.cartItem").collect { module CartModule, it  } }
 		
 		//FORM
 		
@@ -70,19 +73,9 @@ class QuickOrderPage extends Page{
 		
 		itemLabels { $('.label', it) }
 		
-		hideQuantityButton { $('.btn-open') }
-		
-		editQuantityButton { $('.button.btn-white.toggle>p') }
-		
 		enterSizeLabel { $('.product-grid-header>h2') }
 		
 		sizeGuideLabel { $('.product-grid-header>p>a') }
-		
-		inStockLabel { $('.available') }
-		
-		limitedStockLabel { $('.limited') }
-		
-		outOfStockLabel { $('.outofstock') }
 		
 		waitListHeader { $('div.popup_box h2') }
 

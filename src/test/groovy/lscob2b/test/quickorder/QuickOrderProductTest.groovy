@@ -41,19 +41,19 @@ class QuickOrderProductTest extends PropertProvider{
 		verifyTrue(checkOutLink.text()- ~/&/ , expectedValue("checkout.checkout").toUpperCase())
 		verifyTrue(buttonAdd.text(), expectedValue("search.advanced.productids.add").toUpperCase())
 		verifyTrue(productsFoundlabel.text() - ~/\d+\s+/, expectedValue("search.page.totalResults").toUpperCase())
-		verifyTrue(itemLabels(0).text(), expectedValue("product.variants.style").toUpperCase())
-		verifyTrue(itemLabels(1).text(), expectedValue("product.variants.color").toUpperCase())
-		verifyTrue(itemLabels(2).text(), expectedValue("product.wholesale.price").toUpperCase())
-		verifyTrue(itemLabels(3).text(), expectedValue("text.quantity").toUpperCase())
-		verifyTrue(itemLabels(4).text(),expectedValue("basket.page.total").toUpperCase())
+		verifyTrue(quickOrderItems[0].itemStyle.text(), expectedValue("product.variants.style").toUpperCase())
+		verifyTrue(quickOrderItems[0].itemColor.text(), expectedValue("product.variants.color").toUpperCase())
+		verifyTrue(quickOrderItems[0].itemPrice.text(), expectedValue("product.wholesale.price").toUpperCase())
+		verifyTrue(quickOrderItems[0].itemQuantity.text(), expectedValue("text.quantity").toUpperCase())
+		verifyTrue(quickOrderItems[0].itemTotal.text(), expectedValue("basket.page.total").toUpperCase())
 		verifyTrue(itemLabels(5).text(), expectedValue("text.quantity"))
 		verifyTrue(itemLabels(6).text(),expectedValue("basket.page.total")+ " ")
-		verifyTrue(hideQuantityButton.text()- ~/&/, expectedValue("product.hide.quantities").toUpperCase())
+		verifyTrue(quickOrderItems[0].buttonHideQuantities.text()- ~/&/, expectedValue("product.hide.quantities").toUpperCase())
 		verifyTrue(enterSizeLabel.text(), expectedValue("product.variants.select.size").toUpperCase())
 		verifyTrue(sizeGuideLabel.text(), expectedValue("product.variants.size.guide"))
-		verifyTrue(inStockLabel.text(), expectedValue("product.variants.in.stock").toUpperCase())
-		verifyTrue(limitedStockLabel.text(), expectedValue("product.variants.limited.stock").toUpperCase())
-		verifyTrue(outOfStockLabel.text(), expectedValue("product.variants.out.of.stock").toUpperCase())
+		verifyTrue(quickOrderItems[0].inStockLabel.text(), expectedValue("product.variants.in.stock").toUpperCase())
+		verifyTrue(quickOrderItems[0].limitedStockLabel.text(), expectedValue("product.variants.limited.stock").toUpperCase())
+		verifyTrue(quickOrderItems[0].outOfStockLabel.text(), expectedValue("product.variants.out.of.stock").toUpperCase())
 		verifyTrue(productSizingGrids[0].buttonNotifyMe.text()- ~/&/, expectedValue("basket.add.to.waitlist").toUpperCase())
 		verifyTrue(productSizingGrids[0].buttonAddToCart.text()- ~/&/, expectedValue("basket.add.to.cart").toUpperCase())
 		verifyTestFailedOrPassed()
@@ -81,10 +81,10 @@ class QuickOrderProductTest extends PropertProvider{
 		at QuickOrderPage
 		
 		then: "click on HIDE QUANTITIES button"
-		hideQuantityButton.click()
+		quickOrderItems[0].buttonHideQuantities.click()
 		
 		and: "check translation of EDIT QUANTITIES button"
-		verifyTrue(editQuantityButton.text()- ~/&/, expectedValue("product.edit.quantities").toUpperCase())
+		verifyTrue(quickOrderItems[0].editQuantities.text()- ~/&/, expectedValue("product.edit.quantities").toUpperCase())
 		verifyTestFailedOrPassed()
 		
 		where:

@@ -5,7 +5,7 @@ import groovy.json.JsonSlurper
 
 class ProductHelper  {
 	
-	public static final DATA_PRODUCT				= "src/test/resources/data/Product.json"
+	public static final DATA_PRODUCT = "src/test/resources/data/Product.json"
 	
 	def static String BRAND_LEVIS = "levis"
 	def static String BRAND_DOCKERS = "dockers"

@@ -1,6 +1,7 @@
 package lscob2b.pages.productdetails
 
 import geb.Page
+import lscob2b.modules.AddToCartModule
 import lscob2b.modules.CheckOutModule
 import lscob2b.modules.MasterTemplate
 import lscob2b.modules.PDPBuyStackModule
@@ -25,12 +26,14 @@ class ProductDetailsPage extends Page {
 		sizingTable { module SizingTableModule, $("div.single_grid_three_dimensions") }
 
 		checkOut { module CheckOutModule}
+		
+		addToCart { module AddToCartModule, $("#AddToCartOrderForm") }
+		
+		buyStack { module PDPBuyStackModule, $("div.pdp-buystack") }
 
 		upSelling(required: false) { module SellModule, $("div.up-sell") }
 
 		crossSelling(required: false) { module SellModule, $("div.cross-sell") }
-
-		buyStack { module PDPBuyStackModule, $("div.pdp-buystack") }
 
 		wholesalePriceText { $("div.wholesale-price > span").text()}
 		
@@ -47,6 +50,8 @@ class ProductDetailsPage extends Page {
 		overlayWaitList { $("div.popup_box") }
 
 		overlayTable { overlayWaitList.find("table.grid_three_dimensions") }
+		
+		overlayHeader { overlayWaitList.find('h2') }
 
 		overlayButtonAdd { overlayWaitList.find("a#add_to_waitlist_button") }
 		
@@ -63,6 +68,8 @@ class ProductDetailsPage extends Page {
 		overlayConfirmationMessage { $("#overlay #dialogue div") }
 		
 		overlayOkButton { $("#overlay #dialogue a p") }
+		
+		linkContinueShopping { $(".button-large.btn-txt-red>p") }
 
 	}
 

@@ -13,6 +13,8 @@ class TermsAndConditionPage extends Page{
 		
 		masterTemplate {module MasterTemplate}
 		
+		title { $('.title_holder>h2') }
+		
 		agree { $("div.dialogueButtons").find('a', href: endsWith('/agree')) }
 		
 		disagree { $("div.dialogueButtons").find('a', href: endsWith('/disagree')) }

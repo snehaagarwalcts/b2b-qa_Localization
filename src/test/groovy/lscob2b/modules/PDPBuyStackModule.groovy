@@ -17,6 +17,12 @@ class PDPBuyStackModule extends Module{
 		
 		colorItem { index -> colorsItems[index].find("a") }
 		
+		labelWholesalePrice { $('.wholesale-price span') }
+		
+		labelRecommendedPrice { $('.recommended-retail-price span') }
+		
+		buyStackAttributes { $('.buystack-attributes>ul>li', it) }		
+		
 	}
 	
 }
