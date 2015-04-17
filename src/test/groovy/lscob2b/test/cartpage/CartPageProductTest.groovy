@@ -28,7 +28,7 @@ class CartPageProductTest extends PropertProvider{
 		
 		then: "Add product to cart"
 		waitFor { !sizingGrid.empty }
-		sizingGrid.addLimitedStockQuantityToCart(1)
+		sizingGrid.addFullStockQuantityToCart(1)
 		
 		and: "Go to Cart Page"
 		masterTemplate.doGoToCart()

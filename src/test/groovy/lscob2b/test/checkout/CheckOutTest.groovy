@@ -28,7 +28,7 @@ class CheckOutTest extends PropertProvider{
 		
 		then: "Add product to cart"
 		waitFor { !sizingGrid.empty }
-		sizingGrid.addLimitedStockQuantityToCart(1)
+		sizingGrid.addFullStockQuantityToCart(1)
 		
 		and: "go to checkout page"
 		browser.go(baseUrl + link)

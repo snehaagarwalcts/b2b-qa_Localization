@@ -36,7 +36,7 @@ class ManageUsersPageTest extends PropertProvider {
 		verifyTrue(breadcrumbLink.text(), expectedValue("text.company.manageUser").toUpperCase())	
 		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("text.company.manageUser").toUpperCase())
 		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.company.manageusers.roles.subtitle")) //FAILED
-		verifyTrue(usersFoundLabel.text()- ~/\d+\s+/, expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase())
+		verifyTrue(usersFoundLabel.text()- ~/(\d+,)?\d+\s+/, expectedValue("text.company.manageUser.pageAll.totalResults").toUpperCase())
 		verifyTrue(buttonCreateNewUser.text()- ~/ &/, expectedValue("text.company.manageUser.button.create").toUpperCase())
 		verifyTrue(pageLabel.text().replaceAll("\\s+\\d+",""), expectedValue("text.company.manageUser.pageAll.currentPage").toUpperCase())  
 		verifyTrue(nameLabel.text(), expectedValue("text.company.manage.units.user.name").toUpperCase())

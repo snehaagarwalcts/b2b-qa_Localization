@@ -34,6 +34,7 @@ class ProductDetailsWaitListTest extends PropertProvider{
 		addToCart.buttonNotifyMe.click()
 		
 		and: "check translations of WaitList Pop Up"
+		waitFor {overlayHeader.displayed}
 		verifyTrue(overlayHeader.text(), expectedValue("product.notify.me").toUpperCase())
 		verifyTrue(overlayButtonAdd.text()- ~/&/, expectedValue("waitlist.add.to.waitlist").toUpperCase())
 		verifyTestFailedOrPassed()

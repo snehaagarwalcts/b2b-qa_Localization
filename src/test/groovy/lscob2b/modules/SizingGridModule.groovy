@@ -11,7 +11,7 @@ class SizingGridModule extends Module {
 		
 		tableSize(wait:true) { module SizingTableModule, $("div.single_grid_three_dimensions") }
 
-		buttonAddToCart(wait:true) { $("a", class:"button-large add_to_cart_button") }	
+		buttonAddToCart(wait:true) { $("a.button-large.add_to_cart_button") }	
 		
 		//buttonNotifyMe { $("a", class:"button btn-white addtowaitlist") }
 		
@@ -22,6 +22,13 @@ class SizingGridModule extends Module {
 		waitFor { tableSize.displayed }
 		waitFor { buttonAddToCart.displayed }
 		tableSize.addLimitedStockQuantity(quantity)
+		buttonAddToCart.click()
+	}
+	
+	def addFullStockQuantityToCart(int quantity) {
+		waitFor { tableSize.displayed }
+		waitFor { buttonAddToCart.displayed }
+		tableSize.addFullStockQuantity(quantity)
 		buttonAddToCart.click()
 	}
 	
