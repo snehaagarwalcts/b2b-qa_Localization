@@ -4,7 +4,7 @@ import lscob2b.data.PageHelper
 import lscob2b.data.UserHelper
 import lscob2b.pages.HomePage
 import lscob2b.pages.LoginPage
-import lscob2b.pages.category.ProductCategoryPage
+import lscob2b.pages.OrderSearchPage
 import lscob2b.test.data.PropertProvider
 
 class SearchPageTest extends PropertProvider{
@@ -26,7 +26,7 @@ class SearchPageTest extends PropertProvider{
 		masterTemplate.searchForProduct()
 		
 		then:"at CategoryPage"
-		at ProductCategoryPage
+		at OrderSearchPage
 		
 		then:"verify translations at Category Page"
 		verifyTrueContains(masterTemplate.mainContainerLabel.text(), expectedValue("search.page.searchText").toUpperCase(), "use contains()")

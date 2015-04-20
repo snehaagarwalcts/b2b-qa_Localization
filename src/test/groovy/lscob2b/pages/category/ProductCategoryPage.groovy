@@ -8,7 +8,7 @@ import groovy.lang.MetaClass
 class ProductCategoryPage extends Page {
 
 	static at = {
-		waitFor { browser.currentUrl.contains("Categories") || browser.currentUrl.contains("search") }
+		waitFor { browser.currentUrl.contains("Categories")}
 	}
 
 	static content = {
@@ -40,10 +40,7 @@ class ProductCategoryPage extends Page {
 		sortByLabel { $('.paginationBar .sortForm label') }
 		
 		pageOfLabel { $('.paginationBar .pagination span') }
-		
-		refinementsLabel { $('.headline') }
-		
-		facetHeadLabels {$('.refinementToggle')}
+
 		
 	}
 
