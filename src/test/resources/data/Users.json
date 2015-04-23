@@ -1,5 +1,5 @@
 {
-	"super@unit-1":{
+	"super@unit1":{
 		"email":"super@unit-1",
 		"password":"Levis2015#",
 		"title":"Ms.",
@@ -21,7 +21,7 @@
 		"groups":["automated-unit-1","b2badmingroup"],
 		"defaultB2BUnit": "automated-unit-1"
 	},
-	"cust@unit-1":{
+	"cust@unit1":{
 		"email":"cust@unit-1",
 		"password":"Levis2015#",
 		"title":"Ms.",
