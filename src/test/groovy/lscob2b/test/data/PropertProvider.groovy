@@ -15,7 +15,7 @@ class PropertProvider extends GebReportingSpec {
 	{			
 		String locale=browser.config.rawConfig.locale
 					
-		String FilePath = "B2B_Properties_"+locale+".xls"
+		String FilePath = "B2B_Properties.xls"
 		
 		FileInputStream fs = new FileInputStream(FilePath)
 		
@@ -25,7 +25,7 @@ class PropertProvider extends GebReportingSpec {
 		
 		Workbook wb = Workbook.getWorkbook(fs, wbSettings)
 		
-		Sheet sh = wb.getSheet("Sheet1")
+		Sheet sh = wb.getSheet(locale)
 		
 		Cell cell
 		

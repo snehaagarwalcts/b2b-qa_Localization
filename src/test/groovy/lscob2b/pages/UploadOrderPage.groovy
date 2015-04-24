@@ -7,7 +7,7 @@ class UploadOrderPage extends Page{
 
 	static url = "/order/upload"
 
-	static at = { waitFor { title == "Upload Order | LSCO B2B Site"} }
+	static at = { waitFor { title == "Upload Order | LSCO B2B Site" | title == "DE_Upload Order | LSCO B2B Site"} }
 
 	static content = { 
 		
