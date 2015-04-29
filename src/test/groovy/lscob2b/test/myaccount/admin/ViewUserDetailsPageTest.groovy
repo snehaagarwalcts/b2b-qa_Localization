@@ -48,7 +48,7 @@ class ViewUserDetailsPageTest extends PropertProvider {
 		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.company.manageusers.details.subtitle"))	
 		verifyTrue(userDetails.editUserButton.text()- ~/&/, expectedValue("text.company.manageUser.button.edit").toUpperCase())
 		verifyTrue(userDetails.disableUserButton.text()- ~/&/, expectedValue("text.company.manageusers.button.disableuser").toUpperCase())
-		verifyTrue(ViewUserDetailsLabel(0).text()- ~/:/, expectedValue("text.company.user.title").toUpperCase())
+		verifyTrue(ViewUserDetailsLabel(0).text(), expectedValue("text.company.user.title").toUpperCase())
 		verifyTrue(ViewUserDetailsLabel(1).text()- ~/:/, expectedValue("text.company.manageUser.user.firstName").toUpperCase())
 		verifyTrue(ViewUserDetailsLabel(2).text(), expectedValue("text.company.manageUser.user.lastName").toUpperCase())
 		verifyTrue(ViewUserDetailsLabel(3).text(), expectedValue("text.company.manage.units.user.email").toUpperCase()) //FAILED

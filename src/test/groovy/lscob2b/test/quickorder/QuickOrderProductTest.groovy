@@ -55,7 +55,7 @@ class QuickOrderProductTest extends PropertProvider{
 		verifyTrue(quickOrderItems[0].limitedStockLabel.text(), expectedValue("product.variants.limited.stock").toUpperCase())
 		verifyTrue(quickOrderItems[0].outOfStockLabel.text(), expectedValue("product.variants.out.of.stock").toUpperCase())
 		verifyTrue(productSizingGrids[0].buttonNotifyMe.text()- ~/&/, expectedValue("basket.add.to.waitlist").toUpperCase())
-		verifyTrue(productSizingGrids[0].buttonAddToCart.text()- ~/&/, expectedValue("basket.add.to.cart").toUpperCase())
+		verifyTrue(productSizingGrids[0].buttonAddToCart.text()- ~/&/, expectedValue("basket.add.to.basket").toUpperCase())
 		verifyTestFailedOrPassed()
 		
 		where:

@@ -16,9 +16,9 @@ class TermsAndConditionsPageTest extends PropertProvider{		def "load impex [/i
 		verifyTrue(headerMessage.text(), expectedValue("login.agreement.infoMsg").toUpperCase())
 		verifyTrue(disagree.text(), expectedValue("login.agreement.dontagree").toUpperCase())
 		verifyTrue(agree.text(), expectedValue("login.agreement.agree").toUpperCase())
-		for(msg in message){
-			verifyTrueContains(msg.text().toLowerCase(), expectedValue("login.agreement.msg").toLowerCase(), "use contains()")
-		}		and: "Disgree to terms and conditions"		disagreeLinkClick()		then: "verify translations of disagree message"
+//		for(msg in message){
+//			verifyTrueContains(msg.text().toLowerCase(), expectedValue("login.agreement.msg").toLowerCase(), "use contains()")
+//		}		and: "Disgree to terms and conditions"		disagreeLinkClick()		then: "verify translations of disagree message"
 		verifyTrue(headerMessage.text(), expectedValue("login.agreement.errorMsg").toUpperCase())		verifyTestFailedOrPassed()				where:		user = UserHelper.getTermsAndConditionUser()	}
 	
 	def "verify translations of TemsAndConditions page - from Footer Links"(){
@@ -40,9 +40,9 @@ class TermsAndConditionsPageTest extends PropertProvider{		def "load impex [/i
 		then: "verify translations of TermsAndConditionPage"
 		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("login.agreement.terms").toUpperCase())
 		//verifyTrue(title.text(), expectedValue("login.agreement.terms").toUpperCase())
-		for(msg in message){
-			verifyTrueContains(msg.text().toLowerCase(), expectedValue("login.agreement.msg").toLowerCase(), "use contains()")
-		}
+//		for(msg in message){
+//			verifyTrueContains(msg.text().toLowerCase(), expectedValue("login.agreement.msg").toLowerCase(), "use contains()")
+//		}
 		verifyTestFailedOrPassed()
 		
 		where:

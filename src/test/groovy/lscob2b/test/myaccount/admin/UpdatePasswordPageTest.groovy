@@ -69,13 +69,13 @@ class UpdatePasswordPageTest extends PropertProvider{
 		verifyTrue(masterTemplate.breadCrumbActive.text(),expectedValue("text.account.profile.updatePasswordForm").toUpperCase())
 		verifyTrue(masterTemplate.mainContainerLabel.text(),expectedValue("text.account.profile.updatePasswordForm").toUpperCase())
 		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.account.profile.update.password.subtitle"))
-		verifyTrue(masterTemplate.requiredMessageText.text(), expectedValue("address.required"))
+		verifyTrue(masterTemplate.requiredMessageText.text(), expectedValue("form.required"))
 		verifyTrue(currentPwdLabel.text(), expectedValue("profile.currentPassword").toUpperCase())
 		verifyTrue(newPasswordLabel.text(), expectedValue("profile.newPassword").toUpperCase())
 		verifyTrue(passwordHintText.text(),expectedValue("hint.update.password"))
 		verifyTrue(confirmNewPasswordLabel.text(), expectedValue("profile.checkNewPassword").toUpperCase())
 		verifyTrue(cancelButton.text()- ~/&/, expectedValue("b2bcustomer.cancel").toUpperCase())
-		verifyTrue(updatePasswordButton.text(), expectedValue("updatePwd.submit").toUpperCase())
+		verifyTrue(updatePasswordButton.text(), expectedValue("text.account.profile.updatePasswordForm").toUpperCase())
 		
 		when: "click on UpdatePasswordButton - All fields empty"
 		clickUpdatePasswordButton()
@@ -114,7 +114,7 @@ class UpdatePasswordPageTest extends PropertProvider{
 		
 		then: "verify translation of SUCCESSFUL PASSWORD CHANGE message"
 		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
-		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("account.confirmation.password.updated")) //FAILED       
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("text.account.confirmation.password.updated")) //FAILED       
 		verifyTestFailedOrPassed()
 		
 		where:

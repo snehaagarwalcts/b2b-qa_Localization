@@ -31,11 +31,11 @@ class ContactUsAfterLoginPageTest extends PropertProvider{
 		clickSendButton()
 	
 		and:"Verify translations at ContactUsPage"
-		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("contactus.heading"))
+		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("contactus.heading").toUpperCase())
 		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
 		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("contactus.error.message"))
 		verifyTrue(masterTemplate.introContainerLabel.text(),expectedValue("contactus.intro"))
-		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("login.required.message"))
+		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("form.required"))
 		verifyTrue(titleLabel.text(),expectedValue("user.title").toUpperCase())
 		verifyTrue(firstNameLabel.text(),expectedValue("user.firstName").toUpperCase())
 		verifyTrue(lastNameLabel.text(),expectedValue("user.lastName").toUpperCase())
@@ -72,7 +72,7 @@ class ContactUsAfterLoginPageTest extends PropertProvider{
 	
 		and: "Verify translation of message"
 		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.msg.sent.successfully").toUpperCase())
-		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("contactus.success.message")) //FAILED
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("text.msg.sent.successfully").toUpperCase()) //FAILED
 		verifyTestFailedOrPassed()
 		
 		where:
