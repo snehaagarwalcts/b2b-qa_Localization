@@ -24,15 +24,15 @@ class SearchPageTest extends PropertProvider{
 		
 		and: "search for a product"
 		masterTemplate.searchForProduct()
-		
+		 
 		then:"at CategoryPage"
 		at OrderSearchPage
 		
 		then:"verify translations at Category Page"
-		verifyTrueContains(masterTemplate.mainContainerLabel.text(), expectedValue("search.page.searchText").toUpperCase(), "use contains()")
+		verifyTrue(masterTemplate.mainContainerLabel.text().replaceAll(' "LEVIS 501"', ''), expectedValue("search.page.searchText").replaceAll(' ""', '').toUpperCase())
 		verifyTrue(masterTemplate.breadCrumbs.text(), expectedValue("breadcrumb.home").toUpperCase())
 		verifyTrue(masterTemplate.breadCrumbActive.text(), expectedValue("search.page.breadcrumb").toUpperCase())
-		verifyTrue(sortByLabel.text()- ~/:/, expectedValue("search.page.sortTitle").toUpperCase())
+		verifyTrue(sortByLabel.text(), expectedValue("search.page.sortTitle").toUpperCase())
 		verifyTrue(productsFoundLabel.text() - ~/\d+\s+/, expectedValue("search.page.totalResults").toUpperCase())
 		//verifyTrue(pageOfLabel.text().replaceAll("\\s+\\d+",""), expectedValue("search.page.currentPage").toUpperCase())
 		verifyTrue(refinementsLabel.text(), expectedValue("search.nav.refinements").toUpperCase())		

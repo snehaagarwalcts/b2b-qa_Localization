@@ -69,7 +69,7 @@ class UpdatePasswordPageTest extends PropertProvider{
 		verifyTrue(masterTemplate.breadCrumbActive.text(),expectedValue("text.account.profile.updatePasswordForm").toUpperCase())
 		verifyTrue(masterTemplate.mainContainerLabel.text(),expectedValue("text.account.profile.updatePasswordForm").toUpperCase())
 		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.account.profile.update.password.subtitle"))
-		verifyTrue(masterTemplate.requiredMessageText.text(), expectedValue("form.required"))
+		verifyTrue(masterTemplate.requiredMessageText.text(), expectedValue("form.required").replaceAll(" <span class=mandatory></span>", ""))
 		verifyTrue(currentPwdLabel.text(), expectedValue("profile.currentPassword").toUpperCase())
 		verifyTrue(newPasswordLabel.text(), expectedValue("profile.newPassword").toUpperCase())
 		verifyTrue(passwordHintText.text(),expectedValue("hint.update.password"))

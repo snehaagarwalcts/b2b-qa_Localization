@@ -100,7 +100,7 @@ class CheckOutTest extends PropertProvider{
 		
 		then: "verify translations of alert message"
 		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
-		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("checkout.error.payment.cybersource"))
+		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("checkout.deliveryAddress.notSelected"))
 		
 		when: "at CheckOut Page"
 		at CheckOutPage

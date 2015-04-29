@@ -95,7 +95,7 @@ class CheckOutPage extends Page{
 		waitFor { useAddressSelect.displayed }
 		useAddressSelect.click()
 		waitFor { placeOrderLink.displayed }
-		Thread.sleep(2000)
+		Thread.sleep(4000)
 		placeOrderLink.click()
 	}
 	

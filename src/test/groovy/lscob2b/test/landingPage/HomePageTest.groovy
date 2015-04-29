@@ -24,7 +24,7 @@ class HomePageTest extends PropertProvider{
 		then:"Verify translations at HomePage"
 		verifyTrue(masterTemplate.quickOrderLink.text(), expectedValue("search.advanced").toUpperCase())
 		verifyTrue(masterTemplate.searchText, expectedValue("search.placeholder"))
-		verifyTrue(newsAndTipsLabel.text(), expectedValue("landingpage.newsandtips").toUpperCase())
+		verifyTrue(newsAndTipsLabel.text(), expectedValue("landingpage.newsandtips ").toUpperCase())
 		verifyTrue(quickOrderButton.text()- ~/</, expectedValue("search.advanced.meta.description.title").toUpperCase())
 		verifyTrue(uploadOrderButton.text()- ~/</, expectedValue("text.order.upload").toUpperCase())
 		

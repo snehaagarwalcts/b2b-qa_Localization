@@ -16,7 +16,7 @@ class OrderConfirmationTest extends PropertProvider{
 		PageHelper.gotoPageLogout(browser, baseUrl)
 	}
 	
-	def "Verify translations of Cart Page with products in Cart"() {
+	def "Verify translations of Order Confirmation Page"() {
 		setup:
 		to LoginPage
 		at LoginPage
@@ -51,10 +51,10 @@ class OrderConfirmationTest extends PropertProvider{
 		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
 		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","").replaceAll("’", ""), expectedValue("checkout.orderConfirmation.saperror").replaceAll("'", ""))
 		verifyTrue(order.labelOrderNumber.text(), expectedValue("text.account.orderDetail.orderNumber").toUpperCase()- ~/:/)
-		verifyTrueContains(order.labelOrderDesc.text(), expectedValue("order.copy.sent").toUpperCase(), "use contains()")
+		verifyTrueContains(order.labelOrderDesc.text().replaceAll(" SUPER@UNIT-1", ""), expectedValue("order.copy.sent").toUpperCase(), "use contains()")
 		verifyTrue(order.headerorderAddress.text(), expectedValue("order.detail.deliveryAddress").toUpperCase())
 		verifyTrue(order.labelPaymentDetalis.text(), expectedValue("order.detail.paymentDetails").toUpperCase())
-		verifyTrue(order.labelOrderPlacedBy.text()- ~/:/, expectedValue("checkout.orderConfirmation.orderPlacedBy").toUpperCase())
+		verifyTrue(order.labelOrderPlacedBy.text(), expectedValue("checkout.orderConfirmation.orderPlacedBy").toUpperCase())
 		verifyTrue(order.labelPONumber.text()- ~/:/, expectedValue("checkout.orderConfirmation.purchaseOrderNumber").toUpperCase()- ~/:/)
 		verifyTrue(order.labelPaymentMethod.text(), expectedValue("text.payment.method").toUpperCase())
 		verifyTrue(order.labelPaymentTerms.text(), expectedValue("text.payment.terms").toUpperCase())		

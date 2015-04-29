@@ -29,7 +29,7 @@ class LoginPageTest extends PropertProvider{
 		verifyTrue(submitButton.text(),expectedValue("account.login.button.text").toUpperCase())
 		verifyTrue(forgottenYourPasswordButton.text(),expectedValue("login.link.forgottenPwd").toUpperCase())
 		verifyTrue(selectlanguageLink.text(),expectedValue("text.language").toUpperCase())
-		verifyTrue(contactUsMessage.text().replaceAll(contactUS.text(),""),expectedValue("contactus.page.content").toUpperCase()) //FAILED
+		verifyTrue(contactUsMessage.text().replaceAll(contactUS.text(),"").trim(),expectedValue("contactus.page.content").toUpperCase()) //FAILED
 		verifyTrue(contactUS.text(),expectedValue("text.contactus").toUpperCase())
 		
 		when:"do an invalid login"
@@ -64,7 +64,7 @@ class LoginPageTest extends PropertProvider{
 		then: "verify translation of error message"
 		waitFor { masterTemplate.alertMessage.displayed }
 		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
-		verifyTrueContains(masterTemplate.alertMessage.text().replaceAll("’", ""), expectedValue("login.error.account.block.title").replaceAll("'", ""),"use contains()")
+		verifyTrueContains(masterTemplate.alertMessage.text().replaceAll("’", "").replaceAll(" mbxukb2b@levi.com", ""), expectedValue("login.error.account.block.title").replaceAll("'", "").replaceAll(" <strong><a href=mailto:></a></strong>", ""),"use contains()")
 		verifyTestFailedOrPassed()
 		
 		where:

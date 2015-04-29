@@ -31,7 +31,7 @@ class QuickOrderPageTest extends PropertProvider{
 		verifyTrue(advancedSearch(1).text(), expectedValue("search.advanced.onlyproductids").toUpperCase())
 		verifyTrue(searchLink.text(), expectedValue("search.advanced.search").toUpperCase())
 		verifyTrue(blankSlateHeader.text(), expectedValue("search.advanced.how.to").toUpperCase())
-		verifyTrue(blankSlateContent.text() , expectedValue("search.advanced.how.to.text"))
+		verifyTrue(blankSlateContent.text() , expectedValue("search.advanced.how.to.text").replaceAll("<br> ", "\n"))
 		verifyTrue(helpLink.text(), expectedValue("quick.order.help.link.label"))
 		verifyTrue(quantityAndTotal(0).text(), expectedValue("text.quantity"))
 		verifyTrue(quantityAndTotal(1).text(), expectedValue("basket.page.total")+ " ")

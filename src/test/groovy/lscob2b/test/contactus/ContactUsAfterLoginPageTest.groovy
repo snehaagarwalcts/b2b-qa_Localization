@@ -35,7 +35,7 @@ class ContactUsAfterLoginPageTest extends PropertProvider{
 		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
 		verifyTrue(masterTemplate.alertMessage.text(), expectedValue("contactus.error.message"))
 		verifyTrue(masterTemplate.introContainerLabel.text(),expectedValue("contactus.intro"))
-		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("form.required"))
+		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("form.required").replaceAll(" <span class=mandatory></span>", ""))
 		verifyTrue(titleLabel.text(),expectedValue("user.title").toUpperCase())
 		verifyTrue(firstNameLabel.text(),expectedValue("user.firstName").toUpperCase())
 		verifyTrue(lastNameLabel.text(),expectedValue("user.lastName").toUpperCase())
