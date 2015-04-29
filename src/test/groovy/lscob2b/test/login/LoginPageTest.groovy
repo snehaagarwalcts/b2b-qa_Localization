@@ -64,7 +64,7 @@ class LoginPageTest extends PropertProvider{
 		then: "verify translation of error message"
 		waitFor { masterTemplate.alertMessage.displayed }
 		verifyTrue(masterTemplate.alertMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
-		verifyTrueContains(masterTemplate.alertMessage.text().replaceAll("’", "").replaceAll(" mbxukb2b@levi.com", ""), expectedValue("login.error.account.block.title").replaceAll("'", "").replaceAll(" <strong><a href=mailto:></a></strong>", ""),"use contains()")
+		verifyTrueContains(masterTemplate.alertMessage.text().replaceAll("'?’", "").replaceAll(" mbxukb2b@levi.com", ""), expectedValue("login.error.account.block.title").replaceAll("'?’", "").replaceAll(" <strong><a href=mailto:></a></strong>", ""),"use contains()")
 		verifyTestFailedOrPassed()
 		
 		where:

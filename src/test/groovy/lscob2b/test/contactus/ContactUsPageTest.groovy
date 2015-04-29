@@ -28,7 +28,7 @@ class ContactUsPageTest extends PropertProvider{
 		then:"Verify translations at ContactUsPage"
 		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("contactus.heading").toUpperCase())
 		verifyTrue(masterTemplate.introContainerLabel.text(),expectedValue("contactus.intro")) //FAILED
-		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("form.required").replaceAll(" <span class=mandatory></span>", ""))
+		verifyTrue(masterTemplate.requiredMessageText.text().replaceAll(' ""', ""),expectedValue("form.required").replaceAll(' "<span class=mandatory></span>"', ""))
 		verifyTrue(titleLabel.text(),expectedValue("user.title").toUpperCase())
 		verifyTrue(firstNameLabel.text(),expectedValue("user.firstName").toUpperCase())
 		verifyTrue(lastNameLabel.text(),expectedValue("user.lastName").toUpperCase())

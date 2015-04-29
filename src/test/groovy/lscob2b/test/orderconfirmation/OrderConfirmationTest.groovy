@@ -49,9 +49,9 @@ class OrderConfirmationTest extends PropertProvider{
 		then: "verify translations of OrderConfirmationPage"
 		verifyTrue(masterTemplate.mainContainerLabel.text(), expectedValue("order.confirmation.thanks").toUpperCase())
 		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
-		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","").replaceAll("’", ""), expectedValue("checkout.orderConfirmation.saperror").replaceAll("'", ""))
-		verifyTrue(order.labelOrderNumber.text(), expectedValue("text.account.orderDetail.orderNumber").toUpperCase()- ~/:/)
-		verifyTrueContains(order.labelOrderDesc.text().replaceAll(" SUPER@UNIT-1", ""), expectedValue("order.copy.sent").toUpperCase(), "use contains()")
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n","").replaceAll("’?'", ""), expectedValue("checkout.orderConfirmation.saperror").replaceAll("’?'", ""))
+		verifyTrue(order.labelOrderNumber.text(), expectedValue("text.account.orderDetail.orderNumber").replaceAll(":", "").trim().toUpperCase())
+		verifyTrue(order.labelOrderDesc.text().replaceAll(" SUPER@UNIT-1", ""), expectedValue("order.copy.sent").toUpperCase())
 		verifyTrue(order.headerorderAddress.text(), expectedValue("order.detail.deliveryAddress").toUpperCase())
 		verifyTrue(order.labelPaymentDetalis.text(), expectedValue("order.detail.paymentDetails").toUpperCase())
 		verifyTrue(order.labelOrderPlacedBy.text(), expectedValue("checkout.orderConfirmation.orderPlacedBy").toUpperCase())

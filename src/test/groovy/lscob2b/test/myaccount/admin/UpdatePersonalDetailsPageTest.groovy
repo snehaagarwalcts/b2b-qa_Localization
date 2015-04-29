@@ -43,7 +43,7 @@ class UpdatePersonalDetailsPageTest extends PropertProvider{
 			verifyTrue(masterTemplate.breadCrumbActive.text(),expectedValue("text.account.profile").toUpperCase())
 			verifyTrue(masterTemplate.mainContainerLabel.text(),expectedValue("text.account.profile").toUpperCase())
 			verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.account.profile.update.subtitle"))
-			verifyTrue(masterTemplate.requiredMessageText.text(), expectedValue("form.required").replaceAll(" <span class=mandatory></span>", ""))
+			verifyTrue(masterTemplate.requiredMessageText.text().replaceAll(' ""', ""),expectedValue("form.required").replaceAll(' "<span class=mandatory></span>"', ""))
 			verifyTrue(updateProfileLabel(0).text(), expectedValue("profile.title").toUpperCase())
 			verifyTrue(updateProfileLabel(1).text(), expectedValue("profile.firstName").toUpperCase())
 			verifyTrue(updateProfileLabel(2).text(), expectedValue("profile.lastName").toUpperCase())

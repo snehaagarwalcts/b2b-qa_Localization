@@ -34,7 +34,7 @@ class CreateNewUserPageTest extends PropertProvider {
 		then: "Verify translations in AddUserDetails Page"	
 		verifyTrue(masterTemplate.mainContainerLabel.text(),expectedValue("text.company.manageUsers.adduser.title").toUpperCase())
 		verifyTrue(masterTemplate.introContainerLabel.text(), expectedValue("text.mycompany.user.createForm"))
-		verifyTrue(masterTemplate.requiredMessageText.text(),expectedValue("address.required"))
+		verifyTrue(masterTemplate.requiredMessageText.text().replaceAll(' ""', ""),expectedValue("form.required").replaceAll(' "<span class=mandatory></span>"', ""))
 		verifyTrue(AddUserLabels(0).text(),expectedValue("user.title").toUpperCase())		
 		verifyTrue(AddUserLabels(1).text(),expectedValue("text.company.manageUser.user.firstName").toUpperCase())
 		verifyTrue(AddUserLabels(2).text(),expectedValue("text.company.manageUser.user.lastName").toUpperCase())
