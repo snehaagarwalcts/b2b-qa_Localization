@@ -39,9 +39,9 @@ if(browserName == null || browserName == "") {
 /* Default Locale */
 //locale="de"
 //locale="fr"
-//locale="it"
+locale="it"
 //locale="es"
-locale="en"
+//locale="en"
 
 /* Default Target URL */
 baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/"+locale+"/"
@@ -56,9 +56,9 @@ environments {
 	preprod {
 		//locale="de"
 		//locale="fr"
-		//locale="it"
+		locale="it"
 		//locale="es"
-		locale="en"	
+		//locale="en"	
 		baseUrl = "https://b2bpreprod-000-web-000.lsco-b2b.com/"+locale+"/"
 		hacUrl = "http://b2bpreprod-000-cron-000.lsco-b2b.com:9001/hac/"
 		hacUsername = "admin"
@@ -100,9 +100,9 @@ environments {
 	qa001 {
 		//locale="de"
 		//locale="fr"
-		//locale="it"
+		locale="it"
 		//locale="es"
-		locale="en"
+		//locale="en"
 		baseUrl = "http://b2bqa-001-web-000.lsco-b2b.com/"+locale+"/"
 		hacUrl = "http://b2bqa-001-cron-000.lsco-b2b.com:9001/hac/"
 		hacUsername = "admin"

@@ -39,7 +39,7 @@ class ProfilePageTest extends PropertProvider{
 		verifyTrue(firstName.text(), expectedValue("profile.firstName").toUpperCase())
 		verifyTrue(lastName.text(), expectedValue("profile.lastName").toUpperCase())
 		verifyTrue(changeYourPasswordLink.text()- ~/&/, expectedValue("text.account.profile.changePassword").toUpperCase())
-		verifyTrue(updatePersonalDetailsLink.text()- ~/&/, expectedValue("text.account.profile.updatePersonalDetails").toUpperCase())		
+		verifyTrue(updatePersonalDetailsLink.text()- ~/ &/ , expectedValue("text.account.profile.updatePersonalDetails").toUpperCase())		
 		verifyTestFailedOrPassed()
 		
 		where:

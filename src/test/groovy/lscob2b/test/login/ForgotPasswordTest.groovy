@@ -37,7 +37,7 @@ class ForgotPasswordTest extends PropertProvider{
 		
 		and: "Verify Message Translation for 'password link sent' message"
 		verifyTrue(masterTemplate.noteMessageHeader.text(), expectedValue("text.please.note").toUpperCase())
-		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("account.confirmation.forgotten.password.link.sent")) //FAILED
+		verifyTrue(masterTemplate.noteMessage.text().replaceAll(masterTemplate.noteMessageHeader.text()+"\n",""), expectedValue("account.confirmation.forgotten.password.link.sent")) 
 		
 		when:"Enter invalid forgotten password email Id"
 		openForgottenPasswordDialog()
