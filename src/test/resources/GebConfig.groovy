@@ -209,7 +209,7 @@ if (sauceBrowser && sauceBrowser != "false") {
 
 	} else if(browserName == "internet explorer") {
 
-		System.setProperty("webdriver.ie.driver", "C:/Users/401685/WebDrivers/IEDriverServer.exe")
+		System.setProperty("webdriver.ie.driver", "C:/Users/401685/WebDrivers/drivers/IEDriverServer.exe")
 		driver = { new InternetExplorerDriver() }
 
 	} else {

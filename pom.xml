@@ -6,12 +6,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<selenium.version>2.43.1</selenium.version>
+		<selenium.version>2.45.0</selenium.version>
 		<spock.version>0.7-groovy-2.0</spock.version>
 		<geb.version>0.10.0</geb.version>
 		<!-- DEFAULT PROPERTIES -->
 		<!-- <test.parallel>1</test.parallel> -->
-		<!-- <test.env>local</test.env> -->
+		<!-- <test.env>qa001</test.env> -->
 		<!-- <test.platform>windows</test.platform> -->
 		<!-- <test.browser>firefox</test.browser> -->
 		<!-- <test.browser.version>34</test.browser.version> -->
@@ -235,7 +235,7 @@
 			<groupId>net.sourceforge.jexcelapi</groupId>
 			<artifactId>jxl</artifactId>
 			<version>2.6.12</version>
-		</dependency>		
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -256,10 +256,26 @@
 				<test.browser.version>11</test.browser.version>
 			</properties>
 		</profile>
+				<profile>
+			<id>ie10</id>
+			<properties>
+				<test.platform>windows 7</test.platform>
+				<test.browser>internet explorer</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
+				<test.browser.version>10</test.browser.version>
+			</properties>
+		</profile>
+				<profile>
+			<id>ie9</id>
+			<properties>
+				<test.platform>windows 7</test.platform>
+				<test.browser>internet explorer</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
+				<test.browser.version>9</test.browser.version>
+			</properties>
+		</profile>
 		<profile>
 			<id>ie8</id>
 			<properties>
-				<test.platform>windows</test.platform>
+				<test.platform>windows 7</test.platform>
 				<test.browser>internet explorer</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
 				<test.browser.version>8</test.browser.version>
 			</properties>
@@ -267,17 +283,17 @@
 		<profile>
 			<id>firefox</id>
 			<properties>
-				<test.platform>windows</test.platform>
+				<test.platform>windows 7</test.platform>
 				<test.browser>firefox</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
-				<test.browser.version>34</test.browser.version>
+				<test.browser.version>37</test.browser.version>
 			</properties>
 		</profile>
 		<profile>
 			<id>chrome</id>
 			<properties>
-				<test.platform>windows</test.platform>
+				<test.platform>windows 7</test.platform>
 				<test.browser>chrome</test.browser> <!-- {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari} -->
-				<test.browser.version>39</test.browser.version>
+				<test.browser.version>42</test.browser.version>
 			</properties>
 		</profile>
 
